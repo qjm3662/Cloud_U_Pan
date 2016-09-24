@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="barBackground" format="reference|color"/>
+    <attr name="textColorLight" format="reference|color"/>
+    <attr name="textColorDeep" format="reference|color"/>
+    <attr name="title_Text_Color" format="reference|color"/>
+    <attr name="mainBackground" format="reference|color"/>
+    <attr name="ListViewBackground" format="reference|color"/>
+    <attr name="line_barBackground" format="reference|color"/>
+    <attr name="editView" format="reference|color"/>
+    <attr name="signInput" format="reference|color"/>
+    <attr name="personHomePage" format="reference|color"/>
+    <attr name="personHomePage_concern" format="reference|color"/>
+    <attr name="user_info_item" format="reference|color"/>
+    <attr name="story_info_item" format="reference|color"/>
+    <attr name="line_color" format="reference|color"/>
+    <attr name="loginEditText" format="reference|color"/>
+</resources>

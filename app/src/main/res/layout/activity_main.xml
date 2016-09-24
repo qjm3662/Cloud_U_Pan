@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblue"
+    tools:context=".UI.MainActivity">
+    <include layout="@layout/bar_item"/>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:id="@+id/img_pan"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="103dp"
+        />
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_upload"
+        android:text=" 上传文件 "
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/img_pan"
+        style="@style/EasyButtonStyle"
+        />
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_download"
+        android:text=" 下载文件 "
+        style="@style/EasyButtonStyle"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_upload"
+        />
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_bluetooth"
+        style="@style/EasyButtonStyle"
+        android:layout_below="@+id/btn_download"
+        android:layout_toLeftOf="@+id/btn_more"
+        android:layout_toStartOf="@+id/btn_more"
+        android:layout_marginTop="33dp" />
+
+
+    <ImageView
+        android:paddingTop="@dimen/img_padding"
+        android:paddingBottom="@dimen/img_padding"
+        android:paddingLeft="@dimen/img_padding"
+        android:paddingRight="@dimen/img_padding"
+        android:src="@drawable/bluetooth"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/btn_bluetooth"
+        android:layout_alignEnd="@+id/btn_bluetooth"
+        android:layout_alignRight="@+id/btn_bluetooth"
+        android:layout_alignTop="@+id/btn_bluetooth"
+        android:layout_alignLeft="@+id/btn_bluetooth"
+        android:layout_alignStart="@+id/btn_bluetooth" />
+
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_my"
+        style="@style/EasyButtonStyle"
+        android:layout_toRightOf="@+id/btn_more"
+        android:layout_below="@id/btn_download"
+        android:layout_marginTop="33dp" />
+
+    <ImageView
+        android:paddingTop="@dimen/img_padding"
+        android:paddingBottom="@dimen/img_padding"
+        android:paddingLeft="@dimen/img_padding"
+        android:paddingRight="@dimen/img_padding"
+        android:src="@drawable/my"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@id/btn_my"
+        android:layout_alignBottom="@+id/btn_my"
+        android:layout_alignTop="@+id/btn_my"
+        android:layout_alignEnd="@+id/btn_my"
+        android:layout_alignRight="@+id/btn_my"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@id/btn_my" />
+
+
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_more"
+        style="@style/EasyButtonStyle"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btn_download"
+        android:layout_marginTop="33dp" />
+
+    <ImageView
+        android:paddingTop="@dimen/img_padding"
+        android:paddingBottom="@dimen/img_padding"
+        android:paddingLeft="@dimen/img_padding"
+        android:paddingRight="@dimen/img_padding"
+        android:src="@drawable/more"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@id/btn_more"
+        android:layout_alignBottom="@+id/btn_more"
+        android:layout_alignTop="@+id/btn_more"
+        android:layout_alignEnd="@+id/btn_more"
+        android:layout_alignRight="@+id/btn_more"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@id/btn_more" />
+
+</RelativeLayout>
