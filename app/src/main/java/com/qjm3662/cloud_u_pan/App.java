@@ -9,6 +9,7 @@ import com.qjm3662.cloud_u_pan.Data.FileInformation;
  */
 public class App extends Application{
 
+    public static String response = "";
     @Override
     public void onCreate() {
         super.onCreate();

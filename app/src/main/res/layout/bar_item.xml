@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    android:background="@color/blue"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bar_item_height">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:src="@drawable/back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
     <TextView
         android:id="@+id/bar"
         android:text="优云"
         android:gravity="center"
         android:textSize="22sp"
         android:textColor="@color/white"
-        android:background="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bar_item_height" />
 
-</LinearLayout>
+</RelativeLayout>

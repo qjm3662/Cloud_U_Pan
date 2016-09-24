@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TimePicker;
 
+import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Receiver.WiFiDirectBroadcastReceiver;
+import com.tt.whorlviewlibrary.WhorlView;
 
 public class TestWifiDirect extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,7 +39,14 @@ public class TestWifiDirect extends AppCompatActivity implements View.OnClickLis
     private void initButton() {
         btn_find_deceive = (Button) findViewById(R.id.btn_find_deceive);
         btn_find_deceive.setOnClickListener(this);
+//        WhorlView whorlView = (WhorlView) findViewById(R.id.whorl2);
+//        whorlView.start();
+
+
+
     }
+
+
 
     /* register the broadcast receiver with the intent values to be matched */
     @Override

@@ -124,7 +124,7 @@ public class EasyButton extends TextView {
         mMaxRippleWidth = mRadius / 2;
         mLineWidth = Math.round(mRadius / 100);
 
-        Log.e("mLineWidth", mLineWidth + "");
+//        Log.e("mLineWidth", mLineWidth + "");
         mRippleWidth = mLineWidth;
         mInitRippleWidth = mRippleWidth;
         mRecWidth = textLen * textSize;

@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
+import com.tt.whorlviewlibrary.WhorlView;
 
 import java.io.File;
 
@@ -38,12 +40,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_bluetooth = (EasyButton) findViewById(R.id.btn_bluetooth);
         btn_more = (EasyButton) findViewById(R.id.btn_more);
         btn_my = (EasyButton) findViewById(R.id.btn_my);
+        findViewById(R.id.img_back).setVisibility(View.INVISIBLE);
 
         btn_upload.setOnClickListener(this);
         btn_download.setOnClickListener(this);
         btn_bluetooth.setOnClickListener(this);
         btn_more.setOnClickListener(this);
         btn_my.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -96,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     System.out.println(path);
                     File file = new File(path);
                     System.out.println("begin up");
-                    NetWorkOperator.UP_FILE(file, file.getName(), true);
+                    startActivity(new Intent(this, UploadUi.class));
+                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
                 }
                 break;
         }

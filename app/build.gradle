@@ -38,4 +38,10 @@ dependencies {
 
     //px与dp转换
     compile 'com.yalantis:phoenix:1.2.3'
+
+    //旋涡加载进度条
+    compile 'com.tt:whorlviewlibrary:1.0.3'
+
+    //很好看的进度条
+    compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
 }

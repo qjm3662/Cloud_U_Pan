@@ -34,7 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.TestWifiDirect"></activity>
+        <activity android:name=".UI.TestWifiDirect" />
+        <activity android:name=".UI.UploadUi"></activity>
     </application>
 
 </manifest>
