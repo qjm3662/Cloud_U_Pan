@@ -10,6 +10,7 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -44,7 +45,6 @@ public class WifiDirect extends AppCompatActivity implements View.OnClickListene
     private ImageView img_joinGroup;
     private ImageView img_create_a_group;
     private TextView tv_justview;
-    private EasyButton btn_sendFile;
 
     private List peers = new ArrayList();
     private WifiP2pManager mManager;
@@ -63,8 +63,8 @@ public class WifiDirect extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_direct);
         initView();
-        initIntentFilter();
-        initReceiver();
+//        initIntentFilter();
+//        initReceiver();
 //        initEvents();
     }
 
@@ -79,15 +79,13 @@ public class WifiDirect extends AppCompatActivity implements View.OnClickListene
         img_joinGroup = (ImageView) findViewById(R.id.img_joinGroup);
         img_create_a_group = (ImageView) findViewById(R.id.img_create_a_group);
         tv_justview = (TextView) findViewById(R.id.justView);
-        btn_sendFile = (EasyButton) findViewById(R.id.btn_sendFile);
 
         btn_joinAGroup.setOnClickListener(this);
         btn_create_a_group.setOnClickListener(this);
         img_back.setOnClickListener(this);
-        btn_sendFile.setOnClickListener(this);
 
         tv_bar.setText("Wifi传输");
-        btn_sendFile.setVisibility(View.INVISIBLE);
+
     }
 
     /**
@@ -219,9 +217,8 @@ public class WifiDirect extends AppCompatActivity implements View.OnClickListene
 //                TextView view = (TextView) findViewById(R.id.tv_main);
                 if (info.groupFormed && info.isGroupOwner) {
                     Log.i("xyz", "owmer start");
-//                    mServerTask = new FileServerAsyncTask(WifiDirect.this);
-//                    mServerTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    btn_sendFile.setVisibility(View.VISIBLE);
+                    mServerTask = new FileServerAsyncTask(WifiDirect.this);
+                    mServerTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     Toast.makeText(WifiDirect.this, "连接成功", Toast.LENGTH_SHORT).show();
                     tv_bottom.setText("");
                 } else if (info.groupFormed) {
@@ -244,14 +241,14 @@ public class WifiDirect extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mReceiver, mFilter);
+//        registerReceiver(mReceiver, mFilter);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.i("xyz", "hehehehehe");
-        unregisterReceiver(mReceiver);
+//        unregisterReceiver(mReceiver);
     }
 
     @Override
@@ -270,20 +267,18 @@ public class WifiDirect extends AppCompatActivity implements View.OnClickListene
                 startActivity(new Intent(this, WifiSearching.class));
                 break;
             case R.id.btn_create_a_group:
-                img_create_a_group.setImageResource(R.drawable.wenhao);
-                tv_bottom.setText("等待加入");
-                tv1.setText("我的用户名");
-                tv2.setText("未知");
-                tv_justview.setText("···");
-                BeGroupOwner();
+//                img_create_a_group.setImageResource(R.drawable.wenhao);
+//                tv_bottom.setText("等待加入");
+//                tv1.setText("我的用户名");
+//                tv2.setText("未知");
+//                tv_justview.setText("···");
+//                BeGroupOwner();
+                startActivity(new Intent(this, WifiReceiving.class));
                 break;
             case R.id.img_back:
                 onBackPressed();
                 break;
             case R.id.btn_sendFile:
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 20);
                 break;
         }
     }

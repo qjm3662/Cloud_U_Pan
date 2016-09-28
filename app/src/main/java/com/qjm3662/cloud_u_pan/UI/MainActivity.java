@@ -1,6 +1,7 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.content.Intent;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.GetPathFromUri4kitkat;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
+import com.qjm3662.cloud_u_pan.Wifip2pDirect.EmptyActivity;
+import com.qjm3662.cloud_u_pan.Wifip2pDirect.WIFI;
 import com.qjm3662.cloud_u_pan.Wifip2pDirect.WifiDirect;
 
 import java.io.File;
@@ -47,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_more.setOnClickListener(this);
         btn_my.setOnClickListener(this);
 
-
+//        File file = new File();
+//        file.getAbsolutePath()
     }
 
     @Override
@@ -61,8 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DownloadUi.class));
                 break;
             case R.id.btn_bluetooth:
-//                startActivity(new Intent(this, WifiDirectMainActivity.class));
-                startActivity(new Intent(this, WifiDirect.class));
+                startActivity(new Intent(this, EmptyActivity.class));
+//                startActivity(new Intent(this, WifiDirect.class));
+
                 break;
             case R.id.btn_more:
                 startActivity(new Intent(this, LocalFileRecording_Download.class));

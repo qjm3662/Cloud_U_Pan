@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,7 +47,7 @@ public class FileServerAsyncTask extends
                     Environment.getExternalStorageDirectory() + "/"
                             + "com.qjm3662.cloud_u_pan" + "/wifip2pshared-"
                             + System.currentTimeMillis() + ".jpg");
-
+            System.out.println("File :　～～～～" + f);
             File dirs = new File(f.getParent());
 
             if (!dirs.exists())
@@ -54,7 +56,7 @@ public class FileServerAsyncTask extends
                 /*Returns an input stream to read data from this socket*/
             InputStream inputstream = client.getInputStream();
             copyFile(inputstream, new FileOutputStream(f));
-            serverSocket.close();
+//            serverSocket.close();
             return f.getAbsolutePath();
         } catch (IOException e) {
             Log.e("xyz", e.toString());
@@ -70,15 +72,10 @@ public class FileServerAsyncTask extends
     @Override
     protected void onPostExecute(String result) {
         Log.i("xyz", "file onpost");
-        Toast.makeText(context, "result"+result, Toast.LENGTH_SHORT).show();
-
+//        Toast.makeText(context, "result"+result, Toast.LENGTH_SHORT).show();
         if (result != null) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse("file://" + result), "image/*");
-            context.startActivity(intent);
+            EasySweetAlertDialog.ShowSuccess(context, "result"+result);
         }
-
     }
 
     /*
@@ -90,8 +87,6 @@ public class FileServerAsyncTask extends
     protected void onPreExecute() {
 
     }
-
-
     public static boolean copyFile(InputStream inputStream, OutputStream out) {
         byte buf[] = new byte[1024];
         int len;

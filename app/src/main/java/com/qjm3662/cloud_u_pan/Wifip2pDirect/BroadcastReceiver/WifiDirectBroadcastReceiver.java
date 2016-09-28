@@ -9,6 +9,8 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.qjm3662.cloud_u_pan.Wifip2pDirect.WifiSearching;
+
 /**
  * Created by zd on 2016/3/20.
  */

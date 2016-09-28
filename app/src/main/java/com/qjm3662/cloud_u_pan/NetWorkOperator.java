@@ -27,8 +27,6 @@ import okhttp3.Call;
  * Created by tanshunwang on 2016/9/21 0021.
  */
 public class NetWorkOperator {
-
-
     public static String Down(final String id_, final FileInformation fileInformation) {
         OkHttpUtils
                 .get()

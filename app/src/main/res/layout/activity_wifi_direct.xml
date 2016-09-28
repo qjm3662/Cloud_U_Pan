@@ -101,12 +101,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_sendFile"
-        style="@style/EasyButtonStyle"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:text=" 发送文件 " />
+
 </RelativeLayout>

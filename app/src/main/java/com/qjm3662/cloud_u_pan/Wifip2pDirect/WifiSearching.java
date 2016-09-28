@@ -1,6 +1,7 @@
 package com.qjm3662.cloud_u_pan.Wifip2pDirect;
 
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.guo.duoduo.randomtextview.RandomTextView;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Wifip2pDirect.BroadcastReceiver.WifiDirectBroadcastReceiver;
 import com.qjm3662.cloud_u_pan.Wifip2pDirect.Service.FileTransferService;
 import com.qjm3662.cloud_u_pan.Wifip2pDirect.Task.DataServerAsyncTask;
@@ -33,19 +35,25 @@ import java.util.List;
 
 public class WifiSearching extends AppCompatActivity {
 
-    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
+    public static List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
     private WifiP2pManager mManager;
     private WifiP2pManager.Channel mChannel;
     private BroadcastReceiver mReceiver;
     private IntentFilter mFilter;
-    private WifiP2pInfo info;
 
+    private IntentFilter intentFilter;
+    private BroadcastReceiver receiver;
+
+    private WifiP2pInfo info;
     private FileServerAsyncTask mServerTask;
     private DataServerAsyncTask mDataTask;
 
     private Utils utils;
 
-    private RandomTextView randomTextView;
+    public static RandomTextView randomTextView;
+
+    private EasyButton btn_sendFile;
+    private String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +75,17 @@ public class WifiSearching extends AppCompatActivity {
                     }
                 });
         DiscoverPeers();
+
+        btn_sendFile = (EasyButton) findViewById(R.id.btn_sendFile);
+        btn_sendFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 20);
+            }
+        });
+        btn_sendFile.setVisibility(View.INVISIBLE);
     }
 
 
@@ -125,12 +144,13 @@ public class WifiSearching extends AppCompatActivity {
         }
 
         Log.i("address", "lingyige youxianji" + String.valueOf(config.groupOwnerIntent));
-
+        ip = Utils.getIPFromMac(address);
+        System.out.println("IP :" + ip);
         mManager.connect(mChannel, config, new WifiP2pManager.ActionListener() {
 
             @Override
             public void onSuccess() {
-
+                btn_sendFile.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -176,7 +196,6 @@ public class WifiSearching extends AppCompatActivity {
         };
 
         WifiP2pManager.ConnectionInfoListener mInfoListener = new WifiP2pManager.ConnectionInfoListener() {
-
             @Override
             public void onConnectionInfoAvailable(final WifiP2pInfo minfo) {
 
@@ -185,14 +204,7 @@ public class WifiSearching extends AppCompatActivity {
                 TextView view = (TextView) findViewById(R.id.tv_main);
                 if (info.groupFormed && info.isGroupOwner) {
                     Log.i("xyz", "owmer start");
-
                 } else if (info.groupFormed) {
-//                    SetButtonVisible();
-                    mServerTask = new FileServerAsyncTask(WifiSearching.this);
-                    mServerTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    mDataTask = new DataServerAsyncTask(WifiSearching.this, view);
-                    mDataTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                    System.out.println("开始接收文件");
                 }
             }
         };
@@ -219,6 +231,17 @@ public class WifiSearching extends AppCompatActivity {
         mFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         mFilter.addAction(WifiP2pManager.WIFI_P2P_DISCOVERY_CHANGED_ACTION);
         mFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("ChangeConnect");
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                WifiSearching.peers.clear();
+                WifiSearching.randomTextView.show();
+            }
+        };
+        registerReceiver(receiver, intentFilter);
     }
 
     @Override
@@ -230,14 +253,15 @@ public class WifiSearching extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Log.i("xyz", "hehehehehe");
-        unregisterReceiver(mReceiver);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         StopConnect();
+        Log.i("xyz", "hehehehehe");
+        unregisterReceiver(mReceiver);
+        unregisterReceiver(receiver);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             StopDiscoverPeers();
         }
