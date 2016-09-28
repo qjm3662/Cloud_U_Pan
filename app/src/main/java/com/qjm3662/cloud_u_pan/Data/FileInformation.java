@@ -30,4 +30,8 @@ public class FileInformation {
     public void setSize(float size) {
         this.size = size;
     }
+
+    public interface callBack{
+        void call();
+    }
 }

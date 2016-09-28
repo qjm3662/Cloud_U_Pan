@@ -14,13 +14,13 @@
     <style name="EasyButtonStyle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <!--<item name="android:textSize">18sp</item>-->
         <item name="android:textColor">@color/black</item>
-        <item name="sub_btn_duration">1000</item>
+        <item name="sub_btn_duration">800</item>
         <item name="sub_btn_background">@color/white</item>
         <item name="sub_btn_line_color">@color/blue</item>
         <item name="sub_btn_ripple_color">@color/blue</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-    </style>
+    </style>z
 
 
     <!--<style name="ImageView">-->
@@ -30,5 +30,14 @@
         <!--<item name="paddingRight">26dp</item>-->
 
     <!--</style>-->
+
+
+    <style name="AVLoadingIndicatorView222">
+        <item name="minWidth">100dp</item>
+        <item name="maxWidth">100dp</item>
+        <item name="minHeight">100dp</item>
+        <item name="maxHeight">100dp</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
 
 </resources>

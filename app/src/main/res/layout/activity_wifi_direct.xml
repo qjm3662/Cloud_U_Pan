@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_wifi_direct"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblue"
+    tools:context="com.qjm3662.cloud_u_pan.Wifip2pDirect.WifiDirect">
+
+    <include layout="@layout/bar_item"/>
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_joinAGroup"
+        style="@style/EasyButtonStyle"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/justView"
+        android:layout_toStartOf="@+id/justView"
+        />
+    <ImageView
+        android:id="@+id/img_joinGroup"
+        android:paddingTop="@dimen/img_padding"
+        android:paddingBottom="@dimen/img_padding"
+        android:paddingLeft="@dimen/img_padding"
+        android:paddingRight="@dimen/img_padding"
+        android:src="@drawable/group"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/btn_joinAGroup"
+        android:layout_alignEnd="@+id/btn_joinAGroup"
+        android:layout_alignRight="@+id/btn_joinAGroup"
+        android:layout_alignTop="@+id/btn_joinAGroup"
+        android:layout_alignLeft="@+id/btn_joinAGroup"
+        android:layout_alignStart="@+id/btn_joinAGroup" />
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="加入群组"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_joinAGroup"
+        android:layout_alignLeft="@+id/btn_joinAGroup"
+        android:layout_alignStart="@+id/btn_joinAGroup"
+        android:layout_alignEnd="@+id/btn_joinAGroup"
+        android:layout_alignRight="@+id/btn_joinAGroup"
+        />
+    <TextView
+        android:id="@+id/justView"
+        android:gravity="center"
+        android:textSize="48sp"
+        android:layout_centerInParent="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_create_a_group"
+        style="@style/EasyButtonStyle"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/justView"
+        android:layout_toEndOf="@+id/justView"
+        />
+    <ImageView
+        android:id="@+id/img_create_a_group"
+        android:paddingTop="@dimen/img_padding"
+        android:paddingBottom="@dimen/img_padding"
+        android:paddingLeft="@dimen/img_padding"
+        android:paddingRight="@dimen/img_padding"
+        android:src="@drawable/creategroup"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/btn_create_a_group"
+        android:layout_alignEnd="@+id/btn_create_a_group"
+        android:layout_alignRight="@+id/btn_create_a_group"
+        android:layout_alignTop="@+id/btn_create_a_group"
+        android:layout_alignLeft="@+id/btn_create_a_group"
+        android:layout_alignStart="@+id/btn_create_a_group" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="创建群组"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_create_a_group"
+        android:layout_alignLeft="@+id/btn_create_a_group"
+        android:layout_alignStart="@+id/btn_create_a_group"
+        android:layout_alignEnd="@+id/btn_create_a_group"
+        android:layout_alignRight="@+id/btn_create_a_group"
+        />
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_sendFile"
+        style="@style/EasyButtonStyle"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text=" 发送文件 " />
+</RelativeLayout>

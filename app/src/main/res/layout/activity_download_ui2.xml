@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qjm3662.cloud_u_pan.UI.DownloadUi2">
+
+
+    <include layout="@layout/bar_item"/>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/progress_circle"
+        style="@style/AVLoadingIndicatorView222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:indicatorColor="@color/colorAccent"
+        android:layout_below="@+id/tv_fileName"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        app:indicatorName="BallClipRotateMultipleIndicator" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:textSize="20sp"
+        android:text="50"
+        android:textColor="@color/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/progress_circle"
+        android:layout_alignEnd="@+id/progress_circle"
+        android:layout_alignLeft="@+id/progress_circle"
+        android:layout_alignRight="@+id/progress_circle"
+        android:layout_alignStart="@+id/progress_circle"
+        android:layout_alignTop="@+id/progress_circle"
+        android:gravity="center"
+        />
+
+
+    <ImageView
+        android:id="@+id/img_file"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/file" />
+
+    <TextView
+        android:id="@+id/tv_fileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_file"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Hollow World.cpp"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_down"
+        style="@style/EasyButtonStyle"
+        android:layout_below="@+id/tv_fileName"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text=" 下载 " />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp">
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_success"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="提取码：0000"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+
+        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+            android:id="@+id/btn_share_qq"
+            style="@style/EasyButtonStyle"
+            android:layout_below="@+id/tv_code"
+            android:layout_marginTop="33dp"
+            android:layout_toLeftOf="@+id/btn_share_chat"
+            android:layout_toStartOf="@+id/btn_share_chat" />
+
+        <ImageView
+            android:id="@+id/img_share_qq"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/btn_share_qq"
+            android:layout_alignEnd="@+id/btn_share_qq"
+            android:layout_alignLeft="@+id/btn_share_qq"
+            android:layout_alignRight="@+id/btn_share_qq"
+            android:layout_alignStart="@+id/btn_share_qq"
+            android:layout_alignTop="@+id/btn_share_qq"
+            android:paddingBottom="@dimen/img_padding"
+            android:paddingLeft="@dimen/img_padding"
+            android:paddingRight="@dimen/img_padding"
+            android:paddingTop="@dimen/img_padding"
+            android:src="@drawable/qq" />
+
+        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+            android:id="@+id/btn_share_chat"
+            style="@style/EasyButtonStyle"
+            android:layout_below="@+id/tv_code"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:layout_toLeftOf="@+id/btn_more"
+            android:layout_toStartOf="@+id/btn_more" />
+
+        <ImageView
+            android:id="@+id/img_share_chat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/btn_share_chat"
+            android:layout_alignEnd="@+id/btn_share_chat"
+            android:layout_alignLeft="@+id/btn_share_chat"
+            android:layout_alignRight="@+id/btn_share_chat"
+            android:layout_alignStart="@+id/btn_share_chat"
+            android:layout_alignTop="@+id/btn_share_chat"
+            android:paddingBottom="@dimen/img_padding"
+            android:paddingLeft="@dimen/img_padding"
+            android:paddingRight="@dimen/img_padding"
+            android:paddingTop="@dimen/img_padding"
+            android:src="@drawable/weixin" />
+
+        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+            android:id="@+id/btn_share_copy"
+            style="@style/EasyButtonStyle"
+            android:layout_below="@+id/tv_code"
+            android:layout_marginTop="33dp"
+            android:layout_toEndOf="@+id/btn_share_chat"
+            android:layout_toRightOf="@+id/btn_share_chat" />
+
+        <ImageView
+            android:id="@+id/img_share_copy"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/btn_share_copy"
+            android:layout_alignEnd="@+id/btn_share_copy"
+            android:layout_alignLeft="@+id/btn_share_copy"
+            android:layout_alignRight="@+id/btn_share_copy"
+            android:layout_alignStart="@+id/btn_share_copy"
+            android:layout_alignTop="@+id/btn_share_copy"
+            android:paddingBottom="@dimen/img_padding"
+            android:paddingLeft="@dimen/img_padding"
+            android:paddingRight="@dimen/img_padding"
+            android:paddingTop="@dimen/img_padding"
+            android:src="@drawable/copy" />
+    </RelativeLayout>
+
+</RelativeLayout>

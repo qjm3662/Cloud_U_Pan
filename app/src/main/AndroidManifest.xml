@@ -11,13 +11,12 @@
 
     <!-- 往sdcard中写入数据的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 在sdcard中创建/删除文件的权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 网络连接 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -34,8 +33,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.TestWifiDirect" />
-        <activity android:name=".UI.UploadUi"></activity>
+        <activity android:name=".UI.UploadUi" />
+        <activity android:name=".UI.DownloadUi" />
+        <activity android:name=".UI.DownloadUi2" />
+        <activity android:name=".Wifip2pDirect.Activity.WifiDirectMainActivity" />
+
+        <service
+            android:name=".Wifip2pDirect.Service.FileTransferService"
+            android:enabled="true" />
+        <service
+            android:name=".Wifip2pDirect.Service.DataTransferService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".UI.LocalFileRecording_Upload" />
+        <activity android:name=".UI.LocalFileRecording_Download" />
+        <activity android:name=".Wifip2pDirect.WifiDirect" />
+        <activity android:name=".Wifip2pDirect.WifiSearching"></activity>
     </application>
 
 </manifest>

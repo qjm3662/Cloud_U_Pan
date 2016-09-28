@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:minHeight="54dp"
+    android:layout_height="54dp">
+
+    <ImageView
+        android:id="@+id/img_head"
+        android:src="@drawable/music"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp" />
+
+    <TextView
+        android:text="白头吟.mp3"
+        android:textSize="16sp"
+        android:textColor="@color/gray"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_height="54dp"
+        android:id="@+id/tv_fileName" />
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/tv_time"
+        android:gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:text="11:20"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="54dp" />
+
+</LinearLayout>
