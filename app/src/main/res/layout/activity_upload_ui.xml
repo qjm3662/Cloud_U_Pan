@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.UploadUi">
-    <include layout="@layout/bar_item"/>
+    <include layout="@layout/bar_item"
+        android:id="@+id/include" />
 
     <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
         xmlns:app= "http://schemas.android.com/apk/res-auto"
@@ -18,14 +19,6 @@
         app:secondaryColor="@color/lightblue"
         app:textColor="@color/colorAccent"
         />
-
-    <ImageView
-        android:id="@+id/img_file"
-        android:src="@drawable/file"
-        android:layout_marginTop="110dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="70dp"
-        android:layout_height="90dp" />
 
     <TextView
         android:id="@+id/tv_fileName"
@@ -139,5 +132,14 @@
             android:layout_alignLeft="@+id/btn_share_copy"
             android:layout_alignStart="@+id/btn_share_copy" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_file"
+        android:src="@drawable/file"
+        android:layout_marginTop="65dp"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

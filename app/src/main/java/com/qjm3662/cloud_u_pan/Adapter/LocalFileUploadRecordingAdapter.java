@@ -66,7 +66,8 @@ public class LocalFileUploadRecordingAdapter extends BaseAdapter{
         if(localFile.isFlag_is_DateNode()){
 
         }else{
-            setImgHead(viewHolder.img_head, localFile.getType(), localFile.getPath());
+//            setImgHead(viewHolder.img_head, localFile.getType(), localFile.getPath());
+            viewHolder.img_head.setImageBitmap(localFile.getBitmap_type());
             viewHolder.tv_fileName.setText(localFile.getName());
             viewHolder.tv_time.setText(localFile.getDownTimeString());
         }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
@@ -144,6 +145,7 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
                     case UploadSuccessWithFileInformation:
                         fileName = intent.getStringExtra("name");
                         fileCode = intent.getStringExtra("code");
+                        FileUtils.setImgHead(img_file, intent.getStringExtra("TYPE"), intent.getStringExtra("path"));
                         handler.sendEmptyMessage(0);
                         break;
                 }

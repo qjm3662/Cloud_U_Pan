@@ -80,6 +80,7 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
                         filePath = intent.getStringExtra(DownloadfilePath);
                         progress_circlr.hide();
                         tv_progress.setVisibility(View.INVISIBLE);
+                        FileUtils.setImgHead(img_file, intent.getStringExtra("TYPE"), filePath);
                         btn_down.setText(" 打开 ");
                         btn_down.setVisibility(View.VISIBLE);
                         break;

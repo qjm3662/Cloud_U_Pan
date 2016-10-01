@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -78,7 +77,7 @@ public class EasyButton extends TextView {
             case INIT:
                 this.setLayerType(View.LAYER_TYPE_SOFTWARE, mLinePaint);
 //                this.setLayerType(View.LAYER_TYPE_SOFTWARE, mButtonPaint);
-                mLinePaint.setShadowLayer(10,1,1, getResources().getColor(R.color.deepBlue));//偏移度很小时则变成发光字体
+                mLinePaint.setShadowLayer(10, 1, 1, getResources().getColor(R.color.deepBlue));//偏移度很小时则变成发光字体
 //                mButtonPaint.setShadowLayer(10,1,1, getResources().getColor(R.color.blue));//偏移度很小时则变成发光字体;
                 drawLine(canvas, 90, 180, 0);
                 drawButton(canvas);
@@ -99,7 +98,7 @@ public class EasyButton extends TextView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_UP: {
+            case MotionEvent.ACTION_DOWN:
                 if (mStatus.equals(INIT)) {
                     startAnimation();
                 } else {
@@ -109,7 +108,9 @@ public class EasyButton extends TextView {
                     startAnimation();
                 }
                 break;
-            }
+            case MotionEvent.ACTION_UP:
+
+                break;
         }
         super.onTouchEvent(event);
         return true;
@@ -141,7 +142,6 @@ public class EasyButton extends TextView {
 
         mShadowPaint.setStrokeWidth(mLineWidth);
         mShadowPaint.setStrokeCap(Paint.Cap.ROUND);
-
 
 
         int width = MeasureSpec.makeMeasureSpec((int) mWidth, MeasureSpec.getMode(widthMeasureSpec));
@@ -182,7 +182,7 @@ public class EasyButton extends TextView {
                 ContextCompat.getColor(getContext(), com.spark.submitbutton.R.color.sub_btn_ripple));
         mRipplePaint.setColor(mRippleColor);
         mRipplePaint.setAntiAlias(true);
-        mRippleDuration = typeArray.getInt(com.spark.submitbutton.R.styleable.SubmitButton_sub_btn_duration, 200) / 6;
+        mRippleDuration = typeArray.getInt(com.spark.submitbutton.R.styleable.SubmitButton_sub_btn_duration, 500) / 6;
         mInitTextColor = getCurrentTextColor();
         typeArray.recycle();
     }
@@ -214,7 +214,7 @@ public class EasyButton extends TextView {
                 cyRight + radius), startAng, -sweepAng, false, mLinePaint);
     }
 
-    void drawShadow(Canvas canvas, float startAng, float sweepAng, float startPosX){
+    void drawShadow(Canvas canvas, float startAng, float sweepAng, float startPosX) {
         float radius = mLineRadius - mLineWidth / 2;
         canvas.drawArc(new RectF(cxLeft - radius, cyLeft - radius, cxLeft + radius,
                 cyLeft + radius), -startAng, -sweepAng, false, mShadowPaint);
