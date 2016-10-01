@@ -49,7 +49,7 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.register_btn:
-                NetWorkOperator.Register(context, et_password.getText().toString(), et_phone_number.getText().toString());
+                NetWorkOperator.Register(context, et_phone_number.getText().toString(), et_password.getText().toString());
                 break;
         }
     }

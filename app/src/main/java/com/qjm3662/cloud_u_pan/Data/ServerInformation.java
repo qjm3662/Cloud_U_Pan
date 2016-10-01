@@ -29,6 +29,12 @@ public class ServerInformation {
     //下载文件(登录后)
     public static final String GetInformation_AfterLogin = url + "/user/name/";
 
+    //获取用户信息
+    public static final String GetUserInfo = url + "/message";
+
+    //获取分享中心
+    public static final String Get_Share_center = url + "/shared";
+
     //注册
     public static final String REGISTER = url + "/user-register";
     /**

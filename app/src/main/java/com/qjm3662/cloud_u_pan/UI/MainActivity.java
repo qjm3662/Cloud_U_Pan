@@ -1,5 +1,6 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.FileManager.FileManager;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.tencent.tauth.Tencent;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final int requestCode_selectFile = 6;
     public static final int resultCode = 9;
     public static final String PATH = "path";
+
+    private Dialog dialog = null;
 
 
     private Tencent mTencent;
@@ -66,10 +70,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DownloadUi.class));
                 break;
             case R.id.btn_bluetooth:
-                startActivity(new Intent(this, shareToQQ.class));
+//                startActivity(new Intent(this, shareToQQ.class));
+//                NetWorkOperator.getUserInfo(this, "15880677610");
+                NetWorkOperator.getShareCenter(this);
                 break;
             case R.id.btn_more:
-                startActivity(new Intent(this, HistoryRecording.class));
+//                startActivity(new Intent(this, HistoryRecording.class));
+                View.OnClickListener listener = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (v.getId()){
+                            case R.id.btn_cancel:
+                                dialog.cancel();
+//                                dialog.dismiss();
+                                System.out.println("dialog cancel!!");
+                                break;
+                            case R.id.img_upload_record:
+                                startActivity(new Intent(MainActivity.this, LocalFileRecording_Upload.class));
+                                break;
+                            case R.id.img_download_record:
+                                startActivity(new Intent(MainActivity.this, LocalFileRecording_Download.class));
+                                break;
+                            case R.id.img_share_center:
+
+                                break;
+                        }
+                    }
+                };
+                dialog = new Dialog(this, R.style.common_dialog);
+                DialogUtils.showDialog(this, dialog, listener);
                 break;
             case R.id.btn_my:
 //                NetWorkOperator.Register(this, "15880677610", "qq961112");
@@ -126,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
-        mTencent.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250.3dp">
+
+    <ImageView
+        android:id="@+id/img_upload_record"
+        android:src="@drawable/upload"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:background="@drawable/circle_upload"
+        android:layout_toLeftOf="@+id/img_download_record"
+        android:layout_marginRight="30dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <TextView
+        android:layout_below="@+id/img_upload_record"
+        android:layout_alignLeft="@+id/img_upload_record"
+        android:layout_alignStart="@+id/img_upload_record"
+        android:layout_alignRight="@+id/img_upload_record"
+        android:layout_alignEnd="@+id/img_upload_record"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="上传记录"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <ImageView
+        android:id="@+id/img_download_record"
+        android:src="@drawable/download"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:background="@drawable/circle_download"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <TextView
+        android:layout_below="@+id/img_download_record"
+        android:layout_alignLeft="@+id/img_download_record"
+        android:layout_alignStart="@+id/img_download_record"
+        android:layout_alignRight="@+id/img_download_record"
+        android:layout_alignEnd="@+id/img_download_record"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="下载记录"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <ImageView
+        android:id="@+id/img_share_center"
+        android:src="@drawable/upload"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/circle_share"
+        android:layout_toRightOf="@+id/img_download_record"
+        android:layout_toEndOf="@+id/img_download_record"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <TextView
+        android:layout_below="@+id/img_share_center"
+        android:layout_alignLeft="@+id/img_share_center"
+        android:layout_alignStart="@+id/img_share_center"
+        android:layout_alignRight="@+id/img_share_center"
+        android:layout_alignEnd="@+id/img_share_center"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="分享中心"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_cancel"
+        style="@style/EasyButtonStyle"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        />
+
+    <ImageView
+        android:paddingTop="@dimen/img_padding"
+        android:paddingBottom="@dimen/img_padding"
+        android:paddingLeft="@dimen/img_padding"
+        android:paddingRight="@dimen/img_padding"
+        android:src="@drawable/img_x"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@id/btn_cancel"
+        android:layout_alignBottom="@+id/btn_cancel"
+        android:layout_alignTop="@+id/btn_cancel"
+        android:layout_alignEnd="@+id/btn_cancel"
+        android:layout_alignRight="@+id/btn_cancel"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@id/btn_more" />
+
+</RelativeLayout>

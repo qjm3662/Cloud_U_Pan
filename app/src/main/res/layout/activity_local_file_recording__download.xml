@@ -7,6 +7,8 @@
     android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.LocalFileRecording_Download">
 
+    <include layout="@layout/bar_item"/>
+
     <TextView
         android:id="@+id/list_empty_view"
         android:gravity="center"
@@ -17,6 +19,7 @@
         android:layout_height="54dp" />
     <ListView
         android:id="@+id/list_localFile"
+        android:layout_marginTop="@dimen/bar_item_height"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

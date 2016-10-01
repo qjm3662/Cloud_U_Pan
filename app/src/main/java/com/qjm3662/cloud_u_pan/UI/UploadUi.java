@@ -13,11 +13,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
+import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.Data.ServerInformation;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.Tool.TencentOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class UploadUi extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,6 +55,9 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
     private ImageView img_back;
     private TextView tv_bar;
     private boolean flag = false;               //标记动画完成，和页面数据填充都完成时显示上传成功页面
+
+    private Tencent tencent;
+    private IUiListener iUiListener;
 
 
     @Override
@@ -88,56 +101,80 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
         tv_bar = (TextView) findViewById(R.id.bar);
         tv_bar.setText("上传");
 
+        tencent = Tencent.createInstance(App.App_ID, this);
+        iUiListener = new IUiListener() {
+            @Override
+            public void onComplete(Object o) {
+                System.out.println("成功");
+//                JSONObject jsonObject = null;
+//                if (o instanceof JSONObject) {
+//                    jsonObject = (JSONObject) o;
+//                }
+//                try {
+//                    tencent.setOpenId(jsonObject.getString("openid"));
+//                    long expires_in = System.currentTimeMillis() + Long.parseLong(jsonObject.getString("expires_in")) * 1000;
+//                    tencent.setAccessToken(jsonObject.getString("access_token"), String.valueOf((expires_in - System.currentTimeMillis()) / 1000));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println(jsonObject);
+
+            }
+
+            @Override
+            public void onError(UiError uiError) {
+                System.out.println("错误");
+            }
+
+            @Override
+            public void onCancel() {
+                System.out.println("取消");
+            }
+        };
+
         animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
         startLoading();
         animatedCircleLoadingView.setAnimationListener(new AnimatedCircleLoadingView.AnimationListener() {
             @Override
             public void onAnimationEnd(boolean success) {
                 animatedCircleLoadingView.setVisibility(View.INVISIBLE);
-//                handler.sendEmptyMessage(0);
             }
         });
 
 
-        handler = new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                switch (msg.what){
+                switch (msg.what) {
                     case 0:
-//                        if(flag){
-//                            animatedCircleLoadingView.stopOk();
                         animatedCircleLoadingView.setVisibility(View.INVISIBLE);
-                            btn_share_qq.setVisibility(View.VISIBLE);
-                            btn_share_copy.setVisibility(View.VISIBLE);
-                            btn_share_chat.setVisibility(View.VISIBLE);
-                            img_share_chat.setVisibility(View.VISIBLE);
-                            img_share_copy.setVisibility(View.VISIBLE);
-                            img_share_qq.setVisibility(View.VISIBLE);
-                            img_file.setVisibility(View.VISIBLE);
-                            tv_success.setVisibility(View.VISIBLE);
-                            tv_fileName.setVisibility(View.VISIBLE);
-                            tv_code.setVisibility(View.VISIBLE);
-                            tv_fileName.setText(fileName);
-                            tv_code.setText("提取码：" + fileCode);
-//                            flag = false;
-//                        }else{
-//                            flag = true;
-//                        }
+                        btn_share_qq.setVisibility(View.VISIBLE);
+                        btn_share_copy.setVisibility(View.VISIBLE);
+                        btn_share_chat.setVisibility(View.VISIBLE);
+                        img_share_chat.setVisibility(View.VISIBLE);
+                        img_share_copy.setVisibility(View.VISIBLE);
+                        img_share_qq.setVisibility(View.VISIBLE);
+                        img_file.setVisibility(View.VISIBLE);
+                        tv_success.setVisibility(View.VISIBLE);
+                        tv_fileName.setVisibility(View.VISIBLE);
+                        tv_code.setVisibility(View.VISIBLE);
+                        tv_fileName.setText(fileName);
+                        tv_code.setText("提取码：" + fileCode);
                         break;
                 }
             }
         };
     }
 
-    private void initIntentFilterAndReceiver(){
+    private void initIntentFilterAndReceiver() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(UploadProgressing);
         intentFilter.addAction(UploadSuccessWithFileInformation);
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                switch (intent.getAction()){
+                switch (intent.getAction()) {
                     case UploadProgressing:
                         int progress = intent.getIntExtra(Progress, 0);
                         changePercent(progress);
@@ -193,12 +230,11 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_share_qq:
-
+                TencentOperator.shareToQQ(this, tencent, iUiListener, fileName, "lalala", ServerInformation.DownLoadFile_AfterLogin+fileCode, "http://img4.duitang.com/uploads/item/201404/03/20140403133744_AhmYW.thumb.700_0.jpeg", "优云");
                 break;
             case R.id.btn_share_chat:
-
                 break;
             case R.id.btn_share_copy:
                 TextUtil.copy(fileCode, this);
@@ -208,5 +244,15 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
                 onBackPressed();
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_QQ_SHARE || requestCode == Constants.REQUEST_LOGIN) {
+            if (resultCode == Constants.ACTIVITY_OK) {
+                Tencent.handleResultData(data, iUiListener);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

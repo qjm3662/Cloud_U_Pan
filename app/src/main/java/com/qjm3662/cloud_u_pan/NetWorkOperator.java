@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 
+import com.google.gson.Gson;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
@@ -30,6 +31,72 @@ import okhttp3.Call;
  */
 public class NetWorkOperator {
 
+
+    /**
+     * 获取分享中心
+     * @param context
+     */
+    public static void getShareCenter(Context context){
+        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }
+        OkHttpUtils
+                .get()
+                .url(ServerInformation.Get_Share_center)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if(jsonObject.getInt("code") == 0){
+                                Gson gson = new Gson();
+                                FileInformation fileInformation = gson.fromJson(jsonObject.getString("shares"), FileInformation.class);
+                                System.out.println(fileInformation);
+                            }
+                        } catch (JSONException e) {
+                            System.out.println("json 错误");
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    /**
+     * 获取用户信息
+     * @param context
+     * @param username
+     */
+    public static void getUserInfo(Context context, String username){
+        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }
+        System.out.println(username);
+        System.out.println(ServerInformation.GetUserInfo);
+        OkHttpUtils
+                .get()
+                .url(ServerInformation.GetUserInfo)
+                .addParams("name", username)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                    }
+                });
+    }
 
     public static String Down(Context context, final String id_, final FileInformation fileInformation) {
         if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
@@ -246,8 +313,7 @@ public class NetWorkOperator {
                 .url(ServerInformation.REGISTER)
                 .addParams("name", username)
                 .addParams("pwd", password)
-                .addParams("sex", "男")
-                .addParams("avatar", "http://cdnq.duitang.com/uploads/item/201410/08/20141008104934_vhuuX.jpeg")
+                .addParams("sex", "1")
                 .build()
                 .execute(new StringCallback() {
                     @Override
