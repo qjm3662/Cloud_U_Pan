@@ -70,9 +70,10 @@ public class DownloadUi extends AppCompatActivity implements View.OnClickListene
                         intent.putExtra("code", editTextWithDivLine.getPwdText());
                         startActivity(intent);
                         editTextWithDivLine.clearText();
+                        finish();
                     }
                 };
-                NetWorkOperator.GetFileInformation(editTextWithDivLine.getPwdText(), App.fileInformation, callBack);
+                NetWorkOperator.GetFileInformation(this, editTextWithDivLine.getPwdText(), App.fileInformation, callBack);
                 break;
             case R.id.img_back:
                 onBackPressed();

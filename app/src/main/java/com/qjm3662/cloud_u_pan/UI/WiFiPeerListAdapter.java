@@ -68,7 +68,6 @@ public class WiFiPeerListAdapter extends BaseAdapter{
         }else{
             viewHolder = (ViewHolder) view.getTag();
         }
-
         WifiP2pDevice wifiP2pDevice = App.peers.get(i);
         viewHolder.tv_device.setText(wifiP2pDevice.deviceName);
         return view;

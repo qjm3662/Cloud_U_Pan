@@ -28,4 +28,41 @@ public class ServerInformation {
 
     //下载文件(登录后)
     public static final String GetInformation_AfterLogin = url + "/user/name/";
+
+    //注册
+    public static final String REGISTER = url + "/user-register";
+    /**
+     * url: 119.29.55.243:3000/user-register post方法
+     传参数name,pwd
+     注册成功
+     {
+     code: 0
+     }
+     用户已经存在
+     {
+     code: -6
+     }
+     参数没传
+     {
+     code: -7
+     }
+     */
+    //登陆
+    public static final String LOGIN = url + "/user-login";
+    /**
+     * url: 119.29.55.243:3000/user-login post方法
+     传参数 name,pwd
+     登陆成功
+     {
+     code: 0
+     }
+     用户已经存在
+     {
+     code: -6
+     }
+     参数没传
+     {
+     code: -7
+     }
+     */
 }

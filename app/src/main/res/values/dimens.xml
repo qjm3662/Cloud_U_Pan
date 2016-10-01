@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="bar_item_height">46dp</dimen>
     <dimen name="img_padding">34dp</dimen>
+    <dimen name="div_line">0.33dp</dimen>
 </resources>

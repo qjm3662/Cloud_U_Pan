@@ -16,6 +16,7 @@
         android:layout_height="54dp" />
 
     <TextView
+        android:id="@+id/tv_fileName"
         android:text="白头吟.mp3"
         android:textSize="16sp"
         android:textColor="@color/gray"
@@ -23,17 +24,18 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_height="54dp"
-        android:id="@+id/tv_fileName" />
+        />
 
     <View
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
+
     <TextView
         android:id="@+id/tv_time"
         android:gravity="center_vertical"
         android:layout_marginRight="20dp"
-        android:text="11:20"
+        android:text=""
         android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="54dp" />

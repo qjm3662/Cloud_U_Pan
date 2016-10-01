@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cloud_U_Pan</string>
+    <string name="phone_number">手机号</string>
+    <string name="input_password">输入密码</string>
+    <string name="register">注册</string>
+    <string name="login">登陆</string>
 </resources>

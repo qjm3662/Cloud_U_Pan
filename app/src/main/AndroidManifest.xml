@@ -5,18 +5,23 @@
 
     <uses-sdk android:minSdkVersion="14" />
 
+    <!-- QQ分享接口 -->
+    <meta-data
+        android:name="TA_APPKEY"
+        android:value="AjsbFyp7oCOFdezm" />
+
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- 往sdcard中写入数据的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 在sdcard中创建/删除文件的权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 网络连接 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".App"
@@ -49,7 +54,33 @@
         <activity android:name=".UI.LocalFileRecording_Upload" />
         <activity android:name=".UI.LocalFileRecording_Download" />
         <activity android:name=".Wifip2pDirect.WifiDirect" />
-        <activity android:name=".Wifip2pDirect.WifiSearching"></activity>
+        <activity android:name=".Wifip2pDirect.WifiSearching" />
+        <activity android:name=".FileManager.FileManager" />
+        <activity android:name=".UI.HistoryRecording" />
+        <activity android:name=".UI.RegisterUI" />
+        <activity android:name=".UI.Login" />
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1105716704" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
+
+        <activity android:name=".UI.shareToQQ"></activity>
     </application>
 
 </manifest>

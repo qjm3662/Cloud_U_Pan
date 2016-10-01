@@ -1,5 +1,7 @@
 package com.qjm3662.cloud_u_pan.Data;
 
+import android.graphics.Bitmap;
+
 import com.qjm3662.cloud_u_pan.Tool.TimeUtils;
 
 /**
@@ -11,6 +13,7 @@ public class LocalFile {
     private String path;
     private long downTime;
     private String type;
+    private Bitmap bitmap_type;
     private boolean flag_is_DateNode;
     public static final String PHOTO = "photo";
     public static final String MUSIC = "music";
@@ -22,24 +25,19 @@ public class LocalFile {
     public static final String ZIP = "zip";
 
 
-    public LocalFile(String name, String path, long downTime, String type, boolean flag_is_DateNode) {
-        this.name = name;
-        this.path = path;
-        this.downTime = downTime;
-        this.type = type;
-        this.flag_is_DateNode = flag_is_DateNode;
-    }
-
-    public LocalFile(String name, String path, long downTime, String type) {
+    public LocalFile(String name, String path, long downTime, String type, Bitmap bitmap){
         this.name = name;
         this.path = path;
         this.downTime = downTime;
         this.type = type;
         this.flag_is_DateNode = false;
+        this.bitmap_type = bitmap;
     }
 
     public LocalFile(){
+
     }
+
 
 
 
@@ -85,6 +83,14 @@ public class LocalFile {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Bitmap getBitmap_type() {
+        return bitmap_type;
+    }
+
+    public void setBitmap_type(Bitmap bitmap_type) {
+        this.bitmap_type = bitmap_type;
     }
 
     @Override
