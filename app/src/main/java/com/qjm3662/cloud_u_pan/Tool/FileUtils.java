@@ -290,10 +290,10 @@ public class FileUtils {
     }
 
     public static String getPath(){
-        String path = getSDPath() + "/U_pan_file/";
+        String path = getSDPath() + "/header/";
         File file = new File(path);
         if(!file.exists()){
-            file.mkdir();
+            file.mkdirs();
             System.out.println("54555");
         }
         return path;
@@ -382,4 +382,26 @@ public class FileUtils {
                 return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
         }
     }
+
+    public static Bitmap getImgHead_not_down(Context context, String type){
+        switch (type){
+            case LocalFile.DOC:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
+            case LocalFile.HTML:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.html);
+            case LocalFile.MUSIC:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.music);
+            case LocalFile.PHOTO:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.picture);
+            case LocalFile.PPT_PDF:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.pptpdf);
+            case LocalFile.VIDEO:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.vedio);
+            case LocalFile.ZIP:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.zip);
+            default:
+                return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
+        }
+    }
+
 }

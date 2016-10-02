@@ -1,5 +1,9 @@
 package com.qjm3662.cloud_u_pan.Data;
 
+import android.graphics.Bitmap;
+
+import com.qjm3662.cloud_u_pan.Tool.TimeUtils;
+
 /**
  * Created by tanshunwang on 2016/9/24 0024.
  */
@@ -8,9 +12,39 @@ public class FileInformation {
     private String identifyCode;
     private boolean share;
     private int downloadCount;
-    private String createdAt;
+    private long createdAt;
     private String name;
     private double size;
+    private Bitmap bitmap_type;
+
+    private String upLoadUser;
+    private String upLoadUserAvatar;
+    private String upLoadUserName;
+
+    public String getUpLoadUser() {
+        return upLoadUser;
+    }
+
+    public void setUpLoadUser(String upLoadUser) {
+        this.upLoadUser = upLoadUser;
+    }
+
+    public String getUpLoadUserAvatar() {
+        return upLoadUserAvatar;
+    }
+
+    public void setUpLoadUserAvatar(String upLoadUserAvatar) {
+        this.upLoadUserAvatar = upLoadUserAvatar;
+    }
+
+    public String getUpLoadUserName() {
+        return upLoadUserName;
+    }
+
+    public void setUpLoadUserName(String upLoadUserName) {
+        this.upLoadUserName = upLoadUserName;
+    }
+
     public FileInformation(){
 
     }
@@ -18,8 +52,7 @@ public class FileInformation {
         this.name = name;
         this.size = size;
     }
-
-    public FileInformation(int id, String identifyCode, boolean share, String createdAt, String name, double size) {
+    public FileInformation(int id, String identifyCode, boolean share, long createdAt, String name, double size) {
         this.id = id;
         this.identifyCode = identifyCode;
         this.share = share;
@@ -27,6 +60,18 @@ public class FileInformation {
         this.name = name;
         this.size = size;
         this.downloadCount = 6;
+    }
+
+    public Bitmap getBitmap_type() {
+        return bitmap_type;
+    }
+
+    public void setBitmap_type(Bitmap bitmap_type) {
+        this.bitmap_type = bitmap_type;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 
     public int getId() {
@@ -61,11 +106,11 @@ public class FileInformation {
         this.downloadCount = downloadCount;
     }
 
-    public String getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -89,6 +134,9 @@ public class FileInformation {
         void call();
     }
 
+    public String getDownTimeString(){
+        return TimeUtils.returnTime(createdAt);
+    }
     @Override
     public String toString() {
         return "FileInformation{" +

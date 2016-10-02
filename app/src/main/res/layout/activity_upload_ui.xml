@@ -23,6 +23,7 @@
     <TextView
         android:id="@+id/tv_fileName"
         android:text="Hollow World.cpp"
+        android:gravity="center"
         android:layout_below="@+id/img_file"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"

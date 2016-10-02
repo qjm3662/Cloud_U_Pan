@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
@@ -34,6 +35,8 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     private TextView tv_fileName;
     private EasyButton btn_down;
     private TextView tv_code;
+    private RoundedImageView img_avatar;
+    private TextView tv_uploadInfo;
     private AVLoadingIndicatorView progress_circlr;
     private TextView tv_progress;
 
@@ -43,6 +46,10 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     private String fileName;
     private String fileCode;
     private String filePath = null;
+    private String uploadUser;
+    private String uploadUserName;
+    private String uploadUserAvatar;
+    private String createAt;
     private RequestCall call;
 
 
@@ -51,6 +58,7 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     public static final String DownloadFilePathAction = "Download filePath action";
     public static final String DownloadfilePath = "Download filePath";
     private BroadcastReceiver receiver;
+    private boolean is_upload_after_login = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,13 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_download_ui2);
         fileName = App.fileInformation.getName();
         fileCode = getIntent().getStringExtra("code");
+        if(App.fileInformation.getUpLoadUser() != null){
+            uploadUser = App.fileInformation.getUpLoadUser();
+            uploadUserAvatar = App.fileInformation.getUpLoadUserAvatar();
+            uploadUserName = App.fileInformation.getUpLoadUserName();
+            createAt = App.fileInformation.getDownTimeString();
+            is_upload_after_login = true;
+        }
         initView();
         initReceiver();
     }
@@ -104,8 +119,16 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
         tv_code = (TextView) findViewById(R.id.tv_code);
         progress_circlr = (AVLoadingIndicatorView) findViewById(R.id.progress_circle);
         tv_progress = (TextView) findViewById(R.id.tv_progress);
+        img_avatar = (RoundedImageView) findViewById(R.id.img_avatar);
+        tv_uploadInfo = (TextView) findViewById(R.id.tv_uploadInfo);
 
 
+        if(is_upload_after_login){
+            tv_uploadInfo.setText(uploadUserName + "上传于" + createAt);
+        }else{
+            img_avatar.setVisibility(View.INVISIBLE);
+            tv_uploadInfo.setVisibility(View.INVISIBLE);
+        }
         tv_bar = (TextView) findViewById(R.id.bar);
         img_back = (ImageView) findViewById(R.id.img_back);
         tv_bar.setText("下载");
@@ -143,7 +166,7 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
                     btn_down.setVisibility(View.INVISIBLE);
                     call = OkHttpUtils
                             .get()
-                            .url(ServerInformation.DownLoadFile_AfterLogin + fileCode)
+                            .url(ServerInformation.DownLoadFile + fileCode)
                             .build();
                     NetWorkOperator.Down(this, call, App.fileInformation);
                 }else{
@@ -166,7 +189,9 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
-        call.cancel();
+        if(call != null){
+            call.cancel();
+        }
     }
 
     @Override

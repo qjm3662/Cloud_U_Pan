@@ -8,6 +8,10 @@
 
 
     <include layout="@layout/bar_item"/>
+
+
+
+
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/progress_circle"
         style="@style/AVLoadingIndicatorView222"
@@ -44,17 +48,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="110dp"
         android:src="@drawable/file" />
-
-    <TextView
-        android:id="@+id/tv_fileName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img_file"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="Hollow World.cpp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
 
     <com.qjm3662.cloud_u_pan.Widget.EasyButton
         android:id="@+id/btn_down"
@@ -156,5 +149,49 @@
             android:paddingTop="@dimen/img_padding"
             android:src="@drawable/copy" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_fileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:text="Hollow World.cpp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@+id/img_file"
+        android:layout_centerHorizontal="true" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/img_avatar"
+        android:src="@drawable/img_defaultavatar"
+        android:scaleType="fitCenter"
+        android:background="@drawable/circle_head"
+        app:riv_corner_radius="30dip"
+        app:riv_border_width="0dip"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="clamp"
+        app:riv_oval="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="61.33dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="37dp"
+        android:layout_width="37dp"/>
+
+    <TextView
+        android:id="@+id/tv_uploadInfo"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="XXX上传于2016-9-24"
+        android:layout_marginLeft="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_avatar"
+        android:layout_alignBottom="@+id/img_avatar"
+        android:layout_toRightOf="@+id/img_avatar"
+        android:layout_toEndOf="@+id/img_avatar"
+        android:layout_marginStart="11dp"
+        />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.qjm3662.cloud_u_pan.Adapter;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

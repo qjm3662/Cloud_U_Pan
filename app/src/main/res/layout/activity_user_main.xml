@@ -1,33 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="?attr/mainBackground"
+    android:background="@color/lightblue"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/mainBackground"
+        android:orientation="vertical"
+        android:background="@color/lightblue"
+        android:layout_height="wrap_content"
         android:isScrollContainer="true">
+        <include layout="@layout/bar_item"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="105dp">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/img_avatar"
-            android:src="@drawable/img_defaultavatar"
-            android:layout_centerHorizontal="true"
-            android:scaleType="fitCenter"
-            android:background="@drawable/circle_head"
-            app:riv_corner_radius="30dip"
-            app:riv_border_width="0dip"
-            app:riv_border_color="#333333"
-            app:riv_mutate_background="true"
-            app:riv_tile_mode="clamp"
-            app:riv_oval="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_height="70dp"
-            android:layout_width="70dp"/>
-    </RelativeLayout>
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_avatar"
+                android:src="@drawable/img_defaultavatar"
+                android:scaleType="fitCenter"
+                android:background="@drawable/circle_head"
+                app:riv_corner_radius="30dip"
+                app:riv_border_width="0dip"
+                app:riv_border_color="#333333"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="clamp"
+                app:riv_oval="true"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="70dp"
+                android:layout_width="70dp"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:textSize="20sp"
+                android:textColor="@color/dark"
+                android:text="用户名"
+                android:layout_marginLeft="28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/img_edit_nickname"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/revise"
+                android:layout_marginLeft="28dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:text="关注、上传"
+            android:paddingLeft="20dp"
+            android:textSize="12sp"
+            android:gravity="bottom"
+            android:paddingBottom="5dp"
+            android:textColor="@color/dark"
+            android:layout_width="match_parent"
+            android:layout_height="34dp" />
+        <TextView
+            android:id="@+id/tv_following"
+            android:gravity="center_vertical"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            android:paddingLeft="20dp"
+            android:text="关注的人"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+
+        <TextView
+            android:id="@+id/tv_upload"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/line_span_small"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            android:paddingLeft="20dp"
+            android:text="我的上传"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+
+        <TextView
+            android:text="设置"
+            android:paddingLeft="20dp"
+            android:textSize="12sp"
+            android:gravity="bottom"
+            android:paddingBottom="5dp"
+            android:textColor="@color/dark"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/tv_down_in_wifi"
+            android:gravity="center_vertical"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            android:paddingLeft="20dp"
+            android:text="wifi下下载"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+
+        <TextView
+            android:id="@+id/tv_save_path"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/line_span_small"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            android:paddingLeft="20dp"
+            android:text="存储位置"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+
+        <TextView
+            android:id="@+id/tv_callback"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/line_span_small"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            android:paddingLeft="20dp"
+            android:text="反馈"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+
+        <TextView
+            android:id="@+id/tv_exit"
+            android:gravity="center"
+            android:layout_marginTop="85dp"
+            android:textColor="@color/dark"
+            android:textSize="16sp"
+            android:text="退出"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+    </LinearLayout>
 </ScrollView>

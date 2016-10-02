@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String PATH = "path";
 
     private Dialog dialog = null;
-
-
     private Tencent mTencent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,29 +68,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DownloadUi.class));
                 break;
             case R.id.btn_bluetooth:
-//                startActivity(new Intent(this, shareToQQ.class));
-//                NetWorkOperator.getUserInfo(this, "15880677610");
-                NetWorkOperator.getShareCenter(this);
+                NetWorkOperator.Login(this, "123456", "123456");
                 break;
             case R.id.btn_more:
-//                startActivity(new Intent(this, HistoryRecording.class));
                 View.OnClickListener listener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         switch (v.getId()){
                             case R.id.btn_cancel:
                                 dialog.cancel();
-//                                dialog.dismiss();
                                 System.out.println("dialog cancel!!");
                                 break;
                             case R.id.img_upload_record:
                                 startActivity(new Intent(MainActivity.this, LocalFileRecording_Upload.class));
+                                dialog.cancel();
                                 break;
                             case R.id.img_download_record:
                                 startActivity(new Intent(MainActivity.this, LocalFileRecording_Download.class));
+                                dialog.cancel();
                                 break;
                             case R.id.img_share_center:
-
+                                startActivity(new Intent(MainActivity.this, ShareCenter.class));
+                                dialog.cancel();
+                                NetWorkOperator.getShareCenter(MainActivity.this);
                                 break;
                         }
                     }
@@ -101,8 +99,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 DialogUtils.showDialog(this, dialog, listener);
                 break;
             case R.id.btn_my:
-//                NetWorkOperator.Register(this, "15880677610", "qq961112");
-                startActivity(new Intent(this, RegisterUI.class));
+                if(App.Flag_IsLogin){
+                    startActivity(new Intent(this, UserMain.class));
+                }else{
+                    startActivity(new Intent(this, Login.class));
+                }
                 break;
         }
     }

@@ -16,8 +16,6 @@ public class LocalFileDB extends SQLiteOpenHelper {
     public static final String COLUMN_NAME_Path = "path";
     public static final String COLUMN_NAME_DownTime = "downTime";
     public static final String COLUMN_NAME_Type = "type";
-
-
     public static final int Version = 1;
 
     public LocalFileDB(Context context) {

@@ -6,9 +6,9 @@
     <uses-sdk android:minSdkVersion="14" />
 
     <!-- QQ分享接口 -->
-    <!--<meta-data-->
-        <!--android:name="TA_APPKEY"-->
-        <!--android:value="AjsbFyp7oCOFdezm" />-->
+    <!-- <meta-data -->
+    <!-- android:name="TA_APPKEY" -->
+    <!-- android:value="AjsbFyp7oCOFdezm" /> -->
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -76,9 +76,10 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".UI.shareToQQ" />
-        <activity android:name=".UI.UserMain"></activity>
+        <activity android:name=".UI.UserMain" />
+        <activity android:name=".UI.ShareCenter"></activity>
     </application>
 
 </manifest>

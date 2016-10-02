@@ -5,7 +5,9 @@ package com.qjm3662.cloud_u_pan.Data;
  */
 public class ServerInformation {
 
-    public static final String IP = "http://119.29.55.243";
+//    public static final String IP = "http://119.29.55.243";
+    public static final String IP = "http://172.6.2.8";
+
     public static final String PORT = "3000";
 
     public static final String url = IP + ":" + PORT;

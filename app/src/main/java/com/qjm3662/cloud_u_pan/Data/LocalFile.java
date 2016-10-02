@@ -3,6 +3,11 @@ package com.qjm3662.cloud_u_pan.Data;
 import android.graphics.Bitmap;
 
 import com.qjm3662.cloud_u_pan.Tool.TimeUtils;
+import com.qjm3662.cloud_u_pan.UI.Login;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 /**
  * Created by qjm3662 on 2016/9/26 0026.
@@ -24,7 +29,6 @@ public class LocalFile {
 //    public static final String FILE = "file";
     public static final String ZIP = "zip";
 
-
     public LocalFile(String name, String path, long downTime, String type, Bitmap bitmap){
         this.name = name;
         this.path = path;
@@ -33,12 +37,9 @@ public class LocalFile {
         this.flag_is_DateNode = false;
         this.bitmap_type = bitmap;
     }
-
     public LocalFile(){
 
     }
-
-
 
 
     public boolean isFlag_is_DateNode() {
