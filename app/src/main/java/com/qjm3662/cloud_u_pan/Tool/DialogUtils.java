@@ -11,15 +11,48 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
+import com.qjm3662.cloud_u_pan.Widget.MyDialog;
 
 /**
  * Created by tanshunwang on 2016/10/1 0001.
  */
 
 public class DialogUtils {
-    public static void showDialog(Context context, Dialog dialog, View.OnClickListener listener){
+
+    /**
+     * 弹出编辑框
+     *
+     * @param context
+     * @param content
+     */
+    public static void ShowDialog(final Context context, final String content) {
+        final MyDialog myDialog = new MyDialog(context, R.style.myDialogTheme, content, "编辑用户名", "请输入用户名", 0);
+        myDialog.show();
+        myDialog.setClickListener(new MyDialog.ClickListenerInterface() {
+            @Override
+            public void doConfirm() {
+//                User.getInstance().setUserName(myDialog.getDialog_et().getText().toString());
+                NetWorkOperator.modifyUserInfo(context, myDialog.getDialog_et().getText().toString());
+                myDialog.dismiss();
+            }
+            @Override
+            public void doCancel() {
+                myDialog.dismiss();
+            }
+        });
+    }
+
+    /**
+     * 显示选择对话框
+     * @param context
+     * @param dialog
+     * @param listener
+     */
+    public static void showSelectDialog(Context context, Dialog dialog, View.OnClickListener listener){
         Log.d("TAG", "showShareDialog");
         View view = LayoutInflater.from(context).inflate(R.layout.more_dialog, null);
         // 设置style 控制默认dialog带来的边距问题

@@ -273,6 +273,31 @@ public class FileUtils {
 
 
     /**
+     * 保存文件
+     *
+     * @param bm
+     * @param fileName
+     * @throws IOException
+     */
+    public static File saveFile(Bitmap bm, String fileName) throws IOException {
+        String path = getSDPath() + "/header/";
+        File dirFile = new File(path);
+        if (!dirFile.exists()) {
+            dirFile.mkdir();
+            System.out.println("maki");
+        }
+        File myCaptureFile = new File(path + fileName);
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+        bm.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+        bos.flush();
+        bos.close();
+        System.out.println("name : " + myCaptureFile.getName());
+        System.out.println("path ： " + myCaptureFile.getPath());
+        System.out.println(myCaptureFile.isFile());
+        return myCaptureFile;
+    }
+
+    /**
      * 获得SDCard的根目录
      * @return
      */

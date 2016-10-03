@@ -106,19 +106,6 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onComplete(Object o) {
                 System.out.println("成功");
-//                JSONObject jsonObject = null;
-//                if (o instanceof JSONObject) {
-//                    jsonObject = (JSONObject) o;
-//                }
-//                try {
-//                    tencent.setOpenId(jsonObject.getString("openid"));
-//                    long expires_in = System.currentTimeMillis() + Long.parseLong(jsonObject.getString("expires_in")) * 1000;
-//                    tencent.setAccessToken(jsonObject.getString("access_token"), String.valueOf((expires_in - System.currentTimeMillis()) / 1000));
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                System.out.println(jsonObject);
-
             }
 
             @Override

@@ -5,10 +5,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Message;
+import android.os.Handler;
 
 import com.google.gson.Gson;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
@@ -16,9 +14,12 @@ import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.UI.DownloadUi2;
+import com.qjm3662.cloud_u_pan.UI.Followings;
+import com.qjm3662.cloud_u_pan.UI.OthersMain;
 import com.qjm3662.cloud_u_pan.UI.ShareCenter;
 import com.qjm3662.cloud_u_pan.UI.UploadUi;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
@@ -26,8 +27,6 @@ import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.zhy.http.okhttp.cookie.CookieJarImpl;
-import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 import com.zhy.http.okhttp.request.RequestCall;
 
 import org.json.JSONArray;
@@ -39,31 +38,195 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Handler;
 
 import okhttp3.Call;
-import okhttp3.Cookie;
-import okhttp3.OkHttpClient;
 
 /**
  * Created by tanshunwang on 2016/9/21 0021.
  */
 public class NetWorkOperator {
+    /**
+     * 获取关注的人信息
+     * @param context
+     * @param list
+     */
+    public static void GetFollowingInformation(final Context context, final List<User> list){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        OkHttpUtils
+                .get()
+                .url(ServerInformation.GetFollowingInfo)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
 
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("message");
+                            final int length = jsonArray.length();
+                            Gson gson = new Gson();
+                            User user = null;
+                            list.clear();
+                            AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
+                                @Override
+                                public void callback(Bitmap bitmap) {
+
+                                }
+
+                                @Override
+                                public void callBack_2(User u, Bitmap bitmap, int position) {
+                                    u.setBitmap(bitmap);
+                                    list.add(u);
+                                    if(position == length - 1){
+                                        Intent intent = new Intent(context, Followings.class);
+                                        intent.putExtra("WHERE", 3);
+                                        context.startActivity(intent);
+                                    }
+                                }
+                            };
+                            for(int i = 0; i < jsonArray.length(); i++){
+                                user = gson.fromJson(jsonArray.get(i).toString(), User.class);
+                                AvatarUtils.getBitmapByUrl(user.getAvatar(), callBack, user, i);
+                            }
+                            System.out.println(Arrays.toString(list.toArray()));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+    }
+    /**
+     * 取消关注某人
+     * @param context
+     * @param targetName
+     * @param viewHolder
+     */
+    public static void UnFollowSB(Context context, String targetName, final OthersMain.ViewHolder viewHolder){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .url(ServerInformation.UnFollowSB)
+                .addParams("myselfName", User.getInstance().getName())
+                .addParams("otherName", targetName)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println("关注api ERROR : " + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        viewHolder.set(false);
+                    }
+                });
+    }
+    /**
+     * 关注某人
+     * @param context
+     * @param targetName
+     * @param viewHolder
+     */
+    public static void FollowSB(Context context, String targetName, final OthersMain.ViewHolder viewHolder){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        OkHttpUtils
+                .get()
+                .url(ServerInformation.FollowSB)
+                .addParams("myselfName", User.getInstance().getName())
+                .addParams("otherName", targetName)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println("关注api ERROR : " + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        viewHolder.set(true);
+                    }
+                });
+
+    }
+    /**
+     * 修改用户信息
+     *
+     * @param context
+     * @param username
+     */
+    public static void modifyUserInfo(final Context context, String username) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+
+        User user = User.getInstance();
+        OkHttpUtils
+                .post()
+                .url(ServerInformation.Modify_User_Info)
+                .addParams("name", user.getName())
+                .addParams("username", username)
+                .addParams("sex", String.valueOf(user.getSex()))
+                .addParams("signature", user.getSignature())
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        getUserInfo(context, User.getInstance().getName(), 3);
+                    }
+                });
+
+    }
 
     /**
      * 获取分享中心
+     *
      * @param context
      */
-    public static void getShareCenter(final Context context){
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+    public static void getShareCenter(final Context context) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -81,12 +244,12 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            if(jsonObject.getInt("code") == 0){
+                            if (jsonObject.getInt("code") == 0) {
                                 Gson gson = new Gson();
                                 App.Public_List_File_Info.clear();
                                 JSONArray jsonArray = jsonObject.getJSONArray("shares");
                                 FileInformation fileInformation = null;
-                                for(int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
 //                                    System.out.println(fileInformation);
                                     String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
@@ -106,19 +269,29 @@ public class NetWorkOperator {
     }
 
     /**
-     * 获取用户信息
+     * 获取其他用户的信息
      * @param context
-     * @param username
+     * @param name
      */
-    public static void getUserInfo(final Context context, String username){
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+    public static void getOtherUserInfoByName(final Context context, String name){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        String myName = null;
+        if(App.Flag_IsLogin){
+            myName = User.getInstance().getName();
+        }else{
+            myName = "NULL";
         }
         OkHttpUtils
                 .get()
                 .url(ServerInformation.GetUserInfo)
-                .addParams("name", username)
+                .addParams("name", myName)
+                .addParams("other", name)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -128,67 +301,137 @@ public class NetWorkOperator {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        System.out.println("获取用户信息 ：" + response);
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
-                            if(jsonObject.getInt("code") == 0){
+                            if (jsonObject.getInt("code") == 0) {
+                                Gson gson = new Gson();
+                                App.user_temp = new User();
+                                App.user_temp.setUser_not_static(gson.fromJson(jsonObject.toString(), User.class));
+                                if(jsonObject.getBoolean("relative")){
+                                    App.user_temp.setRelative(true);
+                                }else{
+                                    System.out.println("mdzz");
+                                }
+                                JSONArray jsonArray = jsonObject.getJSONArray("shares");
+                                final List<FileInformation> shares = new ArrayList<FileInformation>();
+                                FileInformation fileInformation = null;
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
+                                    String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
+                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(context, type));
+                                    shares.add(fileInformation);
+                                }
+                                App.user_temp.setShares_list(shares);
+                                AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
+                                    @Override
+                                    public void callback(Bitmap bitmap) {
+                                        App.user_temp.setBitmap(bitmap);
+                                        Intent intent = new Intent(context, OthersMain.class);
+                                        intent.putExtra("WHERE", 3);
+                                        context.startActivity(intent);
+                                        ((Activity)context).finish();
+                                    }
+
+                                    @Override
+                                    public void callBack_2(User u, Bitmap bitmap, int position) {
+
+                                    }
+                                };
+                                AvatarUtils.getBitmapByUrl(App.user_temp.getAvatar(), callBack);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @param context
+     * @param name
+     * @param where   1-登录   2-注册   3-非第一次
+     */
+    public static void getUserInfo(final Context context, String name, final int where) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        OkHttpUtils
+                .get()
+                .url(ServerInformation.GetUserInfo)
+                .addParams("name", "NULL")
+                .addParams("other", name)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println("获取用户信息1 ：" + response);
+                        try {
+                            final JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getInt("code") == 0) {
                                 App.Flag_IsLogin = true;
                                 Gson gson = new Gson();
                                 User.setUser(gson.fromJson(jsonObject.toString(), User.class));
-                                System.out.println(User.getInstance().toString());
                                 JSONArray jsonArray = jsonObject.getJSONArray("shares");
                                 final List<FileInformation> shares = new ArrayList<FileInformation>();
-                                for(int i = 0; i < jsonArray.length(); i++){
-                                    shares.add(gson.fromJson(jsonArray.get(i).toString(), FileInformation.class));
+                                FileInformation fileInformation = null;
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
+                                    String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
+                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(context, type));
+                                    shares.add(fileInformation);
                                 }
-                                context.startActivity(new Intent(context, UserMain.class));
-                                ((Activity)context).finish();
+                                if (where != 3) {
+                                    context.startActivity(new Intent(context, UserMain.class));
+                                    ((Activity) context).finish();
+                                }
                                 User.getInstance().setShares_list(shares);
-                                final Bitmap[] bitmap = {null};
-                                final android.os.Handler handler = new android.os.Handler(){
+                                System.out.println(User.getInstance().toString());
+                                AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
                                     @Override
-                                    public void handleMessage(Message msg) {
-                                        super.handleMessage(msg);
-                                        switch (msg.what){
-                                            case 0:
-                                                User.getInstance().setBitmap(bitmap[0]);
-                                                Intent intent = new Intent();
-                                                intent.setAction(UserMain.ACTION_GET_USER_INFO_SUCCESS);
-                                                context.sendBroadcast(intent);
-                                                break;
-                                        }
-                                    }
-                                };
-                                Thread thread = new Thread(){
-                                    @Override
-                                    public void run() {
+                                    public void callback(Bitmap bitmap) {
+                                        User.getInstance().setBitmap(bitmap);
+                                        File file = new File(FileUtils.getPath(), "header.jpg");
+                                        User.getInstance().setAvatarPath(file.getAbsolutePath());
+                                        BufferedOutputStream bos = null;
                                         try {
-                                            bitmap[0] = returnBitmap(jsonObject.getString("avatar"));
-                                            handler.sendEmptyMessage(0);
-                                            File file = new File(FileUtils.getPath(), "header.jpg");
-                                            User.getInstance().setAvatarPath(file.getAbsolutePath());
-                                            BufferedOutputStream bos = new BufferedOutputStream(
+                                            bos = new BufferedOutputStream(
                                                     new FileOutputStream(file));
-                                            bitmap[0].compress(Bitmap.CompressFormat.JPEG, 80, bos);
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos);
                                             bos.flush();
                                             bos.close();
-
-                                            SharedPreferences sp = context.getSharedPreferences("User", Context.MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = sp.edit();
-                                            editor.putString("UserJson", jsonObject.toString());
-                                            editor.putString("AvatarPath", file.getAbsolutePath());
-                                            editor.apply();
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
                                         } catch (FileNotFoundException e) {
                                             e.printStackTrace();
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
-                                        super.run();
+                                        SharedPreferences sp = context.getSharedPreferences("User", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sp.edit();
+                                        editor.putString("UserJson", jsonObject.toString());
+                                        editor.putString("AvatarPath", file.getAbsolutePath());
+                                        editor.apply();
+                                        Intent intent = new Intent();
+                                        intent.setAction(UserMain.ACTION_GET_USER_INFO_SUCCESS);
+                                        context.sendBroadcast(intent);
+                                    }
+
+                                    @Override
+                                    public void callBack_2(User u, Bitmap bitmap, int position) {
+
                                     }
                                 };
-                                thread.start();
+                                AvatarUtils.getBitmapByUrl(User.getInstance().getAvatar(), callBack);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -198,135 +441,76 @@ public class NetWorkOperator {
     }
 
 
-
-    /**
-     * 根据图片的url路径获得Bitmap对象
-     *
-     * @param url
-     * @return
-     */
-    public static Bitmap returnBitmap(String url) {
-        System.out.println("begin getBitmap");
-        URL fileUrl = null;
-        Bitmap bitmap = null;
-
-        try {
-            fileUrl = new URL(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        try {
-            assert fileUrl != null;
-            HttpURLConnection conn = (HttpURLConnection) fileUrl
-                    .openConnection();
-            conn.setDoInput(true);
-            conn.connect();
-            InputStream is = conn.getInputStream();
-            bitmap = BitmapFactory.decodeStream(is);
-            is.close();
-        } catch (IOException e) {
-            return null;
-        }
-        System.out.println("return Bitmap end in!!!!");
-        return bitmap;
-    }
-
-    public static String Down(Context context, final String id_, final FileInformation fileInformation) {
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
-            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return "";
-        }
-        OkHttpUtils
-                .get()
-                .url(ServerInformation.DownLoadFile_AfterLogin + id_)
-                .build()
-                .execute(new FileCallBack(FileUtils.getSDPath(), fileInformation.getName()) {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        System.out.println(e.toString());
-                    }
-
-                    @Override
-                    public void onResponse(File response, int id) {
-                        System.out.println("response : " + response);
-                        System.out.println(response.getAbsolutePath());
-
-                    }
-
-                    @Override
-                    public void inProgress(float progress, long total, int id) {
-                        super.inProgress(progress, total, id);
-                        System.out.println(progress);
-                    }
-                });
-        return "  ";
-    }
-
     /**
      * 下载文件
+     *
      * @param context
      * @param call
      * @param fileInformation
      * @return
      */
-    public static String Down(final Context context, RequestCall call, FileInformation fileInformation) {
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+    public static void Down(final Context context, RequestCall call, FileInformation fileInformation) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return "";
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
         }
         final Intent[] intent = {new Intent(), new Intent()};
-        call.execute(new FileCallBack(FileUtils.getSDPath(), fileInformation.getName()) {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        System.out.println(e.toString());
-                        EasySweetAlertDialog.ShowTip(context, "tip", "下载失败");
-                    }
+        call.execute(new FileCallBack(App.currentSavePath, fileInformation.getName()) {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                System.out.println(e.toString());
+                EasySweetAlertDialog.ShowTip(context, "tip", "下载失败");
+            }
 
-                    @Override
-                    public void onResponse(File response, int id) {
-                        System.out.println("response : " + response);
-                        System.out.println(response.getAbsolutePath());
-                        intent[1].setAction(DownloadUi2.DownloadFilePathAction);
-                        intent[1].putExtra(DownloadUi2.DownloadfilePath, response.toString());
-                        intent[1].putExtra("TYPE", FileUtils.getMIMEType(response));
+            @Override
+            public void onResponse(File response, int id) {
+                System.out.println("response : " + response);
+                System.out.println(response.getAbsolutePath());
+                intent[1].setAction(DownloadUi2.DownloadFilePathAction);
+                intent[1].putExtra(DownloadUi2.DownloadfilePath, response.toString());
+                intent[1].putExtra("TYPE", FileUtils.getMIMEType(response));
 
-                        String type = FileUtils.getMIMEType(response);
-                        LocalFile localFile = new LocalFile(response.getName(), response.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, response.getAbsolutePath()));
-                        App.Public_List_Local_File_Download.add(localFile);
-                        ContentValues cv = new ContentValues();
-                        cv.put(LocalFileDB.COLUMN_NAME_Name, localFile.getName());
-                        cv.put(LocalFileDB.COLUMN_NAME_DownTime, System.currentTimeMillis());
-                        cv.put(LocalFileDB.COLUMN_NAME_Path, localFile.getPath());
-                        cv.put(LocalFileDB.COLUMN_NAME_Type, localFile.getType());
-                        App.dbWrite.insert(LocalFileDB.TABLE_NAME_LOCAL_FILE_DOWNLOAD, null, cv);
-                        context.sendBroadcast(intent[1]);
-                    }
+                String type = FileUtils.getMIMEType(response);
+                LocalFile localFile = new LocalFile(response.getName(), response.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, response.getAbsolutePath()));
+                App.Public_List_Local_File_Download.add(localFile);
+                ContentValues cv = new ContentValues();
+                cv.put(LocalFileDB.COLUMN_NAME_Name, localFile.getName());
+                cv.put(LocalFileDB.COLUMN_NAME_DownTime, System.currentTimeMillis());
+                cv.put(LocalFileDB.COLUMN_NAME_Path, localFile.getPath());
+                cv.put(LocalFileDB.COLUMN_NAME_Type, localFile.getType());
+                App.dbWrite.insert(LocalFileDB.TABLE_NAME_LOCAL_FILE_DOWNLOAD, null, cv);
+                context.sendBroadcast(intent[1]);
+            }
 
-                    @Override
-                    public void inProgress(float progress, long total, int id) {
-                        super.inProgress(progress, total, id);
-                        intent[0] = new Intent();
-                        intent[0].setAction(DownloadUi2.DownLoadProgressAction);
-                        intent[0].putExtra(DownloadUi2.DownloadProgressing, (int)(progress * 100));
+            @Override
+            public void inProgress(float progress, long total, int id) {
+                super.inProgress(progress, total, id);
+                intent[0] = new Intent();
+                intent[0].setAction(DownloadUi2.DownLoadProgressAction);
+                intent[0].putExtra(DownloadUi2.DownloadProgressing, (int) (progress * 100));
 //                        System.out.println((int)(progress * 100));
-                        context.sendBroadcast(intent[0]);
-                    }
-                });
-        return "  ";
+                context.sendBroadcast(intent[0]);
+            }
+        });
     }
 
     /**
      * 下载文件之前获取文件的信息
+     *
      * @param id_
      * @param fileInformation
      * @param callBack
      * @return
      */
     public static String GetFileInformation(final Context context, final String id_, final FileInformation fileInformation, final FileInformation.callBack callBack) {
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return "";
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return "";
         }
         OkHttpUtils
@@ -349,7 +533,7 @@ public class NetWorkOperator {
                             System.out.println(jo.get("code"));
                             fileInformation.setName(jo.getString("name"));
                             fileInformation.setSize((float) jo.getDouble("size"));
-                            if(!jo.getString("uploadUser").equals("nobody")){
+                            if (!jo.getString("uploadUser").equals("nobody")) {
                                 fileInformation.setUpLoadUser(jo.getString("uploadUser"));
                                 fileInformation.setUpLoadUserAvatar(jo.getJSONObject("user").getString("avatar"));
                                 fileInformation.setUpLoadUserName(jo.getJSONObject("user").getString("username"));
@@ -366,23 +550,61 @@ public class NetWorkOperator {
 
 
     /**
+     * 更改用户头像
+     *
+     * @param context
+     * @param file
+     */
+    public static void ModifyUserAvatar(final Context context, File file) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .url(ServerInformation.Modifi_User_Avatar)
+                .addFile("avatar", file.getName(), file)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println();
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        getUserInfo(context, User.getInstance().getName(), 3);
+                    }
+                });
+
+    }
+
+    /**
      * 上传文件
+     *
      * @param context
      * @param file
      * @param fileName
      * @param isShare
      * @return
      */
-    public static String UP_FILE(final Context context, final File file, String fileName, boolean isShare) {
+    public static void UP_FILE(final Context context, final File file, String fileName, boolean isShare) {
         final Intent[] intent = new Intent[1];
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return "";
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
         }
         String url = "";
         String userName;
-        if(App.Flag_IsLogin){
-            url =  ServerInformation.UPLoadFile_AfterLogin;
+        if (App.Flag_IsLogin) {
+            url = ServerInformation.UPLoadFile_AfterLogin;
             userName = User.getInstance().getName();
             System.out.println("UserName :" + userName);
             OkHttpUtils
@@ -401,7 +623,7 @@ public class NetWorkOperator {
 
                                  @Override
                                  public void onResponse(String response, int id) {
-                                     System.out.println("Login :" +response);
+                                     System.out.println("Login :" + response);
                                      try {
                                          JSONObject jsonObject = new JSONObject(response);
                                          Intent intent_information = new Intent();
@@ -439,7 +661,7 @@ public class NetWorkOperator {
                                  }
                              }
                     );
-        }else{
+        } else {
             url = ServerInformation.UPLoadFile;
             OkHttpUtils
                     .post()
@@ -495,19 +717,22 @@ public class NetWorkOperator {
                              }
                     );
         }
-        return "asdfsa";
     }
 
 
     /**
      * 注册
+     *
      * @param context
      * @param username
      * @param password
      */
-    public static void Register(final Context context, final String username, String password){
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+    public static void Register(final Context context, final String username, String password) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -529,10 +754,10 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             jsonObject = new JSONObject(response);
-                            if(jsonObject.getInt("code") == 0){
+                            if (jsonObject.getInt("code") == 0) {
                                 User.getInstance().setName(username);
                                 User.getInstance().setAvatar(jsonObject.getString("avatar"));
-                                getUserInfo(context, username);
+                                getUserInfo(context, username, 2);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -544,13 +769,17 @@ public class NetWorkOperator {
 
     /**
      * 登陆
+     *
      * @param context
      * @param username
      * @param password
      */
-    public static void Login(final Context context, final String username, String password){
-        if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT){
+    public static void Login(final Context context, final String username, String password) {
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -570,8 +799,8 @@ public class NetWorkOperator {
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(response);
-                            if(jsonObject.getInt("code") == 0){
-                                getUserInfo(context, username);
+                            if (jsonObject.getInt("code") == 0) {
+                                getUserInfo(context, username, 1);
 //                                System.out.println("code 0");
                             }
                         } catch (JSONException e) {

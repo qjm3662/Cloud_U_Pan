@@ -31,6 +31,12 @@
 
     <!--</style>-->
 
+    <style name="myDialogTheme" parent="android:Theme.Holo.Dialog.NoActionBar">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
 
     <style name="AVLoadingIndicatorView222">
         <item name="minWidth">100dp</item>

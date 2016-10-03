@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.Adapter.ShareCenterAdapter;
 import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.Data.FileInformation;
+import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 
 public class ShareCenter extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -41,7 +43,6 @@ public class ShareCenter extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onReceive(Context context, Intent intent) {
                 adapter.notifyDataSetChanged();
-//                adapter.notifyDataSetInvalidated();
             }
         };
         registerReceiver(receiver, intentFilter);
@@ -67,10 +68,16 @@ public class ShareCenter extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        App.fileInformation = App.Public_List_File_Info.get(App.Public_List_File_Info.size() - 1 - position);
-        Intent intent = new Intent(this, DownloadUi2.class);
-        intent.putExtra("code", App.fileInformation.getIdentifyCode());
-        startActivity(intent);
+        final String code = App.Public_List_File_Info.get(App.Public_List_File_Info.size() - 1 - position).getIdentifyCode();
+        FileInformation.callBack callBack = new FileInformation.callBack() {
+            @Override
+            public void call() {
+                Intent intent = new Intent(ShareCenter.this, DownloadUi2.class);
+                intent.putExtra("code", code);
+                startActivity(intent);
+            }
+        };
+        NetWorkOperator.GetFileInformation(this, code, App.fileInformation, callBack);
     }
 
     @Override

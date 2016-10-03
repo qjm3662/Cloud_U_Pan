@@ -23,11 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25162f94-34ea-485d-90e3-8e2f3cf704e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/revise.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/ShareCenterAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_share_center.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/share_center_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/others_concern_spec.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/others_not_concern.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/FollowingsAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/OthersShareAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/AvatarUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Followings.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/OthersMain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Widget/MyDialog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rectangle_btn.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rectangle_set.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_followings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_others_main.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/followings_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_dialog.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/others_main_listview_header.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -36,32 +46,33 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileDownloadRecordingAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileDownloadRecordingAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileUploadRecordingAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileUploadRecordingAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/FileInformation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/FileInformation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFileDB.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFileDB.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/ServerInformation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/ServerInformation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/FileManager/FileManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/FileManager/FileManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/NetWorkOperator.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/NetWorkOperator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TimeUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TimeUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi2.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Login.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Login.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/RegisterUI.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/RegisterUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UploadUi.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UploadUi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UserMain.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UserMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_ui.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_ui.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_upload_ui.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_upload_ui.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/library.iml" afterPath="$PROJECT_DIR$/library/library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rippleview/rippleview.iml" afterPath="$PROJECT_DIR$/rippleview/rippleview.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/randomtextview/randomtextview.iml" afterPath="$PROJECT_DIR$/randomtextview/randomtextview.iml" />
     </list>
     <ignored path="Cloud_U_Pan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,85 +120,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="FileInformation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/FileInformation.java">
+      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="26" />
-              <folding>
-                <element signature="e#564#565#0" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
-                <element signature="e#649#650#0" expanded="true" />
-                <element signature="e#693#694#0" expanded="true" />
-                <element signature="e#736#737#0" expanded="true" />
-                <element signature="e#775#776#0" expanded="true" />
-                <element signature="e#936#937#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#1033#1034#0" expanded="true" />
-                <element signature="e#1085#1086#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1697">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#523#524#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#599#600#0" expanded="true" />
-                <element signature="e#1629#1630#0" expanded="true" />
-                <element signature="e#1656#1657#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetWorkOperator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/NetWorkOperator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="358" column="0" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5675#5692#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DownloadUi.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="68" column="74" selection-start-line="68" selection-start-column="74" selection-end-line="68" selection-end-column="74" />
-              <folding>
-                <element signature="e#2159#2611#0" expanded="true" />
-                <element signature="e#2610#2611#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DownloadUi2.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="126" column="69" selection-start-line="126" selection-start-column="69" selection-end-line="126" selection-end-column="69" />
+            <state relative-caret-position="480">
+              <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_download_ui2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui2.xml">
+      <file leaf-file-name="file_manager_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/file_manager_item.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="182" column="38" selection-start-line="182" selection-start-column="38" selection-end-line="182" selection-end-column="38" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -196,48 +143,91 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CookieStore.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.6.2/a23d2e96bf2ff8235f01215e3ce0ceb3cdddff32/okhttputils-2.6.2-sources.jar!/com/zhy/http/okhttp/cookie/store/CookieStore.java">
+      <file leaf-file-name="followings_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/followings_item.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+            <state relative-caret-position="162">
+              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+              <folding>
+                <element signature="e#2675#3942#0" expanded="true" />
+                <element signature="e#3941#3942#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DialogUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="more_dialog.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="UserMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UserMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="120" column="63" selection-start-line="120" selection-start-column="63" selection-end-line="120" selection-end-column="63" />
+            <state relative-caret-position="513">
+              <caret line="55" column="57" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_user_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml">
+      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/FileManager/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="137" column="8" selection-start-line="23" selection-start-column="12" selection-end-line="37" selection-end-column="45" />
+            <state relative-caret-position="451">
+              <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="FileUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7487">
+              <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java">
+      <file leaf-file-name="OthersMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/OthersMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1655#1672#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="625">
+              <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="155" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -4319,57 +4309,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/HistoryRecording.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Widget/EasyButton.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/button_bg.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Login.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Listener/BaseUiListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_share_to_qq.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/shareToQQ.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_file_manager.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/RegisterUI.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UploadUi.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TencentOperator.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circle_upload.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/common_dialog.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DensityUtil.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circle_download.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/circle_share.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_local_file_recording__upload.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_local_file_recording__download.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_register_ui.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_share_center.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/ShareCenterAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFileDB.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/ServerInformation.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_upload_ui.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/share_center_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TimeUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileDownloadRecordingAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileUploadRecordingAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFile.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UserMain.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/FileInformation.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/others_main_listview_header.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_others_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_followings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Widget/MyDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/RegisterUI.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Login.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/ServerInformation.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/OthersShareAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/OthersMain.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UploadUi.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/AvatarUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/FollowingsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Followings.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi2.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/NetWorkOperator.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/followings_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UserMain.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/FileManager/FileManager.java" />
       </list>
     </option>
   </component>
@@ -4404,12 +4394,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -4458,6 +4444,24 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cloud_U_Pan" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -4532,51 +4536,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Tool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cloud_U_Pan" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud_u_pan" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="FileManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cloud_U_Pan" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cloud_u_pan" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4611,15 +4571,23 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="810EBMA3PEHC" />
+    <property name="device.picker.selection" value="91QEBPA5EUUL" />
     <property name="SearchEverywhereHistoryKey" value="sh&#9;PSI&#9;JAVA://com.guo.duoduo.randomtextview.RandomTextView#shadowColor&#10;te&#9;FILE&#9;file://E:/XiaoMing/Cloud_U_Pan/.gitattributes" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Upan/RadarScanView-master/RadarScanView" />
     <property name="android.project.structure.last.selected" value="app" />
@@ -4628,7 +4596,11 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Qjm\Cloud_U_Pan\app\src\main\res\drawable" />
+      <recent name="E:\Qjm\Cloud_U_Pan\app\src\main\res\layout" />
+      <recent name="E:\XiaoMing\Cloud_U_Pan\app\libs" />
+      <recent name="E:\XiaoMing\Cloud_U_Pan\app\src\main\res\drawable" />
       <recent name="E:\XiaoMing\Cloud_U_Pan\app\src\main\res\mipmap-xxxhdpi" />
     </key>
     <key name="android.template.packageName">
@@ -4637,18 +4609,14 @@
       <recent name="layout" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qjm3662.cloud_u_pan.Widget" />
       <recent name="com.qjm3662.cloud_u_pan.Adapter" />
       <recent name="com.qjm3662.cloud_u_pan.Wifip2pDirect.Activity" />
       <recent name="com.qjm3662.cloud_u_pan.Wifip2pDirect.Adapter" />
       <recent name="com.qjm3662.cloud_u_pan.Wifip2pDirect.BroadcastReceiver" />
-      <recent name="com.qjm3662.cloud_u_pan.Wifip2pDirect.Service.BroadcastReceiver" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Qjm\Cloud_U_Pan\app\src\main\res\drawable" />
-      <recent name="E:\XiaoMing\Cloud_U_Pan\app\libs" />
-      <recent name="E:\XiaoMing\Cloud_U_Pan\app\src\main\res\drawable" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\XiaoMing\Cloud_U_Pan\app\src\main\res\mipmap-xxxhdpi" />
-      <recent name="E:\XiaoMing\Cloud_U_Pan\app\src\main\res\mipmap-xxhdpi" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -5054,7 +5022,14 @@
       <option name="project" value="LOCAL" />
       <updated>1475330180347</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="用户主页，分享中心">
+      <created>1475397780174</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1475397780174</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -5064,7 +5039,7 @@
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.50216216" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08249721" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -5072,13 +5047,13 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6588629" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25083613" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28411514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.527845" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292978" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.527845" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
@@ -5110,7 +5085,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="基本功能。。。" />
     <MESSAGE value="记录，注册，登录" />
-    <option name="LAST_COMMIT_MESSAGE" value="记录，注册，登录" />
+    <MESSAGE value="用户主页，分享中心" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户主页，分享中心" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -5119,180 +5095,26 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TextUtil.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/ShareCenterAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="1107">
+          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="47" selection-start-line="8" selection-start-column="8" selection-end-line="10" selection-end-column="47" />
+        <state relative-caret-position="324">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="23" column="71" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/share___spec.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register_ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/MyViewAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_local_file_recording__upload.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="24" selection-end-column="15" />
-          <folding>
-            <element signature="e#841#865#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_share_center.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="e#768#792#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.6.2/a23d2e96bf2ff8235f01215e3ce0ceb3cdddff32/okhttputils-2.6.2-sources.jar!/com/zhy/http/okhttp/request/RequestCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFileDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/ServerInformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="15" column="25" selection-start-line="14" selection-start-column="5" selection-end-line="15" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UploadUi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_upload_ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/LocalFileRecording_Download.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="26" column="56" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_local_file_recording__download.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
-          <folding>
-            <element signature="e#846#870#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/local_file_recording_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+        <state relative-caret-position="532">
+          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -5300,66 +5122,63 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/ShareCenterAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileUploadRecordingAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
+        <state relative-caret-position="378">
+          <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="70" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileDownloadRecordingAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/FileInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-325">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/rectangle_btn.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_dialog.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-467">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Widget/MyDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2457">
+          <caret line="95" column="31" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/share_center_item.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/LocalFileRecording_Download.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/HistoryRecording.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="97" column="36" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/mta-sdk-1.6.2.jar!/com/tencent/stat/g.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/WiFiPeerListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-24/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="4473" column="16" selection-start-line="4473" selection-start-column="16" selection-end-line="4473" selection-end-column="16" />
-          <folding>
-            <element signature="e#190964#190965#0" expanded="false" />
-            <element signature="e#191012#191013#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/RegisterUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="135">
+          <caret line="26" column="56" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -5372,36 +5191,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/LocalFileRecording_Upload.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui2.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+        <state relative-caret-position="636">
+          <caret line="164" column="4" selection-start-line="164" selection-start-column="4" selection-end-line="164" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/HistoryRecording.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-536">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="575">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/RegisterUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="675">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_others_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="297" column="9" selection-start-line="297" selection-start-column="9" selection-end-line="297" selection-end-column="9" />
+        <state relative-caret-position="451">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/others_main_listview_header.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Widget/EasySweetAlertDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DensityUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/GetPathFromUri4kitkat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -5414,7 +5280,191 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TextUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/LocalFileRecording_Upload.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+          <folding>
+            <element signature="e#1479#1480#0" expanded="false" />
+            <element signature="e#1513#1514#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/ShareCenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="79" column="86" selection-start-line="70" selection-start-column="8" selection-end-line="79" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/OthersShareAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UploadUi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="235" column="4" selection-start-line="235" selection-start-column="4" selection-end-line="243" selection-end-column="5" />
+          <folding>
+            <element signature="e#4114#4115#0" expanded="false" />
+            <element signature="e#4170#4171#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <element signature="e#2159#2611#0" expanded="false" />
+            <element signature="e#2610#2611#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TencentOperator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/NetworkUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="180" column="62" selection-start-line="180" selection-start-column="51" selection-end-line="180" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/ServerInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="103" column="68" selection-start-line="103" selection-start-column="68" selection-end-line="103" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/AvatarUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+          <folding>
+            <element signature="e#639#827#0" expanded="false" />
+            <element signature="e#826#827#0" expanded="false" />
+            <element signature="e#989#1195#0" expanded="false" />
+            <element signature="e#1194#1195#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="56" column="23" selection-start-line="17" selection-start-column="8" selection-end-line="56" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/FollowingsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="866">
+          <caret line="65" column="55" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
+          <folding>
+            <element signature="e#1031#1032#0" expanded="true" />
+            <element signature="e#1090#1091#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_followings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/Followings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+          <folding>
+            <element signature="e#1362#1511#0" expanded="true" />
+            <element signature="e#1510#1511#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/WiFiPeerListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3753">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/NetWorkOperator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#13312#13329#0" expanded="true" />
+            <element signature="e#16905#16922#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/wifi_direct_activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -5425,90 +5475,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.spark/submitbutton/1.0.1/res/values/values.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/file_manager_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/TimeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileDownloadRecordingAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Adapter/LocalFileUploadRecordingAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/LocalFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#1838#1839#0" expanded="true" />
-            <element signature="e#1891#1892#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="151" column="39" selection-start-line="151" selection-start-column="39" selection-end-line="151" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.6.2/a23d2e96bf2ff8235f01215e3ce0ceb3cdddff32/okhttputils-2.6.2-sources.jar!/com/zhy/http/okhttp/cookie/CookieJarImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding>
-            <element signature="e#786#787#0" expanded="true" />
-            <element signature="e#829#830#0" expanded="true" />
-            <element signature="e#876#877#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.6.2/a23d2e96bf2ff8235f01215e3ce0ceb3cdddff32/okhttputils-2.6.2-sources.jar!/com/zhy/http/okhttp/cookie/store/CookieStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="137" column="8" selection-start-line="23" selection-start-column="12" selection-end-line="37" selection-end-column="45" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -5516,97 +5486,84 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/User.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/followings_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1697">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        <state relative-caret-position="162">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/OthersMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="155" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7487">
+          <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/more_dialog.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Tool/DialogUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-            <element signature="e#599#600#0" expanded="true" />
-            <element signature="e#1629#1630#0" expanded="true" />
-            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#2675#3942#0" expanded="true" />
+            <element signature="e#3941#3942#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/UserMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="120" column="63" selection-start-line="120" selection-start-column="63" selection-end-line="120" selection-end-column="63" />
+        <state relative-caret-position="513">
+          <caret line="55" column="57" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/App.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/FileManager/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1655#1672#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="68" column="74" selection-start-line="68" selection-start-column="74" selection-end-line="68" selection-end-column="74" />
-          <folding>
-            <element signature="e#2159#2611#0" expanded="true" />
-            <element signature="e#2610#2611#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_download_ui2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="182" column="38" selection-start-line="182" selection-start-column="38" selection-end-line="182" selection-end-column="38" />
+        <state relative-caret-position="451">
+          <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/Data/FileInformation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="26" />
-          <folding>
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#936#937#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#1033#1034#0" expanded="true" />
-            <element signature="e#1085#1086#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/UI/DownloadUi2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="126" column="69" selection-start-line="126" selection-start-column="69" selection-end-line="126" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/qjm3662/cloud_u_pan/NetWorkOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="358" column="0" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5675#5692#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

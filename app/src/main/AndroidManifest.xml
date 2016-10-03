@@ -79,7 +79,9 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".UI.shareToQQ" />
         <activity android:name=".UI.UserMain" />
-        <activity android:name=".UI.ShareCenter"></activity>
+        <activity android:name=".UI.ShareCenter" />
+        <activity android:name=".UI.OthersMain" />
+        <activity android:name=".UI.Followings"></activity>
     </application>
 
 </manifest>

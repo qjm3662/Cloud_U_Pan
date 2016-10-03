@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DownloadUi.class));
                 break;
             case R.id.btn_bluetooth:
-                NetWorkOperator.Login(this, "123456", "123456");
+//                NetWorkOperator.Login(this, "123456", "123456");
                 break;
             case R.id.btn_more:
                 View.OnClickListener listener = new View.OnClickListener() {
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 };
                 dialog = new Dialog(this, R.style.common_dialog);
-                DialogUtils.showDialog(this, dialog, listener);
+                DialogUtils.showSelectDialog(this, dialog, listener);
                 break;
             case R.id.btn_my:
                 if(App.Flag_IsLogin){
@@ -109,42 +109,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-//    /**
-//     * 打开文件选择器
-//     */
-//    private void showFileChooser() {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("*/*");
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
-//        try {
-//            startActivityForResult(Intent.createChooser(intent, "选择要分享的文件"), FILE_SELECT_CODE);
-//        } catch (android.content.ActivityNotFoundException ex) {
-//            Toast.makeText(this, "Please install a FileInformation Manager.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-//            case FILE_SELECT_CODE:
-//                if (resultCode == RESULT_OK) {
-//                    // Get the Uri of the selected file
-//                    Uri uri = data.getData();
-//                    System.out.println(uri);
-//                    String path;
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//                        path = GetPathFromUri4kitkat.getPath(this, uri);
-//                    } else {
-//                        path = FileUtils.getPath(this, uri);
-//                    }
-//                    System.out.println("path" + path);
-//                    File file = new File(path);
-//
-//                    startActivity(new Intent(this, UploadUi.class));
-//                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
-//                }
-//                break;
             case requestCode_selectFile:
                 if(data != null){
                     System.out.println(data.getStringExtra(PATH));

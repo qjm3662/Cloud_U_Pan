@@ -61,7 +61,7 @@
 
     <ImageView
         android:id="@+id/img_share_center"
-        android:src="@drawable/upload"
+        android:src="@drawable/share"
         android:paddingTop="25dp"
         android:paddingBottom="25dp"
         android:paddingLeft="25dp"

@@ -17,6 +17,15 @@ public class User{
     private List<FileInformation> shares_list;
     private Bitmap bitmap;
     private String avatarPath;
+    private boolean relative;
+
+    public boolean isRelative() {
+        return relative;
+    }
+
+    public void setRelative(boolean relative) {
+        this.relative = relative;
+    }
 
     public String getToken() {
         return token;
@@ -44,7 +53,7 @@ public class User{
         this.bitmap = bitmap;
     }
 
-    private User() {
+    public User() {
         username = "我是昵称";
         name = "";
         avatar = "http://119.29.55.243:3000/avatar.jpg";
@@ -99,6 +108,14 @@ public class User{
         this.sex = sex;
     }
 
+
+    public void setUser_not_static(User user){
+        this.setName(user.getName());
+        this.setAvatar(user.getAvatar());
+        this.setSex(user.getSex());
+        this.setUsername(user.getUsername());
+        this.setSignature(user.getSignature());
+    }
 
     public static void setUser(User user){
         if(instance == null){

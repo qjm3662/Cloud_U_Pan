@@ -27,7 +27,9 @@ import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -45,7 +47,15 @@ public class App extends Application{
     //本地下载记录
     public static List<LocalFile> Public_List_Local_File_Download = new ArrayList<LocalFile>();
     //分享中心记录
-    public static List<FileInformation> Public_List_File_Info = new ArrayList<FileInformation>();
+    public static List<FileInformation> Public_List_File_Info = Collections.synchronizedList(new ArrayList<FileInformation>());
+    //别人的上传历史
+    public static List<User> Public_List_Others = Collections.synchronizedList(new ArrayList<User>());
+    //暂存当前点击的用户
+    public static User user_temp = null;
+    //关注的人信息
+    public static List<User> Public_Following_Info = Collections.synchronizedList(new ArrayList<User>());
+
+    public static boolean Down_In_Wifi_Switch_State = false;
 
 
     //可读数据库
@@ -61,6 +71,9 @@ public class App extends Application{
 
     public static String Appkey = "AjsbFyp7oCOFdezm";
     public static String App_ID = "1105716704";
+    public static String currentSavePath = FileUtils.getSDPath();
+    private Object switchState;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -68,8 +81,8 @@ public class App extends Application{
         initDataBase();
         GetFileInformationFromDB();
         initReceiver();
-
         getUserInfo();
+        getSwitchState();
 
         //打开debug开关，可查看日志
         StatConfig.setDebugEnable(true);
@@ -153,5 +166,25 @@ public class App extends Application{
         }else{
             System.out.println("用户头像路径无效");
         }
+    }
+
+    public static void deleteUserInfo(Context context){
+        SharedPreferences sp = context.getSharedPreferences("User", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        editor.apply();
+        deleteSwitchState(context);
+    }
+
+    public void getSwitchState() {
+        SharedPreferences sp = this.getSharedPreferences("SWITCH", Context.MODE_PRIVATE);
+        Down_In_Wifi_Switch_State = sp.getBoolean("SWITCH_WIFI", false);
+    }
+
+    public static void deleteSwitchState(Context context){
+        SharedPreferences sp = context.getSharedPreferences("SWITCH", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        editor.apply();
     }
 }

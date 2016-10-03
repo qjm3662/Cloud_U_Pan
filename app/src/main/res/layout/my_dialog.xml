@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="245dp"
+    android:minWidth="245dp"
+    android:layout_height="126dp">
+    <TextView
+        android:background="@color/gray_light"
+        android:textColor="@color/dark_normal"
+        android:id="@+id/dialog_title"
+        android:gravity="center"
+        android:text="编辑用户名"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <EditText
+        android:id="@+id/dialog_et"
+        android:layout_below="@id/dialog_title"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rectangle_set"
+        android:layout_marginLeft="13dp"
+        android:hint="默认昵称"
+        android:textColorHint="@color/gray_normal"
+        android:textColor="@color/dark_deep"
+        android:layout_marginRight="13dp"
+        android:textSize="16sp"
+        android:layout_width="220dp"
+        android:layout_height="24dp" />
+
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_below="@id/dialog_title"
+        android:layout_marginTop="18dp"
+        android:gravity="center_horizontal"
+        android:textSize="13.3sp"
+        android:textColor="@color/dark_deep"
+        android:text="退出并保存为"
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+    
+    <LinearLayout
+        android:id="@+id/l_btn"
+        android:layout_below="@id/dialog_et"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="245dp"
+        android:layout_height="25dp">
+        <Button
+            android:id="@+id/dialog_yes"
+            android:text="确定"
+            android:textSize="13.3sp"
+            android:textColor="@color/gray_deep"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/rectangle_btn"
+            android:layout_width="106dp"
+            android:layout_height="20dp" />
+        <Button
+            android:id="@+id/dialog_no"
+            android:text="取消"
+            android:textColor="@color/gray_deep"
+            android:background="@drawable/rectangle_btn"
+            android:textSize="13.3sp"
+            android:layout_width="106dp"
+            android:layout_height="20dp" />
+    </LinearLayout>
+
+</RelativeLayout>

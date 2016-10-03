@@ -4,7 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,12 +17,19 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
+import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.Tool.TencentOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -59,6 +70,8 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     public static final String DownloadfilePath = "Download filePath";
     private BroadcastReceiver receiver;
     private boolean is_upload_after_login = false;
+    private Tencent tencent;
+    private IUiListener iUiListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +88,27 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
         }
         initView();
         initReceiver();
+        initTencent();
+    }
+
+    private void initTencent() {
+        tencent = Tencent.createInstance(App.App_ID, this);
+        iUiListener = new IUiListener() {
+            @Override
+            public void onComplete(Object o) {
+                System.out.println("成功");
+            }
+
+            @Override
+            public void onError(UiError uiError) {
+                System.out.println("错误");
+            }
+
+            @Override
+            public void onCancel() {
+                System.out.println("取消");
+            }
+        };
     }
 
     private void initReceiver() {
@@ -125,6 +159,32 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
 
         if(is_upload_after_login){
             tv_uploadInfo.setText(uploadUserName + "上传于" + createAt);
+            img_avatar.setOnClickListener(this);
+            final Bitmap[] b = {null};
+            final Handler handler = new Handler(){
+                @Override
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    switch (msg.what){
+                        case 0:
+                            img_avatar.setImageBitmap(b[0]);
+                            break;
+                    }
+                }
+            };
+            AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
+                @Override
+                public void callback(Bitmap bitmap) {
+                    b[0] = bitmap;
+                    handler.sendEmptyMessage(0);
+                }
+
+                @Override
+                public void callBack_2(User u, Bitmap bitmap, int position) {
+
+                }
+            };
+            AvatarUtils.getBitmapByUrl(App.fileInformation.getUpLoadUserAvatar(), callBack);
         }else{
             img_avatar.setVisibility(View.INVISIBLE);
             tv_uploadInfo.setVisibility(View.INVISIBLE);
@@ -154,7 +214,7 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
 
                 break;
             case R.id.btn_share_qq:
-
+                TencentOperator.shareToQQ(this, tencent, iUiListener, fileName, "lalala", ServerInformation.DownLoadFile_AfterLogin+fileCode, "http://img4.duitang.com/uploads/item/201404/03/20140403133744_AhmYW.thumb.700_0.jpeg", "优云");
                 break;
             case R.id.btn_share_copy:
                 TextUtil.copy(fileCode, this);
@@ -179,6 +239,10 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
             case R.id.img_back:
                 onBackPressed();
                 break;
+            case R.id.img_avatar:
+                NetWorkOperator.getOtherUserInfoByName(this, uploadUser);
+                System.out.println("UploadUser : " + uploadUser);
+                break;
         }
     }
 
@@ -192,6 +256,17 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
         if(call != null){
             call.cancel();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_QQ_SHARE || requestCode == Constants.REQUEST_LOGIN) {
+            if (resultCode == Constants.ACTIVITY_OK) {
+                Tencent.handleResultData(data, iUiListener);
+            }
+        }
+        tencent.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

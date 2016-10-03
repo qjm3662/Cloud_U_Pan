@@ -37,6 +37,9 @@ public class ServerInformation {
     //获取分享中心
     public static final String Get_Share_center = url + "/shared";
 
+    //修改用户头像
+    public static final String Modifi_User_Avatar = url + "/user/avatar";
+
     //注册
     public static final String REGISTER = url + "/user-register";
     /**
@@ -73,4 +76,30 @@ public class ServerInformation {
      code: -7
      }
      */
+
+
+
+
+    public static String Modify_User_Info = url + "/user/edit";
+
+    /**
+     * 修改用户信息
+
+     url: 119.29.55.243:3000/user/edit post方法
+     传参数 name username sex signature
+     reture
+
+     {
+     code: 0,
+     username: "String",
+     sex: "Int",
+     signature: "String"
+     }
+     */
+    public static String FollowSB = url + "/user/follow";
+    public static String UnFollowSB = url + "/user/unfollow";
+
+
+    //获取关注的人的信息
+    public static String GetFollowingInfo = url + "/user/followMessage";
 }
