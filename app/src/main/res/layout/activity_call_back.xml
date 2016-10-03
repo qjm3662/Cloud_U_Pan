@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_call_back"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lightblue"
+    android:layout_height="match_parent"
+    tools:context="com.qjm3662.cloud_u_pan.UI.CallBack">
+
+    <include layout="@layout/bar_item"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_1"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/logo_2"
+            android:layout_marginTop="51dp"
+            android:layout_marginLeft="37dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <TextView
+            android:layout_toRightOf="@+id/logo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="65dp"
+            android:textColor="@color/dark_text"
+            android:textSize="16sp"
+            android:text="您的建议\n是我们不断前进的动力！"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginLeft="37dp"
+            android:layout_below="@+id/logo"
+            android:textColor="@color/gray_text"
+            android:layout_marginTop="28.67dp"
+            android:textSize="12sp"
+            android:text="无论是小小的吐槽，还是宝贵的建议，或是新奇的\n点子，我们统统都接受！"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_callBack"
+        android:background="@color/white"
+        android:gravity="top"
+        android:paddingLeft="37dp"
+        android:paddingRight="37dp"
+        android:paddingTop="10dp"
+        android:textSize="12sp"
+        android:hint="请留下您宝贵的建议吧"
+        android:layout_marginTop="40dp"
+        android:isScrollContainer="true"
+        android:layout_width="match_parent"
+        android:layout_height="89dp" />
+    
+    <Button
+        android:id="@+id/btn_callBack"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:text="反馈"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_callback"
+        android:layout_width="match_parent"
+        android:layout_height="47dp" />
+
+</LinearLayout>

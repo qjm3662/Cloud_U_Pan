@@ -8,7 +8,7 @@
     <include layout="@layout/bar_item"/>
 
     <ListView
-        android:id="@+id/android:list"
+        android:id="@+id/list"
         android:layout_marginTop="@dimen/bar_item_height"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

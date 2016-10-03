@@ -1,14 +1,18 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,10 +23,13 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.FileManager.FileManager;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
+import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,20 +50,27 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private ImageView img_back;
     private TextView tv_exit;
     private TextView tv_current_save_path;
+    private TextView tv_version;
     private Button btn_switch;
+    private TextView tv_about_us;
     private BroadcastReceiver receiver;
     public static final String ACTION_GET_USER_INFO_SUCCESS = "get userInfo success";
+    public static final String ACTION_UPDATE_USERINFO = "update userInfo";
     private User user;
 
     public static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     public static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     public static final int PHOTO_REQUEST_CUT = 3;// 结果
 
+    public static final int PHOTO_REQUEST_SELECT_FROM_FILEMANAGER = 4;
+    public static final int PATH_REQUEST = 5;
+
     public static final String PATH = "path";
-    public static final int SELECT_PHTOT_RESULT_CODE = 6;
+    public static final int SELECT_PHOTO_RESULT_CODE = 6;
 
     private File tempFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,13 +82,26 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private void initReceiver() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_GET_USER_INFO_SUCCESS);
+        if(!App.FLAG_IS_DATA_FINISH){
+            intentFilter.addAction(ACTION_UPDATE_USERINFO);
+        }
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                user = User.getInstance();
-                System.out.println(user.getBitmap());
-                img_head.setImageBitmap(user.getBitmap());
-                tv_name.setText(user.getUsername());
+                switch (intent.getAction()){
+                    case ACTION_GET_USER_INFO_SUCCESS:
+                        user = User.getInstance();
+                        System.out.println(user.getBitmap());
+                        img_head.setImageBitmap(user.getBitmap());
+                        tv_name.setText(user.getUsername());
+                        break;
+                    case ACTION_UPDATE_USERINFO:
+                        user = User.getInstance();
+                        img_head.setImageBitmap(user.getBitmap());
+                        tv_name.setText(user.getUsername());
+                        tv_current_save_path.setText(App.currentSavePath);
+                        break;
+                }
             }
         };
         registerReceiver(receiver, intentFilter);
@@ -92,6 +119,8 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_name = (TextView) findViewById(R.id.tv_name);
         tv_bar = (TextView) findViewById(R.id.bar);
         tv_exit = (TextView) findViewById(R.id.tv_exit);
+        tv_about_us = (TextView) findViewById(R.id.tv_about_us);
+        tv_version = (TextView) findViewById(R.id.tv_version);
         btn_switch = (Button) findViewById(R.id.my_switch_button);
         tv_current_save_path = (TextView) findViewById(R.id.tv_current_save_path);
         tv_current_save_path.setText(App.currentSavePath);
@@ -107,22 +136,26 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         img_back.setOnClickListener(this);
         tv_exit.setOnClickListener(this);
         btn_switch.setOnClickListener(this);
+        tv_version.setOnClickListener(this);
+        tv_about_us.setOnClickListener(this);
+        tv_current_save_path.setOnClickListener(this);
 
         img_head.setOnClickListener(this);
-
-        if(App.Flag_IsLogin){
+        if (App.Flag_IsLogin) {
             user = User.getInstance();
             img_head.setImageBitmap(user.getBitmap());
             tv_name.setText(user.getUsername());
             NetWorkOperator.getUserInfo(this, User.getInstance().getName(), 3);
+        }else{
+            tv_name.setText("点此登录->");
         }
         initSwitch();
     }
 
     private void initSwitch() {
-        if(!App.Down_In_Wifi_Switch_State){
+        if (!App.Down_In_Wifi_Switch_State) {
             btn_switch.setBackgroundResource(R.drawable.img_switch);
-        }else{
+        } else {
             btn_switch.setBackgroundResource(R.drawable.img_switch_choose);
         }
     }
@@ -131,29 +164,68 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_edit_nickname:
-                DialogUtils.ShowDialog(this, user.getUsername());
+                if(App.Flag_IsLogin){
+                    DialogUtils.ShowDialog(this, user.getUsername());
+                }else{
+                    finish();
+                    this.startActivity(new Intent(this, Login.class));
+                }
                 break;
             case R.id.img_avatar:
                 System.out.println("clicasdf asfa sk");
-//                getAlbum();
-                getCamera();
+                if(App.Flag_IsLogin){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    //    指定下拉列表的显示数据
+                    final String[] cities = {"相机", "文件"};
+                    //    设置一个下拉的列表选择项
+                    builder.setItems(cities, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case 0:
+                                    getCamera();
+                                    break;
+                                case 1:
+                                    Intent intent1 = new Intent(UserMain.this, FileManager.class);
+                                    intent1.putExtra("WHERE", 1);
+                                    startActivityForResult(intent1, PHOTO_REQUEST_SELECT_FROM_FILEMANAGER);
+                                    break;
+                            }
+                        }
+                    });
+                    Dialog dialog = builder.create();
+                    dialog.show();
+                }else{
+                    EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
+                }
                 break;
             case R.id.tv_callback:
-
-                break;
-            case R.id.tv_down_in_wifi:
-
+                startActivity(new Intent(this, CallBack.class));
                 break;
             case R.id.tv_following:
-                NetWorkOperator.GetFollowingInformation(this, App.Public_Following_Info);
+                if(App.Flag_IsLogin){
+                    NetWorkOperator.GetFollowingInformation(this, App.Public_Following_Info);
+                }else{
+                    EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
+                }
                 break;
             case R.id.tv_save_path:
-
+                Intent i = new Intent(UserMain.this, FileManager.class);
+                i.putExtra("WHERE", 2);
+                startActivityForResult(i, PATH_REQUEST);
                 break;
             case R.id.tv_upload:
-                Intent intent = new Intent(UserMain.this, OthersMain.class);
-                intent.putExtra("WHERE", 1);
-                startActivity(intent);
+                if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+                    EasySweetAlertDialog.ShowTip(this, "tip", "请检查您的网络连接");
+                    return;
+                }
+                if(App.Flag_IsLogin){
+                    Intent intent = new Intent(UserMain.this, OthersMain.class);
+                    intent.putExtra("WHERE", 1);
+                    startActivity(intent);
+                }else{
+                    EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
+                }
                 break;
             case R.id.img_back:
                 onBackPressed();
@@ -169,19 +241,24 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
             case R.id.my_switch_button:
                 SharedPreferences sp = this.getSharedPreferences("SWITCH", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
-                if(!App.Down_In_Wifi_Switch_State){
+                if (!App.Down_In_Wifi_Switch_State) {
                     btn_switch.setBackgroundResource(R.drawable.img_switch_choose);
                     App.Down_In_Wifi_Switch_State = true;
-                }else{
+                } else {
                     btn_switch.setBackgroundResource(R.drawable.img_switch);
                     App.Down_In_Wifi_Switch_State = false;
                 }
                 editor.putBoolean("SWITCH_WIFI", App.Down_In_Wifi_Switch_State);
                 editor.apply();
                 break;
+            case R.id.tv_version:
+                startActivity(new Intent(this, VersionInfo.class));
+                break;
+            case R.id.tv_about_us:
+                startActivity(new Intent(this, AboutUs.class));
+                break;
         }
     }
-
 
 
     // 使用系统当前日期加以调整作为照片的名称
@@ -263,11 +340,23 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    break;
                 }
+                break;
+            case PHOTO_REQUEST_SELECT_FROM_FILEMANAGER:
+                if (data != null) {
+                    System.out.println(data.getStringExtra(PATH));
+                    File file = new File(data.getStringExtra(PATH));
+                    startPhotoZoom(Uri.fromFile(file));
+                }
+                break;
+            case PATH_REQUEST:
+                App.currentSavePath = data.getStringExtra(PATH);
+                tv_current_save_path.setText(App.currentSavePath);
+                break;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

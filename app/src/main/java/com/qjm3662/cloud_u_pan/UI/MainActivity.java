@@ -13,9 +13,16 @@ import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
+import com.tencent.stat.StatConfig;
+import com.tencent.stat.StatService;
 import com.tencent.tauth.Tencent;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 
 import java.io.File;
+
+import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,10 +39,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Dialog dialog = null;
     private Tencent mTencent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initView();
     }
 
@@ -74,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 View.OnClickListener listener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        switch (v.getId()){
+                        switch (v.getId()) {
                             case R.id.btn_cancel:
                                 dialog.cancel();
                                 System.out.println("dialog cancel!!");
@@ -99,11 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 DialogUtils.showSelectDialog(this, dialog, listener);
                 break;
             case R.id.btn_my:
-                if(App.Flag_IsLogin){
-                    startActivity(new Intent(this, UserMain.class));
-                }else{
-                    startActivity(new Intent(this, Login.class));
-                }
+                startActivity(new Intent(this, UserMain.class));
                 break;
         }
     }
@@ -113,11 +118,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case requestCode_selectFile:
-                if(data != null){
+                if (data != null) {
                     System.out.println(data.getStringExtra(PATH));
                     File file = new File(data.getStringExtra(PATH));
                     NetWorkOperator.UP_FILE(this, file, file.getName(), true);
-                    if(!(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT)){
+                    if (!(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT)) {
                         startActivity(new Intent(this, UploadUi.class));
                     }
                 }

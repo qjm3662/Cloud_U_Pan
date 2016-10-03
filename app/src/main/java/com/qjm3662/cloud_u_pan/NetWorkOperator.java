@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.os.Handler;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
@@ -48,6 +48,53 @@ import okhttp3.Call;
  * Created by tanshunwang on 2016/9/21 0021.
  */
 public class NetWorkOperator {
+
+
+    /**
+     * 反馈
+     * @param context
+     * @param name
+     * @param text
+     */
+    public static void FeedBack(final Context context, String name, String text, final EditText et_feedBack){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .url(ServerInformation.CallBackInfo)
+                .addParams("name", name)
+                .addParams("text", text)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    EasySweetAlertDialog.ShowSuccess(context, "Success", "我们已收到您的反馈，谢谢合作！");
+                                    et_feedBack.setText("");
+                                    break;
+                                case -5:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
+                                    break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
     /**
      * 获取关注的人信息
      * @param context
@@ -76,33 +123,46 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("message");
-                            final int length = jsonArray.length();
-                            Gson gson = new Gson();
-                            User user = null;
-                            list.clear();
-                            AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
-                                @Override
-                                public void callback(Bitmap bitmap) {
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    JSONArray jsonArray = jsonObject.getJSONArray("message");
+                                    final int length = jsonArray.length();
+                                    Gson gson = new Gson();
+                                    User user = null;
+                                    list.clear();
+                                    AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
+                                        @Override
+                                        public void callback(Bitmap bitmap) {
 
-                                }
+                                        }
 
-                                @Override
-                                public void callBack_2(User u, Bitmap bitmap, int position) {
-                                    u.setBitmap(bitmap);
-                                    list.add(u);
-                                    if(position == length - 1){
+                                        @Override
+                                        public void callBack_2(User u, Bitmap bitmap, int position) {
+                                            u.setBitmap(bitmap);
+                                            list.add(u);
+                                            if(position == length - 1){
+                                                Intent intent = new Intent(context, Followings.class);
+                                                intent.putExtra("WHERE", 3);
+                                                context.startActivity(intent);
+                                            }
+                                        }
+                                    };
+                                    if(jsonArray.length() == 0){
                                         Intent intent = new Intent(context, Followings.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
+                                        return;
                                     }
-                                }
-                            };
-                            for(int i = 0; i < jsonArray.length(); i++){
-                                user = gson.fromJson(jsonArray.get(i).toString(), User.class);
-                                AvatarUtils.getBitmapByUrl(user.getAvatar(), callBack, user, i);
+                                    for(int i = 0; i < jsonArray.length(); i++){
+                                        user = gson.fromJson(jsonArray.get(i).toString(), User.class);
+                                        AvatarUtils.getBitmapByUrl(user.getAvatar(), callBack, user, i);
+                                    }
+                                    System.out.println(Arrays.toString(list.toArray()));
+                                    break;
+                                case -5:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
+                                    break;
                             }
-                            System.out.println(Arrays.toString(list.toArray()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -116,7 +176,7 @@ public class NetWorkOperator {
      * @param targetName
      * @param viewHolder
      */
-    public static void UnFollowSB(Context context, String targetName, final OthersMain.ViewHolder viewHolder){
+    public static void UnFollowSB(final Context context, String targetName, final OthersMain.ViewHolder viewHolder){
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
@@ -139,7 +199,19 @@ public class NetWorkOperator {
                     @Override
                     public void onResponse(String response, int id) {
                         System.out.println(response);
-                        viewHolder.set(false);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    viewHolder.set(false);
+                                    break;
+                                case -5:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
+                                    break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
@@ -149,7 +221,7 @@ public class NetWorkOperator {
      * @param targetName
      * @param viewHolder
      */
-    public static void FollowSB(Context context, String targetName, final OthersMain.ViewHolder viewHolder){
+    public static void FollowSB(final Context context, String targetName, final OthersMain.ViewHolder viewHolder){
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
@@ -172,7 +244,19 @@ public class NetWorkOperator {
                     @Override
                     public void onResponse(String response, int id) {
                         System.out.println(response);
-                        viewHolder.set(true);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    viewHolder.set(true);
+                                    break;
+                                case -5:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
+                                    break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -210,7 +294,19 @@ public class NetWorkOperator {
                     @Override
                     public void onResponse(String response, int id) {
                         System.out.println(response);
-                        getUserInfo(context, User.getInstance().getName(), 3);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    getUserInfo(context, User.getInstance().getName(), 3);
+                                    break;
+                                case -5:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
+                                    break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -458,6 +554,7 @@ public class NetWorkOperator {
             return;
         }
         final Intent[] intent = {new Intent(), new Intent()};
+        final int[] current_progress = {0};
         call.execute(new FileCallBack(App.currentSavePath, fileInformation.getName()) {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -488,11 +585,13 @@ public class NetWorkOperator {
             @Override
             public void inProgress(float progress, long total, int id) {
                 super.inProgress(progress, total, id);
-                intent[0] = new Intent();
-                intent[0].setAction(DownloadUi2.DownLoadProgressAction);
-                intent[0].putExtra(DownloadUi2.DownloadProgressing, (int) (progress * 100));
-//                        System.out.println((int)(progress * 100));
-                context.sendBroadcast(intent[0]);
+                if(current_progress[0] != (int) (progress * 100)){
+                    current_progress[0] = (int) (progress * 100);
+                    intent[0] = new Intent();
+                    intent[0].setAction(DownloadUi2.DownLoadProgressAction);
+                    intent[0].putExtra(DownloadUi2.DownloadProgressing, current_progress[0]);
+                    context.sendBroadcast(intent[0]);
+                }
             }
         });
     }
@@ -565,7 +664,7 @@ public class NetWorkOperator {
         }
         OkHttpUtils
                 .post()
-                .url(ServerInformation.Modifi_User_Avatar)
+                .url(ServerInformation.Modify_User_Avatar)
                 .addFile("avatar", file.getName(), file)
                 .build()
                 .execute(new StringCallback() {
@@ -577,7 +676,19 @@ public class NetWorkOperator {
                     @Override
                     public void onResponse(String response, int id) {
                         System.out.println(response);
-                        getUserInfo(context, User.getInstance().getName(), 3);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    getUserInfo(context, User.getInstance().getName(), 3);
+                                    break;
+                                case -5:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
+                                    break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -603,6 +714,7 @@ public class NetWorkOperator {
         }
         String url = "";
         String userName;
+        final int current_progress[] = {0};
         if (App.Flag_IsLogin) {
             url = ServerInformation.UPLoadFile_AfterLogin;
             userName = User.getInstance().getName();
@@ -654,10 +766,13 @@ public class NetWorkOperator {
                                  public void inProgress(float progress, long total, int id) {
                                      super.inProgress(progress, total, id);
                                      int progress_ = (int) (progress * 100);
-                                     intent[0] = new Intent();
-                                     intent[0].setAction(UploadUi.UploadProgressing);
-                                     intent[0].putExtra(UploadUi.Progress, progress_);
-                                     context.sendBroadcast(intent[0]);
+                                     if(current_progress[0] != progress_){
+                                         current_progress[0] = progress_;
+                                         intent[0] = new Intent();
+                                         intent[0].setAction(UploadUi.UploadProgressing);
+                                         intent[0].putExtra(UploadUi.Progress, progress_);
+                                         context.sendBroadcast(intent[0]);
+                                     }
                                  }
                              }
                     );
@@ -746,6 +861,7 @@ public class NetWorkOperator {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         System.out.println(e.toString());
+                        EasySweetAlertDialog.ShowTip(context, "Tip", "注册失败，请检查您的网络设置");
                     }
 
                     @Override
@@ -754,10 +870,15 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             jsonObject = new JSONObject(response);
-                            if (jsonObject.getInt("code") == 0) {
-                                User.getInstance().setName(username);
-                                User.getInstance().setAvatar(jsonObject.getString("avatar"));
-                                getUserInfo(context, username, 2);
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    User.getInstance().setName(username);
+                                    User.getInstance().setAvatar(jsonObject.getString("avatar"));
+                                    getUserInfo(context, username, 2);
+                                    break;
+                                case -6:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "用户名已存在！");
+                                    break;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -769,7 +890,6 @@ public class NetWorkOperator {
 
     /**
      * 登陆
-     *
      * @param context
      * @param username
      * @param password
@@ -792,6 +912,7 @@ public class NetWorkOperator {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         System.out.println(e.toString());
+                        EasySweetAlertDialog.ShowTip(context, "Tip", "登录失败，请检查您的网络设置");
                     }
 
                     @Override
@@ -799,9 +920,13 @@ public class NetWorkOperator {
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(response);
-                            if (jsonObject.getInt("code") == 0) {
-                                getUserInfo(context, username, 1);
-//                                System.out.println("code 0");
+                            switch (jsonObject.getInt("code")){
+                                case 0:
+                                    getUserInfo(context, username, 1);
+                                    break;
+                                case -1:
+                                    EasySweetAlertDialog.ShowTip(context, "Tip", "用户名或密码错误!");
+                                    break;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -81,7 +81,10 @@
         <activity android:name=".UI.UserMain" />
         <activity android:name=".UI.ShareCenter" />
         <activity android:name=".UI.OthersMain" />
-        <activity android:name=".UI.Followings"></activity>
+        <activity android:name=".UI.Followings" />
+        <activity android:name=".UI.CallBack" />
+        <activity android:name=".UI.VersionInfo" />
+        <activity android:name=".UI.AboutUs"></activity>
     </application>
 
 </manifest>

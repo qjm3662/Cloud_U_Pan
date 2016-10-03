@@ -72,6 +72,7 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     private boolean is_upload_after_login = false;
     private Tencent tencent;
     private IUiListener iUiListener;
+    private int current_progress = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,7 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
                 switch (intent.getAction()){
                     case DownLoadProgressAction:
                         int progress = intent.getIntExtra(DownloadProgressing, 0);
+                        current_progress = progress;
                         System.out.println(progress);
                         tv_progress.setText(progress + "");
                         break;

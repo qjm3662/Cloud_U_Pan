@@ -14,6 +14,8 @@
     <color name="img_down">#2e485f</color>
     <color name="img_share">#455664</color>
     <color name="dark">#30383f</color>
+    <color name="dark_text">#333333</color>
+    <color name="gray_text">#8b8b8b</color>
     <!--<color name="dark">#c5d0da</color>-->
 
 

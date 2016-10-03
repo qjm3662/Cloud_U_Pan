@@ -5,8 +5,8 @@ package com.qjm3662.cloud_u_pan.Data;
  */
 public class ServerInformation {
 
-//    public static final String IP = "http://119.29.55.243";
-    public static final String IP = "http://172.6.2.8";
+    public static final String IP = "http://119.29.55.243";
+//    public static final String IP = "http://172.6.2.8";
 
     public static final String PORT = "3000";
 
@@ -38,7 +38,7 @@ public class ServerInformation {
     public static final String Get_Share_center = url + "/shared";
 
     //修改用户头像
-    public static final String Modifi_User_Avatar = url + "/user/avatar";
+    public static final String Modify_User_Avatar = url + "/user/avatar";
 
     //注册
     public static final String REGISTER = url + "/user-register";
@@ -80,6 +80,7 @@ public class ServerInformation {
 
 
 
+    //修改用户信息
     public static String Modify_User_Info = url + "/user/edit";
 
     /**
@@ -96,10 +97,12 @@ public class ServerInformation {
      signature: "String"
      }
      */
+    //关注某人
     public static String FollowSB = url + "/user/follow";
+    //取消关注某人
     public static String UnFollowSB = url + "/user/unfollow";
-
-
     //获取关注的人的信息
     public static String GetFollowingInfo = url + "/user/followMessage";
+    //反馈
+    public static String CallBackInfo = url + "/user/feedback";
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class RegisterUI extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,7 +20,6 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
     private Intent intent;
     private EditText et_phone_number;
     private EditText et_password;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
     }
 
     private void initView() {
-        context = RegisterUI.this;
         register_to_login = (TextView) findViewById(R.id.register_to_login);
         btn_register = (Button) findViewById(R.id.register_btn);
         et_phone_number = (EditText) findViewById(R.id.register_phone);
@@ -49,7 +48,11 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.register_btn:
-                NetWorkOperator.Register(this, et_phone_number.getText().toString(), et_password.getText().toString());
+                if(et_phone_number.getText().toString().equals("") || et_password.getText().toString().equals("")){
+                    EasySweetAlertDialog.ShowTip(this, "tip", "用户名或密码不能为空");
+                }else{
+                    NetWorkOperator.Register(this, et_phone_number.getText().toString(), et_password.getText().toString());
+                }
                 break;
         }
     }

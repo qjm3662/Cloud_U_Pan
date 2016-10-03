@@ -2,6 +2,7 @@ package com.qjm3662.cloud_u_pan;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -18,6 +19,7 @@ import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.tencent.stat.StatConfig;
 import com.tencent.stat.StatService;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -72,29 +74,32 @@ public class App extends Application{
     public static String Appkey = "AjsbFyp7oCOFdezm";
     public static String App_ID = "1105716704";
     public static String currentSavePath = FileUtils.getSDPath();
-    private Object switchState;
+
+    public static boolean FLAG_IS_DATA_FINISH = false;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //数据库相关操作
-        initDataBase();
-        GetFileInformationFromDB();
         initReceiver();
-        getUserInfo();
-        getSwitchState();
-
-        //打开debug开关，可查看日志
-        StatConfig.setDebugEnable(true);
-        StatService.trackCustomEvent(this, "onCreate", "");
-
-        final CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(this));
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
-                //其他配置
-                .build();
-        OkHttpUtils.initClient(okHttpClient);
-
+        //数据库相关操作
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getUserInfo();
+                getSwitchState();
+                //打开debug开关，可查看日志
+                StatConfig.setDebugEnable(true);
+                StatService.trackCustomEvent(getApplicationContext(), "onCreate", "");
+                final CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+                OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                        .cookieJar(cookieJar)
+                        //其他配置
+                        .build();
+                OkHttpUtils.initClient(okHttpClient);
+                initDataBase();
+                GetFileInformationFromDB();
+            }
+        }).start();
     }
 
     private void initReceiver() {
@@ -127,7 +132,6 @@ public class App extends Application{
             localFile.setBitmap_type(FileUtils.getImgHead(this, localFile.getType(), localFile.getPath()));
             Public_List_Local_File_Download.add(localFile);
         }
-//        CloseDB();
     }
 
     private void initDataBase() {
@@ -166,6 +170,10 @@ public class App extends Application{
         }else{
             System.out.println("用户头像路径无效");
         }
+        Intent intent = new Intent();
+        intent.setAction(UserMain.ACTION_UPDATE_USERINFO);
+        sendBroadcast(intent);
+        FLAG_IS_DATA_FINISH = true;
     }
 
     public static void deleteUserInfo(Context context){
@@ -179,6 +187,8 @@ public class App extends Application{
     public void getSwitchState() {
         SharedPreferences sp = this.getSharedPreferences("SWITCH", Context.MODE_PRIVATE);
         Down_In_Wifi_Switch_State = sp.getBoolean("SWITCH_WIFI", false);
+        sp = this.getSharedPreferences("PATH", Context.MODE_PRIVATE);
+        currentSavePath = sp.getString("Path", currentSavePath);
     }
 
     public static void deleteSwitchState(Context context){

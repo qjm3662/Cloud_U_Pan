@@ -1,178 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/lightblue">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/lightblue"
+    android:isScrollContainer="true"
+    android:orientation="vertical">
+    <include layout="@layout/bar_item" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightblue"
-        android:isScrollContainer="true"
-        android:orientation="vertical">
-
-        <include layout="@layout/bar_item" />
-
+        android:layout_height="match_parent">
         <LinearLayout
+            android:orientation="vertical"
+            android:isScrollContainer="true"
             android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="@color/white"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/img_avatar"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/circle_head"
-                android:scaleType="fitCenter"
-                android:src="@drawable/img_defaultavatar"
-                app:riv_border_color="#333333"
-                app:riv_border_width="0dip"
-                app:riv_corner_radius="30dip"
-                app:riv_mutate_background="true"
-                app:riv_oval="true"
-                app:riv_tile_mode="clamp" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_avatar"
+                    app:riv_border_color="#333333"
+                    app:riv_border_width="0dip"
+                    app:riv_corner_radius="30dip"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="true"
+                    app:riv_tile_mode="clamp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/circle_head"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_defaultavatar" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="28dp"
+                    android:text="用户名"
+                    android:textColor="@color/dark"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/img_edit_nickname"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="28dp"
+                    android:src="@drawable/revise" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="28dp"
-                android:text="用户名"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:gravity="bottom"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:text="关注、上传"
                 android:textColor="@color/dark"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/img_edit_nickname"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="28dp"
-                android:src="@drawable/revise" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
-            android:gravity="bottom"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:text="关注、上传"
-            android:textColor="@color/dark"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/tv_following"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="关注的人"
-            android:textColor="@color/dark"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_upload"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginTop="@dimen/line_span_small"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="我的上传"
-            android:textColor="@color/dark"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
-            android:gravity="bottom"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:text="设置"
-            android:textColor="@color/dark"
-            android:textSize="12sp"
-            tools:ignore="RtlSymmetry" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="43dp">
+                android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tv_down_in_wifi"
+                android:id="@+id/tv_following"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="wifi下下载"
+                android:text="关注的人"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
-            <Button
-                android:id="@+id/my_switch_button"
-                android:background="@drawable/img_switch"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_width="42dp"
-                android:layout_height="25dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
 
             <TextView
-                android:id="@+id/tv_save_path"
+                android:id="@+id/tv_upload"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="43dp"
                 android:layout_marginTop="@dimen/line_span_small"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="存储位置"
+                android:text="我的上传"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_current_save_path"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tv_save_path"
-                android:background="@color/white"
+                android:layout_height="34dp"
+                android:gravity="bottom"
+                android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
-                android:text="/sdcard" />
-        </RelativeLayout>
+                android:text="设置"
+                android:textColor="@color/dark"
+                android:textSize="12sp" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="43dp">
 
-        <TextView
-            android:id="@+id/tv_callback"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginTop="@dimen/line_span_small"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="反馈"
-            android:textColor="@color/dark"
-            android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/tv_down_in_wifi"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="wifi下下载"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
 
+                <Button
+                    android:id="@+id/my_switch_button"
+                    android:layout_width="42dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/img_switch" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_exit"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginTop="85dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="退出"
-            android:textColor="@color/dark"
-            android:textSize="16sp" />
-    </LinearLayout>
-</ScrollView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp">
+
+                <TextView
+                    android:id="@+id/tv_save_path"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="@dimen/line_span_small"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="存储位置"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_current_save_path"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tv_save_path"
+                    android:background="@color/white"
+                    android:paddingLeft="20dp"
+                    android:text="/sdcard" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="@dimen/line_span_small"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="关于我们"
+                android:textColor="@color/dark"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="@dimen/line_span_small"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="版本信息"
+                android:textColor="@color/dark"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_callback"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="@dimen/line_span_small"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="反馈"
+                android:textColor="@color/dark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_exit"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="退出"
+                android:textColor="@color/dark"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

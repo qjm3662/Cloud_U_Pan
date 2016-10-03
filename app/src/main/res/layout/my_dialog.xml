@@ -7,8 +7,8 @@
     android:minWidth="245dp"
     android:layout_height="126dp">
     <TextView
-        android:background="@color/gray_light"
-        android:textColor="@color/dark_normal"
+        android:background="@color/blue"
+        android:textColor="@color/white"
         android:id="@+id/dialog_title"
         android:gravity="center"
         android:text="编辑用户名"
@@ -53,7 +53,7 @@
             android:id="@+id/dialog_yes"
             android:text="确定"
             android:textSize="13.3sp"
-            android:textColor="@color/gray_deep"
+            android:textColor="@color/white"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/rectangle_btn"
@@ -62,7 +62,7 @@
         <Button
             android:id="@+id/dialog_no"
             android:text="取消"
-            android:textColor="@color/gray_deep"
+            android:textColor="@color/white"
             android:background="@drawable/rectangle_btn"
             android:textSize="13.3sp"
             android:layout_width="106dp"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,7 +51,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.login_btn:
-                NetWorkOperator.Login(context, et_username.getText().toString(), et_password.getText().toString());
+                if(et_username.getText().toString().equals("") || et_password.getText().toString().equals("")){
+                    EasySweetAlertDialog.ShowTip(this, "tip", "用户名或密码不能为空");
+                }else{
+                    NetWorkOperator.Login(context, et_username.getText().toString(), et_password.getText().toString());
+                }
                 break;
             case R.id.forget_password:
                 Intent intent = new Intent(context, RegisterUI.class);
