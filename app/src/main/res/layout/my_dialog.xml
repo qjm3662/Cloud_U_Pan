@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@color/white"
-    android:layout_width="245dp"
-    android:minWidth="245dp"
-    android:layout_height="126dp">
+    android:layout_width="@dimen/x735"
+    android:minWidth="@dimen/x735"
+    android:layout_height="@dimen/y378">
     <TextView
         android:background="@color/blue"
         android:textColor="@color/white"
@@ -14,59 +14,59 @@
         android:text="编辑用户名"
         android:textSize="12sp"
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="@dimen/y90" />
     <EditText
         android:id="@+id/dialog_et"
         android:layout_below="@id/dialog_title"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/y42"
         android:background="@drawable/rectangle_set"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="@dimen/x39"
         android:hint="默认昵称"
         android:textColorHint="@color/gray_normal"
         android:textColor="@color/dark_deep"
-        android:layout_marginRight="13dp"
+        android:layout_marginRight="@dimen/x39"
         android:textSize="16sp"
-        android:layout_width="220dp"
-        android:layout_height="24dp" />
+        android:layout_width="@dimen/x660"
+        android:layout_height="@dimen/y72" />
 
     <TextView
         android:id="@+id/tv_exit"
         android:layout_below="@id/dialog_title"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/y54"
         android:gravity="center_horizontal"
         android:textSize="13.3sp"
         android:textColor="@color/dark_deep"
         android:text="退出并保存为"
         android:layout_width="match_parent"
-        android:layout_height="24dp" />
+        android:layout_height="@dimen/y72" />
     
     <LinearLayout
         android:id="@+id/l_btn"
         android:layout_below="@id/dialog_et"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/y69"
+        android:layout_marginBottom="@dimen/y30"
         android:orientation="horizontal"
         android:background="@color/white"
-        android:layout_width="245dp"
-        android:layout_height="25dp">
+        android:layout_width="@dimen/y735"
+        android:layout_height="@dimen/y75">
         <Button
             android:id="@+id/dialog_yes"
             android:text="确定"
             android:textSize="13.3sp"
             android:textColor="@color/white"
-            android:layout_marginLeft="13dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/x39"
+            android:layout_marginRight="@dimen/x30"
             android:background="@drawable/rectangle_btn"
-            android:layout_width="106dp"
-            android:layout_height="20dp" />
+            android:layout_width="@dimen/x318"
+            android:layout_height="@dimen/y60" />
         <Button
             android:id="@+id/dialog_no"
             android:text="取消"
             android:textColor="@color/white"
             android:background="@drawable/rectangle_btn"
             android:textSize="13.3sp"
-            android:layout_width="106dp"
-            android:layout_height="20dp" />
+            android:layout_width="@dimen/x318"
+            android:layout_height="@dimen/y60" />
     </LinearLayout>
 
 </RelativeLayout>

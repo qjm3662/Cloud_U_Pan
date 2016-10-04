@@ -8,11 +8,11 @@
     <ImageView
         android:id="@+id/img_head"
         android:src="@drawable/music"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="54dp"
-        android:layout_height="54dp" />
+        android:paddingTop="@dimen/y36"
+        android:paddingBottom="@dimen/y36"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_width="@dimen/x162"
+        android:layout_height="@dimen/y162" />
 
     <TextView
         android:id="@+id/tv_fileName"
@@ -23,26 +23,26 @@
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_toLeftOf="@+id/tv_time"
-        android:layout_marginLeft="10dp"
-        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_height="@dimen/y162"
         />
 
     <TextView
         android:id="@+id/tv_time"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/x60"
         android:text="19:20"
         android:textSize="12sp"
         android:layout_width="wrap_content"
-        android:layout_height="54dp" />
+        android:layout_height="@dimen/y162" />
     <TextView
         android:id="@+id/tv_downCount"
         android:layout_width="wrap_content"
         android:text="下载次数：999"
         android:layout_below="@+id/tv_time"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/x60"
         android:textSize="12sp"
         android:layout_height="wrap_content" />
     <TextView
@@ -51,8 +51,8 @@
         android:text="大小：25M"
         android:layout_below="@+id/tv_time"
         android:layout_toLeftOf="@id/tv_downCount"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginRight="@dimen/x60"
+        android:layout_marginEnd="@dimen/x60"
         android:textSize="12sp"
         android:layout_height="wrap_content" />
 

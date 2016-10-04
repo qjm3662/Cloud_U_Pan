@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private Button btn_switch;
     private TextView tv_about_us;
     private TextView tv_revisePsd;
+    private ViewGroup ll_header;
     private BroadcastReceiver receiver;
     public static final String ACTION_GET_USER_INFO_SUCCESS = "get userInfo success";
     public static final String ACTION_UPDATE_USERINFO = "update userInfo";
@@ -133,6 +135,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_current_save_path.setText(App.currentSavePath);
         tv_bar.setText("关于我的");
         img_back = (ImageView) findViewById(R.id.img_back);
+        ll_header = (ViewGroup) findViewById(R.id.ll_header);
 
         img_edit_nickname.setOnClickListener(this);
         tv_callback.setOnClickListener(this);
@@ -147,6 +150,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_about_us.setOnClickListener(this);
         tv_current_save_path.setOnClickListener(this);
         tv_revisePsd.setOnClickListener(this);
+        ll_header.setOnClickListener(this);
 
         img_head.setOnClickListener(this);
         if (App.Flag_IsLogin) {
@@ -155,7 +159,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
             tv_name.setText(user.getUsername());
             NetWorkOperator.getUserInfo(this, User.getInstance().getName(), 3);
         }else{
-            tv_name.setText("点此登录->");
+            tv_name.setText("点此登录");
         }
         initSwitch();
     }
@@ -174,7 +178,10 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
             case R.id.img_edit_nickname:
                 if(App.Flag_IsLogin){
                     DialogUtils.ShowDialog(this, user.getUsername());
-                }else{
+                }
+                break;
+            case R.id.ll_header:
+                if(!App.Flag_IsLogin){
                     finish();
                     this.startActivity(new Intent(this, Login.class));
                 }

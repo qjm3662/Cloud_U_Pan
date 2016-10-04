@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="30dp">
+    android:layout_height="@dimen/y90">
 
     <ImageView
         android:id="@+id/img"
         android:src="@drawable/file_small"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/x150"
         android:layout_height="wrap_content" />
     
     <TextView

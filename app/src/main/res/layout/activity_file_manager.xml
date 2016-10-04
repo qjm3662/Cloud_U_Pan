@@ -9,7 +9,7 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_marginTop="@dimen/bar_item_height"
+        android:layout_marginTop="@dimen/y138"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

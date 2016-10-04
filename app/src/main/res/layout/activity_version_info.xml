@@ -12,13 +12,13 @@
 
     <ImageView
         android:src="@drawable/logo_2"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="@dimen/y153"
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="@dimen/y240" />
     <TextView
         android:text="优云"
         android:textColor="@color/dark"
-        android:layout_marginTop="14.3dp"
+        android:layout_marginTop="@dimen/y33"
         android:gravity="center"
         android:textSize="16sp"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
     <TextView
         android:text="V1.0"
         android:textColor="@color/gray_text"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/y15"
         android:gravity="center"
         android:textSize="12sp"
         android:layout_width="match_parent"
@@ -35,24 +35,24 @@
     <TextView
         android:id="@+id/tv_check_for_update"
         android:layout_width="match_parent"
-        android:layout_height="51.67dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/y155"
+        android:layout_marginTop="@dimen/y60"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="@dimen/x60"
+        android:paddingRight="@dimen/x60"
         android:text="检查更新"
         android:textColor="@color/dark_text"
         android:textSize="16sp" />
     <TextView
         android:id="@+id/tv_user_agreement"
         android:layout_width="match_parent"
-        android:layout_marginTop="1dp"
-        android:layout_height="51.67dp"
+        android:layout_marginTop="@dimen/y3"
+        android:layout_height="@dimen/y155"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="@dimen/x60"
+        android:paddingRight="@dimen/x60"
         android:text="用户协议"
         android:textColor="@color/dark_text"
         android:textSize="16sp" />

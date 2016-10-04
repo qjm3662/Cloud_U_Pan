@@ -19,6 +19,8 @@ import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.UI.FirstLunchActivity;
+import com.qjm3662.cloud_u_pan.UI.MainActivity;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
@@ -62,13 +64,8 @@ public class App extends Application{
 
     //1->有网络连接  2->wifi连接   3->手机连接
     public static int NeworkFlag = -1;
-
     public static boolean Flag_IsLogin = false;
-
-    public static String Appkey = "AjsbFyp7oCOFdezm";
-    public static String App_ID = "1105716704";
     public static String currentSavePath = FileUtils.getSDPath();
-
     public static boolean FLAG_IS_DATA_FINISH = false;
 
     @Override
@@ -188,4 +185,6 @@ public class App extends Application{
         editor.clear();
         editor.apply();
     }
+
+
 }

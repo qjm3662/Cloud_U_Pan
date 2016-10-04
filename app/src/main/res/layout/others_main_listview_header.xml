@@ -8,7 +8,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:layout_height="105dp">
+        android:layout_height="@dimen/y315">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/img_avatar"
@@ -21,17 +21,17 @@
             app:riv_mutate_background="true"
             app:riv_tile_mode="clamp"
             app:riv_oval="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="@dimen/y72"
             android:layout_gravity="center_vertical"
-            android:layout_height="65dp"
-            android:layout_width="65dp"/>
+            android:layout_height="@dimen/y195"
+            android:layout_width="@dimen/y195"/>
 
         <TextView
             android:id="@+id/tv_name"
             android:textSize="20sp"
             android:textColor="@color/dark"
             android:text="用户名"
-            android:layout_marginLeft="28dp"
+            android:layout_marginLeft="@dimen/y84"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -57,8 +57,8 @@
                 android:textColor="@color/dark"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginRight="@dimen/x60"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
@@ -67,13 +67,13 @@
     <View
         android:background="@color/dark"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/y3"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="33dp">
+        android:layout_height="@dimen/y99">
         <TextView
             android:background="@color/blue"
-            android:layout_width="5dp"
+            android:layout_width="@dimen/y15"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/tv_his_share"

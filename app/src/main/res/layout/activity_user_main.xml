@@ -16,8 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+                android:id="@+id/ll_header"
                 android:layout_width="match_parent"
-                android:layout_height="105dp"
+                android:layout_height="@dimen/y315"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -29,10 +30,10 @@
                     app:riv_mutate_background="true"
                     app:riv_oval="true"
                     app:riv_tile_mode="clamp"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="@dimen/y210"
+                    android:layout_height="@dimen/y210"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/x60"
                     android:background="@drawable/circle_head"
                     android:scaleType="fitCenter"
                     android:src="@drawable/img_defaultavatar" />
@@ -42,37 +43,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginLeft="@dimen/x84"
                     android:text="用户名"
                     android:textColor="@color/dark"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/y60" />
 
                 <ImageView
                     android:id="@+id/img_edit_nickname"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/x60"
+                    android:layout_height="@dimen/y60"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginLeft="@dimen/x84"
                     android:src="@drawable/revise" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
+                android:layout_height="@dimen/y102"
                 android:gravity="bottom"
-                android:paddingBottom="5dp"
-                android:paddingLeft="20dp"
+                android:paddingBottom="@dimen/y15"
+                android:paddingLeft="@dimen/x60"
                 android:text="关注、上传"
                 android:textColor="@color/dark"
-                android:textSize="12sp" />
+                android:textSize="@dimen/y36" />
 
             <TextView
                 android:id="@+id/tv_following"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="@dimen/y129"
+                android:paddingLeft="@dimen/x60"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:text="关注的人"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
@@ -80,62 +81,62 @@
             <TextView
                 android:id="@+id/tv_upload"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_height="@dimen/y129"
+                android:paddingLeft="@dimen/x60"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:text="我的上传"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
+                android:layout_height="@dimen/y102"
                 android:gravity="bottom"
-                android:paddingBottom="5dp"
-                android:paddingLeft="20dp"
+                android:paddingBottom="@dimen/y15"
+                android:paddingLeft="@dimen/x60"
                 android:text="设置"
                 android:textColor="@color/dark"
                 android:textSize="12sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="43dp">
+                android:layout_height="@dimen/y129">
 
                 <TextView
                     android:id="@+id/tv_down_in_wifi"
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
+                    android:layout_height="@dimen/y129"
+                    android:paddingLeft="@dimen/x60"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
                     android:text="wifi下下载"
                     android:textColor="@color/dark"
                     android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/my_switch_button"
-                    android:layout_width="42dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y75"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/y60"
                     android:background="@drawable/img_switch" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp">
+                android:layout_height="@dimen/y165">
 
                 <TextView
                     android:id="@+id/tv_save_path"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/y90"
                     android:layout_marginTop="@dimen/line_span_small"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="@dimen/y60"
                     android:text="存储位置"
                     android:textColor="@color/dark"
                     android:textSize="16sp" />
@@ -146,51 +147,53 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/tv_save_path"
                     android:background="@color/white"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="@dimen/y60"
                     android:text="/sdcard" />
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_about_us"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_height="@dimen/y129"
+                android:paddingLeft="@dimen/x60"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:text="关于我们"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/tv_version"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_height="@dimen/y129"
+                android:paddingLeft="@dimen/x60"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:text="版本信息"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/tv_revisePsd"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_height="@dimen/y129"
+                android:paddingLeft="@dimen/x60"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:text="修改密码"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/tv_callback"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_height="@dimen/y129"
+                android:paddingLeft="@dimen/x60"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:text="反馈"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
@@ -199,9 +202,9 @@
             <TextView
                 android:id="@+id/tv_exit"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
+                android:layout_height="@dimen/y129"
+                android:layout_marginTop="@dimen/y120"
+                android:layout_marginBottom="@dimen/y120"
                 android:background="@color/white"
                 android:gravity="center"
                 android:text="退出"

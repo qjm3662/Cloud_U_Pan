@@ -3,17 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:minHeight="54dp"
-    android:layout_height="54dp">
+    android:minHeight="@dimen/y162"
+    android:layout_height="@dimen/y162">
 
     <ImageView
         android:id="@+id/img_head"
         android:src="@drawable/music"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="54dp"
-        android:layout_height="54dp" />
+        android:paddingTop="@dimen/y36"
+        android:paddingBottom="@dimen/y36"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_width="@dimen/x162"
+        android:layout_height="@dimen/y162" />
 
     <TextView
         android:id="@+id/tv_fileName"
@@ -22,8 +22,8 @@
         android:textColor="@color/gray"
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_height="@dimen/y162"
         />
 
     <View
@@ -34,10 +34,10 @@
     <TextView
         android:id="@+id/tv_time"
         android:gravity="center_vertical"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/x60"
         android:text=""
         android:textSize="12sp"
         android:layout_width="wrap_content"
-        android:layout_height="54dp" />
+        android:layout_height="@dimen/y162" />
 
 </LinearLayout>

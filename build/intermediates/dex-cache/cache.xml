@@ -223,7 +223,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="f3ef9b50f2b93f760cdb9e17127d488e26c48d92">
+        sha1="91e0dc8d69910654e955ef495672f8c0818049b8">
         <dex dex="E:\Qjm\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_be1ef8d7add7734b274c203dbde7682fe4b0e250\classes.dex" />
     </item>
     <item
@@ -268,7 +268,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="482759cd9e7355282f5afa03a6608767af11fb7c">
+        sha1="ee686440cc946fd5a807fa16ecdf01e6559466a5">
         <dex dex="E:\Qjm\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7c492c3134f9637f809b5d39ff96fbc3c3f85d66\classes.dex" />
     </item>
     <item

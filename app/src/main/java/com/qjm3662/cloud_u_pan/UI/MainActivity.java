@@ -1,7 +1,9 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,9 +39,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isFirstLunch();
         setContentView(R.layout.activity_main);
 
         initView();
+    }
+    public void isFirstLunch() {
+        SharedPreferences sp = this.getSharedPreferences("IS_FIRST", Context.MODE_PRIVATE);
+        boolean b = sp.getBoolean("IS_FIRST", true);
+        if(b){
+            this.startActivity(new Intent(this, FirstLunchActivity.class));
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean("IS_FIRST", false);
+            editor.apply();
+        }
     }
 
     private void initView() {

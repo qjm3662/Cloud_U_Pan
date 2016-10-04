@@ -7,7 +7,7 @@
 
     <include layout="@layout/bar_item"/>
     <RelativeLayout
-        android:layout_marginTop="@dimen/bar_item_height"
+        android:layout_marginTop="@dimen/y46"
         android:layout_centerInParent="true"
         android:id="@+id/rl_download"
         android:layout_width="match_parent"
@@ -15,27 +15,27 @@
         <TextView
             android:id="@+id/tv_t"
             android:layout_centerHorizontal="true"
-            android:textSize="24sp"
+            android:textSize="@dimen/y72"
             android:text="请输入提取码"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <com.qjm3662.cloud_u_pan.Widget.EditTextWithDivLine
             android:id="@+id/et_code"
-            android:layout_marginTop="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginTop="@dimen/y108"
+            android:layout_marginLeft="@dimen/x108"
+            android:layout_marginRight="@dimen/x108"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/tv_t"
             android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:layout_height="@dimen/y180"/>
 
         <com.qjm3662.cloud_u_pan.Widget.EasyButton
             android:id="@+id/btn_sure"
             android:text=" 确定 "
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/et_code"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/y120"
+            android:layout_marginBottom="@dimen/y30"
             style="@style/EasyButtonStyle"
             />
     </RelativeLayout>

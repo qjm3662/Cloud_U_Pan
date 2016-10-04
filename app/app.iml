@@ -101,6 +101,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.github.jlmd/AnimatedCircleLoadingView/1.1.5/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.2/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.makeramen/roundedimageview/2.2.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.tt/whorlviewlibrary/1.0.3/jars" />
@@ -136,6 +137,7 @@
     <orderEntry type="library" exported="" name="support-fragment-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="whorlviewlibrary-1.0.3" level="project" />
     <orderEntry type="library" exported="" name="submitbutton-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="core-3.2.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="phoenix-1.2.3" level="project" />
     <orderEntry type="library" exported="" name="design-24.2.1" level="project" />
@@ -148,6 +150,7 @@
     <orderEntry type="library" exported="" name="appcompat-v7-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="roundedimageview-2.2.1" level="project" />
+    <orderEntry type="library" exported="" name="zxing-android-embedded-3.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-24.2.1" level="project" />
     <orderEntry type="library" exported="" name="materialish-progress-1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-24.2.1" level="project" />

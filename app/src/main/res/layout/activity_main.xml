@@ -7,18 +7,18 @@
     tools:context=".UI.MainActivity">
     <include layout="@layout/bar_item"/>
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/x450"
+        android:layout_height="@dimen/y360"
         android:id="@+id/img_pan"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="@dimen/y309"
         />
 
     <com.qjm3662.cloud_u_pan.Widget.EasyButton
         android:id="@+id/btn_upload"
         android:text=" 上传文件 "
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/y30"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/img_pan"
         style="@style/EasyButtonStyle"
@@ -37,18 +37,18 @@
         android:layout_toLeftOf="@+id/btn_more"
         android:layout_toStartOf="@+id/btn_more"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/y60"
         />
 
 
     <ImageView
-        android:paddingTop="@dimen/img_padding"
-        android:paddingBottom="@dimen/img_padding"
-        android:paddingLeft="@dimen/img_padding"
-        android:paddingRight="@dimen/img_padding"
+        android:paddingTop="@dimen/y102"
+        android:paddingBottom="@dimen/y102"
+        android:paddingLeft="@dimen/x102"
+        android:paddingRight="@dimen/x102"
         android:src="@drawable/wifi"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/x150"
+        android:layout_height="@dimen/y150"
         android:layout_alignBottom="@+id/btn_bluetooth"
         android:layout_alignEnd="@+id/btn_bluetooth"
         android:layout_alignRight="@+id/btn_bluetooth"
@@ -63,17 +63,17 @@
         android:layout_toRightOf="@+id/btn_more"
         android:layout_toEndOf="@+id/btn_more"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/y60"
         />
 
     <ImageView
-        android:paddingTop="@dimen/img_padding"
-        android:paddingBottom="@dimen/img_padding"
-        android:paddingLeft="@dimen/img_padding"
-        android:paddingRight="@dimen/img_padding"
+        android:paddingTop="@dimen/y102"
+        android:paddingBottom="@dimen/y102"
+        android:paddingLeft="@dimen/x102"
+        android:paddingRight="@dimen/x102"
         android:src="@drawable/my"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/x150"
+        android:layout_height="@dimen/y150"
         android:layout_alignStart="@id/btn_my"
         android:layout_alignBottom="@+id/btn_my"
         android:layout_alignTop="@+id/btn_my"
@@ -89,17 +89,17 @@
         style="@style/EasyButtonStyle"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/y60"
         />
 
     <ImageView
-        android:paddingTop="@dimen/img_padding"
-        android:paddingBottom="@dimen/img_padding"
-        android:paddingLeft="@dimen/img_padding"
-        android:paddingRight="@dimen/img_padding"
+        android:paddingTop="@dimen/y102"
+        android:paddingBottom="@dimen/y102"
+        android:paddingLeft="@dimen/x102"
+        android:paddingRight="@dimen/x102"
         android:src="@drawable/jiahao"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/x150"
+        android:layout_height="@dimen/y150"
         android:layout_alignStart="@id/btn_more"
         android:layout_alignBottom="@+id/btn_more"
         android:layout_alignTop="@+id/btn_more"

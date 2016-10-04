@@ -10,8 +10,6 @@
     <include layout="@layout/bar_item"/>
 
 
-
-
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/progress_circle"
         style="@style/AVLoadingIndicatorView222"
@@ -20,13 +18,13 @@
         android:visibility="visible"
         app:indicatorColor="@color/colorAccent"
         android:layout_below="@+id/tv_fileName"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/y60"
         android:layout_centerHorizontal="true"
         app:indicatorName="BallClipRotateMultipleIndicator" />
 
     <TextView
         android:id="@+id/tv_progress"
-        android:textSize="20sp"
+        android:textSize="@dimen/y60"
         android:text="50"
         android:textColor="@color/blue"
         android:layout_width="wrap_content"
@@ -43,26 +41,26 @@
 
     <ImageView
         android:id="@+id/img_file"
-        android:layout_width="70dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/x210"
+        android:layout_height="@dimen/y270"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="@dimen/y330"
         android:src="@drawable/file" />
 
     <com.qjm3662.cloud_u_pan.Widget.EasyButton
         android:id="@+id/btn_down"
         style="@style/EasyButtonStyle"
         android:layout_below="@+id/tv_fileName"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/y60"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/y30"
         android:text=" 下载 " />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/y600"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp">
+        >
 
         <TextView
             android:id="@+id/tv_code"
@@ -70,34 +68,34 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_success"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/y54"
             android:text="提取码：0000"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="@dimen/y72" />
 
 
         <com.qjm3662.cloud_u_pan.Widget.EasyButton
             android:id="@+id/btn_share_qq"
             style="@style/EasyButtonStyle"
             android:layout_below="@+id/tv_code"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="@dimen/y99"
             android:layout_toLeftOf="@+id/btn_share_chat"
             android:layout_toStartOf="@+id/btn_share_chat" />
 
         <ImageView
             android:id="@+id/img_share_qq"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
             android:layout_alignBottom="@+id/btn_share_qq"
             android:layout_alignEnd="@+id/btn_share_qq"
             android:layout_alignLeft="@+id/btn_share_qq"
             android:layout_alignRight="@+id/btn_share_qq"
             android:layout_alignStart="@+id/btn_share_qq"
             android:layout_alignTop="@+id/btn_share_qq"
-            android:paddingBottom="@dimen/img_padding"
-            android:paddingLeft="@dimen/img_padding"
-            android:paddingRight="@dimen/img_padding"
-            android:paddingTop="@dimen/img_padding"
+            android:paddingBottom="@dimen/y102"
+            android:paddingLeft="@dimen/y102"
+            android:paddingRight="@dimen/y102"
+            android:paddingTop="@dimen/y102"
             android:src="@drawable/qq" />
 
         <com.qjm3662.cloud_u_pan.Widget.EasyButton
@@ -105,48 +103,48 @@
             style="@style/EasyButtonStyle"
             android:layout_below="@+id/tv_code"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="@dimen/y99"
             android:layout_toLeftOf="@+id/btn_more"
             android:layout_toStartOf="@+id/btn_more" />
 
         <ImageView
             android:id="@+id/img_share_chat"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
             android:layout_alignBottom="@+id/btn_share_chat"
             android:layout_alignEnd="@+id/btn_share_chat"
             android:layout_alignLeft="@+id/btn_share_chat"
             android:layout_alignRight="@+id/btn_share_chat"
             android:layout_alignStart="@+id/btn_share_chat"
             android:layout_alignTop="@+id/btn_share_chat"
-            android:paddingBottom="@dimen/img_padding"
-            android:paddingLeft="@dimen/img_padding"
-            android:paddingRight="@dimen/img_padding"
-            android:paddingTop="@dimen/img_padding"
+            android:paddingBottom="@dimen/y102"
+            android:paddingLeft="@dimen/y102"
+            android:paddingRight="@dimen/y102"
+            android:paddingTop="@dimen/y102"
             android:src="@drawable/weixin" />
 
         <com.qjm3662.cloud_u_pan.Widget.EasyButton
             android:id="@+id/btn_share_copy"
             style="@style/EasyButtonStyle"
             android:layout_below="@+id/tv_code"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="@dimen/y99"
             android:layout_toEndOf="@+id/btn_share_chat"
             android:layout_toRightOf="@+id/btn_share_chat" />
 
         <ImageView
             android:id="@+id/img_share_copy"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
             android:layout_alignBottom="@+id/btn_share_copy"
             android:layout_alignEnd="@+id/btn_share_copy"
             android:layout_alignLeft="@+id/btn_share_copy"
             android:layout_alignRight="@+id/btn_share_copy"
             android:layout_alignStart="@+id/btn_share_copy"
             android:layout_alignTop="@+id/btn_share_copy"
-            android:paddingBottom="@dimen/img_padding"
-            android:paddingLeft="@dimen/img_padding"
-            android:paddingRight="@dimen/img_padding"
-            android:paddingTop="@dimen/img_padding"
+            android:paddingBottom="@dimen/y102"
+            android:paddingLeft="@dimen/y102"
+            android:paddingRight="@dimen/y102"
+            android:paddingTop="@dimen/y102"
             android:src="@drawable/copy" />
     </RelativeLayout>
 
@@ -154,11 +152,11 @@
         android:id="@+id/tv_fileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="@dimen/y123"
         android:text="Hollow World.cpp"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/y60"
         android:layout_below="@+id/img_file"
         android:layout_centerHorizontal="true" />
 
@@ -173,25 +171,25 @@
         app:riv_mutate_background="true"
         app:riv_tile_mode="clamp"
         app:riv_oval="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="61.33dp"
+        android:layout_marginLeft="@dimen/x36"
+        android:layout_marginTop="@dimen/y184"
         android:layout_gravity="center_vertical"
-        android:layout_height="37dp"
-        android:layout_width="37dp"/>
+        android:layout_height="@dimen/y111"
+        android:layout_width="@dimen/x111"/>
 
     <TextView
         android:id="@+id/tv_uploadInfo"
         android:textColor="@color/black"
         android:gravity="center"
         android:text="XXX上传于2016-9-24"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="@dimen/x36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/img_avatar"
         android:layout_alignBottom="@+id/img_avatar"
         android:layout_toRightOf="@+id/img_avatar"
         android:layout_toEndOf="@+id/img_avatar"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="@dimen/x33"
         />
 
 </RelativeLayout>

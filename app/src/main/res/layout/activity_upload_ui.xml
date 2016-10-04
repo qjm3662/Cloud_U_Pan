@@ -11,8 +11,8 @@
     <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
         xmlns:app= "http://schemas.android.com/apk/res-auto"
         android:id="@+id/circle_loading_view"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/y750"
+        android:layout_height="@dimen/y750"
         android:background="@color/lightblue"
         android:layout_centerInParent="true"
         app:mainColor="@color/blue"
@@ -26,36 +26,36 @@
         android:gravity="center"
         android:layout_below="@+id/img_file"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/y120"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/y60"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
     <RelativeLayout
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="@dimen/y90"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="@dimen/y750">
 
         <TextView
             android:id="@+id/tv_success"
-            android:textSize="24sp"
+            android:textSize="@dimen/y72"
             android:text="上传成功！"
             android:textColor="@color/black"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/y90"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_code"
             android:layout_below="@+id/tv_success"
-            android:textSize="24sp"
+            android:textSize="@dimen/y72"
             android:text="提取码：0000"
             android:textColor="@color/black"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/y54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -66,17 +66,17 @@
             android:layout_below="@+id/tv_code"
             android:layout_toLeftOf="@+id/btn_share_chat"
             android:layout_toStartOf="@+id/btn_share_chat"
-            android:layout_marginTop="33dp" />
+            android:layout_marginTop="@dimen/y99" />
 
         <ImageView
             android:id="@+id/img_share_qq"
-            android:paddingTop="@dimen/img_padding"
-            android:paddingBottom="@dimen/img_padding"
-            android:paddingLeft="@dimen/img_padding"
-            android:paddingRight="@dimen/img_padding"
+            android:paddingTop="@dimen/y102"
+            android:paddingBottom="@dimen/y102"
+            android:paddingLeft="@dimen/x102"
+            android:paddingRight="@dimen/x102"
             android:src="@drawable/qq"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
             android:layout_alignBottom="@+id/btn_share_qq"
             android:layout_alignEnd="@+id/btn_share_qq"
             android:layout_alignRight="@+id/btn_share_qq"
@@ -91,17 +91,17 @@
             android:layout_below="@+id/tv_code"
             android:layout_toLeftOf="@+id/btn_more"
             android:layout_toStartOf="@+id/btn_more"
-            android:layout_marginTop="33dp" />
+            android:layout_marginTop="@dimen/y99" />
 
         <ImageView
             android:id="@+id/img_share_chat"
-            android:paddingTop="@dimen/img_padding"
-            android:paddingBottom="@dimen/img_padding"
-            android:paddingLeft="@dimen/img_padding"
-            android:paddingRight="@dimen/img_padding"
+            android:paddingTop="@dimen/y102"
+            android:paddingBottom="@dimen/y102"
+            android:paddingLeft="@dimen/x102"
+            android:paddingRight="@dimen/x102"
             android:src="@drawable/weixin"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
             android:layout_alignBottom="@+id/btn_share_chat"
             android:layout_alignEnd="@+id/btn_share_chat"
             android:layout_alignRight="@+id/btn_share_chat"
@@ -115,17 +115,17 @@
             android:layout_below="@+id/tv_code"
             android:layout_toRightOf="@+id/btn_share_chat"
             android:layout_toEndOf="@+id/btn_share_chat"
-            android:layout_marginTop="33dp" />
+            android:layout_marginTop="@dimen/y99" />
 
         <ImageView
             android:id="@+id/img_share_copy"
-            android:paddingTop="@dimen/img_padding"
-            android:paddingBottom="@dimen/img_padding"
-            android:paddingLeft="@dimen/img_padding"
-            android:paddingRight="@dimen/img_padding"
+            android:paddingTop="@dimen/y102"
+            android:paddingBottom="@dimen/y102"
+            android:paddingLeft="@dimen/x102"
+            android:paddingRight="@dimen/x102"
             android:src="@drawable/copy"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150"
             android:layout_alignBottom="@+id/btn_share_copy"
             android:layout_alignEnd="@+id/btn_share_copy"
             android:layout_alignRight="@+id/btn_share_copy"
@@ -137,9 +137,9 @@
     <ImageView
         android:id="@+id/img_file"
         android:src="@drawable/file"
-        android:layout_marginTop="65dp"
-        android:layout_width="70dp"
-        android:layout_height="90dp"
+        android:layout_marginTop="@dimen/y195"
+        android:layout_width="@dimen/x210"
+        android:layout_height="@dimen/y270"
         android:layout_below="@+id/include"
         android:layout_centerHorizontal="true" />
 

@@ -13,12 +13,12 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:text="Oh on!(ÒωÓױ)！！！"
-        android:textSize="24sp"
+        android:textSize="@dimen/y72"
         android:layout_width="wrap_content"
-        android:layout_height="54dp" />
+        android:layout_height="@dimen/y112" />
     <ListView
         android:id="@+id/list_localFile"
-        android:layout_marginTop="@dimen/bar_item_height"
+        android:layout_marginTop="@dimen/y138"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

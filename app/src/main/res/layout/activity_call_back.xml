@@ -36,8 +36,8 @@
             android:layout_marginLeft="@dimen/x111"
             android:layout_below="@+id/logo"
             android:textColor="@color/gray_text"
-            android:layout_marginTop="28.67dp"
-            android:textSize="12sp"
+            android:layout_marginTop="@dimen/y81"
+            android:textSize="@dimen/y36"
             android:text="无论是小小的吐槽，还是宝贵的建议，或是新奇的\n点子，我们统统都接受！"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -47,26 +47,26 @@
         android:id="@+id/et_callBack"
         android:background="@color/white"
         android:gravity="top"
-        android:paddingLeft="37dp"
-        android:paddingRight="37dp"
-        android:paddingTop="10dp"
-        android:textSize="12sp"
+        android:paddingLeft="@dimen/x111"
+        android:paddingRight="@dimen/x111"
+        android:paddingTop="@dimen/y30"
+        android:textSize="@dimen/y36"
         android:hint="请留下您宝贵的建议吧"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/y120"
         android:isScrollContainer="true"
         android:layout_width="match_parent"
-        android:layout_height="89dp" />
+        android:layout_height="@dimen/y267" />
     
     <Button
         android:id="@+id/btn_callBack"
-        android:textSize="16sp"
+        android:textSize="@dimen/y48"
         android:textColor="@color/white"
         android:text="反馈"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="@dimen/y72"
+        android:layout_marginLeft="@dimen/x72"
+        android:layout_marginRight="@dimen/x72"
         android:background="@drawable/btn_callback"
         android:layout_width="match_parent"
-        android:layout_height="47dp" />
+        android:layout_height="@dimen/y141" />
 
 </LinearLayout>

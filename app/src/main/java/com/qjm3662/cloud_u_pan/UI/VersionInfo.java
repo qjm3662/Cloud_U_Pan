@@ -1,5 +1,6 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,8 @@ public class VersionInfo extends AppCompatActivity implements View.OnClickListen
 
         tv_bar.setText("版本信息");
         img_back.setOnClickListener(this);
+        tv_user_agreement.setOnClickListener(this);
+        tv_check_for_update.setOnClickListener(this);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class VersionInfo extends AppCompatActivity implements View.OnClickListen
 
                 break;
             case R.id.tv_user_agreement:
-
+                startActivity(new Intent(this, UserAgreement.class));
                 break;
         }
     }
