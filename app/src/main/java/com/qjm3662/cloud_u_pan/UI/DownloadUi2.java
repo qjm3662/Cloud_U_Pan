@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,14 +21,11 @@ import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
-import com.qjm3662.cloud_u_pan.Tool.TencentOperator;
+import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
+import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.tencent.connect.common.Constants;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -70,8 +66,6 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     public static final String DownloadfilePath = "Download filePath";
     private BroadcastReceiver receiver;
     private boolean is_upload_after_login = false;
-    private Tencent tencent;
-    private IUiListener iUiListener;
     private int current_progress = 0;
 
     @Override
@@ -89,27 +83,6 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
         }
         initView();
         initReceiver();
-        initTencent();
-    }
-
-    private void initTencent() {
-        tencent = Tencent.createInstance(App.App_ID, this);
-        iUiListener = new IUiListener() {
-            @Override
-            public void onComplete(Object o) {
-                System.out.println("成功");
-            }
-
-            @Override
-            public void onError(UiError uiError) {
-                System.out.println("错误");
-            }
-
-            @Override
-            public void onCancel() {
-                System.out.println("取消");
-            }
-        };
     }
 
     private void initReceiver() {
@@ -213,16 +186,24 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_share_chat:
-
+                ShareOperator.ShareTextToChat(this, fileName, fileCode);
                 break;
             case R.id.btn_share_qq:
-                TencentOperator.shareToQQ(this, tencent, iUiListener, fileName, "lalala", ServerInformation.DownLoadFile_AfterLogin+fileCode, "http://img4.duitang.com/uploads/item/201404/03/20140403133744_AhmYW.thumb.700_0.jpeg", "优云");
+                System.out.println("share");
+                ShareOperator.ShareTextToQQ(this, fileName, fileCode);
                 break;
             case R.id.btn_share_copy:
                 TextUtil.copy(fileCode, this);
                 EasySweetAlertDialog.ShowSuccess(this, "已成功复制到剪切板");
                 break;
             case R.id.btn_down:
+                if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+                    EasySweetAlertDialog.ShowTip(this, "tip", "请检查您的网络连接");
+                    return;
+                } else if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State) {
+                    EasySweetAlertDialog.ShowTip(this, "tip", "已开启wifi下下载");
+                    return;
+                }
                 if(btn_down.getText().toString().trim().equals("下载")){
                     progress_circlr.show();
                     btn_down.setVisibility(View.INVISIBLE);
@@ -258,17 +239,6 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
         if(call != null){
             call.cancel();
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_QQ_SHARE || requestCode == Constants.REQUEST_LOGIN) {
-            if (resultCode == Constants.ACTIVITY_OK) {
-                Tencent.handleResultData(data, iUiListener);
-            }
-        }
-        tencent.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

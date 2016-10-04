@@ -14,26 +14,26 @@
         android:id="@+id/rl_1"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="@dimen/y660">
         <ImageView
             android:id="@+id/logo"
             android:src="@drawable/logo_2"
-            android:layout_marginTop="51dp"
-            android:layout_marginLeft="37dp"
-            android:layout_width="70dp"
-            android:layout_height="70dp" />
+            android:layout_marginTop="@dimen/y153"
+            android:layout_marginLeft="@dimen/x111"
+            android:layout_width="@dimen/y210"
+            android:layout_height="@dimen/y210" />
         <TextView
             android:layout_toRightOf="@+id/logo"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginTop="@dimen/y195"
             android:textColor="@color/dark_text"
-            android:textSize="16sp"
+            android:textSize="@dimen/y48"
             android:text="您的建议\n是我们不断前进的动力！"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_marginLeft="37dp"
+            android:layout_marginLeft="@dimen/x111"
             android:layout_below="@+id/logo"
             android:textColor="@color/gray_text"
             android:layout_marginTop="28.67dp"

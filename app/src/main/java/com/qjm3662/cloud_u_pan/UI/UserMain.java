@@ -53,9 +53,11 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private TextView tv_version;
     private Button btn_switch;
     private TextView tv_about_us;
+    private TextView tv_revisePsd;
     private BroadcastReceiver receiver;
     public static final String ACTION_GET_USER_INFO_SUCCESS = "get userInfo success";
     public static final String ACTION_UPDATE_USERINFO = "update userInfo";
+    public static final String FINISH_SIGNAL = "finish current activity";
     private User user;
 
     public static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
@@ -82,6 +84,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private void initReceiver() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_GET_USER_INFO_SUCCESS);
+        intentFilter.addAction(FINISH_SIGNAL);
         if(!App.FLAG_IS_DATA_FINISH){
             intentFilter.addAction(ACTION_UPDATE_USERINFO);
         }
@@ -100,6 +103,9 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                         img_head.setImageBitmap(user.getBitmap());
                         tv_name.setText(user.getUsername());
                         tv_current_save_path.setText(App.currentSavePath);
+                        break;
+                    case FINISH_SIGNAL:
+                        finish();
                         break;
                 }
             }
@@ -123,6 +129,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_version = (TextView) findViewById(R.id.tv_version);
         btn_switch = (Button) findViewById(R.id.my_switch_button);
         tv_current_save_path = (TextView) findViewById(R.id.tv_current_save_path);
+        tv_revisePsd = (TextView) findViewById(R.id.tv_revisePsd);
         tv_current_save_path.setText(App.currentSavePath);
         tv_bar.setText("关于我的");
         img_back = (ImageView) findViewById(R.id.img_back);
@@ -139,6 +146,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_version.setOnClickListener(this);
         tv_about_us.setOnClickListener(this);
         tv_current_save_path.setOnClickListener(this);
+        tv_revisePsd.setOnClickListener(this);
 
         img_head.setOnClickListener(this);
         if (App.Flag_IsLogin) {
@@ -173,6 +181,10 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.img_avatar:
                 System.out.println("clicasdf asfa sk");
+                if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+                    EasySweetAlertDialog.ShowTip(this, "tip", "请检查您的网络连接");
+                    return;
+                }
                 if(App.Flag_IsLogin){
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     //    指定下拉列表的显示数据
@@ -257,6 +269,16 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
             case R.id.tv_about_us:
                 startActivity(new Intent(this, AboutUs.class));
                 break;
+            case R.id.tv_revisePsd:
+                if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+                    EasySweetAlertDialog.ShowTip(this, "tip", "请检查您的网络连接");
+                    return;
+                }else if(App.Flag_IsLogin){
+                    startActivity(new Intent(this, RevisePassword.class));
+                }else{
+                    EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
+                }
+                break;
         }
     }
 
@@ -278,13 +300,13 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         startActivityForResult(cameraintent,
                 PHOTO_REQUEST_TAKEPHOTO);
     }
-
-    //从相册获取图片并裁剪
-    private void getAlbum() {
-        Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-        getAlbum.setType("image/*");
-        startActivityForResult(getAlbum, PHOTO_REQUEST_GALLERY);
-    }
+//
+//    //从相册获取图片并裁剪
+//    private void getAlbum() {
+//        Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+//        getAlbum.setType("image/*");
+//        startActivityForResult(getAlbum, PHOTO_REQUEST_GALLERY);
+//    }
 
     /**
      * 调用系统裁剪功能
@@ -350,8 +372,14 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 }
                 break;
             case PATH_REQUEST:
-                App.currentSavePath = data.getStringExtra(PATH);
-                tv_current_save_path.setText(App.currentSavePath);
+                if(data != null){
+                    App.currentSavePath = data.getStringExtra(PATH);
+                    tv_current_save_path.setText(App.currentSavePath);
+                    SharedPreferences sp = this.getSharedPreferences("PATH", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("Path", App.currentSavePath);
+                    editor.apply();
+                }
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);

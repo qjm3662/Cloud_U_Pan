@@ -19,6 +19,7 @@ import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.UI.DownloadUi2;
 import com.qjm3662.cloud_u_pan.UI.Followings;
+import com.qjm3662.cloud_u_pan.UI.Login;
 import com.qjm3662.cloud_u_pan.UI.OthersMain;
 import com.qjm3662.cloud_u_pan.UI.ShareCenter;
 import com.qjm3662.cloud_u_pan.UI.UploadUi;
@@ -51,17 +52,67 @@ public class NetWorkOperator {
 
 
     /**
+     * 修改密码
+     * @param context
+     * @param oldPsd
+     * @param newPsd
+     */
+    public static void RevisePsd(final Context context, String oldPsd, String newPsd){
+        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            return;
+        }
+        OkHttpUtils
+                .post()
+                .url(ServerInformation.RevisePsd)
+                .addParams("password", oldPsd)
+                .addParams("newpassword", newPsd)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        System.out.println(e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        System.out.println(response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if(jsonObject.getInt("code") == 0){
+                                EasySweetAlertDialog.ShowSuccess(context, "修改成功，请重新登陆", new EasySweetAlertDialog.SuccessCallBack() {
+                                    @Override
+                                    public void Success() {
+                                        context.startActivity(new Intent(context, Login.class));
+                                        Intent intent = new Intent();
+                                        intent.setAction(UserMain.FINISH_SIGNAL);
+                                        context.sendBroadcast(intent);
+                                        User.deleteUser();
+                                        App.Flag_IsLogin = false;
+                                        //删除SharedPreferences的记录
+                                        App.deleteUserInfo(context);
+                                        ((Activity)context).finish();
+                                    }
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+    }
+
+    /**
      * 反馈
+     *
      * @param context
      * @param name
      * @param text
      */
-    public static void FeedBack(final Context context, String name, String text, final EditText et_feedBack){
+    public static void FeedBack(final Context context, String name, String text, final EditText et_feedBack) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -80,7 +131,7 @@ public class NetWorkOperator {
                     public void onResponse(String response, int id) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     EasySweetAlertDialog.ShowSuccess(context, "Success", "我们已收到您的反馈，谢谢合作！");
                                     et_feedBack.setText("");
@@ -95,17 +146,16 @@ public class NetWorkOperator {
                     }
                 });
     }
+
     /**
      * 获取关注的人信息
+     *
      * @param context
      * @param list
      */
-    public static void GetFollowingInformation(final Context context, final List<User> list){
+    public static void GetFollowingInformation(final Context context, final List<User> list) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -123,7 +173,7 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     JSONArray jsonArray = jsonObject.getJSONArray("message");
                                     final int length = jsonArray.length();
@@ -140,20 +190,20 @@ public class NetWorkOperator {
                                         public void callBack_2(User u, Bitmap bitmap, int position) {
                                             u.setBitmap(bitmap);
                                             list.add(u);
-                                            if(position == length - 1){
+                                            if (position == length - 1) {
                                                 Intent intent = new Intent(context, Followings.class);
                                                 intent.putExtra("WHERE", 3);
                                                 context.startActivity(intent);
                                             }
                                         }
                                     };
-                                    if(jsonArray.length() == 0){
+                                    if (jsonArray.length() == 0) {
                                         Intent intent = new Intent(context, Followings.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
                                         return;
                                     }
-                                    for(int i = 0; i < jsonArray.length(); i++){
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         user = gson.fromJson(jsonArray.get(i).toString(), User.class);
                                         AvatarUtils.getBitmapByUrl(user.getAvatar(), callBack, user, i);
                                     }
@@ -170,18 +220,17 @@ public class NetWorkOperator {
                     }
                 });
     }
+
     /**
      * 取消关注某人
+     *
      * @param context
      * @param targetName
      * @param viewHolder
      */
-    public static void UnFollowSB(final Context context, String targetName, final OthersMain.ViewHolder viewHolder){
+    public static void UnFollowSB(final Context context, String targetName, final OthersMain.ViewHolder viewHolder) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -201,7 +250,7 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     viewHolder.set(false);
                                     break;
@@ -215,18 +264,17 @@ public class NetWorkOperator {
                     }
                 });
     }
+
     /**
      * 关注某人
+     *
      * @param context
      * @param targetName
      * @param viewHolder
      */
-    public static void FollowSB(final Context context, String targetName, final OthersMain.ViewHolder viewHolder){
+    public static void FollowSB(final Context context, String targetName, final OthersMain.ViewHolder viewHolder) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -246,7 +294,7 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     viewHolder.set(true);
                                     break;
@@ -261,6 +309,7 @@ public class NetWorkOperator {
                 });
 
     }
+
     /**
      * 修改用户信息
      *
@@ -271,11 +320,7 @@ public class NetWorkOperator {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
-            return;
         }
-
         User user = User.getInstance();
         OkHttpUtils
                 .post()
@@ -296,7 +341,7 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     getUserInfo(context, User.getInstance().getName(), 3);
                                     break;
@@ -320,9 +365,6 @@ public class NetWorkOperator {
     public static void getShareCenter(final Context context) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -366,21 +408,19 @@ public class NetWorkOperator {
 
     /**
      * 获取其他用户的信息
+     *
      * @param context
      * @param name
      */
-    public static void getOtherUserInfoByName(final Context context, String name){
+    public static void getOtherUserInfoByName(final Context context, String name) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
-            return;
         }
         String myName = null;
-        if(App.Flag_IsLogin){
+        if (App.Flag_IsLogin) {
             myName = User.getInstance().getName();
-        }else{
+        } else {
             myName = "NULL";
         }
         OkHttpUtils
@@ -404,9 +444,9 @@ public class NetWorkOperator {
                                 Gson gson = new Gson();
                                 App.user_temp = new User();
                                 App.user_temp.setUser_not_static(gson.fromJson(jsonObject.toString(), User.class));
-                                if(jsonObject.getBoolean("relative")){
+                                if (jsonObject.getBoolean("relative")) {
                                     App.user_temp.setRelative(true);
-                                }else{
+                                } else {
                                     System.out.println("mdzz");
                                 }
                                 JSONArray jsonArray = jsonObject.getJSONArray("shares");
@@ -426,7 +466,7 @@ public class NetWorkOperator {
                                         Intent intent = new Intent(context, OthersMain.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
-                                        ((Activity)context).finish();
+                                        ((Activity) context).finish();
                                     }
 
                                     @Override
@@ -453,9 +493,6 @@ public class NetWorkOperator {
     public static void getUserInfo(final Context context, String name, final int where) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -549,7 +586,7 @@ public class NetWorkOperator {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
+        } else if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State) {
             EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
@@ -585,7 +622,7 @@ public class NetWorkOperator {
             @Override
             public void inProgress(float progress, long total, int id) {
                 super.inProgress(progress, total, id);
-                if(current_progress[0] != (int) (progress * 100)){
+                if (current_progress[0] != (int) (progress * 100)) {
                     current_progress[0] = (int) (progress * 100);
                     intent[0] = new Intent();
                     intent[0].setAction(DownloadUi2.DownLoadProgressAction);
@@ -607,9 +644,6 @@ public class NetWorkOperator {
     public static String GetFileInformation(final Context context, final String id_, final FileInformation fileInformation, final FileInformation.callBack callBack) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return "";
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return "";
         }
         OkHttpUtils
@@ -658,9 +692,6 @@ public class NetWorkOperator {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
-            return;
         }
         OkHttpUtils
                 .post()
@@ -678,7 +709,7 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     getUserInfo(context, User.getInstance().getName(), 3);
                                     break;
@@ -708,9 +739,6 @@ public class NetWorkOperator {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
-            return;
         }
         String url = "";
         String userName;
@@ -730,6 +758,9 @@ public class NetWorkOperator {
                                  @Override
                                  public void onError(Call call, Exception e, int id) {
                                      System.out.println("Error :" + e.toString());
+                                     Intent intent_finish_upload_activity = new Intent();
+                                     intent_finish_upload_activity.setAction(UploadUi.FINISH_SIGNAL);
+                                     context.sendBroadcast(intent_finish_upload_activity);
                                      EasySweetAlertDialog.ShowTip(context, "tip", "上传失败");
                                  }
 
@@ -738,25 +769,32 @@ public class NetWorkOperator {
                                      System.out.println("Login :" + response);
                                      try {
                                          JSONObject jsonObject = new JSONObject(response);
-                                         Intent intent_information = new Intent();
-                                         intent_information.setAction(UploadUi.UploadSuccessWithFileInformation);
-                                         intent_information.putExtra("name", file.getName());
-                                         intent_information.putExtra("code", jsonObject.getString("identifyCode"));
-                                         intent_information.putExtra("TYPE", FileUtils.getMIMEType(file));
-                                         intent_information.putExtra("path", file.getPath());
-                                         System.out.println("file.getName() : " + file.getName());
-                                         System.out.println("jsonObject.getString(\"identifyCode\")" + jsonObject.getString("identifyCode"));
-                                         String type = FileUtils.getMIMEType(file);
-                                         LocalFile localFile = new LocalFile(file.getName(), file.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, file.getAbsolutePath()));
-                                         App.Public_List_Local_File_Upload.add(localFile);
+                                         if (jsonObject.getInt("code") == 0) {
+                                             Intent intent_information = new Intent();
+                                             intent_information.setAction(UploadUi.UploadSuccessWithFileInformation);
+                                             intent_information.putExtra("name", file.getName());
+                                             intent_information.putExtra("code", jsonObject.getString("identifyCode"));
+                                             intent_information.putExtra("TYPE", FileUtils.getMIMEType(file));
+                                             intent_information.putExtra("path", file.getPath());
+                                             System.out.println("file.getName() : " + file.getName());
+                                             System.out.println("jsonObject.getString(\"identifyCode\")" + jsonObject.getString("identifyCode"));
+                                             String type = FileUtils.getMIMEType(file);
+                                             LocalFile localFile = new LocalFile(file.getName(), file.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, file.getAbsolutePath()));
+                                             App.Public_List_Local_File_Upload.add(localFile);
 
-                                         ContentValues cv = new ContentValues();
-                                         cv.put(LocalFileDB.COLUMN_NAME_Name, localFile.getName());
-                                         cv.put(LocalFileDB.COLUMN_NAME_DownTime, System.currentTimeMillis());
-                                         cv.put(LocalFileDB.COLUMN_NAME_Path, localFile.getPath());
-                                         cv.put(LocalFileDB.COLUMN_NAME_Type, localFile.getType());
-                                         App.dbWrite.insert(LocalFileDB.TABLE_NAME_LOCAL_FILE_UPLOAD, null, cv);
-                                         context.sendBroadcast(intent_information);
+                                             ContentValues cv = new ContentValues();
+                                             cv.put(LocalFileDB.COLUMN_NAME_Name, localFile.getName());
+                                             cv.put(LocalFileDB.COLUMN_NAME_DownTime, System.currentTimeMillis());
+                                             cv.put(LocalFileDB.COLUMN_NAME_Path, localFile.getPath());
+                                             cv.put(LocalFileDB.COLUMN_NAME_Type, localFile.getType());
+                                             App.dbWrite.insert(LocalFileDB.TABLE_NAME_LOCAL_FILE_UPLOAD, null, cv);
+                                             context.sendBroadcast(intent_information);
+                                         }else{
+                                             Intent intent_finish_upload_activity = new Intent();
+                                             intent_finish_upload_activity.setAction(UploadUi.FINISH_SIGNAL);
+                                             context.sendBroadcast(intent_finish_upload_activity);
+                                             EasySweetAlertDialog.ShowTip(context, "tip", "上传失败");
+                                         }
                                      } catch (JSONException e) {
                                          e.printStackTrace();
                                      }
@@ -766,7 +804,7 @@ public class NetWorkOperator {
                                  public void inProgress(float progress, long total, int id) {
                                      super.inProgress(progress, total, id);
                                      int progress_ = (int) (progress * 100);
-                                     if(current_progress[0] != progress_){
+                                     if (current_progress[0] != progress_) {
                                          current_progress[0] = progress_;
                                          intent[0] = new Intent();
                                          intent[0].setAction(UploadUi.UploadProgressing);
@@ -846,9 +884,6 @@ public class NetWorkOperator {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
-            return;
         }
         OkHttpUtils
                 .post()
@@ -870,7 +905,7 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     User.getInstance().setName(username);
                                     User.getInstance().setAvatar(jsonObject.getString("avatar"));
@@ -890,6 +925,7 @@ public class NetWorkOperator {
 
     /**
      * 登陆
+     *
      * @param context
      * @param username
      * @param password
@@ -897,9 +933,6 @@ public class NetWorkOperator {
     public static void Login(final Context context, final String username, String password) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }else if(App.NeworkFlag == NetworkUtils.NETWORK_FLAG_MOBILE && App.Down_In_Wifi_Switch_State){
-            EasySweetAlertDialog.ShowTip(context, "tip", "已开启wifi下下载");
             return;
         }
         OkHttpUtils
@@ -920,7 +953,7 @@ public class NetWorkOperator {
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(response);
-                            switch (jsonObject.getInt("code")){
+                            switch (jsonObject.getInt("code")) {
                                 case 0:
                                     getUserInfo(context, username, 1);
                                     break;

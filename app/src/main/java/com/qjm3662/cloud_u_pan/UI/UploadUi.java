@@ -13,27 +13,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
-import com.qjm3662.cloud_u_pan.App;
-import com.qjm3662.cloud_u_pan.Data.ServerInformation;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
-import com.qjm3662.cloud_u_pan.Tool.TencentOperator;
+import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.tencent.connect.common.Constants;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class UploadUi extends AppCompatActivity implements View.OnClickListener {
 
-    //
     public static final String UploadProgressing = "upload_progressing";
     public static final String UploadSuccessWithFileInformation = "upload success with information";
+    public static final String FINISH_SIGNAL = "finish upload activity";
     public static final String Progress = "progress";
     private AnimatedCircleLoadingView animatedCircleLoadingView;
     private BroadcastReceiver receiver;
@@ -56,8 +47,6 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
     private TextView tv_bar;
     private boolean flag = false;               //标记动画完成，和页面数据填充都完成时显示上传成功页面
 
-    private Tencent tencent;
-    private IUiListener iUiListener;
 
 
     @Override
@@ -101,24 +90,6 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
         tv_bar = (TextView) findViewById(R.id.bar);
         tv_bar.setText("上传");
 
-        tencent = Tencent.createInstance(App.App_ID, this);
-        iUiListener = new IUiListener() {
-            @Override
-            public void onComplete(Object o) {
-                System.out.println("成功");
-            }
-
-            @Override
-            public void onError(UiError uiError) {
-                System.out.println("错误");
-            }
-
-            @Override
-            public void onCancel() {
-                System.out.println("取消");
-            }
-        };
-
         animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
         startLoading();
         animatedCircleLoadingView.setAnimationListener(new AnimatedCircleLoadingView.AnimationListener() {
@@ -158,6 +129,7 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(UploadProgressing);
         intentFilter.addAction(UploadSuccessWithFileInformation);
+        intentFilter.addAction(FINISH_SIGNAL);
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -171,6 +143,9 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
                         fileCode = intent.getStringExtra("code");
                         FileUtils.setImgHead(img_file, intent.getStringExtra("TYPE"), intent.getStringExtra("path"));
                         handler.sendEmptyMessage(0);
+                        break;
+                    case FINISH_SIGNAL:
+                        finish();
                         break;
                 }
             }
@@ -219,9 +194,11 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_share_qq:
-                TencentOperator.shareToQQ(this, tencent, iUiListener, fileName, "lalala", ServerInformation.DownLoadFile_AfterLogin+fileCode, "http://img4.duitang.com/uploads/item/201404/03/20140403133744_AhmYW.thumb.700_0.jpeg", "优云");
+                System.out.println("share");
+                ShareOperator.ShareTextToQQ(this, fileName, fileCode);
                 break;
             case R.id.btn_share_chat:
+                ShareOperator.ShareTextToChat(this, fileName, fileCode);
                 break;
             case R.id.btn_share_copy:
                 TextUtil.copy(fileCode, this);
@@ -231,15 +208,5 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
                 onBackPressed();
                 break;
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_QQ_SHARE || requestCode == Constants.REQUEST_LOGIN) {
-            if (resultCode == Constants.ACTIVITY_OK) {
-                Tencent.handleResultData(data, iUiListener);
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }

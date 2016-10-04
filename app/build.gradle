@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.qjm3662.cloud_u_pan"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -46,7 +46,5 @@ dependencies {
     compile project(':library')
     compile project(':randomtextview')
     compile project(':rippleview')
-    compile files('libs/mta-sdk-1.6.2.jar')
-    compile files('libs/open_sdk_r5756.jar')
-    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.google.code.gson:gson:2.4'
 }

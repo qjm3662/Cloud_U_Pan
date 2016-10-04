@@ -20,16 +20,10 @@ import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
-import com.tencent.stat.StatConfig;
-import com.tencent.stat.StatService;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -87,9 +81,6 @@ public class App extends Application{
             public void run() {
                 getUserInfo();
                 getSwitchState();
-                //打开debug开关，可查看日志
-                StatConfig.setDebugEnable(true);
-                StatService.trackCustomEvent(getApplicationContext(), "onCreate", "");
                 final CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
                 OkHttpClient okHttpClient = new OkHttpClient.Builder()
                         .cookieJar(cookieJar)

@@ -3,12 +3,12 @@
     android:background="@color/blue"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/bar_item_height">
+    android:layout_height="@dimen/y138">
 
     <ImageView
         android:id="@+id/img_back"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="@dimen/y30"
+        android:paddingBottom="@dimen/y30"
         android:src="@drawable/back"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
@@ -16,9 +16,10 @@
         android:id="@+id/bar"
         android:text="优云"
         android:gravity="center"
-        android:textSize="22sp"
+        android:textSize="@dimen/y66"
         android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bar_item_height" />
+        android:layout_height="@dimen/y138" />
+
 
 </RelativeLayout>

@@ -183,49 +183,53 @@ public class FileUtils {
                 }
             }
             Intent intent;
-            if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingImage))){
-                intent = OpenFiles.getImageFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingWebText))){
-                intent = OpenFiles.getHtmlFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingPackage))){
-                intent = OpenFiles.getApkFileIntent(currentPath);
-                context.startActivity(intent);
+            try{
+                if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingImage))){
+                    intent = OpenFiles.getImageFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingWebText))){
+                    intent = OpenFiles.getHtmlFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingPackage))){
+                    intent = OpenFiles.getApkFileIntent(currentPath);
+                    context.startActivity(intent);
 
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingAudio))){
-                intent = OpenFiles.getAudioFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingVideo))){
-                intent = OpenFiles.getVideoFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingText))){
-                intent = OpenFiles.getTextFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingPdf))){
-                intent = OpenFiles.getPdfFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingWord))){
-                intent = OpenFiles.getWordFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingExcel))){
-                intent = OpenFiles.getExcelFileIntent(currentPath);
-                context.startActivity(intent);
-            }else if(checkEndsWithInStringArray(fileName, context.getResources().
-                    getStringArray(R.array.fileEndingPPT))){
-                intent = OpenFiles.getPPTFileIntent(currentPath);
-                context.startActivity(intent);
-            }else
-            {
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingAudio))){
+                    intent = OpenFiles.getAudioFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingVideo))){
+                    intent = OpenFiles.getVideoFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingText))){
+                    intent = OpenFiles.getTextFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingPdf))){
+                    intent = OpenFiles.getPdfFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingWord))){
+                    intent = OpenFiles.getWordFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingExcel))){
+                    intent = OpenFiles.getExcelFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else if(checkEndsWithInStringArray(fileName, context.getResources().
+                        getStringArray(R.array.fileEndingPPT))){
+                    intent = OpenFiles.getPPTFileIntent(currentPath);
+                    context.startActivity(intent);
+                }else
+                {
+                    EasySweetAlertDialog.ShowTip(context, "无法打开，请安装相应的软件！");
+                }
+            }catch (Exception e){
                 EasySweetAlertDialog.ShowTip(context, "无法打开，请安装相应的软件！");
             }
         }else
