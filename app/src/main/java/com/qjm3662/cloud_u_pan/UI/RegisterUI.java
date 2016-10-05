@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Tool.MatcherUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class RegisterUI extends AppCompatActivity implements View.OnClickListener {
@@ -25,7 +26,6 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_ui);
-
         initView();
     }
 
@@ -51,7 +51,11 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
                 if(et_phone_number.getText().toString().equals("") || et_password.getText().toString().equals("")){
                     EasySweetAlertDialog.ShowTip(this, "tip", "用户名或密码不能为空");
                 }else{
-                    NetWorkOperator.Register(this, et_phone_number.getText().toString(), et_password.getText().toString());
+                    if(MatcherUtils.isMobilePhone(et_phone_number.getText().toString())){
+                        NetWorkOperator.Register(this, et_phone_number.getText().toString(), et_password.getText().toString());
+                    }else{
+                        EasySweetAlertDialog.ShowTip(this, "Tip", "请输入正确的手机号");
+                    }
                 }
                 break;
         }

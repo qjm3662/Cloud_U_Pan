@@ -20,6 +20,10 @@ public class FirstViewAdapter extends PagerAdapter {
     }
 
     @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+    }
+
+    @Override
     public int getCount() {
         return list.size();
     }
@@ -31,12 +35,6 @@ public class FirstViewAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        container.removeView(list.get(position));
-        container.addView(list.get(position), 0);
-        //对ViewPager页号求模取出View列表中要显示的项
-        if (position<0){
-            position = list.size()+position;
-        }
         View view = list.get(position);
         //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
         ViewParent vp =view.getParent();

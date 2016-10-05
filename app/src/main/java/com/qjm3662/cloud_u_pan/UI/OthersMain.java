@@ -55,6 +55,7 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
         tv_bar = (TextView) findViewById(R.id.bar);
         img_back = (ImageView) findViewById(R.id.img_back);
         tv_empty_view = (TextView) findViewById(R.id.list_empty_view);
+        tv_empty_view.setVisibility(View.INVISIBLE);
         inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         header = inflater.inflate(R.layout.others_main_listview_header, null);
         img_avatar = (ImageView) header.findViewById(R.id.img_avatar);
@@ -75,14 +76,14 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
             }
             adapter = new OthersShareAdapter(this, user.getShares_list());
         } else {
-            user = App.Public_List_Others.get(position);
+            user = App.Public_Following_Info.get(position);
+            System.out.println("here, size" + App.Public_Following_Info.size());
             adapter = new OthersShareAdapter(this, user.getShares_list());
         }
         list = user.getShares_list();
 
         tv_bar.setText("个人主页");
         img_back.setOnClickListener(this);
-        listView.setEmptyView(tv_empty_view);
         listView.setAdapter(adapter);
         listView.addHeaderView(header);
         listView.setOnItemClickListener(this);
@@ -146,6 +147,7 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
                 public void call() {
                     Intent intent = new Intent(OthersMain.this, DownloadUi2.class);
                     intent.putExtra("code", code);
+                    intent.putExtra("WHERE", 1);
                     startActivity(intent);
                 }
             };

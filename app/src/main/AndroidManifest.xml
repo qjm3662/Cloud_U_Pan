@@ -66,15 +66,18 @@
         <activity android:name=".UI.AboutUs" />
         <activity android:name=".UI.RevisePassword" />
         <activity android:name=".UI.UserAgreement" />
-        <activity android:name=".UI.FirstLunchActivity"/>
-
+        <activity
+            android:name=".UI.FirstLunchActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Widget.CaptureActivityAnyOrientation"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden">>
+            android:windowSoftInputMode="stateAlwaysHidden">
+            >
         </activity>
+        <activity android:name=".UI.ZXingAddFriend"></activity>
     </application>
 
 </manifest>

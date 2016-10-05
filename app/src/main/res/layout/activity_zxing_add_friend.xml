@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_zxing_add_friend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.qjm3662.cloud_u_pan.UI.ZXingAddFriend">
+    <RelativeLayout
+        android:background="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138">
+        <ImageView
+            android:id="@+id/img_back"
+            android:paddingTop="@dimen/y30"
+            android:paddingBottom="@dimen/y30"
+            android:src="@drawable/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/bar"
+            android:text="优云"
+            android:gravity="center"
+            android:textSize="@dimen/y66"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y138" />
+        <ImageView
+            android:id="@+id/img_camera"
+            android:paddingTop="@dimen/y30"
+            android:paddingBottom="@dimen/y30"
+            android:src="@drawable/saoyisao"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/y120"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_ZXing"
+        android:src="@drawable/cloud"
+        android:scaleType="fitXY"
+        android:padding="@dimen/y60"
+        android:layout_width="@dimen/x1080"
+        android:layout_height="@dimen/x1080"
+        android:layout_marginTop="50dp"
+        />
+    <TextView
+        android:id="@+id/tv_name"
+        android:text="mdzz"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y200" />
+
+</LinearLayout>

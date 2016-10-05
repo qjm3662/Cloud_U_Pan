@@ -46,8 +46,8 @@ public class App extends Application{
     public static List<LocalFile> Public_List_Local_File_Download = new ArrayList<LocalFile>();
     //分享中心记录
     public static List<FileInformation> Public_List_File_Info = Collections.synchronizedList(new ArrayList<FileInformation>());
-    //别人的上传历史
-    public static List<User> Public_List_Others = Collections.synchronizedList(new ArrayList<User>());
+//    //别人的上传历史
+//    public static List<User> Public_List_Others = Collections.synchronizedList(new ArrayList<User>());
     //暂存当前点击的用户
     public static User user_temp = null;
     //关注的人信息

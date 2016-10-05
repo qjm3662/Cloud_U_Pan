@@ -19,7 +19,7 @@
                 android:id="@+id/ll_header"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y315"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <com.makeramen.roundedimageview.RoundedImageView
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:paddingLeft="@dimen/x60"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center_vertical"
                 android:text="关注的人"
                 android:textColor="@color/dark"
@@ -84,7 +84,7 @@
                 android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
                 android:paddingLeft="@dimen/x60"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center_vertical"
                 android:text="我的上传"
                 android:textColor="@color/dark"
@@ -109,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
                     android:paddingLeft="@dimen/x60"
-                    android:background="@color/white"
+                    android:background="@drawable/text_select_item"
                     android:gravity="center_vertical"
                     android:text="wifi下下载"
                     android:textColor="@color/dark"
@@ -126,7 +126,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:background="@drawable/text_select_item"
                 android:layout_width="match_parent"
+                android:descendantFocusability="blocksDescendants"
                 android:layout_height="@dimen/y165">
 
                 <TextView
@@ -134,7 +136,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y90"
                     android:layout_marginTop="@dimen/line_span_small"
-                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/y60"
                     android:text="存储位置"
@@ -146,7 +147,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/tv_save_path"
-                    android:background="@color/white"
                     android:paddingLeft="@dimen/y60"
                     android:text="/sdcard" />
             </RelativeLayout>
@@ -157,7 +157,7 @@
                 android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
                 android:paddingLeft="@dimen/x60"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center_vertical"
                 android:text="关于我们"
                 android:textColor="@color/dark"
@@ -169,7 +169,7 @@
                 android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
                 android:paddingLeft="@dimen/x60"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center_vertical"
                 android:text="版本信息"
                 android:textColor="@color/dark"
@@ -181,7 +181,7 @@
                 android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
                 android:paddingLeft="@dimen/x60"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center_vertical"
                 android:text="修改密码"
                 android:textColor="@color/dark"
@@ -192,7 +192,7 @@
                 android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
                 android:paddingLeft="@dimen/x60"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center_vertical"
                 android:text="反馈"
                 android:textColor="@color/dark"
@@ -205,7 +205,7 @@
                 android:layout_height="@dimen/y129"
                 android:layout_marginTop="@dimen/y120"
                 android:layout_marginBottom="@dimen/y120"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center"
                 android:text="退出"
                 android:textColor="@color/dark"

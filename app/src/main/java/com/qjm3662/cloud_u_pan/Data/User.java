@@ -58,6 +58,7 @@ public class User{
         name = "";
         avatar = "http://119.29.55.243:3000/avatar.jpg";
         sex = 1;
+        bitmap = null;
     }
 
     public String getSignature() {

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.Tool.MatcherUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -54,7 +55,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if(et_username.getText().toString().equals("") || et_password.getText().toString().equals("")){
                     EasySweetAlertDialog.ShowTip(this, "tip", "用户名或密码不能为空");
                 }else{
-                    NetWorkOperator.Login(context, et_username.getText().toString(), et_password.getText().toString());
+                    if(MatcherUtils.isMobilePhone(et_username.getText().toString())){
+                        NetWorkOperator.Login(context, et_username.getText().toString(), et_password.getText().toString());
+                    }else{
+                        EasySweetAlertDialog.ShowTip(this, "Tip", "请输入正确的手机号");
+                    }
                 }
                 break;
             case R.id.forget_password:

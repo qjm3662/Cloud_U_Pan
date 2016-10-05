@@ -17,6 +17,7 @@
         android:layout_height="@dimen/y112" />
     <ListView
         android:id="@+id/list_followings"
+        android:descendantFocusability="blocksDescendants"
         android:layout_marginTop="@dimen/y138"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

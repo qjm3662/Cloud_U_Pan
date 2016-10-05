@@ -49,8 +49,6 @@ import okhttp3.Call;
  * Created by tanshunwang on 2016/9/21 0021.
  */
 public class NetWorkOperator {
-
-
     /**
      * 修改密码
      * @param context
@@ -94,6 +92,8 @@ public class NetWorkOperator {
                                         ((Activity)context).finish();
                                     }
                                 });
+                            }else{
+                                EasySweetAlertDialog.ShowTip(context, "Tip", "密码不正确，请重新输入");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -412,7 +412,7 @@ public class NetWorkOperator {
      * @param context
      * @param name
      */
-    public static void getOtherUserInfoByName(final Context context, String name) {
+    public static void getOtherUserInfoByName(final Context context, String name, final boolean isNeedFinish) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
@@ -433,6 +433,7 @@ public class NetWorkOperator {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         System.out.println(e.toString());
+                        EasySweetAlertDialog.ShowTip(context, "Tip", "获取失败，请检查您的网络设置");
                     }
 
                     @Override
@@ -466,7 +467,9 @@ public class NetWorkOperator {
                                         Intent intent = new Intent(context, OthersMain.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
-                                        ((Activity) context).finish();
+                                        if(isNeedFinish){
+                                            ((Activity) context).finish();
+                                        }
                                     }
 
                                     @Override

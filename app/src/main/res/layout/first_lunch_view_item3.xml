@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/first_lunch_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:src="@drawable/cloud"
+        android:layout_width="@dimen/x450"
+        android:layout_height="@dimen/y576"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView"
+        android:layout_weight="0.04" />
+
+    <ImageView
+        android:padding="15dp"
+        android:src="@drawable/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="133dp" />
+
+
+    <Button
+        android:id="@+id/btn_start"
+        android:text="开启优云"
+        android:layout_marginTop="@dimen/y300"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_callback"
+        android:layout_width="@dimen/x600"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</LinearLayout>

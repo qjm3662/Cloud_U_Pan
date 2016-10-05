@@ -1,5 +1,6 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.Adapter.FollowingsAdapter;
 import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 
 public class Followings extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -19,6 +21,7 @@ public class Followings extends AppCompatActivity implements AdapterView.OnItemC
     private ImageView img_back;
     private FollowingsAdapter adapter;
     private TextView tv_emptyView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,5 +51,6 @@ public class Followings extends AppCompatActivity implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        NetWorkOperator.getOtherUserInfoByName(this, App.Public_Following_Info.get(App.Public_Following_Info.size() - 1 - position).getName(), false);
     }
 }

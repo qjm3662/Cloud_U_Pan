@@ -30,6 +30,8 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class DownloadUi2 extends AppCompatActivity implements View.OnClickListener {
 
     private EasyButton btn_share_qq;
@@ -67,13 +69,16 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     private BroadcastReceiver receiver;
     private boolean is_upload_after_login = false;
     private int current_progress = 0;
+    private int where = 0;  // 0->app主页获取下载信息   1->用户个人主页访问，不可再重复访问
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_ui2);
         fileName = App.fileInformation.getName();
-        fileCode = getIntent().getStringExtra("code");
+        Intent intent = getIntent();
+        fileCode = intent.getStringExtra("code");
+        where = intent.getIntExtra("WHERE", 0);
         if(App.fileInformation.getUpLoadUser() != null){
             uploadUser = App.fileInformation.getUpLoadUser();
             uploadUserAvatar = App.fileInformation.getUpLoadUserAvatar();
@@ -223,8 +228,12 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
                 onBackPressed();
                 break;
             case R.id.img_avatar:
-                NetWorkOperator.getOtherUserInfoByName(this, uploadUser);
-                System.out.println("UploadUser : " + uploadUser);
+                if(where == 0){
+                    NetWorkOperator.getOtherUserInfoByName(this, uploadUser, true);
+                    System.out.println("UploadUser : " + uploadUser);
+                }else{
+                    EasySweetAlertDialog.ShowNormal(this, "厉害了我滴哥", "退一步海阔天空~");
+                }
                 break;
         }
     }

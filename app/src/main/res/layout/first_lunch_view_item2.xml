@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/first_lunch_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:src="@drawable/cloud"
+        android:layout_width="@dimen/x450"
+        android:layout_height="@dimen/y576"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView"
+        android:layout_weight="0.04" />
+
+    <ImageView
+        android:padding="15dp"
+        android:src="@drawable/miandenglu"
+        android:layout_width="match_parent"
+        android:layout_height="133dp" />
+
+    <ImageView
+        android:layout_marginRight="@dimen/x120"
+        android:layout_gravity="right"
+        android:src="@drawable/kuaijie"
+        android:layout_width="@dimen/x378"
+        android:layout_height="85dp"
+        android:id="@+id/imageView3" />
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+    <!--<ImageView-->
+        <!--android:src="@drawable/bottom"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="114dp"-->
+        <!--android:id="@+id/imageView2" />-->
+</LinearLayout>

@@ -41,7 +41,7 @@ public class OthersShareAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         if(list == null){
-            return 0;
+            return 1;
         }
         return list.size();
     }
@@ -58,23 +58,27 @@ public class OthersShareAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if(convertView == null){
-            viewHolder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.local_file_recording_item, null);
-            viewHolder.img_head = (ImageView) convertView.findViewById(R.id.img_head);
-            viewHolder.tv_fileName = (TextView) convertView.findViewById(R.id.tv_fileName);
-            viewHolder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
-            convertView.setTag(viewHolder);
+        if(list.size() != 0){
+            ViewHolder viewHolder = null;
+            if(convertView == null){
+                viewHolder = new ViewHolder();
+                convertView = inflater.inflate(R.layout.local_file_recording_item, null);
+                viewHolder.img_head = (ImageView) convertView.findViewById(R.id.img_head);
+                viewHolder.tv_fileName = (TextView) convertView.findViewById(R.id.tv_fileName);
+                viewHolder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+                convertView.setTag(viewHolder);
 
+            }else{
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+
+            FileInformation fileInformation = list.get(list.size() - 1 - position);
+            viewHolder.img_head.setImageBitmap(fileInformation.getBitmap_type());
+            viewHolder.tv_fileName.setText(fileInformation.getName());
+            viewHolder.tv_time.setText(fileInformation.getDownTimeString());
+            return convertView;
         }else{
-            viewHolder = (ViewHolder) convertView.getTag();
+            return parent.findViewById(R.id.list_empty_view);
         }
-
-        FileInformation fileInformation = list.get(list.size() - 1 - position);
-        viewHolder.img_head.setImageBitmap(fileInformation.getBitmap_type());
-        viewHolder.tv_fileName.setText(fileInformation.getName());
-        viewHolder.tv_time.setText(fileInformation.getDownTimeString());
-        return convertView;
     }
 }

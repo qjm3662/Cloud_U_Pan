@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isFirstLunch();
-        setContentView(R.layout.activity_main);
-
         initView();
     }
     public void isFirstLunch() {
@@ -52,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             SharedPreferences.Editor editor = sp.edit();
             editor.putBoolean("IS_FIRST", false);
             editor.apply();
+            setContentView(R.layout.activity_main);
+        }else{
+            setContentView(R.layout.activity_main);
         }
     }
 
@@ -89,6 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DownloadUi.class));
                 break;
             case R.id.btn_bluetooth:
+                if(App.Flag_IsLogin){
+                    startActivity(new Intent(this, ZXingAddFriend.class));
+                }else{
+                    EasySweetAlertDialog.ShowTip(this, "Tip", "清先登录");
+                }
                 break;
             case R.id.btn_more:
                 View.OnClickListener listener = new View.OnClickListener() {
