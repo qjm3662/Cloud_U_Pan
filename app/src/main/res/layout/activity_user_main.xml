@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lightblue"
     android:isScrollContainer="true"
     android:orientation="vertical">
+
     <include layout="@layout/bar_item" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/lightblue">
+
         <LinearLayout
-            android:orientation="vertical"
-            android:isScrollContainer="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/ll_header"
                 android:layout_width="match_parent"
@@ -24,19 +29,19 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/img_avatar"
-                    app:riv_border_color="#333333"
-                    app:riv_border_width="0dip"
-                    app:riv_corner_radius="30dip"
-                    app:riv_mutate_background="true"
-                    app:riv_oval="true"
-                    app:riv_tile_mode="clamp"
                     android:layout_width="@dimen/y210"
                     android:layout_height="@dimen/y210"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/x60"
                     android:background="@drawable/circle_head"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/img_defaultavatar" />
+                    android:src="@drawable/img_defaultavatar"
+                    app:riv_border_color="#333333"
+                    app:riv_border_width="0dip"
+                    app:riv_corner_radius="30dip"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="true"
+                    app:riv_tile_mode="clamp" />
 
                 <TextView
                     android:id="@+id/tv_name"
@@ -67,28 +72,57 @@
                 android:textColor="@color/dark"
                 android:textSize="@dimen/y36" />
 
-            <TextView
+
+            <LinearLayout
                 android:id="@+id/tv_following"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
-                android:paddingLeft="@dimen/x60"
                 android:background="@drawable/text_select_item"
-                android:gravity="center_vertical"
-                android:text="关注的人"
-                android:textColor="@color/dark"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/attention" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y129"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
+                    android:text="关注的人"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/tv_upload"
-                android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
-                android:paddingLeft="@dimen/x60"
                 android:background="@drawable/text_select_item"
-                android:gravity="center_vertical"
-                android:text="我的上传"
-                android:textColor="@color/dark"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/upload1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y129"
+                    android:background="@drawable/text_select_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
+                    android:text="我的上传"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -101,16 +135,25 @@
                 android:textSize="12sp" />
 
             <RelativeLayout
+                android:id="@+id/tv_down_in_wifi"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y129">
+                android:layout_height="@dimen/y129"
+                android:background="@drawable/text_select_item">
+
+                <ImageView
+                    android:id="@+id/img_wifi"
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/wifi_" />
 
                 <TextView
-                    android:id="@+id/tv_down_in_wifi"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
-                    android:paddingLeft="@dimen/x60"
-                    android:background="@drawable/text_select_item"
+                    android:layout_toRightOf="@id/img_wifi"
                     android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
                     android:text="wifi下下载"
                     android:textColor="@color/dark"
                     android:textSize="16sp" />
@@ -126,16 +169,27 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="@drawable/text_select_item"
+                android:id="@+id/tv_save_path"
                 android:layout_width="match_parent"
-                android:descendantFocusability="blocksDescendants"
-                android:layout_height="@dimen/y165">
+                android:layout_height="@dimen/y165"
+                android:layout_marginTop="@dimen/line_span_small"
+                android:background="@drawable/text_select_item"
+                android:descendantFocusability="blocksDescendants">
+
+                <ImageView
+                    android:id="@+id/img_wifi1"
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/save" />
 
                 <TextView
-                    android:id="@+id/tv_save_path"
+                    android:id="@+id/tv_save_path11"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y90"
                     android:layout_marginTop="@dimen/line_span_small"
+                    android:layout_toRightOf="@+id/img_wifi1"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/y60"
                     android:text="存储位置"
@@ -146,65 +200,129 @@
                     android:id="@+id/tv_current_save_path"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/tv_save_path"
+                    android:layout_below="@+id/tv_save_path11"
+                    android:layout_toRightOf="@+id/img_wifi1"
                     android:paddingLeft="@dimen/y60"
                     android:text="/sdcard" />
             </RelativeLayout>
 
-            <TextView
+
+            <LinearLayout
                 android:id="@+id/tv_about_us"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
-                android:paddingLeft="@dimen/x60"
+                android:layout_marginTop="@dimen/line_span_small"
                 android:background="@drawable/text_select_item"
-                android:gravity="center_vertical"
-                android:text="关于我们"
-                android:textColor="@color/dark"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/aboutus"
+                    android:id="@+id/imageView2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y129"
+                    android:background="@drawable/text_select_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
+                    android:text="关于我们"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/tv_version"
-                android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/line_span_small"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
-                android:paddingLeft="@dimen/x60"
                 android:background="@drawable/text_select_item"
-                android:gravity="center_vertical"
-                android:text="版本信息"
-                android:textColor="@color/dark"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/version" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y129"
+                    android:background="@drawable/text_select_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
+                    android:text="版本信息"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/tv_revisePsd"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
-                android:paddingLeft="@dimen/x60"
+                android:layout_marginTop="@dimen/line_span_small"
                 android:background="@drawable/text_select_item"
-                android:gravity="center_vertical"
-                android:text="修改密码"
-                android:textColor="@color/dark"
-                android:textSize="16sp" />
-            <TextView
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/revise_psd" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y129"
+                    android:background="@drawable/text_select_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
+                    android:text="修改密码"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp"
+                    android:id="@+id/textView" />
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/tv_callback"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/line_span_small"
                 android:layout_height="@dimen/y129"
-                android:paddingLeft="@dimen/x60"
+                android:layout_marginTop="@dimen/line_span_small"
                 android:background="@drawable/text_select_item"
-                android:gravity="center_vertical"
-                android:text="反馈"
-                android:textColor="@color/dark"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/y60"
+                    android:layout_height="@dimen/y60"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:src="@drawable/feedback" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y129"
+                    android:background="@drawable/text_select_item"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x60"
+                    android:text="反馈"
+                    android:textColor="@color/dark"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
 
             <TextView
                 android:id="@+id/tv_exit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
-                android:layout_marginTop="@dimen/y120"
                 android:layout_marginBottom="@dimen/y120"
+                android:layout_marginTop="@dimen/y120"
                 android:background="@drawable/text_select_item"
                 android:gravity="center"
                 android:text="退出"

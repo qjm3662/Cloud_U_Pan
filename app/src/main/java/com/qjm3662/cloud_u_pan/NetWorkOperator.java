@@ -82,6 +82,7 @@ public class NetWorkOperator {
                                     @Override
                                     public void Success() {
                                         context.startActivity(new Intent(context, Login.class));
+                                        ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                         Intent intent = new Intent();
                                         intent.setAction(UserMain.FINISH_SIGNAL);
                                         context.sendBroadcast(intent);
@@ -194,6 +195,7 @@ public class NetWorkOperator {
                                                 Intent intent = new Intent(context, Followings.class);
                                                 intent.putExtra("WHERE", 3);
                                                 context.startActivity(intent);
+                                                ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                             }
                                         }
                                     };
@@ -201,6 +203,7 @@ public class NetWorkOperator {
                                         Intent intent = new Intent(context, Followings.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
+                                        ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                         return;
                                     }
                                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -467,6 +470,7 @@ public class NetWorkOperator {
                                         Intent intent = new Intent(context, OthersMain.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
+                                        ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                         if(isNeedFinish){
                                             ((Activity) context).finish();
                                         }
@@ -531,6 +535,7 @@ public class NetWorkOperator {
                                 if (where != 3) {
                                     context.startActivity(new Intent(context, UserMain.class));
                                     ((Activity) context).finish();
+                                    ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                 }
                                 User.getInstance().setShares_list(shares);
                                 System.out.println(User.getInstance().toString());
@@ -674,6 +679,8 @@ public class NetWorkOperator {
                                 fileInformation.setUpLoadUserAvatar(jo.getJSONObject("user").getString("avatar"));
                                 fileInformation.setUpLoadUserName(jo.getJSONObject("user").getString("username"));
                                 fileInformation.setCreatedAt(jo.getLong("time"));
+                            }else{
+                                fileInformation.setUpLoadUser(null);
                             }
                             callBack.call();
                         } catch (JSONException e) {

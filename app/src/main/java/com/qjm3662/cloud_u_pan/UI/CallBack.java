@@ -49,8 +49,14 @@ public class CallBack extends AppCompatActivity implements View.OnClickListener 
                 }
                 break;
             case R.id.img_back:
-                onBackPressed();
+                finish();
                 break;
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

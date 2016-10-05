@@ -84,14 +84,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Intent intent = new Intent(this, FileManager.class);
                     intent.putExtra(FILE_SELECT, FILE_SELECT_CODE);
                     startActivityForResult(intent, requestCode_selectFile);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }
                 break;
             case R.id.btn_download:
                 startActivity(new Intent(this, DownloadUi.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.btn_bluetooth:
                 if(App.Flag_IsLogin){
                     startActivity(new Intent(this, ZXingAddFriend.class));
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }else{
                     EasySweetAlertDialog.ShowTip(this, "Tip", "清先登录");
                 }
@@ -107,14 +110,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 break;
                             case R.id.img_upload_record:
                                 startActivity(new Intent(MainActivity.this, LocalFileRecording_Upload.class));
+                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                 dialog.cancel();
                                 break;
                             case R.id.img_download_record:
                                 startActivity(new Intent(MainActivity.this, LocalFileRecording_Download.class));
+                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                 dialog.cancel();
                                 break;
                             case R.id.img_share_center:
                                 startActivity(new Intent(MainActivity.this, ShareCenter.class));
+                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                 dialog.cancel();
                                 NetWorkOperator.getShareCenter(MainActivity.this);
                                 break;
@@ -126,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_my:
                 startActivity(new Intent(this, UserMain.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
         }
     }
@@ -139,11 +146,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     System.out.println(data.getStringExtra(PATH));
                     File file = new File(data.getStringExtra(PATH));
                     this.startActivity(new Intent(this, UploadUi.class));
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                     NetWorkOperator.UP_FILE(this, file, file.getName(), true);
                 }
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
 }

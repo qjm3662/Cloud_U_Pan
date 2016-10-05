@@ -53,4 +53,16 @@ public class Followings extends AppCompatActivity implements AdapterView.OnItemC
 
         NetWorkOperator.getOtherUserInfoByName(this, App.Public_Following_Info.get(App.Public_Following_Info.size() - 1 - position).getName(), false);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
 }

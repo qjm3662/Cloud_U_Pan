@@ -92,7 +92,7 @@ public class ZXingAddFriend extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.img_back:
-                onBackPressed();
+                finish();
                 break;
             case R.id.img_camera:
                 startCamera();
@@ -109,15 +109,26 @@ public class ZXingAddFriend extends AppCompatActivity implements View.OnClickLis
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        System.out.println("mdzz");
-        if (scanResult != null) {
-            System.out.println("woc, 怎么还有");
-            String result = scanResult.getContents();
-            NetWorkOperator.getOtherUserInfoByName(this, result.trim(), false);
-        }else{
-            System.out.println("没有信息");
+        try {
+            IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            System.out.println("mdzz");
+            if (scanResult != null) {
+                System.out.println("woc, 怎么还有");
+                String result = scanResult.getContents();
+                NetWorkOperator.getOtherUserInfoByName(this, result.trim(), false);
+            }else{
+                System.out.println("没有信息");
+            }
+        }catch (Exception e){
+            System.out.println( "what:" + e.toString());
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

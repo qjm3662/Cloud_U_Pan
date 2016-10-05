@@ -45,6 +45,7 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
             case R.id.register_to_login:
                 intent = new Intent(RegisterUI.this,Login.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 finish();
                 break;
             case R.id.register_btn:
@@ -59,5 +60,17 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

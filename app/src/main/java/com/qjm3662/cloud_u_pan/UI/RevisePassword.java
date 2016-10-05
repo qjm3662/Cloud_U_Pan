@@ -57,4 +57,16 @@ public class RevisePassword extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
 }

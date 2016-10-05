@@ -149,6 +149,7 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
                     intent.putExtra("code", code);
                     intent.putExtra("WHERE", 1);
                     startActivity(intent);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }
             };
             NetWorkOperator.GetFileInformation(this, code, App.fileInformation, callBack);
@@ -157,5 +158,18 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
             System.out.println(list.size());
             System.out.println(position);
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

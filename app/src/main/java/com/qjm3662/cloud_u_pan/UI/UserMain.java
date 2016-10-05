@@ -42,19 +42,19 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private ImageView img_edit_nickname;
     private RoundedImageView img_head;
     private TextView tv_name;
-    private TextView tv_following;
-    private TextView tv_upload;
-    private TextView tv_down_in_wifi;
-    private TextView tv_save_path;
-    private TextView tv_callback;
+    private ViewGroup tv_following;
+    private ViewGroup tv_upload;
+    private ViewGroup tv_down_in_wifi;
+    private ViewGroup tv_save_path;
+    private ViewGroup tv_callback;
     private TextView tv_bar;
     private ImageView img_back;
     private TextView tv_exit;
     private TextView tv_current_save_path;
-    private TextView tv_version;
+    private ViewGroup tv_version;
     private Button btn_switch;
-    private TextView tv_about_us;
-    private TextView tv_revisePsd;
+    private ViewGroup tv_about_us;
+    private ViewGroup tv_revisePsd;
     private ViewGroup ll_header;
     private BroadcastReceiver receiver;
     public static final String ACTION_GET_USER_INFO_SUCCESS = "get userInfo success";
@@ -119,19 +119,19 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private void initView() {
         img_edit_nickname = (ImageView) findViewById(R.id.img_edit_nickname);
         img_head = (RoundedImageView) findViewById(R.id.img_avatar);
-        tv_callback = (TextView) findViewById(R.id.tv_callback);
-        tv_down_in_wifi = (TextView) findViewById(R.id.tv_down_in_wifi);
-        tv_following = (TextView) findViewById(R.id.tv_following);
-        tv_save_path = (TextView) findViewById(R.id.tv_save_path);
-        tv_upload = (TextView) findViewById(R.id.tv_upload);
+        tv_callback = (ViewGroup) findViewById(R.id.tv_callback);
+        tv_down_in_wifi = (ViewGroup) findViewById(R.id.tv_down_in_wifi);
+        tv_following = (ViewGroup) findViewById(R.id.tv_following);
+        tv_save_path = (ViewGroup) findViewById(R.id.tv_save_path);
+        tv_upload = (ViewGroup) findViewById(R.id.tv_upload);
         tv_name = (TextView) findViewById(R.id.tv_name);
         tv_bar = (TextView) findViewById(R.id.bar);
         tv_exit = (TextView) findViewById(R.id.tv_exit);
-        tv_about_us = (TextView) findViewById(R.id.tv_about_us);
-        tv_version = (TextView) findViewById(R.id.tv_version);
+        tv_about_us = (ViewGroup) findViewById(R.id.tv_about_us);
+        tv_version = (ViewGroup) findViewById(R.id.tv_version);
         btn_switch = (Button) findViewById(R.id.my_switch_button);
         tv_current_save_path = (TextView) findViewById(R.id.tv_current_save_path);
-        tv_revisePsd = (TextView) findViewById(R.id.tv_revisePsd);
+        tv_revisePsd = (ViewGroup) findViewById(R.id.tv_revisePsd);
         tv_current_save_path.setText(App.currentSavePath);
         tv_bar.setText("关于我的");
         img_back = (ImageView) findViewById(R.id.img_back);
@@ -184,6 +184,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 if(!App.Flag_IsLogin){
                     finish();
                     this.startActivity(new Intent(this, Login.class));
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }
                 break;
             case R.id.img_avatar:
@@ -208,6 +209,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                                     Intent intent1 = new Intent(UserMain.this, FileManager.class);
                                     intent1.putExtra("WHERE", 1);
                                     startActivityForResult(intent1, PHOTO_REQUEST_SELECT_FROM_FILEMANAGER);
+                                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                     break;
                             }
                         }
@@ -220,6 +222,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.tv_callback:
                 startActivity(new Intent(this, CallBack.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.tv_following:
                 if(App.Flag_IsLogin){
@@ -232,6 +235,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 Intent i = new Intent(UserMain.this, FileManager.class);
                 i.putExtra("WHERE", 2);
                 startActivityForResult(i, PATH_REQUEST);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.tv_upload:
                 if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
@@ -242,6 +246,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     Intent intent = new Intent(UserMain.this, OthersMain.class);
                     intent.putExtra("WHERE", 1);
                     startActivity(intent);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }else{
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
@@ -255,6 +260,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 //删除SharedPreferences的记录
                 App.deleteUserInfo(this);
                 this.startActivity(new Intent(this, Login.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 finish();
                 break;
             case R.id.my_switch_button:
@@ -272,9 +278,11 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.tv_version:
                 startActivity(new Intent(this, VersionInfo.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.tv_about_us:
                 startActivity(new Intent(this, AboutUs.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.tv_revisePsd:
                 if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
@@ -282,6 +290,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     return;
                 }else if(App.Flag_IsLogin){
                     startActivity(new Intent(this, RevisePassword.class));
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }else{
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
@@ -306,6 +315,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 Uri.fromFile(tempFile));
         startActivityForResult(cameraintent,
                 PHOTO_REQUEST_TAKEPHOTO);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 //
 //    //从相册获取图片并裁剪
@@ -337,6 +347,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         intent.putExtra("noFaceDetection", true);
         System.out.println("22================");
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
 
@@ -396,5 +407,17 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }

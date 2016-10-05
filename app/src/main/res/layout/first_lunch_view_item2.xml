@@ -8,6 +8,7 @@
     android:weightSum="1">
 
     <ImageView
+        android:layout_marginTop="@dimen/y200"
         android:src="@drawable/cloud"
         android:layout_width="@dimen/x450"
         android:layout_height="@dimen/y576"

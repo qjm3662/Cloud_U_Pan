@@ -75,6 +75,7 @@ public class ShareCenter extends AppCompatActivity implements AdapterView.OnItem
                 Intent intent = new Intent(ShareCenter.this, DownloadUi2.class);
                 intent.putExtra("code", code);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         };
         NetWorkOperator.GetFileInformation(this, code, App.fileInformation, callBack);
@@ -86,5 +87,17 @@ public class ShareCenter extends AppCompatActivity implements AdapterView.OnItem
         if(receiver != null){
             unregisterReceiver(receiver);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 }
