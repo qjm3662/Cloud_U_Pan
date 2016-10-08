@@ -1,6 +1,5 @@
 package com.qjm3662.cloud_u_pan.FileManager;
 
-import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
-import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
@@ -25,7 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class FileManager extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
-    private static final String ROOT_PATH = "/";
+    private static final String ROOT_PATH = "/storage";
     //存储文件名称
     private ArrayList<String> names = null;
     //存储文件路径

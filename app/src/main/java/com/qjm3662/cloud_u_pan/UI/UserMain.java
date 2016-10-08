@@ -8,19 +8,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kyleduo.switchbutton.SwitchButton;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.User;
@@ -52,7 +52,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private TextView tv_exit;
     private TextView tv_current_save_path;
     private ViewGroup tv_version;
-    private Button btn_switch;
+    private SwitchButton btn_switch;
     private ViewGroup tv_about_us;
     private ViewGroup tv_revisePsd;
     private ViewGroup ll_header;
@@ -129,7 +129,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_exit = (TextView) findViewById(R.id.tv_exit);
         tv_about_us = (ViewGroup) findViewById(R.id.tv_about_us);
         tv_version = (ViewGroup) findViewById(R.id.tv_version);
-        btn_switch = (Button) findViewById(R.id.my_switch_button);
+        btn_switch = (SwitchButton) findViewById(R.id.my_switch_button);
         tv_current_save_path = (TextView) findViewById(R.id.tv_current_save_path);
         tv_revisePsd = (ViewGroup) findViewById(R.id.tv_revisePsd);
         tv_current_save_path.setText(App.currentSavePath);
@@ -166,10 +166,11 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
 
     private void initSwitch() {
         if (!App.Down_In_Wifi_Switch_State) {
-            btn_switch.setBackgroundResource(R.drawable.img_switch);
+            btn_switch.setChecked(false);
         } else {
-            btn_switch.setBackgroundResource(R.drawable.img_switch_choose);
+            btn_switch.setChecked(true);
         }
+        btn_switch.setTintColor(ContextCompat.getColor(this, R.color.blue));
     }
 
     @Override
@@ -264,13 +265,14 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 finish();
                 break;
             case R.id.my_switch_button:
+                System.out.println("Click checked");
                 SharedPreferences sp = this.getSharedPreferences("SWITCH", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 if (!App.Down_In_Wifi_Switch_State) {
-                    btn_switch.setBackgroundResource(R.drawable.img_switch_choose);
+//                    btn_switch.setBackgroundResource(R.drawable.img_switch_choose);
                     App.Down_In_Wifi_Switch_State = true;
                 } else {
-                    btn_switch.setBackgroundResource(R.drawable.img_switch);
+//                    btn_switch.setBackgroundResource(R.drawable.img_switch);
                     App.Down_In_Wifi_Switch_State = false;
                 }
                 editor.putBoolean("SWITCH_WIFI", App.Down_In_Wifi_Switch_State);
@@ -343,6 +345,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         // outputX,outputY 是剪裁图片的宽高
         intent.putExtra("outputX", 300);
         intent.putExtra("outputY", 300);
+
         intent.putExtra("return-data", true);
         intent.putExtra("noFaceDetection", true);
         System.out.println("22================");

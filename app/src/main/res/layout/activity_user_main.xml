@@ -158,14 +158,14 @@
                     android:textColor="@color/dark"
                     android:textSize="16sp" />
 
-                <Button
+                <com.kyleduo.switchbutton.SwitchButton
                     android:id="@+id/my_switch_button"
                     android:layout_width="@dimen/x126"
                     android:layout_height="@dimen/y75"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/y60"
-                    android:background="@drawable/img_switch" />
+                    />
             </RelativeLayout>
 
             <RelativeLayout

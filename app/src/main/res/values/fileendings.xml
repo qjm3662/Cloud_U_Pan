@@ -42,6 +42,7 @@
         <item>.xml</item>
         <item>.json</item>
         <item>.log</item>
+        <item>.lrc</item>
     </array>
     <array name="fileEndingWord">
         <item>.doc</item>
