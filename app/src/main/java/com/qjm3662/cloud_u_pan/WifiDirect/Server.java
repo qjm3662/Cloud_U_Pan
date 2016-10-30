@@ -54,21 +54,31 @@ public class Server extends ServerSocket {
                     fos = new FileOutputStream(new File(FileUtils.getSDPath() + "/" + fileName));
 
                     byte[] sendBytes = new byte[1024];
-                    int transLen = 0;
+                    long transLen = 0;
                     System.out.println("----开始接收文件<" + fileName + ">,文件大小为<" + fileLength + ">----");
                     serverListener.FileInfoCallback(fileName, FileUtils.getSDPath() + "/" + fileName);
+                    long startTime = System.currentTimeMillis();
+                    int progress = 0;
+                    int temp = -1;
                     while (true) {
                         int read = 0;
                         read = dis.read(sendBytes);
                         if (read == -1)
                             break;
                         transLen += read;
-                        System.out.println("接收文件进度" + 100 * transLen / fileLength + "%...");
-                        serverListener.FileProgressCallback((int) (100 * transLen / fileLength));
+                        temp = progress;
+                        progress = (int) (100 * transLen / fileLength);
+                        if(temp != progress){
+                            serverListener.FileProgressCallback(progress);
+                            System.out.println("接收文件进度" + 100 * transLen / fileLength + "%...");
+                        }
                         fos.write(sendBytes, 0, read);
                         fos.flush();
                     }
-                    System.out.println("----接收文件<" + fileName + ">成功-------");
+                    long span = System.currentTimeMillis() - startTime;
+                    System.out.println("times : " + System.currentTimeMillis());
+                    System.out.println("----接收文件<" + fileName + "(" + fileLength + ")" + ">成功-------");
+                    System.out.println("span : " + span/1000);
                     client.close();
                 }
             } catch (Exception e) {

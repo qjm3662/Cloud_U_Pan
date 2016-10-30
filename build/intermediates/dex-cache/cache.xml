@@ -29,6 +29,15 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_fc69a29a6257d6f170dfd0cc4c08671bd7b6bba7\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.zhy\okhttputils\2.6.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="155fef2600f48631a9e9665c0873743b6d24e324">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.zhy-okhttputils-2.6.2_9bfe95e22438c60c020d197ec642995585286dd2.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -36,6 +45,15 @@
         revision="24.0.2"
         sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_cbc6bdbd8d445010e7afc80c5e354864e2066690\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.kyleduo.switchbutton\library\1.4.4\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="bc8e3e3b486160c2382f499319b1c70adbf32575">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.kyleduo.switchbutton-library-1.4.4_cb364be1bda59342e2852ccb18662ea6c0425325.jar" />
     </item>
     <item
         is-multidex="true"
@@ -47,6 +65,15 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_a8bee59c22ebfec6fbfb8fca29376ecd0d194954\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-24.2.1_b0f19064a62e4a5db17932e7f84aec8a5ea220bb.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -54,6 +81,24 @@
         revision="24.0.2"
         sha1="d5c731fc64c03dfe04d51134955b483551c35849">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_e816868a3e3bae2fbbdfb263742b4e17d4f61cbe\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.2.1_a4a6b01590538d345bd5be2d5042793e8a7d1868.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_904844aa4245950b2b11d920df28189ba50a52c7.jar" />
     </item>
     <item
         is-multidex="true"
@@ -65,6 +110,24 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\core-3.2.0_3d535d4e7684f590838197907efa241de048ae53\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\Cloud_U_Pan\library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e503fe7ff5d8c011e1065ce7bb9bfee1a1aed236">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\Cloud_U_Pan-library-unspecified_7dd1f970a082e0301e752c67f927ca50a711a3d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_9a6536158a72caa51e01f08b2229ba818aa0efa8.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.wang.avi\library\2.1.3\jars\classes.jar"
         jumboMode="true"
@@ -72,6 +135,42 @@
         revision="24.0.2"
         sha1="e699699fae0092703de1d02b217f43803d0f7e0a">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.wang.avi-library-2.1.3_2487063320f859bb4942d94839cfd729f8e524fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_69757282b30288e1974875f0270daea9fcc6372a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_7a94abc4b6926cedc6501bfae24451c85b496843.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_ff62036fb923bcb5e30db2f622fc22f0565d2245.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_350fd81ec983f4368ad144bb2a167f4923a7ee2e.jar" />
     </item>
     <item
         is-multidex="true"
@@ -83,6 +182,33 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.journeyapps-zxing-android-embedded-3.0.2_383956b5782a7927e2226e14088793debf4cef2e\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\me.spark\submitbutton\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b22da5cc8a23af8ac372a88bb5cc3815205e78a6">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\me.spark-submitbutton-1.0.1_59aac61f119d38f1600efd11468f828ebacde56c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.makeramen\roundedimageview\2.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="814fc0c3ec69a944add398217d90077301501a74">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.makeramen-roundedimageview-2.2.1_b21b76a82cc49b86fe5854a3e317a8fc32eeb33b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\qjm3662\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\gson-2.4_85943ab29082868e6d0f8f5f01982c9bef6a1ee3.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="D:\android_video\Android_SDK\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
         jumboMode="true"
@@ -90,6 +216,15 @@
         revision="24.0.2"
         sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_bf2ca97aed73ea4854341210492e1dbebedc49f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\Cloud_U_Pan\randomtextview\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="4c26287ee636b65433ce910e3ddde556bfd86e5b">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\Cloud_U_Pan-randomtextview-unspecified_6af5bfcbcbc5029b98f893630aa96d55c8993126.jar" />
     </item>
     <item
         is-multidex="true"
@@ -119,6 +254,42 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.yalantis-phoenix-1.2.3_3c50f968a5ddfd3374aebfb4ab7e49dab6d66d2e\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_a663cf67326d1d026e95c3850fb6db70a97805e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.github.jlmd\AnimatedCircleLoadingView\1.1.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c5ba9c86efe8e242e947176ff8d519c0d3842534">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.github.jlmd-AnimatedCircleLoadingView-1.1.5_98630c43b4a58c5691be49084b42301f0c3a65d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_fee3da1100f98121ff8f79902798af887ae06ef9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\qjm3662\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\okio-1.8.0_edf7b70d396c072eeedd1c710ba33b3818ae374e.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\cn.pedant.sweetalert\library\1.3\jars\classes.jar"
         jumboMode="true"
@@ -128,6 +299,42 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.pedant.sweetalert-library-1.3_ee24f4f09992c36e7915dc8c5087dcc7bf3528eb\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\qjm3662\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.1\19047bdb6a4fc00a44124f64ca98e88fc204e7e3\okhttp-3.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\okhttp-3.3.1_5c2639db0e342bb0b1b7ae76e67660fb11875867.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.tt\whorlviewlibrary\1.0.3\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d237f051940b80f6176360a40ce45ffd0830779e">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.tt-whorlviewlibrary-1.0.3_39e3a91223fb61e8d503a964a6d2538e0c1d1a01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\Cloud_U_Pan\rippleview\unspecified\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0c2d2b8b80f9ef7ab54ccc2f6a7cd46fc2391690">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\Cloud_U_Pan-rippleview-unspecified_869067c71f6d7ba750b671be1455c46ccd3a6aeb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_a8bee59c22ebfec6fbfb8fca29376ecd0d194954.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.zhy\okhttputils\2.6.2\jars\classes.jar"
         jumboMode="true"
@@ -135,6 +342,42 @@
         revision="24.0.2"
         sha1="155fef2600f48631a9e9665c0873743b6d24e324">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.zhy-okhttputils-2.6.2_9bfe95e22438c60c020d197ec642995585286dd2\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_cbc6bdbd8d445010e7afc80c5e354864e2066690.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_77d3835cecb57db200369b8ba35f5ca25cb121a7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_b20774a049d9c3d6fbcf1b5425bc5a977b1a53a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_fc69a29a6257d6f170dfd0cc4c08671bd7b6bba7.jar" />
     </item>
     <item
         is-multidex="true"
@@ -182,6 +425,24 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_ff62036fb923bcb5e30db2f622fc22f0565d2245\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_e816868a3e3bae2fbbdfb263742b4e17d4f61cbe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\qjm3662\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.0\e019d15a13a9786f881141d2df6654b8510bce8b\core-3.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e019d15a13a9786f881141d2df6654b8510bce8b">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\core-3.2.0_3d535d4e7684f590838197907efa241de048ae53.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -205,7 +466,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="f8d3fa785b322c3b2351199cae4b66adfcf976e7">
+        sha1="906f271fe2f3fbaeb79561534b638addf68da7a1">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_14bcd9a70f652b192ced0174e0766862781d889d\classes.dex" />
     </item>
     <item
@@ -216,6 +477,15 @@
         revision="24.0.2"
         sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.2.1_b0f19064a62e4a5db17932e7f84aec8a5ea220bb\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.wang.avi\library\2.1.3\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e699699fae0092703de1d02b217f43803d0f7e0a">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.wang.avi-library-2.1.3_2487063320f859bb4942d94839cfd729f8e524fc.jar" />
     </item>
     <item
         is-multidex="true"
@@ -236,12 +506,21 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.makeramen-roundedimageview-2.2.1_b21b76a82cc49b86fe5854a3e317a8fc32eeb33b\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="D:\android_video\Android_SDK\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_bf2ca97aed73ea4854341210492e1dbebedc49f7.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="55463307624806dc603c5f398548fd3c47b076d5">
+        sha1="d4b1a7ece5ab83cd45f528b6a2819d54ce9c8fb4">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_b523c89301843231721f08a73d02683f55af4619\classes.dex" />
     </item>
     <item
@@ -263,6 +542,15 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.jlmd-AnimatedCircleLoadingView-1.1.5_98630c43b4a58c5691be49084b42301f0c3a65d5\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_9630bde70e9322781da07963b2653396a819cc72.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.tt\whorlviewlibrary\1.0.3\jars\classes.jar"
         jumboMode="true"
@@ -270,6 +558,15 @@
         revision="24.0.2"
         sha1="d237f051940b80f6176360a40ce45ffd0830779e">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.tt-whorlviewlibrary-1.0.3_39e3a91223fb61e8d503a964a6d2538e0c1d1a01\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.yalantis\phoenix\1.2.3\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="4dfe2dd3f402072c5268f341830cdc5263187074">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.yalantis-phoenix-1.2.3_3c50f968a5ddfd3374aebfb4ab7e49dab6d66d2e.jar" />
     </item>
     <item
         is-multidex="true"
@@ -299,6 +596,24 @@
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.spark-submitbutton-1.0.1_59aac61f119d38f1600efd11468f828ebacde56c\classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\3.0.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="744a4b394a9a7db8a4c4680836d8544802a9cd64">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.journeyapps-zxing-android-embedded-3.0.2_383956b5782a7927e2226e14088793debf4cef2e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\com.pnikosis\materialish-progress\1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\com.pnikosis-materialish-progress-1.0_f1dfcbc92ff9b68f65a1a1deb8d1af6e871f9e67.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\qjm3662\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
         jumboMode="true"
@@ -315,6 +630,15 @@
         revision="24.0.2"
         sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
         <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.1_5c2639db0e342bb0b1b7ae76e67660fb11875867\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\exploded-aar\cn.pedant.sweetalert\library\1.3\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
+        <dex dex="E:\XiaoMing\Cloud_U_Pan\app\build\intermediates\pre-dexed\debug\cn.pedant.sweetalert-library-1.3_ee24f4f09992c36e7915dc8c5087dcc7bf3528eb.jar" />
     </item>
 
 </items>

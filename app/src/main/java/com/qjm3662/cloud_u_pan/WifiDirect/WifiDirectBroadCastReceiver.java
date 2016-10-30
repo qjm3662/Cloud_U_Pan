@@ -68,6 +68,7 @@ public class WifiDirectBroadCastReceiver extends BroadcastReceiver{
                     }
                     NetworkInfo networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
                     WifiP2pManager.ConnectionInfoListener ll = null;
+                    System.out.println("_____________________\nnetworkInfo : " + networkInfo.toString() + "\n_____________________________________________");
                     switch (flag_where){
                         case FLAG_FROM_RECEIVE_ACTIVITY:
                             ll = ((Receive_Activity)activity).getConnectionInfoListener();

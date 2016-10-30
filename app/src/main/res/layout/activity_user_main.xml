@@ -7,36 +7,36 @@
     android:isScrollContainer="true"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:background="@color/blue"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y138">
+        android:layout_height="@dimen/y138"
+        android:background="@color/blue">
 
         <ImageView
             android:id="@+id/img_back"
-            android:paddingTop="@dimen/y30"
-            android:paddingBottom="@dimen/y30"
-            android:src="@drawable/back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            />img
+            android:paddingBottom="@dimen/y30"
+            android:paddingTop="@dimen/y30"
+            android:src="@drawable/back" />
+
         <TextView
             android:id="@+id/bar"
-            android:text="优云"
-            android:gravity="center"
-            android:textSize="@dimen/y66"
-            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y138" />
+            android:layout_height="@dimen/y138"
+            android:gravity="center"
+            android:text="优云"
+            android:textColor="@color/white"
+            android:textSize="@dimen/y66" />
+
         <ImageView
             android:id="@+id/img_zXing"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/erweima"
-            android:paddingTop="@dimen/y30"
-            android:paddingBottom="@dimen/y30"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"  />
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/y30"
+            android:paddingTop="@dimen/y30"
+            android:src="@drawable/erweima" />
     </RelativeLayout>
 
     <ScrollView
@@ -129,9 +129,9 @@
 
             <LinearLayout
                 android:id="@+id/tv_upload"
-                android:layout_marginTop="@dimen/line_span_small"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
+                android:layout_marginTop="@dimen/line_span_small"
                 android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
@@ -194,8 +194,7 @@
                     android:layout_height="@dimen/y75"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/y60"
-                    />
+                    android:layout_marginRight="@dimen/y60" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -246,12 +245,12 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/imageView2"
                     android:layout_width="@dimen/y60"
                     android:layout_height="@dimen/y60"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/x40"
-                    android:src="@drawable/aboutus"
-                    android:id="@+id/imageView2" />
+                    android:src="@drawable/aboutus" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -267,9 +266,9 @@
 
             <LinearLayout
                 android:id="@+id/tv_version"
-                android:layout_marginTop="@dimen/line_span_small"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
+                android:layout_marginTop="@dimen/line_span_small"
                 android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
@@ -308,6 +307,7 @@
                     android:src="@drawable/revise_psd" />
 
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
                     android:background="@drawable/text_select_item"
@@ -315,8 +315,7 @@
                     android:paddingLeft="@dimen/x60"
                     android:text="修改密码"
                     android:textColor="@color/dark"
-                    android:textSize="16sp"
-                    android:id="@+id/textView" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
 
