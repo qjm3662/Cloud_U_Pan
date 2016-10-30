@@ -46,7 +46,7 @@
         android:paddingBottom="@dimen/y102"
         android:paddingLeft="@dimen/x102"
         android:paddingRight="@dimen/x102"
-        android:src="@drawable/erweima"
+        android:src="@drawable/wifi_"
         android:layout_width="@dimen/x150"
         android:layout_height="@dimen/y150"
         android:layout_alignBottom="@+id/btn_bluetooth"

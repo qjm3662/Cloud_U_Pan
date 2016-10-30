@@ -49,6 +49,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private ViewGroup tv_callback;
     private TextView tv_bar;
     private ImageView img_back;
+    private ImageView img_zXing;
     private TextView tv_exit;
     private TextView tv_current_save_path;
     private ViewGroup tv_version;
@@ -135,6 +136,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_current_save_path.setText(App.currentSavePath);
         tv_bar.setText("关于我的");
         img_back = (ImageView) findViewById(R.id.img_back);
+        img_zXing = (ImageView) findViewById(R.id.img_zXing);
         ll_header = (ViewGroup) findViewById(R.id.ll_header);
 
         img_edit_nickname.setOnClickListener(this);
@@ -151,6 +153,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
         tv_current_save_path.setOnClickListener(this);
         tv_revisePsd.setOnClickListener(this);
         ll_header.setOnClickListener(this);
+        img_zXing.setOnClickListener(this);
 
         img_head.setOnClickListener(this);
         if (App.Flag_IsLogin) {
@@ -295,6 +298,15 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }else{
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
+                }
+                break;
+            case R.id.img_zXing:
+                System.out.println("click img_zing");
+                if(App.Flag_IsLogin){
+                    startActivity(new Intent(this, ZXingAddFriend.class));
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }else{
+                    EasySweetAlertDialog.ShowTip(this, "Tip", "清先登录");
                 }
                 break;
         }

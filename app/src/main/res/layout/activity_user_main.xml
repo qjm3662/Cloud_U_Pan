@@ -7,7 +7,37 @@
     android:isScrollContainer="true"
     android:orientation="vertical">
 
-    <include layout="@layout/bar_item" />
+    <RelativeLayout
+        android:background="@color/blue"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:paddingTop="@dimen/y30"
+            android:paddingBottom="@dimen/y30"
+            android:src="@drawable/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />img
+        <TextView
+            android:id="@+id/bar"
+            android:text="优云"
+            android:gravity="center"
+            android:textSize="@dimen/y66"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y138" />
+        <ImageView
+            android:id="@+id/img_zXing"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/erweima"
+            android:paddingTop="@dimen/y30"
+            android:paddingBottom="@dimen/y30"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"  />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"

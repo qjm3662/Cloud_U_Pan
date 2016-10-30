@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,8 +16,7 @@ import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-
-import java.io.File;
+import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -92,12 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.btn_bluetooth:
-                if(App.Flag_IsLogin){
-                    startActivity(new Intent(this, ZXingAddFriend.class));
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                }else{
-                    EasySweetAlertDialog.ShowTip(this, "Tip", "清先登录");
-                }
+                startActivity(new Intent(this, TransMain.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.btn_more:
                 View.OnClickListener listener = new View.OnClickListener() {
@@ -142,13 +136,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case requestCode_selectFile:
-                if (data != null) {
-                    System.out.println(data.getStringExtra(PATH));
-                    File file = new File(data.getStringExtra(PATH));
-                    this.startActivity(new Intent(this, UploadUi.class));
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
-                }
+//                if (data != null) {
+//                    System.out.println(data.getStringExtra(PATH));
+//                    File file = new File(data.getStringExtra(PATH));
+//                    this.startActivity(new Intent(this, UploadUi.class));
+//                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
+//                }
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
