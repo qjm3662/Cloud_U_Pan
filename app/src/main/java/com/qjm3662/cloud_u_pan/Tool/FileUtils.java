@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
@@ -394,42 +395,64 @@ public class FileUtils {
     public static Bitmap getImgHead(Context context, String type, String path) {
         switch (type){
             case LocalFile.DOC:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
+                return App.b_doc;
             case LocalFile.HTML:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.html);
+                return App.b_html;
             case LocalFile.MUSIC:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.music);
+                return App.b_music;
             case LocalFile.PHOTO:
                 return FileUtils.getImageThumbnail(path, 100, 100);
             case LocalFile.PPT_PDF:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.pptpdf);
+                return App.b_ppt_pdf;
             case LocalFile.VIDEO:
                 return ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MINI_KIND);
             case LocalFile.ZIP:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.zip);
+                return App.b_zip;
             default:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
+                return App.b_doc;
         }
     }
 
-    public static Bitmap getImgHead_not_down(Context context, String type){
+    public static Bitmap getImgHead_not_down(File file){
+        String type = getMIMEType(file);
         switch (type){
             case LocalFile.DOC:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
+                return App.b_doc;
             case LocalFile.HTML:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.html);
+                return App.b_html;
             case LocalFile.MUSIC:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.music);
+                return App.b_music;
             case LocalFile.PHOTO:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.picture);
+                return App.b_photo;
             case LocalFile.PPT_PDF:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.pptpdf);
+                return App.b_ppt_pdf;
             case LocalFile.VIDEO:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.vedio);
+                return App.b_video;
             case LocalFile.ZIP:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.zip);
+                return App.b_zip;
             default:
-                return BitmapFactory.decodeResource(context.getResources(), R.drawable.file_small);
+                return App.b_doc;
+        }
+    }
+
+    public static Bitmap getImgHead_not_down(String type){
+        switch (type){
+            case LocalFile.DOC:
+                return App.b_doc;
+            case LocalFile.HTML:
+                return App.b_html;
+            case LocalFile.MUSIC:
+                return App.b_music;
+            case LocalFile.PHOTO:
+                return App.b_photo;
+            case LocalFile.PPT_PDF:
+                return App.b_ppt_pdf;
+            case LocalFile.VIDEO:
+                return App.b_video;
+            case LocalFile.ZIP:
+                return App.b_zip;
+            default:
+                return App.b_doc;
         }
     }
 

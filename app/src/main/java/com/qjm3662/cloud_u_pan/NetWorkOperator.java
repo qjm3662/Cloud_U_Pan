@@ -394,7 +394,7 @@ public class NetWorkOperator {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
 //                                    System.out.println(fileInformation);
                                     String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
-                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(context, type));
+                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
                                     App.Public_List_File_Info.add(fileInformation);
                                     Intent intent = new Intent();
                                     intent.setAction(ShareCenter.ACTION);
@@ -459,7 +459,7 @@ public class NetWorkOperator {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
                                     String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
-                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(context, type));
+                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
                                     shares.add(fileInformation);
                                 }
                                 App.user_temp.setShares_list(shares);
@@ -529,7 +529,7 @@ public class NetWorkOperator {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
                                     String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
-                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(context, type));
+                                    fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
                                     shares.add(fileInformation);
                                 }
                                 if (where != 3) {

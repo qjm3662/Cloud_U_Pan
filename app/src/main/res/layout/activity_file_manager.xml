@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:id="@+id/activity_file_manager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,9 +10,10 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_marginTop="@dimen/y138"
         android:layout_width="match_parent"
+        android:scrollingCache="false"
+        android:animationCache="false"
         android:layout_height="match_parent">
 
     </ListView>
-</RelativeLayout>
+</LinearLayout>

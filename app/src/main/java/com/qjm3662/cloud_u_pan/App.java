@@ -9,18 +9,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.net.wifi.p2p.WifiP2pDevice;
 
 import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
-import com.qjm3662.cloud_u_pan.UI.FirstLunchActivity;
-import com.qjm3662.cloud_u_pan.UI.MainActivity;
+import com.qjm3662.cloud_u_pan.Tool.UILImageLoader;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
@@ -30,7 +30,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import cn.finalteam.galleryfinal.CoreConfig;
+import cn.finalteam.galleryfinal.FunctionConfig;
+import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.ImageLoader;
+import cn.finalteam.galleryfinal.ThemeConfig;
 import okhttp3.OkHttpClient;
+
+//import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by tanshunwang on 2016/9/21 0021.
@@ -38,7 +45,6 @@ import okhttp3.OkHttpClient;
 public class App extends Application{
 
     public static FileInformation fileInformation = new FileInformation();
-    public static List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
 
     //本地上传记录
     public static List<LocalFile> Public_List_Local_File_Upload = new ArrayList<LocalFile>();
@@ -46,8 +52,7 @@ public class App extends Application{
     public static List<LocalFile> Public_List_Local_File_Download = new ArrayList<LocalFile>();
     //分享中心记录
     public static List<FileInformation> Public_List_File_Info = Collections.synchronizedList(new ArrayList<FileInformation>());
-//    //别人的上传历史
-//    public static List<User> Public_List_Others = Collections.synchronizedList(new ArrayList<User>());
+
     //暂存当前点击的用户
     public static User user_temp = null;
     //关注的人信息
@@ -68,12 +73,25 @@ public class App extends Application{
     public static String currentSavePath = FileUtils.getSDPath();
     public static boolean FLAG_IS_DATA_FINISH = false;
 
+
+    public static Bitmap b_directory;
+    public static Bitmap b_doc;
+    public static Bitmap b_html;
+    public static Bitmap b_music;
+    public static Bitmap b_photo;
+    public static Bitmap b_ppt_pdf;
+    public static Bitmap b_video;
+    public static Bitmap b_zip;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
         initReceiver();
         //数据库相关操作
         new Thread(new Runnable() {
+
+
             @Override
             public void run() {
                 getUserInfo();
@@ -86,8 +104,45 @@ public class App extends Application{
                 OkHttpUtils.initClient(okHttpClient);
                 initDataBase();
                 GetFileInformationFromDB();
+
+                getBitmapIcon();
+                //相册配置初始化
+                initGallerFinal();
             }
         }).start();
+
+
+
+    }
+
+    private void initGallerFinal() {
+        //创建默认的ImageLoader配置参数
+        ImageLoaderConfiguration configuration = ImageLoaderConfiguration
+                .createDefault(this);
+        com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(configuration);
+        //设置主题
+        //ThemeConfig.CYAN
+        ThemeConfig theme = new ThemeConfig.Builder()
+                .setTitleBarBgColor(getResources().getColor(R.color.blue))
+                .setTitleBarTextColor(Color.WHITE)
+                .build();
+
+        //配置功能
+        FunctionConfig functionConfig = new FunctionConfig.Builder()
+                .setEnableCamera(true)
+                .setEnableEdit(true)
+                .setEnableCrop(true)
+                .setEnableRotate(true)
+                .setCropSquare(true)
+                .setEnablePreview(true)
+                .build();
+
+        //配置 imageloader
+        ImageLoader imageloader = new UILImageLoader();
+        CoreConfig coreConfig = new CoreConfig.Builder(this, imageloader, theme)
+                .setFunctionConfig(functionConfig)
+                .build();
+        GalleryFinal.init(coreConfig);
     }
 
     private void initReceiver() {
@@ -187,4 +242,13 @@ public class App extends Application{
     }
 
 
+    public void getBitmapIcon() {
+        b_directory = BitmapFactory.decodeResource(getResources(), R.drawable.directy);
+        b_doc = BitmapFactory.decodeResource(getResources(), R.drawable.file_small);
+        b_music = BitmapFactory.decodeResource(getResources(), R.drawable.music);
+        b_photo = BitmapFactory.decodeResource(getResources(), R.drawable.picture);
+        b_ppt_pdf = BitmapFactory.decodeResource(getResources(), R.drawable.pptpdf);
+        b_video = BitmapFactory.decodeResource(getResources(), R.drawable.vedio);
+        b_zip = BitmapFactory.decodeResource(getResources(), R.drawable.zip);
+    }
 }

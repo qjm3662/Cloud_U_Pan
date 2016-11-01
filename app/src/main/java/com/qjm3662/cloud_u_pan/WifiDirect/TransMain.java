@@ -1,6 +1,7 @@
 package com.qjm3662.cloud_u_pan.WifiDirect;
 
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,7 @@ public class TransMain extends AppCompatActivity implements View.OnClickListener
     private EasyButton btn_receive;
     private TextView tv_bar;
     private ImageView img_back;
+    private WifiManager wifiManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,10 @@ public class TransMain extends AppCompatActivity implements View.OnClickListener
         tv_bar.setText("直连快传");
         img_back = (ImageView) findViewById(R.id.img_back);
         img_back.setOnClickListener(this);
+        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+        if(!wifiManager.isWifiEnabled()){
+            wifiManager.setWifiEnabled(true);
+        }
     }
 
     @Override

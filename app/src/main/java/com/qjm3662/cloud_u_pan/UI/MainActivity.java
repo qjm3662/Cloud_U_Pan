@@ -18,6 +18,8 @@ import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
 
+import java.io.File;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String PATH = "path";
 
     private Dialog dialog = null;
+    private static final int REQUEST_CODE_GALLERY = 253;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -136,13 +140,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case requestCode_selectFile:
-//                if (data != null) {
-//                    System.out.println(data.getStringExtra(PATH));
-//                    File file = new File(data.getStringExtra(PATH));
-//                    this.startActivity(new Intent(this, UploadUi.class));
-//                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-//                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
-//                }
+                if (data != null) {
+                    System.out.println(data.getStringExtra(PATH));
+                    File file = new File(data.getStringExtra(PATH));
+                    this.startActivity(new Intent(this, UploadUi.class));
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
+                }
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);

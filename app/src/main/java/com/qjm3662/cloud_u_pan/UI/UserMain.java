@@ -331,14 +331,6 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 PHOTO_REQUEST_TAKEPHOTO);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
-//
-//    //从相册获取图片并裁剪
-//    private void getAlbum() {
-//        Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-//        getAlbum.setType("image/*");
-//        startActivityForResult(getAlbum, PHOTO_REQUEST_GALLERY);
-//    }
-
     /**
      * 调用系统裁剪功能
      *
