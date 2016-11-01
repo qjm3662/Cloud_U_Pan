@@ -127,6 +127,7 @@ public class App extends Application{
         ThemeConfig theme = new ThemeConfig.Builder()
                 .setTitleBarBgColor(getResources().getColor(R.color.blue))
                 .setTitleBarTextColor(Color.WHITE)
+                .setEditPhotoBgTexture(getResources().getDrawable(R.color.black))
                 .build();
 
         //配置功能
@@ -165,7 +166,6 @@ public class App extends Application{
             localFile.setType(c.getString(c.getColumnIndex(LocalFileDB.COLUMN_NAME_Type)));
             Long times = c.getLong(c.getColumnIndex(LocalFileDB.COLUMN_NAME_DownTime));
             localFile.setDownTime(times);
-            localFile.setBitmap_type(FileUtils.getImgHead(this, localFile.getType(), localFile.getPath()));
             Public_List_Local_File_Upload.add(localFile);
         }
 
@@ -177,7 +177,6 @@ public class App extends Application{
             localFile.setType(c.getString(c.getColumnIndex(LocalFileDB.COLUMN_NAME_Type)));
             Long times = c.getLong(c.getColumnIndex(LocalFileDB.COLUMN_NAME_DownTime));
             localFile.setDownTime(times);
-            localFile.setBitmap_type(FileUtils.getImgHead(this, localFile.getType(), localFile.getPath()));
             Public_List_Local_File_Download.add(localFile);
         }
     }

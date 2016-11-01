@@ -616,7 +616,7 @@ public class NetWorkOperator {
                 intent[1].putExtra("TYPE", FileUtils.getMIMEType(response));
 
                 String type = FileUtils.getMIMEType(response);
-                LocalFile localFile = new LocalFile(response.getName(), response.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, response.getAbsolutePath()));
+                LocalFile localFile = new LocalFile(response.getName(), response.getAbsolutePath(), System.currentTimeMillis(), type);
                 App.Public_List_Local_File_Download.add(localFile);
                 ContentValues cv = new ContentValues();
                 cv.put(LocalFileDB.COLUMN_NAME_Name, localFile.getName());
@@ -789,7 +789,7 @@ public class NetWorkOperator {
                                              System.out.println("file.getName() : " + file.getName());
                                              System.out.println("jsonObject.getString(\"identifyCode\")" + jsonObject.getString("identifyCode"));
                                              String type = FileUtils.getMIMEType(file);
-                                             LocalFile localFile = new LocalFile(file.getName(), file.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, file.getAbsolutePath()));
+                                             LocalFile localFile = new LocalFile(file.getName(), file.getAbsolutePath(), System.currentTimeMillis(), type);
                                              App.Public_List_Local_File_Upload.add(localFile);
 
                                              ContentValues cv = new ContentValues();
@@ -853,7 +853,7 @@ public class NetWorkOperator {
                                          System.out.println("file.getName() : " + file.getName());
                                          System.out.println("jsonObject.getString(\"identifyCode\")" + jsonObject.getString("identifyCode"));
                                          String type = FileUtils.getMIMEType(file);
-                                         LocalFile localFile = new LocalFile(file.getName(), file.getAbsolutePath(), System.currentTimeMillis(), type, FileUtils.getImgHead(context, type, file.getAbsolutePath()));
+                                         LocalFile localFile = new LocalFile(file.getName(), file.getAbsolutePath(), System.currentTimeMillis(), type);
                                          App.Public_List_Local_File_Upload.add(localFile);
 
                                          ContentValues cv = new ContentValues();

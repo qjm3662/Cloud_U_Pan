@@ -89,6 +89,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
             fileList.add(new FileManagerItem("手机相册", "/storage/sdcard0/DCIM", null, App.b_directory, true, false));
             fileList.add(new FileManagerItem("系统下载", "/storage/sdcard0/Download", null, App.b_directory, true, false));
             fileList.add(new FileManagerItem("优云文件夹", "/storage/sdcard0/U_pan_file", null, App.b_directory, true, false));
+            fileList.add(new FileManagerItem("SDCard1", "/storage/sdcard0", null, App.b_directory, true, false));
         } else {
             File file = new File(path);
             List<File> files = Arrays.asList(file.listFiles());
@@ -139,6 +140,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
                 fileList.add(new FileManagerItem("手机相册", "/storage/sdcard0/DCIM", null, App.b_directory, true, false));
                 fileList.add(new FileManagerItem("系统下载", "/storage/sdcard0/Download", null, App.b_directory, true, false));
                 fileList.add(new FileManagerItem("优云文件夹", "/storage/sdcard0/U_pan_file", null, App.b_directory, true, false));
+                fileList.add(new FileManagerItem("SDCard1", "/storage/sdcard0", null, App.b_directory, true, false));
             } else {
                 File file = new File(path);
                 List<File> files = Arrays.asList(file.listFiles());
@@ -186,6 +188,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
             fileList.add(new FileManagerItem("手机相册", "/storage/sdcard0/DCIM", null, App.b_directory, true, false));
             fileList.add(new FileManagerItem("系统下载", "/storage/sdcard0/Download", null, App.b_directory, true, false));
             fileList.add(new FileManagerItem("优云文件夹", "/storage/sdcard0/U_pan_file", null, App.b_directory, true, false));
+            fileList.add(new FileManagerItem("SDCard1", "/storage/sdcard0", null, App.b_directory, true, false));
         } else {
             File file = new File(path);
             List<File> files = Arrays.asList(file.listFiles());

@@ -392,26 +392,26 @@ public class FileUtils {
         }
     }
 
-    public static Bitmap getImgHead(Context context, String type, String path) {
-        switch (type){
-            case LocalFile.DOC:
-                return App.b_doc;
-            case LocalFile.HTML:
-                return App.b_html;
-            case LocalFile.MUSIC:
-                return App.b_music;
-            case LocalFile.PHOTO:
-                return FileUtils.getImageThumbnail(path, 100, 100);
-            case LocalFile.PPT_PDF:
-                return App.b_ppt_pdf;
-            case LocalFile.VIDEO:
-                return ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MINI_KIND);
-            case LocalFile.ZIP:
-                return App.b_zip;
-            default:
-                return App.b_doc;
-        }
-    }
+//    public static Bitmap getImgHead(Context context, String type, String path) {
+//        switch (type){
+//            case LocalFile.DOC:
+//                return App.b_doc;
+//            case LocalFile.HTML:
+//                return App.b_html;
+//            case LocalFile.MUSIC:
+//                return App.b_music;
+//            case LocalFile.PHOTO:
+//                return FileUtils.getImageThumbnail(path, 100, 100);
+//            case LocalFile.PPT_PDF:
+//                return App.b_ppt_pdf;
+//            case LocalFile.VIDEO:
+//                return ThumbnailUtils.createVideoThumbnail(path, MediaStore.Video.Thumbnails.MINI_KIND);
+//            case LocalFile.ZIP:
+//                return App.b_zip;
+//            default:
+//                return App.b_doc;
+//        }
+//    }
 
     public static Bitmap getImgHead_not_down(File file){
         String type = getMIMEType(file);

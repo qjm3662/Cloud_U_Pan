@@ -37,7 +37,7 @@ public class FileManagerAdapter extends BaseAdapter {
             .showImageOnLoading(R.drawable.picture)// 在ImageView加载过程中显示图片
             .showImageForEmptyUri(R.drawable.picture) // image连接地址为空时
             .showImageOnFail(R.drawable.picture) // image加载失败
-            
+
             .cacheInMemory(true) // 加载图片时会在内存中加载缓存
             .cacheOnDisk(true) // 加载图片时会在磁盘中加载缓存
             .displayer(new FadeInBitmapDisplayer(200)) // 设置用户加载图片task(这里是圆角图片显示)
@@ -95,7 +95,7 @@ public class FileManagerAdapter extends BaseAdapter {
     /**
      * 图片加载监听事件
      **/
-    private static class AnimateFirstDisplayListener extends
+    public static class AnimateFirstDisplayListener extends
             SimpleImageLoadingListener {
 
         static final List<String> displayedImages = Collections

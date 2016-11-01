@@ -347,11 +347,20 @@
 
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y102"
+                android:gravity="bottom"
+                android:paddingBottom="@dimen/y15"
+                android:paddingLeft="@dimen/x60"
+                android:text="退出"
+                android:textColor="@color/dark"
+                android:textSize="12sp" />
+
+            <TextView
                 android:id="@+id/tv_exit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginBottom="@dimen/y120"
-                android:layout_marginTop="@dimen/y120"
                 android:background="@drawable/text_select_item"
                 android:gravity="center"
                 android:text="退出"
