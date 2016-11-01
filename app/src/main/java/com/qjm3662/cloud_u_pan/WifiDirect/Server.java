@@ -56,7 +56,7 @@ public class Server extends ServerSocket {
                     byte[] sendBytes = new byte[1024];
                     long transLen = 0;
                     System.out.println("----开始接收文件<" + fileName + ">,文件大小为<" + fileLength + ">----");
-                    serverListener.FileInfoCallback(fileName, FileUtils.getSDPath() + "/" + fileName);
+                    serverListener.FileInfoCallback(fileName, FileUtils.getSDPath() + "/WifiDirectFile/" + fileName);
                     long startTime = System.currentTimeMillis();
                     int progress = 0;
                     int temp = -1;

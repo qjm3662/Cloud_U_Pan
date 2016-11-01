@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/img_head"
+        android:layout_gravity="center"
         android:src="@drawable/music"
-        android:paddingTop="@dimen/y36"
-        android:paddingBottom="@dimen/y36"
-        android:layout_marginLeft="@dimen/x30"
-        android:layout_width="@dimen/x162"
-        android:layout_height="@dimen/y162" />
+        android:layout_marginLeft="@dimen/y36"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/y120"
+        android:layout_height="@dimen/y120" />
 
     <TextView
         android:id="@+id/tv_fileName"
@@ -29,7 +29,8 @@
     <View
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:id="@+id/view" />
 
     <TextView
         android:id="@+id/tv_time"

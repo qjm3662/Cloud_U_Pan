@@ -70,7 +70,7 @@ public class App extends Application{
     //1->有网络连接  2->wifi连接   3->手机连接
     public static int NeworkFlag = -1;
     public static boolean Flag_IsLogin = false;
-    public static String currentSavePath = FileUtils.getSDPath();
+    public static String currentSavePath = FileUtils.getSDPath() + "/Download/";
     public static boolean FLAG_IS_DATA_FINISH = false;
 
 
@@ -120,6 +120,8 @@ public class App extends Application{
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration
                 .createDefault(this);
         com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(configuration);
+
+
         //设置主题
         //ThemeConfig.CYAN
         ThemeConfig theme = new ThemeConfig.Builder()
@@ -134,6 +136,9 @@ public class App extends Application{
                 .setEnableCrop(true)
                 .setEnableRotate(true)
                 .setCropSquare(true)
+                .setCropHeight(500)
+                .setCropWidth(500)
+                .setForceCrop(true)
                 .setEnablePreview(true)
                 .build();
 
