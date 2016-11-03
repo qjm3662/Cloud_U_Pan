@@ -1,10 +1,10 @@
 package com.qjm3662.cloud_u_pan.UI;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 
 public class UserAgreement extends AppCompatActivity {
@@ -136,6 +136,6 @@ public class UserAgreement extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(this);
     }
 }

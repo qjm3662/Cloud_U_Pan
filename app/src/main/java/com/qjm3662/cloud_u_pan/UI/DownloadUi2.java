@@ -30,8 +30,6 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 public class DownloadUi2 extends AppCompatActivity implements View.OnClickListener {
 
     private EasyButton btn_share_qq;
@@ -259,6 +257,6 @@ public class DownloadUi2 extends AppCompatActivity implements View.OnClickListen
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(this);
     }
 }

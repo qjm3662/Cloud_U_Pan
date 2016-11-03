@@ -176,7 +176,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 if (!App.Flag_IsLogin) {
                     finish();
                     this.startActivity(new Intent(this, Login.class));
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    App.startAnim(UserMain.this);
                 }
                 break;
             case R.id.img_avatar:
@@ -192,7 +192,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.tv_callback:
                 startActivity(new Intent(this, CallBack.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(UserMain.this);
                 break;
             case R.id.tv_following:
                 if (App.Flag_IsLogin) {
@@ -205,7 +205,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 Intent i = new Intent(UserMain.this, FileManager.class);
                 i.putExtra("WHERE", 2);
                 startActivityForResult(i, PATH_REQUEST);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(UserMain.this);
                 break;
             case R.id.tv_upload:
                 if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
@@ -216,7 +216,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     Intent intent = new Intent(UserMain.this, OthersMain.class);
                     intent.putExtra("WHERE", 1);
                     startActivity(intent);
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    App.startAnim(UserMain.this);
                 } else {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
@@ -230,7 +230,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 //删除SharedPreferences的记录
                 App.deleteUserInfo(this);
                 this.startActivity(new Intent(this, Login.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(UserMain.this);
                 finish();
                 break;
             case R.id.my_switch_button:
@@ -247,11 +247,11 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.tv_version:
                 startActivity(new Intent(this, VersionInfo.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(UserMain.this);
                 break;
             case R.id.tv_about_us:
                 startActivity(new Intent(this, AboutUs.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(UserMain.this);
                 break;
             case R.id.tv_revisePsd:
                 if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
@@ -259,7 +259,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     return;
                 } else if (App.Flag_IsLogin) {
                     startActivity(new Intent(this, RevisePassword.class));
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    App.startAnim(UserMain.this);
                 } else {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
@@ -268,7 +268,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 System.out.println("click img_zing");
                 if (App.Flag_IsLogin) {
                     startActivity(new Intent(this, ZXingAddFriend.class));
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    App.startAnim(UserMain.this);
                 } else {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "清先登录");
                 }
@@ -315,7 +315,7 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(UserMain.this);
     }
 
 

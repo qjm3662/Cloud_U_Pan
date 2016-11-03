@@ -1,6 +1,5 @@
 package com.qjm3662.cloud_u_pan.UI;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.MatcherUtils;
@@ -45,7 +45,7 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
             case R.id.register_to_login:
                 intent = new Intent(RegisterUI.this,Login.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(RegisterUI.this);
                 finish();
                 break;
             case R.id.register_btn:
@@ -71,6 +71,6 @@ public class RegisterUI extends AppCompatActivity implements View.OnClickListene
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(RegisterUI.this);
     }
 }

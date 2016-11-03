@@ -70,7 +70,6 @@ public class DownloadUi extends AppCompatActivity implements View.OnClickListene
                         intent.putExtra("code", editTextWithDivLine.getPwdText());
                         startActivity(intent);
                         editTextWithDivLine.clearText();
-                        finish();
                     }
                 };
                 NetWorkOperator.GetFileInformation(this, editTextWithDivLine.getPwdText(), App.fileInformation, callBack);
@@ -90,6 +89,6 @@ public class DownloadUi extends AppCompatActivity implements View.OnClickListene
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(this);
     }
 }

@@ -195,7 +195,7 @@ public class NetWorkOperator {
                                                 Intent intent = new Intent(context, Followings.class);
                                                 intent.putExtra("WHERE", 3);
                                                 context.startActivity(intent);
-                                                ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                                App.startAnim((Activity)context);
                                             }
                                         }
                                     };
@@ -203,7 +203,7 @@ public class NetWorkOperator {
                                         Intent intent = new Intent(context, Followings.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
-                                        ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                        App.startAnim((Activity)context);
                                         return;
                                     }
                                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -470,7 +470,7 @@ public class NetWorkOperator {
                                         Intent intent = new Intent(context, OthersMain.class);
                                         intent.putExtra("WHERE", 3);
                                         context.startActivity(intent);
-                                        ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                        App.startAnim((Activity)context);
                                         if(isNeedFinish){
                                             ((Activity) context).finish();
                                         }
@@ -535,7 +535,7 @@ public class NetWorkOperator {
                                 if (where != 3) {
                                     context.startActivity(new Intent(context, UserMain.class));
                                     ((Activity) context).finish();
-                                    ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                    App.startAnim((Activity)context);
                                 }
                                 User.getInstance().setShares_list(shares);
                                 System.out.println(User.getInstance().toString());

@@ -1,12 +1,13 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 
 public class VersionInfo extends AppCompatActivity implements View.OnClickListener {
@@ -46,7 +47,7 @@ public class VersionInfo extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.tv_user_agreement:
                 startActivity(new Intent(this, UserAgreement.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(VersionInfo.this);
                 break;
         }
     }
@@ -60,6 +61,6 @@ public class VersionInfo extends AppCompatActivity implements View.OnClickListen
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(VersionInfo.this);
     }
 }

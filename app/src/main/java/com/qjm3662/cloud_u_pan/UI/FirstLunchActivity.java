@@ -1,15 +1,15 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.qjm3662.cloud_u_pan.Adapter.FirstViewAdapter;
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 
 import java.util.ArrayList;
@@ -104,6 +104,6 @@ public class FirstLunchActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(this);
     }
 }

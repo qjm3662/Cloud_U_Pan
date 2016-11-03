@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 
@@ -122,6 +123,7 @@ public class Receive_Activity extends AppCompatActivity {
     public void onBackPressed() {
         manager.DisConnect();
         super.onBackPressed();
+        App.finishAnim(this);
     }
 
 }

@@ -1,9 +1,8 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -149,7 +148,7 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
                     intent.putExtra("code", code);
                     intent.putExtra("WHERE", 1);
                     startActivity(intent);
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    App.startAnim(OthersMain.this);
                 }
             };
             NetWorkOperator.GetFileInformation(this, code, App.fileInformation, callBack);
@@ -170,6 +169,6 @@ public class OthersMain extends AppCompatActivity implements View.OnClickListene
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(OthersMain.this);
     }
 }

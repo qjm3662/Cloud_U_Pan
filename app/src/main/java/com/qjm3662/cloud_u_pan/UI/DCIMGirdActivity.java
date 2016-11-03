@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.qjm3662.cloud_u_pan.Adapter.DCIMDirectryAdapter;
 import com.qjm3662.cloud_u_pan.Adapter.DCIMGridViewAdapter;
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.LocalDCIMUtils;
@@ -102,7 +103,7 @@ public class DCIMGirdActivity extends AppCompatActivity implements AdapterView.O
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
         img_camera = (ImageView) findViewById(R.id.img_camera);
@@ -132,6 +133,7 @@ public class DCIMGirdActivity extends AppCompatActivity implements AdapterView.O
             isDirect = true;
         }else{
             super.onBackPressed();
+            App.finishAnim(this);
         }
     }
 
@@ -165,4 +167,5 @@ public class DCIMGirdActivity extends AppCompatActivity implements AdapterView.O
             Toast.makeText(this, "裁切图片失败", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

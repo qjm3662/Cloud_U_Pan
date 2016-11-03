@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 
@@ -48,13 +49,21 @@ public class TransMain extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.btn_send:
                 startActivity(new Intent(this, Send_Activity.class));
+                App.startAnim(this);
                 break;
             case R.id.btn_receive:
                 startActivity(new Intent(this, Receive_Activity.class));
+                App.startAnim(this);
                 break;
             case R.id.img_back:
                 onBackPressed();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        App.finishAnim(this);
     }
 }

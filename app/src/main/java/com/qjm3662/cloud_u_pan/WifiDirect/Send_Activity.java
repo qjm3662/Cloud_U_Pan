@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
 
@@ -175,5 +176,11 @@ public class Send_Activity extends AppCompatActivity implements AdapterView.OnIt
                 manager.DisConnect();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        App.finishAnim(this);
     }
 }
