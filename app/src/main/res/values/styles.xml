@@ -8,17 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowIsTranslucent"> true </item>
         <item name="barBackground">@color/blue</item>
-        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
 
 
+    <string-array name="permissions">
+        <item>@string/permission_recode_audio_hint</item>
+        <item>@string/permission_get_accounts_hint</item>
+        <item>@string/permission_read_phone_hint</item>
+        <item>@string/permission_call_phone_hint</item>
+        <item>@string/permission_camera_hint</item>
+        <item>@string/permission_access_fine_location_hint</item>
+        <item>@string/permission_access_coarse_location_hint</item>
+        <item>@string/permission_read_external_hint</item>
+        <item>@string/permission_white_external_hint</item>
+    </string-array>
 
-    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/push_left_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/push_left_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/push_right_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
-    </style>
     <style name="EasyButtonStyle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <!--<item name="android:textSize">18sp</item>-->
         <item name="android:textColor">@color/black</item>

@@ -77,4 +77,7 @@ public class BitmapTool {
         Log.e("ByteToFile : ", file.length() + "");
         return path;
     }
+
+
+
 }

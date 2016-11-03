@@ -24,7 +24,7 @@ public class EasySweetAlertDialog {
                 .show();
     }
 
-    public static void ShowTip(Context context, String title, String content, String ConfirmText, final SuccessCallBack callBack){
+    public static void ShowTip(final Context context, String title, String content, String ConfirmText, final SuccessCallBack callBack){
         new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText(title)
                 .setContentText(content)
@@ -33,7 +33,7 @@ public class EasySweetAlertDialog {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         sweetAlertDialog.dismissWithAnimation();
-                        callBack.Success();
+                        callBack.Success(context);
                     }
                 })
                 .show();
@@ -59,7 +59,7 @@ public class EasySweetAlertDialog {
     }
 
     //Success
-    public static void ShowSuccess(Context context, String title, String content, final SuccessCallBack callBack){
+    public static void ShowSuccess(final Context context, String title, String content, final SuccessCallBack callBack){
 
         new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
                 .setTitleText(title)
@@ -67,7 +67,7 @@ public class EasySweetAlertDialog {
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        callBack.Success();
+                        callBack.Success(context);
                     }
                 })
                 .show();
@@ -139,7 +139,7 @@ public class EasySweetAlertDialog {
 
 
     public interface SuccessCallBack{
-        void Success();
+        void Success(Context context);
     }
 
 }

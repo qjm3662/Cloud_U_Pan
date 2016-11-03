@@ -1,9 +1,11 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,8 +19,6 @@ import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
-
-import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Dialog dialog = null;
     private static final int REQUEST_CODE_GALLERY = 253;
+    public static String FILE_PATH_TO_BE_UPLOAD = "the file is going to be upload";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         isFirstLunch();
         initView();
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void isFirstLunch() {
         SharedPreferences sp = this.getSharedPreferences("IS_FIRST", Context.MODE_PRIVATE);
         boolean b = sp.getBoolean("IS_FIRST", true);
@@ -56,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_main);
         }
     }
+
+
 
     private void initView() {
         btn_upload = (EasyButton) findViewById(R.id.btn_upload);
@@ -86,16 +98,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Intent intent = new Intent(this, FileManager.class);
                     intent.putExtra(FILE_SELECT, FILE_SELECT_CODE);
                     startActivityForResult(intent, requestCode_selectFile);
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    App.startAnim(MainActivity.this);
                 }
                 break;
             case R.id.btn_download:
                 startActivity(new Intent(this, DownloadUi.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(MainActivity.this);
                 break;
             case R.id.btn_bluetooth:
                 startActivity(new Intent(this, TransMain.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(MainActivity.this);
                 break;
             case R.id.btn_more:
                 View.OnClickListener listener = new View.OnClickListener() {
@@ -108,17 +120,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 break;
                             case R.id.img_upload_record:
                                 startActivity(new Intent(MainActivity.this, LocalFileRecording_Upload.class));
-                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                App.startAnim(MainActivity.this);
                                 dialog.cancel();
                                 break;
                             case R.id.img_download_record:
                                 startActivity(new Intent(MainActivity.this, LocalFileRecording_Download.class));
-                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                App.startAnim(MainActivity.this);
                                 dialog.cancel();
                                 break;
                             case R.id.img_share_center:
                                 startActivity(new Intent(MainActivity.this, ShareCenter.class));
-                                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                App.startAnim(MainActivity.this);
                                 dialog.cancel();
                                 NetWorkOperator.getShareCenter(MainActivity.this);
                                 break;
@@ -130,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_my:
                 startActivity(new Intent(this, UserMain.class));
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                App.startAnim(MainActivity.this);
                 break;
         }
     }
@@ -142,10 +154,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case requestCode_selectFile:
                 if (data != null) {
                     System.out.println(data.getStringExtra(PATH));
-                    File file = new File(data.getStringExtra(PATH));
-                    this.startActivity(new Intent(this, UploadUi.class));
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                    NetWorkOperator.UP_FILE(this, file, file.getName(), true);
+//                    File file = new File(data.getStringExtra(PATH));
+                    Intent intent = new Intent(this, UploadUi.class);
+                    intent.putExtra(FILE_PATH_TO_BE_UPLOAD, data.getStringExtra(PATH));
+                    this.startActivity(intent);
+                    App.startAnim(MainActivity.this);
                 }
                 break;
         }
@@ -156,13 +169,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        App.finishAnim(this);
     }
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.startAnim(MainActivity.this);
     }
 
 }

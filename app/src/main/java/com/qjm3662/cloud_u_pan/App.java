@@ -1,5 +1,6 @@
 package com.qjm3662.cloud_u_pan;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 
 import com.google.gson.Gson;
@@ -20,7 +20,6 @@ import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
-import com.qjm3662.cloud_u_pan.Tool.UILImageLoader;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
@@ -30,11 +29,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import cn.finalteam.galleryfinal.CoreConfig;
-import cn.finalteam.galleryfinal.FunctionConfig;
-import cn.finalteam.galleryfinal.GalleryFinal;
-import cn.finalteam.galleryfinal.ImageLoader;
-import cn.finalteam.galleryfinal.ThemeConfig;
 import okhttp3.OkHttpClient;
 
 //import com.nostra13.universalimageloader.core.ImageLoader;
@@ -90,8 +84,6 @@ public class App extends Application{
         initReceiver();
         //数据库相关操作
         new Thread(new Runnable() {
-
-
             @Override
             public void run() {
                 getUserInfo();
@@ -115,40 +107,48 @@ public class App extends Application{
 
     }
 
+    public static void startAnim(Activity activity){
+        activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+    public static void finishAnim(Activity activity){
+        activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
     private void initGallerFinal() {
         //创建默认的ImageLoader配置参数
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration
                 .createDefault(this);
         com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(configuration);
-
-
-        //设置主题
-        //ThemeConfig.CYAN
-        ThemeConfig theme = new ThemeConfig.Builder()
-                .setTitleBarBgColor(getResources().getColor(R.color.blue))
-                .setTitleBarTextColor(Color.WHITE)
-                .setEditPhotoBgTexture(getResources().getDrawable(R.color.black))
-                .build();
-
-        //配置功能
-        FunctionConfig functionConfig = new FunctionConfig.Builder()
-                .setEnableCamera(true)
-                .setEnableEdit(true)
-                .setEnableCrop(true)
-                .setEnableRotate(true)
-                .setCropSquare(true)
-                .setCropHeight(500)
-                .setCropWidth(500)
-                .setForceCrop(true)
-                .setEnablePreview(true)
-                .build();
-
-        //配置 imageloader
-        ImageLoader imageloader = new UILImageLoader();
-        CoreConfig coreConfig = new CoreConfig.Builder(this, imageloader, theme)
-                .setFunctionConfig(functionConfig)
-                .build();
-        GalleryFinal.init(coreConfig);
+//
+//
+//        //设置主题
+//        //ThemeConfig.CYAN
+//        ThemeConfig theme = new ThemeConfig.Builder()
+//                .setTitleBarBgColor(getResources().getColor(R.color.blue))
+//                .setTitleBarTextColor(Color.WHITE)
+//                .setEditPhotoBgTexture(getResources().getDrawable(R.color.black))
+//                .setPreviewBg(getResources().getDrawable(R.color.img_share))
+//                .build();
+//
+//        //配置功能
+//        FunctionConfig functionConfig = new FunctionConfig.Builder()
+//                .setEnableCamera(true)
+//                .setEnableEdit(true)
+//                .setEnableCrop(true)
+//                .setEnableRotate(true)
+//                .setCropSquare(true)
+//                .setCropHeight(500)
+//                .setCropWidth(500)
+//                .setForceCrop(true)
+//                .setEnablePreview(true)
+//                .build();
+//
+//        //配置 imageloader
+//        ImageLoader imageloader = new UILImageLoader();
+//        CoreConfig coreConfig = new CoreConfig.Builder(this, imageloader, theme)
+//                .setFunctionConfig(functionConfig)
+//                .build();
+//        GalleryFinal.init(coreConfig);
     }
 
     private void initReceiver() {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 
 public class AboutUs extends AppCompatActivity {
@@ -40,6 +41,6 @@ public class AboutUs extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        App.finishAnim(this);
     }
 }

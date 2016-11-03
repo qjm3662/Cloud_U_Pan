@@ -34,4 +34,7 @@
     <color name="blue_light">#e9faf8</color>
     <color name="white">#ffffff</color>
     <color name="night_light">#464646</color>
+
+    <!-- UCrop colors -->
+    <color name="ucrop_color_toolbar_widget">@color/white</color>
 </resources>

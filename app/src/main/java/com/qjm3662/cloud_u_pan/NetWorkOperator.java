@@ -80,17 +80,17 @@ public class NetWorkOperator {
                             if(jsonObject.getInt("code") == 0){
                                 EasySweetAlertDialog.ShowSuccess(context, "修改成功，请重新登陆", new EasySweetAlertDialog.SuccessCallBack() {
                                     @Override
-                                    public void Success() {
-                                        context.startActivity(new Intent(context, Login.class));
-                                        ((Activity)context).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                    public void Success(Context c) {
+                                        c.startActivity(new Intent(c, Login.class));
+                                        ((Activity)c).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                         Intent intent = new Intent();
                                         intent.setAction(UserMain.FINISH_SIGNAL);
-                                        context.sendBroadcast(intent);
+                                        c.sendBroadcast(intent);
                                         User.deleteUser();
                                         App.Flag_IsLogin = false;
                                         //删除SharedPreferences的记录
-                                        App.deleteUserInfo(context);
-                                        ((Activity)context).finish();
+                                        App.deleteUserInfo(c);
+                                        ((Activity)c).finish();
                                     }
                                 });
                             }else{
@@ -735,6 +735,16 @@ public class NetWorkOperator {
 
     }
 
+
+
+    static class MySuccessCalback implements EasySweetAlertDialog.SuccessCallBack{
+
+        @Override
+        public void Success(Context context) {
+            ((Activity)context).finish();
+        }
+    }
+
     /**
      * 上传文件
      *
@@ -747,7 +757,7 @@ public class NetWorkOperator {
     public static void UP_FILE(final Context context, final File file, String fileName, boolean isShare) {
         final Intent[] intent = new Intent[1];
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
-            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接", "OK", new MySuccessCalback());
             return;
         }
         String url = "";
@@ -771,7 +781,7 @@ public class NetWorkOperator {
                                      Intent intent_finish_upload_activity = new Intent();
                                      intent_finish_upload_activity.setAction(UploadUi.FINISH_SIGNAL);
                                      context.sendBroadcast(intent_finish_upload_activity);
-                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败");
+                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
                                  }
 
                                  @Override
@@ -803,7 +813,7 @@ public class NetWorkOperator {
                                              Intent intent_finish_upload_activity = new Intent();
                                              intent_finish_upload_activity.setAction(UploadUi.FINISH_SIGNAL);
                                              context.sendBroadcast(intent_finish_upload_activity);
-                                             EasySweetAlertDialog.ShowTip(context, "tip", "上传失败");
+                                             EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
                                          }
                                      } catch (JSONException e) {
                                          e.printStackTrace();
@@ -836,7 +846,7 @@ public class NetWorkOperator {
                                  @Override
                                  public void onError(Call call, Exception e, int id) {
                                      System.out.println("Error :" + e.toString());
-                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败");
+                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
                                  }
 
                                  @Override

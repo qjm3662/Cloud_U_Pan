@@ -7,11 +7,11 @@
 
     <ImageView
         android:id="@+id/img_back"
-        android:paddingTop="@dimen/y30"
-        android:paddingBottom="@dimen/y30"
-        android:src="@drawable/back"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/y80"
+        android:layout_height="@dimen/y70"
+        android:layout_marginLeft="@dimen/x40"
+        android:src="@drawable/back" />
     <TextView
         android:id="@+id/bar"
         android:text="优云"

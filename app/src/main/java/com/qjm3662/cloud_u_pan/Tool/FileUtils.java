@@ -319,6 +319,25 @@ public class FileUtils {
         return sdDir.toString();
     }
 
+
+    /**
+     * 获得SDCard的根目录
+     * @return
+     */
+    public static String getSDPath1() {
+        File sdDir = null;
+        boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED); //判断sd卡是否存在
+        if (sdCardExist) {
+            sdDir = new File("/sdcard");//获取跟目录
+        }
+        if(!sdDir.exists()){
+            sdDir.mkdirs();
+//            System.out.println("dfgweasrrgesgesgrsdegerg");
+        }
+        return sdDir.toString();
+    }
+
+
     public static String getPath(){
         String path = getSDPath() + "/header/";
         File file = new File(path);

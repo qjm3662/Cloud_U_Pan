@@ -41,7 +41,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
     private String currentListPath;
     private int where = 0;             // 0-上传文件       1-选择头像     2-选择存储路径
     private Stack<String> parent_stack = new Stack<String>();
-
+    private String SdPath = FileUtils.getSDPath1();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +85,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
         //当前显示文件的路径
         currentListPath = path;
         if (path.equals(MY_ROOT_PATH)) {
-            //根目录
-            fileList.add(new FileManagerItem("手机相册", "/storage/sdcard0/DCIM", null, App.b_directory, true, false));
-            fileList.add(new FileManagerItem("系统下载", "/storage/sdcard0/Download", null, App.b_directory, true, false));
-            fileList.add(new FileManagerItem("优云文件夹", "/storage/sdcard0/U_pan_file", null, App.b_directory, true, false));
-            fileList.add(new FileManagerItem("SDCard1", "/storage/sdcard0", null, App.b_directory, true, false));
+            initRootPath();
         } else {
             File file = new File(path);
             List<File> files = Arrays.asList(file.listFiles());
@@ -124,6 +120,14 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
         listView.setAdapter(new FileManagerAdapter(this, fileList));
     }
 
+    private void initRootPath() {
+        //根目录
+        fileList.add(new FileManagerItem("手机相册", SdPath + "/DCIM", null, App.b_directory, true, false));
+        fileList.add(new FileManagerItem("系统下载", SdPath + "/Download", null, App.b_directory, true, false));
+        fileList.add(new FileManagerItem("优云文件夹", SdPath + "/U_pan_file", null, App.b_directory, true, false));
+        fileList.add(new FileManagerItem("SDCard1", SdPath, null, App.b_directory, true, false));
+    }
+
 
     /**
      * 显示图片文件
@@ -136,11 +140,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
             currentListPath = path;
             //如果当前目录是根目录
             if (path.equals(MY_ROOT_PATH)) {
-                //根目录
-                fileList.add(new FileManagerItem("手机相册", "/storage/sdcard0/DCIM", null, App.b_directory, true, false));
-                fileList.add(new FileManagerItem("系统下载", "/storage/sdcard0/Download", null, App.b_directory, true, false));
-                fileList.add(new FileManagerItem("优云文件夹", "/storage/sdcard0/U_pan_file", null, App.b_directory, true, false));
-                fileList.add(new FileManagerItem("SDCard1", "/storage/sdcard0", null, App.b_directory, true, false));
+                initRootPath();
             } else {
                 File file = new File(path);
                 List<File> files = Arrays.asList(file.listFiles());
@@ -184,11 +184,7 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
         currentListPath = path;
         //如果当前目录是根目录
         if (path.equals(MY_ROOT_PATH)) {
-            //根目录
-            fileList.add(new FileManagerItem("手机相册", "/storage/sdcard0/DCIM", null, App.b_directory, true, false));
-            fileList.add(new FileManagerItem("系统下载", "/storage/sdcard0/Download", null, App.b_directory, true, false));
-            fileList.add(new FileManagerItem("优云文件夹", "/storage/sdcard0/U_pan_file", null, App.b_directory, true, false));
-            fileList.add(new FileManagerItem("SDCard1", "/storage/sdcard0", null, App.b_directory, true, false));
+            initRootPath();
         } else {
             File file = new File(path);
             List<File> files = Arrays.asList(file.listFiles());

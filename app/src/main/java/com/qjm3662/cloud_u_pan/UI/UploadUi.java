@@ -13,12 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
+import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+
+import java.io.File;
 
 public class UploadUi extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,8 +56,14 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_ui);
+        uploadOperator();
         initIntentFilterAndReceiver();
         initView();
+    }
+
+    private void uploadOperator() {
+        File file = new File(getIntent().getStringExtra(MainActivity.FILE_PATH_TO_BE_UPLOAD));
+        NetWorkOperator.UP_FILE(this, file, file.getName(), true);
     }
 
     private void initView() {

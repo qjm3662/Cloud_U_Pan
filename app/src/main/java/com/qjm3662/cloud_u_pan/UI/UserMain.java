@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kyleduo.switchbutton.SwitchButton;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -22,13 +23,10 @@ import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
+import com.qjm3662.cloud_u_pan.Tool.PermissionUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 import java.io.File;
-import java.util.List;
-
-import cn.finalteam.galleryfinal.GalleryFinal;
-import cn.finalteam.galleryfinal.model.PhotoInfo;
 
 public class UserMain extends AppCompatActivity implements View.OnClickListener {
 
@@ -60,12 +58,16 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
 
     public static final String PATH = "path";
     public static final int SELECT_PHOTO_RESULT_CODE = 2;
-    private static int REQUEST_CODE_GALLERY = 253;
+    private static final int REQUEST_CODE_GALLERY = 253;
+    public static final int RESULT_CODE_MY_DCIM = 222;
+    public static final int REQUEST_CODE_MY_DCIM = 212;
+    private Object permission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
+//        getPermission();
         initView();
         initReceiver();
     }
@@ -178,13 +180,12 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                 }
                 break;
             case R.id.img_avatar:
-                System.out.println("clicasdf asfa sk");
                 if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
                     EasySweetAlertDialog.ShowTip(this, "tip", "请检查您的网络连接");
                     return;
                 }
                 if (App.Flag_IsLogin) {
-                    GalleryFinal.openGallerySingle(REQUEST_CODE_GALLERY, new OnGalleryResultCallBack());
+                    startActivityForResult(new Intent(this, DCIMGirdActivity.class), REQUEST_CODE_MY_DCIM);
                 } else {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
@@ -287,23 +288,16 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
                     editor.apply();
                 }
                 break;
+            case REQUEST_CODE_MY_DCIM:
+                if (data != null) {
+                    String path = data.getStringExtra("PATH");
+                    NetWorkOperator.ModifyUserAvatar(UserMain.this, new File(path));
+                }
+
+
+                break;
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-    class OnGalleryResultCallBack implements GalleryFinal.OnHanlderResultCallback {
-        @Override
-        public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
-            System.out.println("Get Photo Success");
-            String old_path = resultList.get(0).getPhotoPath();
-            NetWorkOperator.ModifyUserAvatar(UserMain.this, new File(old_path));
-        }
-
-        @Override
-        public void onHanlderFailure(int requestCode, String errorMsg) {
-
-        }
     }
 
     @Override
@@ -322,5 +316,24 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     public void finish() {
         super.finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+
+
+    class mPermissionGrant implements PermissionUtils.PermissionGrant{
+
+        @Override
+        public void onPermissionGranted(int requestCode) {
+            switch (requestCode){
+                case PermissionUtils.CODE_CAMERA:
+                    Toast.makeText(UserMain.this, "PermissionUtils.CODE_CAMERA", Toast.LENGTH_SHORT).show();
+                    break;
+
+            }
+        }
+    }
+
+    private mPermissionGrant mPermissionGrant = new mPermissionGrant();
+    public void getPermission() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
     }
 }
