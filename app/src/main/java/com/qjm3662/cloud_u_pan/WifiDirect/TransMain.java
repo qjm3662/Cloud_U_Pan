@@ -11,7 +11,6 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
-import com.umeng.analytics.MobclickAgent;
 
 
 public class TransMain extends BaseActivity implements View.OnClickListener {
@@ -60,23 +59,5 @@ public class TransMain extends BaseActivity implements View.OnClickListener {
                 onBackPressed();
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        App.finishAnim(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

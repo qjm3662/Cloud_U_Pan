@@ -20,7 +20,6 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.LocalDCIMUtils;
-import com.umeng.analytics.MobclickAgent;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -170,17 +169,6 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
         if (resultCode == UCrop.RESULT_ERROR) {
             Toast.makeText(this, "裁切图片失败", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 
 }

@@ -12,7 +12,6 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
-import com.umeng.analytics.MobclickAgent;
 
 public class LocalFileRecording_Download extends BaseActivity implements AdapterView.OnItemClickListener {
 
@@ -53,28 +52,5 @@ public class LocalFileRecording_Download extends BaseActivity implements Adapter
         if(!localFile.isFlag_is_DateNode()){
             FileUtils.OpenFile(this, localFile.getPath(), localFile.getName());
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

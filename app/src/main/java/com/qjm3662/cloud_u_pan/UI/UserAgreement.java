@@ -3,9 +3,7 @@ package com.qjm3662.cloud_u_pan.UI;
 import android.os.Bundle;
 import android.widget.EditText;
 
-import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
-import com.umeng.analytics.MobclickAgent;
 
 public class UserAgreement extends BaseActivity {
 
@@ -125,27 +123,5 @@ public class UserAgreement extends BaseActivity {
 
         editText.setText(str);
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

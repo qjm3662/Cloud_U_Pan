@@ -113,19 +113,16 @@ public class Receive_Activity extends BaseActivity {
     public void onBackPressed() {
         manager.DisConnect();
         super.onBackPressed();
-        App.finishAnim(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
         manager.registerReceiver();
     }
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
         manager.unRegisterReceiver();
     }
 }

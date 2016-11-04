@@ -18,7 +18,6 @@ import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.QRCodeUtil;
 import com.qjm3662.cloud_u_pan.Widget.CaptureActivityAnyOrientation;
-import com.umeng.analytics.MobclickAgent;
 
 public class ZXingAddFriend extends BaseActivity implements View.OnClickListener {
 
@@ -119,23 +118,5 @@ public class ZXingAddFriend extends BaseActivity implements View.OnClickListener
             System.out.println( "what:" + e.toString());
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

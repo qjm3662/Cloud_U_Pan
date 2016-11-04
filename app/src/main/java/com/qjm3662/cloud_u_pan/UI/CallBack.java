@@ -12,7 +12,6 @@ import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 
 public class CallBack extends BaseActivity implements View.OnClickListener {
 
@@ -52,20 +51,5 @@ public class CallBack extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
         }
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
     }
 }

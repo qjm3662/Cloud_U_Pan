@@ -14,7 +14,6 @@ import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
-import com.umeng.analytics.MobclickAgent;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -136,29 +135,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        App.finishAnim(this);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.startAnim(MainActivity.this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

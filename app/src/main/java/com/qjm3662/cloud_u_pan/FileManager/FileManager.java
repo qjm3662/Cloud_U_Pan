@@ -21,7 +21,6 @@ import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -344,23 +343,5 @@ public class FileManager extends BaseActivity implements View.OnClickListener, A
                 finish();
                 break;
         }
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

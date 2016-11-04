@@ -16,11 +16,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,21 +167,13 @@ public class Send_Activity extends BaseActivity implements AdapterView.OnItemCli
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        App.finishAnim(this);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
         manager.registerReceiver();
     }
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
         manager.unRegisterReceiver();
     }
 }

@@ -16,7 +16,6 @@ import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -157,28 +156,5 @@ public class OthersMain extends BaseActivity implements View.OnClickListener, Ad
             System.out.println(list.size());
             System.out.println(position);
         }
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(OthersMain.this);
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

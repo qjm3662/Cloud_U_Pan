@@ -24,7 +24,6 @@ import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Tool.PermissionUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 
@@ -306,17 +305,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         unregisterReceiver(receiver);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(UserMain.this);
-    }
 
 
     class mPermissionGrant implements PermissionUtils.PermissionGrant{
@@ -337,14 +325,4 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
 }

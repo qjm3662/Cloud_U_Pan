@@ -6,8 +6,14 @@
         <item name="colorPrimary">?attr/barBackground</item>
         <item name="colorPrimaryDark">?attr/barBackground</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowIsTranslucent"> true </item>
+        <!--<item name="android:windowIsTranslucent"> true </item>-->
+        <item name="android:windowBackground">@drawable/first_lunch_background</item>
         <item name="barBackground">@color/blue</item>
+    </style>
+
+    <style name="myLunchTheme" parent="AppTheme">
+        <item name="barBackground">#5b98d8</item>
+        <item name="android:windowBackground">@drawable/first_lunch_background</item>
     </style>
 
 

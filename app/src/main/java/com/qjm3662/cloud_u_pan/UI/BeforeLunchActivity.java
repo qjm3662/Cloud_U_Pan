@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,53 +15,62 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 
 import com.qjm3662.cloud_u_pan.R;
-import com.umeng.analytics.MobclickAgent;
 
 public class BeforeLunchActivity extends BaseActivity {
 
     private ImageView img;
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_before_lunch);
         img = (ImageView) findViewById(R.id.imageView);
-        isFirstLunch();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                isFirstLunch();
+            }
+        }).start();
     }
 
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    BeforeLunchActivity.this.startActivity(new Intent(BeforeLunchActivity.this, FirstLunchActivity.class));
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean("IS_FIRST", false);
+                    editor.apply();
+                    startActivity(new Intent(BeforeLunchActivity.this, FirstLunchActivity.class));
+                    finish();
+                    break;
+                case 1:
+                    TimePicker timePicker = new TimePicker(BeforeLunchActivity.this);
+                    Animation animation = AnimationUtils.loadAnimation(BeforeLunchActivity.this, R.anim.image_fade_big);
+                    img.startAnimation(animation);
+                    timePicker.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            img.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(BeforeLunchActivity.this, MainActivity.class));
+                            finish();
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        }
+                    },1000);
+                    break;
+            }
+        }
+    };
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void isFirstLunch() {
-        SharedPreferences sp = this.getSharedPreferences("IS_FIRST", Context.MODE_PRIVATE);
+        sp = this.getSharedPreferences("IS_FIRST", Context.MODE_PRIVATE);
         boolean b = sp.getBoolean("IS_FIRST", true);
         if(b){
-            this.startActivity(new Intent(this, FirstLunchActivity.class));
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean("IS_FIRST", false);
-            editor.apply();
-            startActivity(new Intent(BeforeLunchActivity.this, FirstLunchActivity.class));
-            finish();
+            handler.sendEmptyMessage(0);
         }else{
-            TimePicker timePicker = new TimePicker(this);
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.image_fade_big);
-            img.startAnimation(animation);
-            timePicker.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    img.setVisibility(View.INVISIBLE);
-                    startActivity(new Intent(BeforeLunchActivity.this, MainActivity.class));
-                    finish();
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                }
-            },1000);
+            handler.sendEmptyMessage(1);
         }
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

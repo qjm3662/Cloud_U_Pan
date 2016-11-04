@@ -9,7 +9,6 @@ import android.os.Bundle;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
-import com.umeng.analytics.MobclickAgent;
 
 public class Main2Activity extends BaseActivity {
 
@@ -41,17 +40,6 @@ public class Main2Activity extends BaseActivity {
             System.out.println("*****************************data is null****************************");
             finish();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 
 }

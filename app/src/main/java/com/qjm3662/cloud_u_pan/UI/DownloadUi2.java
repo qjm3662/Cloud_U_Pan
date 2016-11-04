@@ -25,7 +25,6 @@ import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -246,27 +245,5 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
         if(call != null){
             call.cancel();
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

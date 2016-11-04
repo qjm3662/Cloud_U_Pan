@@ -62,10 +62,15 @@
             tools:ignore="DuplicateActivity" />
         <activity android:name=".UI.RegisterUI" />
         <activity android:name=".UI.Login" />
-        <activity android:name=".UI.UserMain" />
+        <activity
+            android:name=".UI.UserMain"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".UI.ShareCenter" />
         <activity android:name=".UI.OthersMain" />
-        <activity android:name=".UI.Followings" />
+        <activity
+            android:name=".UI.Followings"
+            android:launchMode="singleTask"/>
         <activity android:name=".UI.CallBack" />
         <activity android:name=".UI.VersionInfo" />
         <activity android:name=".UI.AboutUs" />
@@ -102,7 +107,9 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.BeforeLunchActivity">
+        <activity
+            android:name=".UI.BeforeLunchActivity"
+            android:theme="@style/myLunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

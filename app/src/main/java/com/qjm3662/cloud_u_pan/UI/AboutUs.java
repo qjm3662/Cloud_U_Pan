@@ -5,9 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
-import com.umeng.analytics.MobclickAgent;
 
 public class AboutUs extends BaseActivity {
 
@@ -30,27 +28,5 @@ public class AboutUs extends BaseActivity {
                 onBackPressed();
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
     }
 }

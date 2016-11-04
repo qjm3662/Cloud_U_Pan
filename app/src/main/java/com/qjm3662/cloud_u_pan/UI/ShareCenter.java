@@ -16,7 +16,6 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
-import com.umeng.analytics.MobclickAgent;
 
 public class ShareCenter extends BaseActivity implements AdapterView.OnItemClickListener {
 
@@ -89,26 +88,5 @@ public class ShareCenter extends BaseActivity implements AdapterView.OnItemClick
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
 
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(ShareCenter.this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
-    }
 }

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
-import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
@@ -20,7 +19,6 @@ import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 
@@ -214,27 +212,5 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
                 onBackPressed();
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }

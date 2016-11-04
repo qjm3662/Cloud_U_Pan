@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.qjm3662.cloud_u_pan.Adapter.FirstViewAdapter;
-import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,28 +91,5 @@ public class FirstLunchActivity extends BaseActivity {
                 System.out.println("state:" + state);
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        App.finishAnim(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onResume(this);
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPause(this);
     }
 }
