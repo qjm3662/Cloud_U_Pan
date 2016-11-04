@@ -34,13 +34,10 @@ import java.util.List;
 
 import okhttp3.OkHttpClient;
 
-//import com.nostra13.universalimageloader.core.ImageLoader;
-
 /**
  * Created by tanshunwang on 2016/9/21 0021.
  */
 public class App extends Application{
-
     public static FileInformation fileInformation = new FileInformation();
 
     //本地上传记录

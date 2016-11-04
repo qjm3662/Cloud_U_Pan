@@ -109,12 +109,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         }
                     }
                 };
-                dialog = new Dialog(this, R.style.common_dialog);
-                DialogUtils.showSelectDialog(this, dialog, listener);
+                if(dialog == null){
+                    dialog = new Dialog(this, R.style.common_dialog);
+                    DialogUtils.showSelectDialog(this, dialog, listener);
+                    return;
+                }
+                if(!dialog.isShowing()) {
+                    dialog = new Dialog(this, R.style.common_dialog);
+                    DialogUtils.showSelectDialog(this, dialog, listener);
+                }
                 break;
             case R.id.btn_my:
-                startActivity(new Intent(this, UserMain.class));
-                App.startAnim(MainActivity.this);
+//                startActivity(new Intent(this, UserMain.class));
+//                App.startAnim(MainActivity.this);
+                startActivity(new Intent(this, LoadingTestActivity.class));
                 break;
         }
     }
@@ -126,7 +134,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case requestCode_selectFile:
                 if (data != null) {
                     System.out.println(data.getStringExtra(PATH));
-//                    File file = new File(data.getStringExtra(PATH));
                     Intent intent = new Intent(this, UploadUi.class);
                     intent.putExtra(FILE_PATH_TO_BE_UPLOAD, data.getStringExtra(PATH));
                     this.startActivity(intent);
