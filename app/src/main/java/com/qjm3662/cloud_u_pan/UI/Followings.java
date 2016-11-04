@@ -1,7 +1,6 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -12,8 +11,9 @@ import com.qjm3662.cloud_u_pan.Adapter.FollowingsAdapter;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.umeng.analytics.MobclickAgent;
 
-public class Followings extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class Followings extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private ListView listView;
     private TextView tv_bar;
@@ -63,5 +63,16 @@ public class Followings extends AppCompatActivity implements AdapterView.OnItemC
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

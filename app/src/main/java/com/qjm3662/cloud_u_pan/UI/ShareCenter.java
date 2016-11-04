@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,8 +16,9 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
+import com.umeng.analytics.MobclickAgent;
 
-public class ShareCenter extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ShareCenter extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private ListView listView;
     private ShareCenterAdapter adapter;
@@ -99,5 +99,16 @@ public class ShareCenter extends AppCompatActivity implements AdapterView.OnItem
     public void finish() {
         super.finish();
         App.finishAnim(ShareCenter.this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

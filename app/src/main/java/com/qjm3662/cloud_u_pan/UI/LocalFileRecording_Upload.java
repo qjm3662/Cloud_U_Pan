@@ -1,7 +1,6 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -13,8 +12,9 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.umeng.analytics.MobclickAgent;
 
-public class LocalFileRecording_Upload extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class LocalFileRecording_Upload extends BaseActivity implements AdapterView.OnItemClickListener {
 
 
     private ListView listView;
@@ -67,4 +67,16 @@ public class LocalFileRecording_Upload extends AppCompatActivity implements Adap
         super.finish();
         App.finishAnim(this);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
 }

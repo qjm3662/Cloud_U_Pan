@@ -2,15 +2,15 @@ package com.qjm3662.cloud_u_pan.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
+import com.umeng.analytics.MobclickAgent;
 
-public class VersionInfo extends AppCompatActivity implements View.OnClickListener {
+public class VersionInfo extends BaseActivity implements View.OnClickListener {
 
     private TextView tv_bar;
     private ImageView img_back;
@@ -62,5 +62,16 @@ public class VersionInfo extends AppCompatActivity implements View.OnClickListen
     public void finish() {
         super.finish();
         App.finishAnim(VersionInfo.this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

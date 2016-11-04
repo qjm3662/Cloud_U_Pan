@@ -6,7 +6,6 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -15,11 +14,13 @@ import android.widget.TextView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.UI.BaseActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Receive_Activity extends AppCompatActivity {
+public class Receive_Activity extends BaseActivity {
 
     private qjm_WifiP2pManager manager;
     private WifiP2pManager.PeerListListener peerListListener;
@@ -107,17 +108,6 @@ public class Receive_Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        manager.registerReceiver();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        manager.unRegisterReceiver();
-    }
 
     @Override
     public void onBackPressed() {
@@ -126,4 +116,16 @@ public class Receive_Activity extends AppCompatActivity {
         App.finishAnim(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+        manager.registerReceiver();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+        manager.unRegisterReceiver();
+    }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -21,6 +20,7 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.LocalDCIMUtils;
+import com.umeng.analytics.MobclickAgent;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class DCIMGirdActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private GridView gridView;
     private BaseAdapter adapter_directory;
@@ -141,6 +141,10 @@ public class DCIMGirdActivity extends AppCompatActivity implements AdapterView.O
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PHOTO_REQUEST_TAKEPHOTO){
+            if(data != null){
+                System.out.println("dd*****");
+                return;
+            }
             Uri uri = Uri.fromFile(tempFile);
             File file = new File(FileUtils.getPath(), "aa.jpg");
             Uri desUri = Uri.fromFile(file);
@@ -166,6 +170,17 @@ public class DCIMGirdActivity extends AppCompatActivity implements AdapterView.O
         if (resultCode == UCrop.RESULT_ERROR) {
             Toast.makeText(this, "裁切图片失败", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
 }

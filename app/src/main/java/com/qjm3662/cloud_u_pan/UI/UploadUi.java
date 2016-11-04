@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,10 +20,11 @@ import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 
-public class UploadUi extends AppCompatActivity implements View.OnClickListener {
+public class UploadUi extends BaseActivity implements View.OnClickListener {
 
     public static final String UploadProgressing = "upload_progressing";
     public static final String UploadSuccessWithFileInformation = "upload success with information";
@@ -226,5 +226,15 @@ public class UploadUi extends AppCompatActivity implements View.OnClickListener 
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

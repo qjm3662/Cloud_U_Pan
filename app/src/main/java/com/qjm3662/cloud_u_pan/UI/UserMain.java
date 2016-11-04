@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,10 +24,11 @@ import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Tool.PermissionUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 
-public class UserMain extends AppCompatActivity implements View.OnClickListener {
+public class UserMain extends BaseActivity implements View.OnClickListener {
 
     private ImageView img_edit_nickname;
     private RoundedImageView img_head;
@@ -335,5 +335,16 @@ public class UserMain extends AppCompatActivity implements View.OnClickListener 
     private mPermissionGrant mPermissionGrant = new mPermissionGrant();
     public void getPermission() {
         PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

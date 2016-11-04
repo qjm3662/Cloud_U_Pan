@@ -10,7 +10,6 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,12 +18,14 @@ import android.widget.Toast;
 
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
+import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Send_Activity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class Send_Activity extends BaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private qjm_WifiP2pManager manager;
     private WifiP2pManager.PeerListListener peerListListener;
@@ -88,17 +89,6 @@ public class Send_Activity extends AppCompatActivity implements AdapterView.OnIt
         };
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        manager.registerReceiver();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        manager.unRegisterReceiver();
-    }
 
 
     //处理文件传输时的handler
@@ -182,5 +172,18 @@ public class Send_Activity extends AppCompatActivity implements AdapterView.OnIt
     public void onBackPressed() {
         super.onBackPressed();
         App.finishAnim(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+        manager.registerReceiver();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+        manager.unRegisterReceiver();
     }
 }

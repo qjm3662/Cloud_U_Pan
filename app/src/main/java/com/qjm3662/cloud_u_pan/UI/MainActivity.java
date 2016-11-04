@@ -1,13 +1,8 @@
 package com.qjm3662.cloud_u_pan.UI;
 
-import android.annotation.TargetApi;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.qjm3662.cloud_u_pan.App;
@@ -19,9 +14,10 @@ import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
+import com.umeng.analytics.MobclickAgent;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private EasyButton btn_upload;
     private EasyButton btn_download;
@@ -41,32 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isFirstLunch();
+        setContentView(R.layout.activity_main);
         initView();
     }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void isFirstLunch() {
-        SharedPreferences sp = this.getSharedPreferences("IS_FIRST", Context.MODE_PRIVATE);
-        boolean b = sp.getBoolean("IS_FIRST", true);
-        if(b){
-            this.startActivity(new Intent(this, FirstLunchActivity.class));
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean("IS_FIRST", false);
-            editor.apply();
-            setContentView(R.layout.activity_main);
-        }else{
-            setContentView(R.layout.activity_main);
-        }
-    }
-
 
 
     private void initView() {
@@ -178,4 +151,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         App.startAnim(MainActivity.this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

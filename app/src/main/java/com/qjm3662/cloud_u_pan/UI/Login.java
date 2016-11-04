@@ -3,7 +3,6 @@ package com.qjm3662.cloud_u_pan.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +14,9 @@ import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.MatcherUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.umeng.analytics.MobclickAgent;
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class Login extends BaseActivity implements View.OnClickListener {
 
     private ImageView img_back;
     private Button btn_login;
@@ -81,5 +81,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -18,9 +17,11 @@ import com.qjm3662.cloud_u_pan.Data.FileManagerItem;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
+import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
 
-public class FileManager extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
+public class FileManager extends BaseActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
     private static final String MY_ROOT_PATH = "com.qjm3662.cloud_u_pan.my_root_path";
     private List<FileManagerItem> fileList = null;
     private ImageView img_back;
@@ -349,5 +350,17 @@ public class FileManager extends AppCompatActivity implements View.OnClickListen
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

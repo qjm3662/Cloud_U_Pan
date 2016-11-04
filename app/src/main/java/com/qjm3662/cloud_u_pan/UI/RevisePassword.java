@@ -1,6 +1,5 @@
 package com.qjm3662.cloud_u_pan.UI;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +11,9 @@ import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.umeng.analytics.MobclickAgent;
 
-public class RevisePassword extends AppCompatActivity {
+public class RevisePassword extends BaseActivity {
 
     private TextView tv_bar;
     private ImageView img_back;
@@ -69,5 +69,15 @@ public class RevisePassword extends AppCompatActivity {
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

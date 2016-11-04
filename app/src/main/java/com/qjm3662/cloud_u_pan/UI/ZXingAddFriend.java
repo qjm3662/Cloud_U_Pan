@@ -3,13 +3,10 @@ package com.qjm3662.cloud_u_pan.UI;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -21,10 +18,9 @@ import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.QRCodeUtil;
 import com.qjm3662.cloud_u_pan.Widget.CaptureActivityAnyOrientation;
+import com.umeng.analytics.MobclickAgent;
 
-import static com.qjm3662.cloud_u_pan.R.id.imageView;
-
-public class ZXingAddFriend extends AppCompatActivity implements View.OnClickListener {
+public class ZXingAddFriend extends BaseActivity implements View.OnClickListener {
 
     private TextView tv_bar;
     private ImageView img_back;
@@ -130,5 +126,16 @@ public class ZXingAddFriend extends AppCompatActivity implements View.OnClickLis
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

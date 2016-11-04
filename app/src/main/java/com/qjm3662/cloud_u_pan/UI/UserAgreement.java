@@ -1,13 +1,13 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
+import com.umeng.analytics.MobclickAgent;
 
-public class UserAgreement extends AppCompatActivity {
+public class UserAgreement extends BaseActivity {
 
     String str = "优云服务协议\n" +
             "\n" +
@@ -137,5 +137,15 @@ public class UserAgreement extends AppCompatActivity {
     public void finish() {
         super.finish();
         App.finishAnim(this);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

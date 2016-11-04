@@ -25,6 +25,7 @@ import com.qjm3662.cloud_u_pan.UI.ShareCenter;
 import com.qjm3662.cloud_u_pan.UI.UploadUi;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+import com.umeng.analytics.MobclickAgent;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -46,7 +47,8 @@ import java.util.List;
 import okhttp3.Call;
 
 /**
- * Created by tanshunwang on 2016/9/21 0021.
+ * 优云网络相关操作
+ * Created by qjm3662 on 2016/9/21 0021.
  */
 public class NetWorkOperator {
     /**
@@ -975,6 +977,7 @@ public class NetWorkOperator {
                             jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
                                 case 0:
+                                    MobclickAgent.onProfileSignIn(username);
                                     getUserInfo(context, username, 1);
                                     break;
                                 case -1:
