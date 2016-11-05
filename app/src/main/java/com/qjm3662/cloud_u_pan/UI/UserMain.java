@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kyleduo.switchbutton.SwitchButton;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -22,7 +21,6 @@ import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
-import com.qjm3662.cloud_u_pan.Tool.PermissionUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 import java.io.File;
@@ -66,7 +64,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
-//        getPermission();
         initView();
         initReceiver();
     }
@@ -195,7 +192,10 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_following:
                 if (App.Flag_IsLogin) {
-                    NetWorkOperator.GetFollowingInformation(this, App.Public_Following_Info);
+                    Intent intent = new Intent(this, Followings.class);
+                    intent.putExtra("WHERE", 3);
+                    startActivity(intent);
+                    App.startAnim(this);
                 } else {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
@@ -306,23 +306,23 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
     }
 
 
-
-    class mPermissionGrant implements PermissionUtils.PermissionGrant{
-
-        @Override
-        public void onPermissionGranted(int requestCode) {
-            switch (requestCode){
-                case PermissionUtils.CODE_CAMERA:
-                    Toast.makeText(UserMain.this, "PermissionUtils.CODE_CAMERA", Toast.LENGTH_SHORT).show();
-                    break;
-
-            }
-        }
-    }
-
-    private mPermissionGrant mPermissionGrant = new mPermissionGrant();
-    public void getPermission() {
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
-    }
+//
+//    class mPermissionGrant implements PermissionUtils.PermissionGrant{
+//
+//        @Override
+//        public void onPermissionGranted(int requestCode) {
+//            switch (requestCode){
+//                case PermissionUtils.CODE_CAMERA:
+//                    Toast.makeText(UserMain.this, "PermissionUtils.CODE_CAMERA", Toast.LENGTH_SHORT).show();
+//                    break;
+//
+//            }
+//        }
+//    }
+//
+//    private mPermissionGrant mPermissionGrant = new mPermissionGrant();
+//    public void getPermission() {
+//        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
+//    }
 
 }

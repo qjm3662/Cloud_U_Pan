@@ -16,6 +16,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
+import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DensityUtil;
 
 
@@ -24,19 +25,19 @@ public class DanceLoadingRenderer extends LoadingRenderer {
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
 
-    private static final long ANIMATION_DURATION = 1888;
+    private static final long ANIMATION_DURATION = 1888;            //持续时间
 
     private static final float DEFAULT_CENTER_RADIUS = 12.5f;
     private static final float DEFAULT_STROKE_WIDTH = 1.5f;
     private static final float DEFAULT_DANCE_BALL_RADIUS = 2.0f;
 
-    private static final int NUM_POINTS = 3;
+    private static final int NUM_POINTS = 3;                        //点的数量
     private static final int DEGREE_360 = 360;
     private static final int RING_START_ANGLE = -90;
     private static final int DANCE_START_ANGLE = 0;
     private static final int DANCE_INTERVAL_ANGLE = 60;
 
-    private static final int DEFAULT_COLOR = Color.WHITE;
+    private static final int DEFAULT_COLOR = Color.WHITE;           //默认颜色
 
     //the center coordinate of the oval
     private static final float[] POINT_X = new float[NUM_POINTS];
@@ -97,16 +98,22 @@ public class DanceLoadingRenderer extends LoadingRenderer {
         mDanceBallRadius = DensityUtil.dip2px(context, DEFAULT_DANCE_BALL_RADIUS);
 
         setColor(DEFAULT_COLOR);
-        setInsets((int) mWidth, (int) mHeight);
+        setInsets((int) mWidth, (int) mHeight);     //宽搞属性继承自LoadingRenderer,有默认值
         mDuration = ANIMATION_DURATION;
     }
 
     private void setupPaint() {
-        mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth(mStrokeWidth);
-        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setAntiAlias(true);              //设置抗锯齿，但边界会变得模糊（设置是否使用抗锯齿功能，会消耗较大资源，绘制图形速度会变慢。）
+        mPaint.setStrokeWidth(mStrokeWidth);    //设置空心线宽
+        mPaint.setStyle(Paint.Style.STROKE);    //设置空心线条
     }
 
+    /**
+     * 父类中的draw（Canvas canvas）也调用该函数
+     *
+     * @param canvas
+     * @param bounds
+     */
     @Override
     protected void draw(Canvas canvas, Rect bounds) {
         int saveCount = canvas.save();
@@ -272,13 +279,29 @@ public class DanceLoadingRenderer extends LoadingRenderer {
 
     }
 
+    public void setRatio(float ratio) {
+        mWidth = mWidth * ratio;
+        mHeight = mHeight * ratio;
+        mCenterRadius = mCenterRadius * ratio * 0.8f;
+        mStrokeWidth = mStrokeWidth * ratio;
+        mDanceBallRadius = mDanceBallRadius * ratio;
+    }
+
+    /**
+     * private float mCenterRadius;
+     * private float mStrokeWidth;
+     * private float mDanceBallRadius;
+     * private static final float DEFAULT_CENTER_RADIUS = 12.5f;
+     * private static final float DEFAULT_STROKE_WIDTH = 1.5f;
+     * private static final float DEFAULT_DANCE_BALL_RADIUS = 2.0f;
+     */
     @Override
     protected void reset() {
         mScale = 1.0f;
         mRotation = 0;
     }
 
-    private void setColor(int color) {
+    public void setColor(int color) {
         mColor = color;
         mArcColor = halfAlphaColor(mColor);
     }
@@ -334,6 +357,13 @@ public class DanceLoadingRenderer extends LoadingRenderer {
         public DanceLoadingRenderer build() {
             DanceLoadingRenderer loadingRenderer = new DanceLoadingRenderer(mContext);
             return loadingRenderer;
+        }
+
+        public DanceLoadingRenderer build_1_point_5(){
+            DanceLoadingRenderer renderer = new DanceLoadingRenderer(mContext);
+            renderer.setColor(mContext.getResources().getColor(R.color.blue));
+            renderer.setRatio(1.5f);
+            return renderer;
         }
     }
 }

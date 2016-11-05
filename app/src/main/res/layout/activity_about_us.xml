@@ -4,6 +4,7 @@
     android:id="@+id/activity_about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.qjm3662.cloud_u_pan.UI.AboutUs">
     <include layout="@layout/bar_item"/>
     <ImageView

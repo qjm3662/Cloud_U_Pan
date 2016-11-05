@@ -66,6 +66,7 @@ public abstract class LoadingRenderer {
         setupAnimators();
     }
 
+
     @Deprecated
     protected void draw(Canvas canvas, Rect bounds) {
     }

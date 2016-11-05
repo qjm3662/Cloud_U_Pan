@@ -1,18 +1,17 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.FileManager.FileManager;
-import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
-import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
 
 
@@ -28,6 +27,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final int requestCode_selectFile = 6;
     public static final int resultCode = 9;
     public static final String PATH = "path";
+    private Context context = null;
 
     private Dialog dialog = null;
     private static final int REQUEST_CODE_GALLERY = 253;
@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
         initView();
     }
 
@@ -54,8 +55,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_bluetooth.setOnClickListener(this);
         btn_more.setOnClickListener(this);
         btn_my.setOnClickListener(this);
-
-
     }
 
 
@@ -63,15 +62,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_upload:
-                if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
-                    EasySweetAlertDialog.ShowTip(this, "tip", "请检查您的网络连接");
-                    return;
-                } else {
-                    Intent intent = new Intent(this, FileManager.class);
-                    intent.putExtra(FILE_SELECT, FILE_SELECT_CODE);
-                    startActivityForResult(intent, requestCode_selectFile);
-                    App.startAnim(MainActivity.this);
-                }
+                NetworkUtils.doAfterJudgeNetworkState(MainActivity.this, new NetworkUtils.NeworkCallBack() {
+                    @Override
+                    public void connected() {
+                        Intent intent = new Intent(context, FileManager.class);
+                        intent.putExtra(FILE_SELECT, FILE_SELECT_CODE);
+                        startActivityForResult(intent, requestCode_selectFile);
+                        App.startAnim(MainActivity.this);
+                    }
+                });
                 break;
             case R.id.btn_download:
                 startActivity(new Intent(this, DownloadUi.class));
@@ -101,10 +100,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                                 dialog.cancel();
                                 break;
                             case R.id.img_share_center:
-                                startActivity(new Intent(MainActivity.this, ShareCenter.class));
-                                App.startAnim(MainActivity.this);
-                                dialog.cancel();
-                                NetWorkOperator.getShareCenter(MainActivity.this);
+                                NetworkUtils.doAfterJudgeNetworkState(MainActivity.this, new NetworkUtils.NeworkCallBack() {
+                                    @Override
+                                    public void connected() {
+                                        startActivity(new Intent(MainActivity.this, ShareCenter.class));
+                                        App.startAnim(MainActivity.this);
+                                        dialog.cancel();
+                                    }
+                                });
                                 break;
                         }
                     }
@@ -120,9 +123,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.btn_my:
-//                startActivity(new Intent(this, UserMain.class));
-//                App.startAnim(MainActivity.this);
-                startActivity(new Intent(this, LoadingTestActivity.class));
+                startActivity(new Intent(this, UserMain.class));
+                App.startAnim(MainActivity.this);
                 break;
         }
     }

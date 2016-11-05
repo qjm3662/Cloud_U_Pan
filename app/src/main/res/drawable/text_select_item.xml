@@ -5,7 +5,7 @@
     <!--&lt;!&ndash; 不可用时 &ndash;&gt;-->
     <!--<item android:drawable="@drawable/bg_btn_disable" android:state_enabled="false" />-->
     <!-- 按压时 -->
-    <item android:drawable="?android:attr/selectableItemBackground" android:state_pressed="true" tools:targetApi="lollipop" />
+    <item android:drawable="@color/gray" android:state_pressed="true" tools:targetApi="lollipop" />
     <!--&lt;!&ndash; 被选中时 &ndash;&gt;-->
     <!--<item android:drawable="@drawable/bg_btn_selected" android:state_selected="true" />-->
     <!--&lt;!&ndash; 被激活时 &ndash;&gt;-->

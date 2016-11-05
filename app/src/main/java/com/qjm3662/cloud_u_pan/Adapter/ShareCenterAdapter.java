@@ -8,9 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.R;
+
+import java.util.List;
 
 /**
  * Created by tanshunwang on 2016/10/2 0002.
@@ -19,9 +20,11 @@ import com.qjm3662.cloud_u_pan.R;
 public class ShareCenterAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private int size;
+    private List<FileInformation> list;
 
-    public ShareCenterAdapter(Context context) {
+    public ShareCenterAdapter(Context context, List<FileInformation> list) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.list = list;
     }
 
     class ViewHolder {
@@ -34,13 +37,13 @@ public class ShareCenterAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        size = App.Public_List_File_Info.size();
+        size = list.size();
         return size;
     }
 
     @Override
     public Object getItem(int position) {
-        return App.Public_List_File_Info.get(size - 1 - position);
+        return list.get(size - 1 - position);
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ShareCenterAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        FileInformation fileInformation = App.Public_List_File_Info.get(size - 1 - position);
+        FileInformation fileInformation = list.get(size - 1 - position);
         viewHolder.img_head.setImageBitmap(fileInformation.getBitmap_type());
         viewHolder.tv_fileName.setText(fileInformation.getName());
         viewHolder.tv_time.setText(fileInformation.getDownTimeString());

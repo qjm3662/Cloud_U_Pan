@@ -109,7 +109,7 @@
                 android:id="@+id/tv_following"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -134,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginTop="@dimen/line_span_small"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -147,7 +147,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
-                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x60"
                     android:text="我的上传"
@@ -170,7 +169,7 @@
                 android:id="@+id/tv_down_in_wifi"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
-                android:background="@color/white">
+                android:background="@drawable/text_select_item">
 
                 <ImageView
                     android:id="@+id/img_wifi"
@@ -204,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y165"
                 android:layout_marginTop="@dimen/line_span_small"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:descendantFocusability="blocksDescendants">
 
                 <ImageView
@@ -243,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginTop="@dimen/line_span_small"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -257,7 +256,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
-                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x60"
                     android:text="关于我们"
@@ -271,7 +269,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginTop="@dimen/line_span_small"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -284,7 +282,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
-                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x60"
                     android:text="版本信息"
@@ -298,7 +295,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginTop="@dimen/line_span_small"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -312,7 +309,6 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
-                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x60"
                     android:text="修改密码"
@@ -326,7 +322,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginTop="@dimen/line_span_small"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -339,7 +335,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y129"
-                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/x60"
                     android:text="反馈"
@@ -363,7 +358,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y129"
                 android:layout_marginBottom="@dimen/y120"
-                android:background="@color/white"
+                android:background="@drawable/text_select_item"
                 android:gravity="center"
                 android:text="退出"
                 android:textColor="@color/dark"

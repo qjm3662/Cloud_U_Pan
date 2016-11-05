@@ -194,18 +194,16 @@ public class NetWorkOperator {
                                             u.setBitmap(bitmap);
                                             list.add(u);
                                             if (position == length - 1) {
-                                                Intent intent = new Intent(context, Followings.class);
-                                                intent.putExtra("WHERE", 3);
-                                                context.startActivity(intent);
-                                                App.startAnim((Activity)context);
+                                                Intent intent = new Intent();
+                                                intent.setAction(Followings.ACTION_SUCCESS);
+                                                context.sendBroadcast(intent);
                                             }
                                         }
                                     };
                                     if (jsonArray.length() == 0) {
-                                        Intent intent = new Intent(context, Followings.class);
-                                        intent.putExtra("WHERE", 3);
-                                        context.startActivity(intent);
-                                        App.startAnim((Activity)context);
+                                        Intent intent = new Intent();
+                                        intent.setAction(Followings.ACTION_SUCCESS);
+                                        context.sendBroadcast(intent);
                                         return;
                                     }
                                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -364,14 +362,9 @@ public class NetWorkOperator {
 
     /**
      * 获取分享中心
-     *
      * @param context
      */
-    public static void getShareCenter(final Context context) {
-        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
-            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
-            return;
-        }
+    public static void getShareCenter(final Context context, final List<FileInformation> list) {
         OkHttpUtils
                 .get()
                 .url(ServerInformation.Get_Share_center)
@@ -380,6 +373,9 @@ public class NetWorkOperator {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         System.out.println(e.toString());
+                        Intent intent = new Intent();
+                        intent.setAction(ShareCenter.ACTION_FAIL);
+                        context.sendBroadcast(intent);
                     }
 
                     @Override
@@ -389,22 +385,25 @@ public class NetWorkOperator {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("code") == 0) {
                                 Gson gson = new Gson();
-                                App.Public_List_File_Info.clear();
+                                list.clear();
                                 JSONArray jsonArray = jsonObject.getJSONArray("shares");
                                 FileInformation fileInformation = null;
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
-//                                    System.out.println(fileInformation);
                                     String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
                                     fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
-                                    App.Public_List_File_Info.add(fileInformation);
+                                    list.add(fileInformation);
                                     Intent intent = new Intent();
-                                    intent.setAction(ShareCenter.ACTION);
+                                    intent.setAction(ShareCenter.ACTION_SUCCESS);
                                     context.sendBroadcast(intent);
                                 }
                             }
                         } catch (JSONException e) {
                             System.out.println("json 错误");
+                            System.out.println(e.toString());
+                            Intent intent = new Intent();
+                            intent.setAction(ShareCenter.ACTION_FAIL);
+                            context.sendBroadcast(intent);
                             e.printStackTrace();
                         }
                     }
@@ -749,7 +748,6 @@ public class NetWorkOperator {
 
     /**
      * 上传文件
-     *
      * @param context
      * @param file
      * @param fileName
@@ -758,10 +756,6 @@ public class NetWorkOperator {
      */
     public static void UP_FILE(final Context context, final File file, String fileName, boolean isShare) {
         final Intent[] intent = new Intent[1];
-        if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
-            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接", "OK", new MySuccessCalback());
-            return;
-        }
         String url = "";
         String userName;
         final int current_progress[] = {0};
@@ -780,9 +774,6 @@ public class NetWorkOperator {
                                  @Override
                                  public void onError(Call call, Exception e, int id) {
                                      System.out.println("Error :" + e.toString());
-                                     Intent intent_finish_upload_activity = new Intent();
-                                     intent_finish_upload_activity.setAction(UploadUi.FINISH_SIGNAL);
-                                     context.sendBroadcast(intent_finish_upload_activity);
                                      EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
                                  }
 
@@ -819,6 +810,7 @@ public class NetWorkOperator {
                                          }
                                      } catch (JSONException e) {
                                          e.printStackTrace();
+                                         EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
                                      }
                                  }
 
@@ -877,6 +869,7 @@ public class NetWorkOperator {
                                          context.sendBroadcast(intent_information);
                                      } catch (JSONException e) {
                                          e.printStackTrace();
+                                         EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
                                      }
                                  }
 

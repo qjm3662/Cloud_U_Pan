@@ -12,6 +12,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:scrollingCache="false"
+        android:background="@color/white"
         android:animationCache="false"
         android:layout_height="match_parent">
 

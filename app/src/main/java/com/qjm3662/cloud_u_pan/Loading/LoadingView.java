@@ -64,15 +64,25 @@ public class LoadingView extends ImageView {
         }
     }
 
-    private void startAnimation() {
+    public void startAnimation() {
         if (mLoadingDrawable != null) {
             mLoadingDrawable.start();
         }
     }
 
-    private void stopAnimation() {
+    public void stopAnimation() {
         if (mLoadingDrawable != null) {
             mLoadingDrawable.stop();
         }
+    }
+
+    public void dismiss(){
+        stopAnimation();
+        this.setVisibility(INVISIBLE);
+    }
+
+    public void show(){
+        startAnimation();
+        this.setVisibility(VISIBLE);
     }
 }

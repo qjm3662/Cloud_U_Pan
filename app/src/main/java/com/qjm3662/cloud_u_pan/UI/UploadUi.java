@@ -152,9 +152,6 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
                         FileUtils.setImgHead(img_file, intent.getStringExtra("TYPE"), intent.getStringExtra("path"));
                         handler.sendEmptyMessage(0);
                         break;
-                    case FINISH_SIGNAL:
-                        finish();
-                        break;
                 }
             }
         };

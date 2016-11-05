@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
+
 /**
  * Created by qjm3662 on 2016/9/29 0029.
  */
@@ -72,6 +74,22 @@ public class NetworkUtils {
         return false;
     }
 
+
+    public static boolean judgeIsNetworkConnected(Context context){
+        return !(getNetworkFlag(context) == -1);
+    }
+
+    public static void doAfterJudgeNetworkState(Context context, NeworkCallBack callBack){
+        if(judgeIsNetworkConnected(context)){
+            callBack.connected();
+        }else{
+            EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
+        }
+    }
+
+    public interface NeworkCallBack{
+        void connected();
+    }
     /**
      * 获取网络标记
      * @param context
