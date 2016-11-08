@@ -12,7 +12,6 @@ import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DialogUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
-import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -77,7 +76,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 App.startAnim(MainActivity.this);
                 break;
             case R.id.btn_bluetooth:
-                startActivity(new Intent(this, TransMain.class));
+                startActivity(new Intent(this, LoadingTestActivity.class));
                 App.startAnim(MainActivity.this);
                 break;
             case R.id.btn_more:
@@ -90,13 +89,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                                 System.out.println("dialog cancel!!");
                                 break;
                             case R.id.img_upload_record:
-                                startActivity(new Intent(MainActivity.this, LocalFileRecording_Upload.class));
+                                startActivity(new Intent(MainActivity.this, RecordTabsActivity.class));
                                 App.startAnim(MainActivity.this);
                                 dialog.cancel();
                                 break;
                             case R.id.img_download_record:
-                                startActivity(new Intent(MainActivity.this, LocalFileRecording_Download.class));
-                                App.startAnim(MainActivity.this);
+//                                startActivity(new Intent(MainActivity.this, LocalFileRecording_Download.class));
+//                                App.startAnim(MainActivity.this);
                                 dialog.cancel();
                                 break;
                             case R.id.img_share_center:

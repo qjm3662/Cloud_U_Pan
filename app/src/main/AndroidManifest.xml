@@ -40,7 +40,7 @@
         tools:replace="android:icon">
         <activity
             android:name=".UI.MainActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".UI.UploadUi" />
         <activity android:name=".UI.DownloadUi" />
         <activity android:name=".UI.DownloadUi2" />
@@ -121,9 +121,10 @@
             android:value="Wangdoujia" />
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="9e6f3be030843000028c0949fa89c288"></meta-data>
+            android:value="9e6f3be030843000028c0949fa89c288" />
 
-        <activity android:name=".UI.LoadingTestActivity"></activity>
+        <activity android:name=".UI.LoadingTestActivity" />
+        <activity android:name=".UI.RecordTabsActivity"></activity>
     </application>
 
 </manifest>

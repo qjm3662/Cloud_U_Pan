@@ -22,39 +22,39 @@ import com.qjm3662.cloud_u_pan.R;
  * Created by qjm3662 on 2016/9/20 0020.
  */
 public class EasyButton extends TextView {
-    private float mRadius;
-    private float mRecWidth;
-    private float mLinePosX;
-    private float mSweepAng = 180;
-    private float mLineWidth;
-    private float mLineRadius;
-    private float mRippleWidth;
-    private float mInitRippleWidth;
-    private float mMaxRippleWidth;
-    private float mSweepAngMin = 20f;
-    private float mTickLen;
-    private float cxLeft;
-    private float cyLeft;
-    private float cxRight;
-    private float cyRight;
-    private int mInitTextColor;
-    private long mRippleDuration;
-    private Paint mButtonPaint;
-    private Paint mLinePaint;
-    private Paint mShadowPaint;
-    private Paint mRipplePaint;
-    private Paint mTickPaint;
-    private int mRippleAlpha;
-    private String mStatus = "INIT";
-    private final String INIT = "INIT";
-    private final String RIPPLE = "RIPPLE";
-    private final String LINE_MOVE = "LINE_MOVE";
-    private final String TICK = "TICK";
-    private ValueAnimator rippleAnimator;
-    private ValueAnimator rippleAlphaAnimator;
-    private int mInitBtnColor;
-    private int mLineColor;
-    private int mTickColor;
+    protected float mRadius;
+    protected float mRecWidth;
+    protected float mLinePosX;
+    protected float mSweepAng = 180;
+    protected float mLineWidth;
+    protected float mLineRadius;
+    protected float mRippleWidth;
+    protected float mInitRippleWidth;
+    protected float mMaxRippleWidth;
+    protected float mSweepAngMin = 20f;
+    protected float mTickLen;
+    protected float cxLeft;
+    protected float cyLeft;
+    protected float cxRight;
+    protected float cyRight;
+    protected int mInitTextColor;
+    protected long mRippleDuration;
+    protected Paint mButtonPaint;
+    protected Paint mLinePaint;
+    protected Paint mShadowPaint;
+    protected Paint mRipplePaint;
+    protected Paint mTickPaint;
+    protected int mRippleAlpha;
+    protected String mStatus = "INIT";
+    protected final String INIT = "INIT";
+    protected final String RIPPLE = "RIPPLE";
+    protected final String LINE_MOVE = "LINE_MOVE";
+    protected final String TICK = "TICK";
+    protected ValueAnimator rippleAnimator;
+    protected ValueAnimator rippleAlphaAnimator;
+    protected int mInitBtnColor;
+    protected int mLineColor;
+    protected int mTickColor;
 
     public EasyButton(Context context) {
         super(context);
@@ -125,7 +125,6 @@ public class EasyButton extends TextView {
         mMaxRippleWidth = mRadius / 2;
         mLineWidth = Math.round(mRadius / 100);
 
-//        Log.e("mLineWidth", mLineWidth + "");
         mRippleWidth = mLineWidth;
         mInitRippleWidth = mRippleWidth;
         mRecWidth = textLen * textSize;
@@ -143,7 +142,7 @@ public class EasyButton extends TextView {
         mShadowPaint.setStrokeWidth(mLineWidth);
         mShadowPaint.setStrokeCap(Paint.Cap.ROUND);
 
-
+        System.out.println("我是EasyButton的onMeasure");
         int width = MeasureSpec.makeMeasureSpec((int) mWidth, MeasureSpec.getMode(widthMeasureSpec));
         int height = MeasureSpec.makeMeasureSpec((int) mHeight, MeasureSpec.getMode(heightMeasureSpec));
         super.onMeasure(width, height);
@@ -198,8 +197,11 @@ public class EasyButton extends TextView {
         canvas.drawArc(new RectF(cxLeft - mRadius, cyLeft - mRadius, cxLeft + mRadius, cyLeft + mRadius),
                 90, 360, false, mButtonPaint);
         canvas.drawRect(cxLeft, cyLeft - mRadius, cxRight, cyRight + mRadius, mButtonPaint);
-        canvas.drawArc(new RectF(cxRight - mRadius, cyRight - mRadius, cxRight + mRadius, cyRight +
-                mRadius), -90, 360, false, mButtonPaint);
+        RectF rectF = new RectF(cxRight - mRadius, cyRight - mRadius, cxRight + mRadius, cyRight +
+                mRadius);
+        canvas.drawArc(rectF, -90, 360, false, mButtonPaint);
+//        System.out.println(rectF.toString());
+
     }
 
     void drawLine(Canvas canvas, float startAng, float sweepAng, float startPosX) {
@@ -242,7 +244,7 @@ public class EasyButton extends TextView {
         startRippleAnim();
     }
 
-    private void startRippleAnim() {
+    protected void startRippleAnim() {
         mStatus = RIPPLE;
         rippleAnimator = ValueAnimator.ofFloat(mRippleWidth, mMaxRippleWidth);
         rippleAlphaAnimator = ValueAnimator.ofInt(255, 0);
@@ -271,7 +273,6 @@ public class EasyButton extends TextView {
             public void onAnimationEnd(Animator animation) {
                 mRippleWidth = mInitRippleWidth;
                 mRippleAlpha = 255;
-//                startLineAnim();
                 mStatus = LINE_MOVE;
             }
 

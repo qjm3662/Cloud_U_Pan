@@ -6,11 +6,11 @@
 
     <ImageView
         android:id="@+id/img_upload_record"
-        android:src="@drawable/upload"
-        android:paddingTop="@dimen/y75"
-        android:paddingBottom="@dimen/y75"
-        android:paddingLeft="@dimen/x75"
-        android:paddingRight="@dimen/x75"
+        android:src="@drawable/record"
+        android:paddingTop="@dimen/y60"
+        android:paddingBottom="@dimen/y60"
+        android:paddingLeft="@dimen/x60"
+        android:paddingRight="@dimen/x60"
         android:layout_width="@dimen/y240"
         android:layout_height="@dimen/y240"
         android:layout_marginRight="@dimen/y90"
@@ -25,7 +25,7 @@
         android:layout_alignEnd="@+id/img_upload_record"
         android:layout_marginTop="@dimen/y45"
         android:gravity="center"
-        android:text="上传记录"
+        android:text="传输记录"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -35,12 +35,12 @@
 
     <ImageView
         android:id="@+id/img_download_record"
-        android:src="@drawable/download"
+        android:src="@drawable/baidu"
         android:layout_centerHorizontal="true"
-        android:paddingTop="@dimen/y75"
-        android:paddingBottom="@dimen/y75"
-        android:paddingLeft="@dimen/x75"
-        android:paddingRight="@dimen/x75"
+        android:paddingTop="@dimen/y60"
+        android:paddingBottom="@dimen/y60"
+        android:paddingLeft="@dimen/x60"
+        android:paddingRight="@dimen/x60"
         android:layout_width="@dimen/y240"
         android:layout_height="@dimen/y240"
         android:background="@drawable/circle_download"
@@ -53,7 +53,7 @@
         android:layout_alignEnd="@+id/img_download_record"
         android:layout_marginTop="@dimen/y45"
         android:gravity="center"
-        android:text="下载记录"
+        android:text="云盘搜索"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

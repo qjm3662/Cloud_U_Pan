@@ -59,4 +59,7 @@ dependencies {
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile project(":PushSDK")
+
+    //viewpager好友
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }
