@@ -44,8 +44,8 @@ public class App extends Application{
     public static List<LocalFile> Public_List_Local_File_Upload = new ArrayList<LocalFile>();
     //本地下载记录
     public static List<LocalFile> Public_List_Local_File_Download = new ArrayList<LocalFile>();
-    //分享中心记录
-    public static List<FileInformation> Public_List_File_Info = Collections.synchronizedList(new ArrayList<FileInformation>());
+    //wifi直连传输记录
+    public static List<LocalFile> Public_List_Wifi_Trans_Record = new ArrayList<LocalFile>();
 
     //暂存当前点击的用户
     public static User user_temp = null;
@@ -194,6 +194,16 @@ public class App extends Application{
             Long times = c.getLong(c.getColumnIndex(LocalFileDB.COLUMN_NAME_DownTime));
             localFile.setDownTime(times);
             Public_List_Local_File_Download.add(localFile);
+        }
+        c = dbRead.query(LocalFileDB.TABLE_NAME_LOCAL_FILE_WIFI_DIRECT_RECORD, null, null, null, null, null, null);
+        while(c.moveToNext()){
+            LocalFile localFile = new LocalFile();
+            localFile.setName(c.getString(c.getColumnIndex(LocalFileDB.COLUMN_NAME_Name)));
+            localFile.setPath(c.getString(c.getColumnIndex(LocalFileDB.COLUMN_NAME_Path)));
+            localFile.setType(c.getString(c.getColumnIndex(LocalFileDB.COLUMN_NAME_Type)));
+            Long times = c.getLong(c.getColumnIndex(LocalFileDB.COLUMN_NAME_DownTime));
+            localFile.setDownTime(times);
+            Public_List_Wifi_Trans_Record.add(localFile);
         }
     }
 

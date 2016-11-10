@@ -49,12 +49,6 @@
         <activity android:name=".WifiDirect.Send_Activity" />
         <activity android:name=".WifiDirect.Receive_Activity" />
         <activity
-            android:name=".UI.LocalFileRecording_Upload"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".UI.LocalFileRecording_Download"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".FileManager.FileManager"
             tools:ignore="DuplicateActivity" />
         <activity android:name=".UI.RegisterUI" />

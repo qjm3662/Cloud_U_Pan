@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class RecordTabsAdapter extends FragmentPagerAdapter{
-    String[] titles = {"下载", "上传"};
+    String[] titles = {"下载", "上传", "直连"};
     private List<Fragment> fragmentList = null;
     public RecordTabsAdapter(FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);

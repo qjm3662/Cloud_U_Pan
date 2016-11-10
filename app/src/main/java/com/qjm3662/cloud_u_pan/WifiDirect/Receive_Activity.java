@@ -1,6 +1,7 @@
 package com.qjm3662.cloud_u_pan.WifiDirect;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -17,7 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.Adapter.RecordAdapter;
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
+import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
@@ -69,8 +72,20 @@ public class Receive_Activity extends BaseActivity {
                 case 1:
                     System.out.println("11111111111");
                     try{
-                        LocalFile localFile = new LocalFile(fileName, path, System.currentTimeMillis());
+                        final LocalFile localFile = new LocalFile(fileName, path, System.currentTimeMillis());
+                        App.Public_List_Wifi_Trans_Record.add(localFile);
                         list.add(localFile);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ContentValues cv = new ContentValues();
+                                cv.put(LocalFileDB.COLUMN_NAME_Name, localFile.getName());
+                                cv.put(LocalFileDB.COLUMN_NAME_DownTime, System.currentTimeMillis());
+                                cv.put(LocalFileDB.COLUMN_NAME_Path, localFile.getPath());
+                                cv.put(LocalFileDB.COLUMN_NAME_Type, localFile.getType());
+                                App.dbWrite.insert(LocalFileDB.TABLE_NAME_LOCAL_FILE_WIFI_DIRECT_RECORD, null, cv);
+                            }
+                        }).start();
                         adapter.notifyDataSetChanged();
                     }catch (Exception e){
                         System.out.println("文件传输完成后error : " + e.toString());

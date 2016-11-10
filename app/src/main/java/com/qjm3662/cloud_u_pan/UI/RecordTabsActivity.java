@@ -13,6 +13,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.qjm3662.cloud_u_pan.Adapter.RecordTabsAdapter;
 import com.qjm3662.cloud_u_pan.Fragment.DownloadFragment;
 import com.qjm3662.cloud_u_pan.Fragment.UploadRecordFragment;
+import com.qjm3662.cloud_u_pan.Fragment.WifiDirectRecordFragment;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.DensityUtil;
 
@@ -27,6 +28,7 @@ public class RecordTabsActivity extends FragmentActivity {
     private List<Fragment> list = new ArrayList<Fragment>();
     private Fragment v_upload;
     private Fragment v_download;
+    private Fragment v_wifi_trans;
     private RecordTabsAdapter adapter;
     private TextView tv_bar;
     private ImageView img_back;
@@ -44,8 +46,10 @@ public class RecordTabsActivity extends FragmentActivity {
 
         v_upload = new UploadRecordFragment();
         v_download = new DownloadFragment();
+        v_wifi_trans = new WifiDirectRecordFragment();
         list.add(v_download);
         list.add(v_upload);
+        list.add(v_wifi_trans);
         adapter = new RecordTabsAdapter(this.getSupportFragmentManager(), list);
         pager.setAdapter(adapter);
         pager.setCurrentItem(0);

@@ -1,5 +1,6 @@
 package com.qjm3662.cloud_u_pan.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.qjm3662.cloud_u_pan.Adapter.FirstViewAdapter;
+import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.R;
 
 import java.util.ArrayList;
@@ -47,7 +49,9 @@ public class FirstLunchActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("finish");
+                startActivity(new Intent(FirstLunchActivity.this, MainActivity.class));
                 FirstLunchActivity.this.finish();
+                App.startAnim(FirstLunchActivity.this);
             }
         });
         list.add(v1);

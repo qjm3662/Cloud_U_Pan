@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class LocalFileDB extends SQLiteOpenHelper {
     public static final String TABLE_NAME_LOCAL_FILE_UPLOAD = "LocalFileUpload";
     public static final String TABLE_NAME_LOCAL_FILE_DOWNLOAD = "LocalFileDownload";
+    public static final String TABLE_NAME_LOCAL_FILE_WIFI_DIRECT_RECORD = "wifi_direct_record";
     public static final String COLUMN_NAME_ID = "_id";
     public static final String COLUMN_NAME_Name = "name";
     public static final String COLUMN_NAME_Path = "path";
@@ -36,6 +37,13 @@ public class LocalFileDB extends SQLiteOpenHelper {
                 COLUMN_NAME_Type + " TEXT NOT NULL DEFAULT \"\"" +
                 ")");
         db.execSQL("CREATE TABLE " + TABLE_NAME_LOCAL_FILE_DOWNLOAD + "(" +
+                COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_NAME_Name + " TEXT NOT NULL DEFAULT \"\"," +
+                COLUMN_NAME_Path + " TEXT NOT NULL DEFAULT \"\"," +
+                COLUMN_NAME_DownTime + " TEXT NOT NULL DEFAULT \"\"," +
+                COLUMN_NAME_Type + " TEXT NOT NULL DEFAULT \"\"" +
+                ")");
+        db.execSQL("CREATE TABLE " + TABLE_NAME_LOCAL_FILE_WIFI_DIRECT_RECORD + "(" +
                 COLUMN_NAME_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_NAME_Name + " TEXT NOT NULL DEFAULT \"\"," +
                 COLUMN_NAME_Path + " TEXT NOT NULL DEFAULT \"\"," +
