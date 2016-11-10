@@ -319,6 +319,15 @@ public class FileUtils {
         return sdDir.toString();
     }
 
+    public static String getWifiDirectPath(){
+        String path = getSDPath() + "/WifiDirectFile/";
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdir();
+        }
+        return path;
+    }
+
 
     /**
      * 获得SDCard的根目录

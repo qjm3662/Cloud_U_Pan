@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.qjm3662.cloud_u_pan.Adapter.LocalFileUploadRecordingAdapter;
+import com.qjm3662.cloud_u_pan.Adapter.RecordAdapter;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.R;
@@ -24,7 +24,7 @@ import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 public class UploadRecordFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private ListView listView;
-    private LocalFileUploadRecordingAdapter adapter;
+    private RecordAdapter adapter;
     private TextView tv_empty_view;
     private Context context;
     @Nullable
@@ -39,7 +39,7 @@ public class UploadRecordFragment extends Fragment implements AdapterView.OnItem
 
     private void initListView(View view) {
         listView = (ListView) view.findViewById(R.id.list_localFile);
-        adapter = new LocalFileUploadRecordingAdapter(context);
+        adapter = new RecordAdapter(context, App.Public_List_Local_File_Upload);
         listView.setAdapter(adapter);
         tv_empty_view = (TextView) view.findViewById(R.id.list_empty_view);
         listView.setEmptyView(tv_empty_view);

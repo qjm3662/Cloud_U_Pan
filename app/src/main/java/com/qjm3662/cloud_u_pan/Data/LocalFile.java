@@ -1,6 +1,9 @@
 package com.qjm3662.cloud_u_pan.Data;
 
+import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.TimeUtils;
+
+import java.io.File;
 
 /**
  * Created by qjm3662 on 2016/9/26 0026.
@@ -25,6 +28,13 @@ public class LocalFile {
         this.path = path;
         this.downTime = downTime;
         this.type = type;
+        this.flag_is_DateNode = false;
+    }
+    public LocalFile(String name, String path, long downTime){
+        this.name = name;
+        this.path = path;
+        this.downTime = downTime;
+        this.type = FileUtils.getMIMEType(new File(path));
         this.flag_is_DateNode = false;
     }
     public LocalFile(){

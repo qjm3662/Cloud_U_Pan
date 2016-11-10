@@ -18,6 +18,9 @@ public class WifiDirectBroadCastReceiver extends BroadcastReceiver{
     private int flag_where = 0;
     public final static int FLAG_FROM_RECEIVE_ACTIVITY = 123;
     public final static int FLAG_FROM_SEND_ACTIVITY = 321;
+    public final static String CONNECTED_ACTION = "connected action";
+    public final static String UNCONNECTED_ACTION = "unconnected action";
+
 
 
     public WifiDirectBroadCastReceiver(int flag_where, WifiP2pManager manager, WifiP2pManager.Channel channel, Activity activity, WifiP2pManager.PeerListListener peerListListener) {
@@ -85,8 +88,14 @@ public class WifiDirectBroadCastReceiver extends BroadcastReceiver{
                         }catch(Exception e){
                             System.out.println("SendActivity not exist !!!");
                         }
+                        Intent i = new Intent();
+                        i.setAction(CONNECTED_ACTION);
+                        context.sendBroadcast(i);
                     }else{
                         System.out.println("没有连接上");
+                        Intent i = new Intent();
+                        i.setAction(UNCONNECTED_ACTION);
+                        context.sendBroadcast(i);
                         try{
                             Send_Activity.isConnect = false;
                         }catch (Exception e){

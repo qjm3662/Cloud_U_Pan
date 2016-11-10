@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="@dimen/y160"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/y36">
+
+    <ImageView
+        android:layout_width="@dimen/y80"
+        android:layout_height="@dimen/y80"
+        android:layout_marginBottom="@dimen/y40"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginTop="@dimen/y40"
+        android:src="@drawable/wifi" />
+
     <TextView
         android:id="@+id/deceive_name"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/x60"
+        android:text="魅蓝 note2"
+        android:textSize="20sp" />
+
     <TextView
-        android:id="@+id/deceive_details"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/img_disconnected"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/close_wifi"
+        android:layout_marginRight="@dimen/x60"
+        android:layout_width="@dimen/y80"
+        android:layout_height="@dimen/y80" />
 
 </LinearLayout>

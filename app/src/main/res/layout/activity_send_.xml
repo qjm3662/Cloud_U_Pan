@@ -5,23 +5,87 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/lightblue"
     tools:context=".WifiDirect.Send_Activity">
 
-    <Button
-        android:id="@+id/btn_sendFile"
-        android:text="发送文件"
+    <RelativeLayout
+        android:background="@color/blue"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y138">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/y80"
+            android:layout_height="@dimen/y70"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/back" />
+        <TextView
+            android:id="@+id/bar"
+            android:text="优云"
+            android:gravity="center"
+            android:textSize="@dimen/y66"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y138" />
+
+        <ImageView
+            android:id="@+id/img_flush"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/y80"
+            android:layout_height="@dimen/y70"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/flush" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x225">
+        <TextView
+            android:id="@+id/tv_name"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:text="用户名"
+            android:layout_marginLeft="@dimen/x80"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_state"
+            android:gravity="center"
+            android:text="未连接"
+            android:layout_marginRight="@dimen/x60"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/white"
+        android:paddingLeft="@dimen/y36"
+        android:layout_marginTop="@dimen/y40"
+        android:paddingBottom="@dimen/x20"
+        android:paddingTop="@dimen/x20"
+        android:text="可用列表"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btn_disConnect"
-        android:text="断开连接"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <ListView
         android:id="@+id/list_wifi_group"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        android:id="@+id/btn_sendFile"
+        android:text=" 发送文件 "
+        android:layout_marginTop="@dimen/y30"
+        android:layout_gravity="center_horizontal"
+        style="@style/EasyButtonStyle"
+        />
 </LinearLayout>

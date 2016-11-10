@@ -11,6 +11,10 @@ import android.widget.Toast;
 
 import com.qjm3662.cloud_u_pan.FileManager.FileManager;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
+import com.qjm3662.cloud_u_pan.WifiDirect.Socket.FileSendAsycn;
+import com.qjm3662.cloud_u_pan.WifiDirect.Socket.MsgReceiveServer;
+import com.qjm3662.cloud_u_pan.WifiDirect.Socket.MsgSendAsync;
+import com.qjm3662.cloud_u_pan.WifiDirect.Socket.ReceiveFileServer;
 
 
 /**
@@ -27,8 +31,9 @@ public class qjm_WifiP2pManager {
     private WifiP2pManager.ConnectionInfoListener connectionInfoListener;       //连接状态变化监听器
     private String groupIp = null;      //P2p小组的组长的ip地址
     private int flag_where;
-    private Thread StartServerThread = null;
-    private Server.ServerListener serverListener;
+    private Thread StartFileServerThread = null;
+    private ReceiveFileServer.ServerListener serverListener;
+    private MsgReceiveServer.MsgReceiveServerListener msgReceiveServerListener;
 
     /**
      * 返回连接状态变化监听器
@@ -49,7 +54,6 @@ public class qjm_WifiP2pManager {
         manager = (WifiP2pManager) context.getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(context, context.getMainLooper(), null);
         receiver = new WifiDirectBroadCastReceiver(flag_where, manager, channel, ((Activity)context), listListener);
-
         intentFilter = new IntentFilter();
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
@@ -66,13 +70,15 @@ public class qjm_WifiP2pManager {
      * @param listListener  PeerListListener(可连接列表变化状态监听器)
      * @param serverListener    文件传输服务回调接口
      */
-    public qjm_WifiP2pManager(Context context, WifiP2pManager.PeerListListener listListener, Server.ServerListener serverListener) {
+    public qjm_WifiP2pManager(Context context, WifiP2pManager.PeerListListener listListener, ReceiveFileServer.ServerListener serverListener, MsgReceiveServer.MsgReceiveServerListener msgReceiveServerListener) {
         this.context = context;
         this.flag_where = WifiDirectBroadCastReceiver.FLAG_FROM_RECEIVE_ACTIVITY;
         manager = (WifiP2pManager) context.getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(context, context.getMainLooper(), null);
         receiver = new WifiDirectBroadCastReceiver(flag_where, manager, channel, ((Activity)context), listListener);
         this.serverListener = serverListener;
+        this.msgReceiveServerListener = msgReceiveServerListener;
+        StartMsgServer();
         intentFilter = new IntentFilter();
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
@@ -122,12 +128,13 @@ public class qjm_WifiP2pManager {
                         Toast.makeText(context, "连接成功", Toast.LENGTH_SHORT).show();
                         System.out.println("WifiP2PInfo : " + info);
                         System.out.println("Address : " + info.groupOwnerAddress);
-                        if(StartServerThread == null){
-                            StartServer(true);
+//                        StartMsgServer();
+                        if(StartFileServerThread == null){
+                            StartFileServer(true);
                             System.out.println("创建了一个线程");
                         }
-                        if(!StartServerThread.isAlive()){
-                            StartServer(true);
+                        if(!StartFileServerThread.isAlive()){
+                            StartFileServer(true);
                             System.out.println("又创建了一个线程");
                         }
                     }
@@ -137,22 +144,34 @@ public class qjm_WifiP2pManager {
     }
 
 
-    private void StartServer(final boolean IsGroup) {
-        System.out.println("StartServer1");
-        StartServerThread = new Thread(new Runnable() {
+    /**
+     * 开启文件接收服务监听
+     * @param IsGroup
+     */
+    private void StartFileServer(final boolean IsGroup) {
+        System.out.println("StartFileServer1");
+        StartFileServerThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    System.out.println("Server create !!!!!");
-                    Server.getInstance(serverListener, IsGroup);
+                    System.out.println("ReceiveFileServer create !!!!!");
+                    ReceiveFileServer.getInstance(serverListener, IsGroup);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-        StartServerThread.start();
+        StartFileServerThread.start();
     }
 
+    private void StartMsgServer(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MsgReceiveServer.getInstance(msgReceiveServerListener);
+            }
+        }).start();
+    }
 
     /**
      * 注册服务
@@ -184,14 +203,12 @@ public class qjm_WifiP2pManager {
     }
 
 
-    /**
-     * 断开连接
-     */
-    public void DisConnect() {
+    public void justDisconnect(){
         manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
             @Override
             public void onSuccess() {
                 Toast.makeText(context, "断开连接", Toast.LENGTH_SHORT).show();
+                MsgReceiveServer.getInstance(msgReceiveServerListener).close();
                 Discover();
             }
 
@@ -200,6 +217,38 @@ public class qjm_WifiP2pManager {
 
             }
         });
+    }
+    /**
+     * 断开连接
+     */
+    public void DisConnect() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SendMsg(new MsgSendAsync.MsgSendListener() {
+                    @Override
+                    public void sendSuccess() {
+                        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(context, "断开连接", Toast.LENGTH_SHORT).show();
+                                Discover();
+                            }
+
+                            @Override
+                            public void onFailure(int reason) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void sendFail() {
+
+                    }
+                }, false);
+            }
+        }).start();
     }
 
 
@@ -272,4 +321,26 @@ public class qjm_WifiP2pManager {
             throw e;
         }
     }
+
+    public void SendMsg(MsgSendAsync.MsgSendListener listener, boolean b){
+        MsgSendAsync msgSendAsync = new MsgSendAsync(listener);
+        while(true){
+            if(groupIp != null){
+                System.out.println("Ip不为");
+                if (groupIp.startsWith("/")) {
+                    groupIp = groupIp.substring(1, groupIp.length());
+                }
+                msgSendAsync.execute(groupIp, String.valueOf(b));
+                break;
+            }
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
 }

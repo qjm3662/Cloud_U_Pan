@@ -10,12 +10,15 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
+
+import com.qjm3662.cloud_u_pan.R;
 
 /**
  * Created by qjm3662 on 2016/11/8 0008.
  */
 
-public class EasyButton_RoundImage extends EasyButton{
+public class EasyButton_RoundImage extends EasyButton {
     public EasyButton_RoundImage(Context context) {
         super(context);
     }
@@ -30,16 +33,10 @@ public class EasyButton_RoundImage extends EasyButton{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        float textSize = getTextSize();
-//        float textLen = getText().length();
-        System.out.println("WIDTH : " + MeasureSpec.getSize(widthMeasureSpec));
         mRadius = Math.round(MeasureSpec.getSize(widthMeasureSpec) / 2);
         mTickLen = Math.round(mRadius / 180 * 3.14 * mSweepAngMin);
         mMaxRippleWidth = mRadius / 2;
-
         mLineWidth = Math.round(mRadius / 100);
-
-
         mRippleWidth = mLineWidth;
         mInitRippleWidth = mRippleWidth;
         mRecWidth = 0;
@@ -51,7 +48,6 @@ public class EasyButton_RoundImage extends EasyButton{
         cxRight = cxLeft + mRecWidth;
         cyRight = cyLeft;
 
-        System.out.println("两个园的中心坐标:" + "(" + cxLeft + "," + cyLeft + "),(" + cxRight + "," + cyRight + ")\n " + "Radius : " + mRadius);
 
         mLinePaint.setStrokeWidth(mLineWidth);
         mLinePaint.setStrokeCap(Paint.Cap.ROUND);
@@ -61,9 +57,7 @@ public class EasyButton_RoundImage extends EasyButton{
 
         int width = MeasureSpec.makeMeasureSpec((int) mWidth, MeasureSpec.getMode(widthMeasureSpec));
         int height = MeasureSpec.makeMeasureSpec((int) mHeight, MeasureSpec.getMode(heightMeasureSpec));
-        System.out.println("width : " + MeasureSpec.getSize(width) + "\nheight : " + MeasureSpec.getSize(height));
-//        super.onMeasure(width, height);
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(width, width);
     }
 
     @Override
@@ -72,7 +66,7 @@ public class EasyButton_RoundImage extends EasyButton{
             case MotionEvent.ACTION_DOWN:
                 if (mStatus.equals(INIT)) {
                     startAnimation();
-                }else{
+                } else {
                     mStatus = INIT;
                     rippleAnimator.cancel();
                     rippleAlphaAnimator.cancel();
@@ -81,8 +75,7 @@ public class EasyButton_RoundImage extends EasyButton{
                 break;
             case MotionEvent.ACTION_UP:
                 mRippleWidth = mInitRippleWidth;
-                mRippleAlpha = 255;
-                mStatus = LINE_MOVE;
+//                mStatus = INIT;
                 break;
         }
         super.onTouchEvent(event);
@@ -106,6 +99,7 @@ public class EasyButton_RoundImage extends EasyButton{
         canvas.drawArc(rectF, -90, 360, false, mButtonPaint);
 //        System.out.println(rectF.toString());
     }
+
 
     @Override
     protected void startRippleAnim() {
@@ -135,7 +129,9 @@ public class EasyButton_RoundImage extends EasyButton{
 
             @Override
             public void onAnimationEnd(Animator animation) {
-
+                mRippleWidth = mInitRippleWidth;
+                mRippleAlpha = 160;
+                mStatus = LINE_MOVE;
             }
 
             @Override
@@ -152,5 +148,25 @@ public class EasyButton_RoundImage extends EasyButton{
         AnimatorSet animSet = new AnimatorSet();
         animSet.playTogether(rippleAnimator, rippleAlphaAnimator);
         animSet.start();
+    }
+
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        switch (mStatus) {
+            case INIT:
+                this.setLayerType(View.LAYER_TYPE_SOFTWARE, mLinePaint);
+                mLinePaint.setShadowLayer(10, 1, 1, getResources().getColor(R.color.deepBlue));//偏移度很小时则变成发光字体
+                drawButton(canvas);
+                break;
+            case RIPPLE:
+                drawRipple(canvas);
+                drawButton(canvas);
+                break;
+            case LINE_MOVE:
+                drawButton(canvas);
+                break;
+        }
+        super.onDraw(canvas);
     }
 }

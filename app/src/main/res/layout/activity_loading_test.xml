@@ -6,17 +6,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qjm3662.cloud_u_pan.UI.LoadingTestActivity"
-    android:weightSum="1">
+    tools:context="com.qjm3662.cloud_u_pan.UI.LoadingTestActivity">
 
-    <!--<com.qjm3662.cloud_u_pan.Loading.LoadingView-->
-        <!--android:id="@+id/loadingView"-->
-        <!--app:loading_renderer="DanceLoadingRenderer"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent" />-->
     <com.qjm3662.cloud_u_pan.Widget.EasyButton_RoundImage
         style="@style/EasyButtonStyle"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_width="150dp"
+        android:text="传"
+
+        android:layout_height="200dp"
+        android:id="@+id/easyButton_RoundImage" />
 </LinearLayout>

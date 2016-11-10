@@ -142,7 +142,6 @@ public class EasyButton extends TextView {
         mShadowPaint.setStrokeWidth(mLineWidth);
         mShadowPaint.setStrokeCap(Paint.Cap.ROUND);
 
-        System.out.println("我是EasyButton的onMeasure");
         int width = MeasureSpec.makeMeasureSpec((int) mWidth, MeasureSpec.getMode(widthMeasureSpec));
         int height = MeasureSpec.makeMeasureSpec((int) mHeight, MeasureSpec.getMode(heightMeasureSpec));
         super.onMeasure(width, height);

@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_trans_main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".WifiDirect.TransMain">
 
-    <include layout="@layout/bar_item"/>
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_send"
-        style="@style/EasyButtonStyle"
-        android:layout_toLeftOf="@+id/tv_center"
-        android:layout_centerVertical="true"
-        />
-    <ImageView
-        android:paddingTop="@dimen/y102"
-        android:paddingBottom="@dimen/y102"
-        android:paddingLeft="@dimen/x102"
-        android:paddingRight="@dimen/x102"
-        android:src="@drawable/send"
-        android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150"
-        android:layout_alignBottom="@+id/btn_send"
-        android:layout_alignEnd="@+id/btn_send"
-        android:layout_alignRight="@+id/btn_send"
-        android:layout_alignTop="@+id/btn_send"
-        android:layout_alignLeft="@+id/btn_send"
-        android:layout_alignStart="@+id/btn_send"
-        />
+    <!--<include layout="@layout/bar_item"/>-->
+    <!--<com.qjm3662.cloud_u_pan.Widget.EasyButton-->
+        <!--android:id="@+id/btn_send"-->
+        <!--style="@style/EasyButtonStyle"-->
+        <!--android:layout_toLeftOf="@+id/tv_center"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--/>-->
+    <!--<ImageView-->
+        <!--android:paddingTop="@dimen/y102"-->
+        <!--android:paddingBottom="@dimen/y102"-->
+        <!--android:paddingLeft="@dimen/x102"-->
+        <!--android:paddingRight="@dimen/x102"-->
+        <!--android:src="@drawable/send"-->
+        <!--android:layout_width="@dimen/x150"-->
+        <!--android:layout_height="@dimen/y150"-->
+        <!--android:layout_alignBottom="@+id/btn_send"-->
+        <!--android:layout_alignEnd="@+id/btn_send"-->
+        <!--android:layout_alignRight="@+id/btn_send"-->
+        <!--android:layout_alignTop="@+id/btn_send"-->
+        <!--android:layout_alignLeft="@+id/btn_send"-->
+        <!--android:layout_alignStart="@+id/btn_send"-->
+        <!--/>-->
 
 
-    <TextView
-        android:id="@+id/tv_center"
-        android:layout_centerInParent="true"
-        android:layout_width="@dimen/x200"
-        android:layout_height="@dimen/x200" />
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_receive"
-        style="@style/EasyButtonStyle"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/tv_center"
-        />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_center"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_width="@dimen/x200"-->
+        <!--android:layout_height="@dimen/x200" />-->
+    <!--<com.qjm3662.cloud_u_pan.Widget.EasyButton-->
+        <!--android:id="@+id/btn_receive"-->
+        <!--style="@style/EasyButtonStyle"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_toRightOf="@+id/tv_center"-->
+        <!--/>-->
 
-    <ImageView
-        android:paddingTop="@dimen/y102"
-        android:paddingBottom="@dimen/y102"
-        android:paddingLeft="@dimen/x102"
-        android:paddingRight="@dimen/x102"
-        android:src="@drawable/receive"
-        android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150"
-        android:layout_alignBottom="@+id/btn_receive"
-        android:layout_alignEnd="@+id/btn_receive"
-        android:layout_alignRight="@+id/btn_receive"
-        android:layout_alignTop="@+id/btn_receive"
-        android:layout_alignLeft="@+id/btn_receive"
-        android:layout_alignStart="@+id/btn_receive"
-        android:id="@+id/imageView4" />
+    <!--<ImageView-->
+        <!--android:paddingTop="@dimen/y102"-->
+        <!--android:paddingBottom="@dimen/y102"-->
+        <!--android:paddingLeft="@dimen/x102"-->
+        <!--android:paddingRight="@dimen/x102"-->
+        <!--android:src="@drawable/receive"-->
+        <!--android:layout_width="@dimen/x150"-->
+        <!--android:layout_height="@dimen/y150"-->
+        <!--android:layout_alignBottom="@+id/btn_receive"-->
+        <!--android:layout_alignEnd="@+id/btn_receive"-->
+        <!--android:layout_alignRight="@+id/btn_receive"-->
+        <!--android:layout_alignTop="@+id/btn_receive"-->
+        <!--android:layout_alignLeft="@+id/btn_receive"-->
+        <!--android:layout_alignStart="@+id/btn_receive"-->
+        <!--android:id="@+id/imageView4" />-->
+
 
     <!--<com.qjm3662.cloud_u_pan.Widget.EasyButton-->
         <!--android:text="传文件"-->
@@ -78,4 +80,32 @@
         <!--style="@style/EasyButtonStyle"-->
         <!--android:layout_gravity="center_horizontal"-->
         <!--/>-->
-</RelativeLayout>
+    <include layout="@layout/bar_item"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton_RoundImage
+        android:id="@+id/btn_send"
+        style="@style/EasyButtonStyle"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:textSize="25sp"
+        android:text="发送"
+        android:layout_height="200dp"
+        />
+    <com.qjm3662.cloud_u_pan.Widget.EasyButton_RoundImage
+        android:id="@+id/btn_receive"
+        style="@style/EasyButtonStyle"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:textSize="25sp"
+        android:text="接收"
+        android:layout_height="200dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>
