@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_user_agreement"
     android:layout_width="match_parent"
+    android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.UserAgreement" android:layout_height="match_parent">
     <EditText
         android:id="@+id/content"

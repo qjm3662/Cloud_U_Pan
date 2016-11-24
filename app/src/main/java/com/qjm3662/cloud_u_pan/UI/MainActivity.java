@@ -95,8 +95,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                                 dialog.cancel();
                                 break;
                             case R.id.img_download_record:
-                                startActivity(new Intent(MainActivity.this, LoadingTestActivity.class));
+                                startActivity(new Intent(MainActivity.this, BaiduSearchActivity.class));
                                 App.startAnim(MainActivity.this);
+
                                 dialog.cancel();
                                 break;
                             case R.id.img_share_center:

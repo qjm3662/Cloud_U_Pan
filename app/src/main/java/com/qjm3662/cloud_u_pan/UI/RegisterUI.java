@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qjm3662.cloud_u_pan.App;
@@ -20,6 +21,8 @@ public class RegisterUI extends BaseActivity implements View.OnClickListener {
     private Intent intent;
     private EditText et_phone_number;
     private EditText et_password;
+    private ImageView img_back;
+    private TextView tv_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,11 @@ public class RegisterUI extends BaseActivity implements View.OnClickListener {
 
         register_to_login.setOnClickListener(this);
         btn_register.setOnClickListener(this);
+        img_back = (ImageView) findViewById(R.id.img_back);
+        tv_bar = (TextView) findViewById(R.id.bar);
+        tv_bar.setText("注册");
+        img_back.setOnClickListener(this);
+
     }
 
     @Override

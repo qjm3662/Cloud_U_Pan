@@ -4,7 +4,7 @@
     android:id="@+id/activity_followings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.Followings">
 
     <include layout="@layout/bar_item"/>

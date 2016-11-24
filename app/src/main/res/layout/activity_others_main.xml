@@ -4,6 +4,7 @@
     android:id="@+id/activity_others_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.OthersMain">
 
     <include layout="@layout/bar_item"/>

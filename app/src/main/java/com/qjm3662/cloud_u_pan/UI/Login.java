@@ -17,6 +17,7 @@ import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 public class Login extends BaseActivity implements View.OnClickListener {
 
     private ImageView img_back;
+    private TextView tv_bar;
     private Button btn_login;
     private TextView tv_forget_password;
     private EditText et_username;
@@ -42,6 +43,8 @@ public class Login extends BaseActivity implements View.OnClickListener {
         img_back.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         tv_forget_password.setOnClickListener(this);
+        tv_bar = (TextView) findViewById(R.id.bar);
+        tv_bar.setText("登陆");
     }
 
     @Override

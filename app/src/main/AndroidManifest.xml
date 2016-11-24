@@ -117,8 +117,8 @@
             android:name="UMENG_MESSAGE_SECRET"
             android:value="9e6f3be030843000028c0949fa89c288" />
 
-        <activity android:name=".UI.LoadingTestActivity" />
-        <activity android:name=".UI.RecordTabsActivity"></activity>
+        <activity android:name=".UI.RecordTabsActivity" />
+        <activity android:name=".UI.BaiduSearchActivity"></activity>
     </application>
 
 </manifest>

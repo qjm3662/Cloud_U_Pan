@@ -6,9 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.RegisterUI"
     android:weightSum="1">
 
+    <include layout="@layout/bar_item"/>
     <ImageView
         android:id="@+id/register_img"
         android:layout_marginTop="@dimen/y228"

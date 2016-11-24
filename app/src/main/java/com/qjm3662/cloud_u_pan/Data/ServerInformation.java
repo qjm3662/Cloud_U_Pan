@@ -102,4 +102,7 @@ public class ServerInformation {
     public static final String CallBackInfo = url + "/user/feedback";
     //修改密码
     public static final String RevisePsd = url + "/user/editPass";
+
+    //百度云盘资源搜索
+    public static final String BAIDU_SEARCH = IP + ":8096/yunPan/index";
 }
