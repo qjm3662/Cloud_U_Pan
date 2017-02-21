@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.DCIMDirectryAdapter;
 import com.qjm3662.cloud_u_pan.Adapter.DCIMGridViewAdapter;
 import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.LocalDCIMUtils;
@@ -36,8 +38,7 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
     private boolean isDirect = true;
     private BaseAdapter adapter_photo;
     private List<String> currentPaths = null;
-    private ImageView img_back;
-    private TextView tv_bar;
+    private EasyBar easyBar;
     private static final int PHOTO_REQUEST_TAKEPHOTO = 5;
     private File tempFile = new File(FileUtils.getPath(), "aa_temp.jpg");
     private ImageView img_camera;
@@ -92,19 +93,11 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
     }
 
     private void initView() {
+        EasyBarUtils.justSetTitleAndBack(easyBar, "选择一张图片", this, 1);
         gridView = (GridView) findViewById(R.id.my_DCIM_grid);
         adapter_directory = new DCIMDirectryAdapter(this, new HashMap<String, List<String>>());
         gridView.setAdapter(adapter_directory);
         gridView.setOnItemClickListener(this);
-        img_back = (ImageView) findViewById(R.id.img_back);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("选择一张图片");
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
         img_camera = (ImageView) findViewById(R.id.img_camera);
         img_camera.setOnClickListener(new View.OnClickListener() {
             @Override

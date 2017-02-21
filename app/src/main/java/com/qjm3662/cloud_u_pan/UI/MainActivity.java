@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.FileManager.FileManager;
 import com.qjm3662.cloud_u_pan.R;
@@ -48,7 +49,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_bluetooth = (EasyButton) findViewById(R.id.btn_bluetooth);
         btn_more = (EasyButton) findViewById(R.id.btn_more);
         btn_my = (EasyButton) findViewById(R.id.btn_my);
-        findViewById(R.id.img_back).setVisibility(View.INVISIBLE);
+        ((EasyBar)findViewById(R.id.easyBar)).setLeftIconVisibility(false);
 
         btn_upload.setOnClickListener(this);
         btn_download.setOnClickListener(this);

@@ -6,13 +6,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 
 public class VersionInfo extends BaseActivity implements View.OnClickListener {
 
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private TextView tv_check_for_update;
     private TextView tv_user_agreement;
     @Override
@@ -24,13 +25,10 @@ public class VersionInfo extends BaseActivity implements View.OnClickListener {
     }
 
     private void initVIew() {
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "版本信息", this, 1);
         tv_check_for_update = (TextView) findViewById(R.id.tv_check_for_update);
         tv_user_agreement = (TextView) findViewById(R.id.tv_user_agreement);
 
-        tv_bar.setText("版本信息");
-        img_back.setOnClickListener(this);
         tv_user_agreement.setOnClickListener(this);
         tv_check_for_update.setOnClickListener(this);
     }
@@ -38,9 +36,6 @@ public class VersionInfo extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.img_back:
-                onBackPressed();
-                break;
             case R.id.tv_check_for_update:
 
                 break;

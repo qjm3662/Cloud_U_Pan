@@ -9,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.OthersShareAdapter;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
@@ -21,8 +23,7 @@ import java.util.List;
 
 public class OthersMain extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private ListView listView;
     private TextView tv_empty_view;
     private OthersShareAdapter adapter;
@@ -50,8 +51,7 @@ public class OthersMain extends BaseActivity implements View.OnClickListener, Ad
 
     private void initView() {
         listView = (ListView) findViewById(R.id.list_others_share);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "个人主页", this, 1);
         tv_empty_view = (TextView) findViewById(R.id.list_empty_view);
         tv_empty_view.setVisibility(View.INVISIBLE);
         inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -80,15 +80,13 @@ public class OthersMain extends BaseActivity implements View.OnClickListener, Ad
         }
         list = user.getShares_list();
 
-        tv_bar.setText("个人主页");
-        img_back.setOnClickListener(this);
         listView.setAdapter(adapter);
         listView.addHeaderView(header);
         listView.setOnItemClickListener(this);
         img_avatar.setOnClickListener(this);
         img_add.setOnClickListener(this);
 
-        tv_name.setText(user.getUsername());
+        tv_name.setText(user.getNickname());
         img_avatar.setImageBitmap(user.getBitmap());
     }
 
@@ -109,9 +107,6 @@ public class OthersMain extends BaseActivity implements View.OnClickListener, Ad
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.img_back:
-                onBackPressed();
-                break;
             case R.id.img_avatar:
 
                 break;
@@ -121,11 +116,11 @@ public class OthersMain extends BaseActivity implements View.OnClickListener, Ad
                     viewHolder.img_add = img_add;
                     viewHolder.tv_concern_info = tv_concren_info;
                     if(isConcern){
-                        NetWorkOperator.UnFollowSB(this, user.getName(), viewHolder);
+                        NetWorkOperator.UnFollowSB(this, user.getUsername(), viewHolder);
                         isConcern = false;
                         user.setRelative(false);
                     }else{
-                        NetWorkOperator.FollowSB(this, user.getName(), viewHolder);
+                        NetWorkOperator.FollowSB(this, user.getUsername(), viewHolder);
                         isConcern = true;
                         user.setRelative(true);
                     }

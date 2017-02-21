@@ -15,15 +15,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 
 public class BaiduSearchActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private WebView webView;
-    private ImageView img_back;
-    private TextView tv_bar;
+    private EasyBar easyBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +34,9 @@ public class BaiduSearchActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("云盘搜索");
+        EasyBarUtils.justSetTitleAndBack(easyBar, "云盘搜索", this, 2);
+
+
         progressBar = (ProgressBar) findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);
         webView = (WebView) findViewById(R.id.webView);
@@ -48,13 +44,13 @@ public class BaiduSearchActivity extends AppCompatActivity {
         //启用支持javascript
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 progressBar.setProgress(newProgress);
             }
         });
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -86,9 +82,9 @@ public class BaiduSearchActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(webView.canGoBack()){
+        if (webView.canGoBack()) {
             webView.goBack();
-        }else{
+        } else {
             super.onBackPressed();
         }
     }

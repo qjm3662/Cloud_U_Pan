@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.FollowingsAdapter;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.Loading.DanceLoadingRenderer;
 import com.qjm3662.cloud_u_pan.Loading.LoadingView;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
@@ -25,8 +27,7 @@ import java.util.List;
 public class Followings extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private ListView listView;
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private FollowingsAdapter adapter;
     private TextView tv_emptyView;
     public static final String ACTION_SUCCESS = "action_SUCCESS";
@@ -77,26 +78,18 @@ public class Followings extends BaseActivity implements AdapterView.OnItemClickL
 
     private void initView() {
         listView = (ListView) findViewById(R.id.list_followings);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "关注的人", this, 1);
         tv_emptyView = (TextView) findViewById(R.id.list_empty_view);
         adapter = new FollowingsAdapter(this, list);
         listView.setAdapter(adapter);
         listView.setEmptyView(tv_emptyView);
 
-        tv_bar.setText("关注的人");
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
         listView.setOnItemClickListener(this);
         tv_emptyView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        NetWorkOperator.getOtherUserInfoByName(this, list.get(list.size() - 1 - position).getName(), false);
+        NetWorkOperator.getOtherUserInfoByUsername(this, list.get(list.size() - 1 - position).getUsername(), false);
     }
 }

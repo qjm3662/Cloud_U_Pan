@@ -12,9 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileManagerItem;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.UI.BaseActivity;
@@ -30,11 +32,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
 
-public class FileManager extends BaseActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
+public class FileManager extends BaseActivity implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
     private static final String MY_ROOT_PATH = "com.qjm3662.cloud_u_pan.my_root_path";
     private List<FileManagerItem> fileList = null;
-    private ImageView img_back;
-    private TextView tv_bar;
+    private EasyBar easyBar;
     private ListView listView;
     private Intent intent;
     private boolean flag_is_select_file;
@@ -63,20 +64,18 @@ public class FileManager extends BaseActivity implements View.OnClickListener, A
     }
 
     private void initView() {
-        img_back = (ImageView) findViewById(R.id.img_back);
-        tv_bar = (TextView) findViewById(R.id.bar);
+        EasyBarUtils.justSetTitleAndBack(easyBar, " ", this, 2);
+        if (where == 0) {
+            easyBar.setTitle("选择文件");
+        } else if (where == 1) {
+            easyBar.setTitle("选择图片");
+        } else if (where == 2) {
+            easyBar.setTitle("选择文件夹");
+        }
         listView = (ListView) findViewById(R.id.list);
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
 
-        img_back.setOnClickListener(this);
-        if (where == 0) {
-            tv_bar.setText("选择文件");
-        } else if (where == 1) {
-            tv_bar.setText("选择图片");
-        } else if (where == 2) {
-            tv_bar.setText("选择文件夹");
-        }
     }
 
 
@@ -336,12 +335,4 @@ public class FileManager extends BaseActivity implements View.OnClickListener, A
         Toast.makeText(FileManager.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_back:
-                finish();
-                break;
-        }
-    }
 }

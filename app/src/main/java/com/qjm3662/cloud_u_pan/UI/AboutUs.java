@@ -1,16 +1,13 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.example.easybar.EasyBar;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 
 public class AboutUs extends BaseActivity {
 
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,14 +16,6 @@ public class AboutUs extends BaseActivity {
     }
 
     private void initView() {
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("团队信息");
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        EasyBarUtils.justSetTitleAndBack(easyBar, "团队信息", this, 1);
     }
 }

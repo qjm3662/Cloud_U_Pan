@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
@@ -20,10 +22,7 @@ public class DownloadUi extends BaseActivity implements View.OnClickListener {
     private EasyButton btn_sure;
     private TextView tv_t;
     private boolean flag_is_input_finish = false;
-    private TextView tv_bar;
-    private ImageView img_back;
-
-
+    private EasyBar easyBar;
 
 
     @Override
@@ -34,13 +33,10 @@ public class DownloadUi extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
+        EasyBarUtils.justSetTitleAndBack(easyBar, "提取文件", this, 1);
         editTextWithDivLine = (EditTextWithDivLine) findViewById(R.id.et_code);
         btn_sure = (EasyButton) findViewById(R.id.btn_sure);
         tv_t = (TextView) findViewById(R.id.tv_t);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
-        tv_bar.setText("提取文件");
-        img_back.setOnClickListener(this);
         btn_sure.setOnClickListener(this);
 
         editTextWithDivLine.initStyle(R.drawable.code_input_type, 6, 1, R.color.gray, R.color.blue, 24);
@@ -68,9 +64,6 @@ public class DownloadUi extends BaseActivity implements View.OnClickListener {
                     }
                 };
                 NetWorkOperator.GetFileInformation(this, editTextWithDivLine.getPwdText(), App.fileInformation, callBack);
-                break;
-            case R.id.img_back:
-                onBackPressed();
                 break;
         }
     }

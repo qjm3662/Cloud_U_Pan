@@ -25,7 +25,6 @@ import com.qjm3662.cloud_u_pan.UI.ShareCenter;
 import com.qjm3662.cloud_u_pan.UI.UploadUi;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
-import com.umeng.analytics.MobclickAgent;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -65,8 +64,9 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.RevisePsd)
+                .addParams("username", User.getInstance().getUsername())
                 .addParams("password", oldPsd)
-                .addParams("newpassword", newPsd)
+                .addParams("newPassword", newPsd)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -121,7 +121,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.CallBackInfo)
-                .addParams("name", name)
+                .addParams("username", name)
                 .addParams("text", text)
                 .build()
                 .execute(new StringCallback() {
@@ -137,7 +137,9 @@ public class NetWorkOperator {
                             switch (jsonObject.getInt("code")) {
                                 case 0:
                                     EasySweetAlertDialog.ShowSuccess(context, "Success", "我们已收到您的反馈，谢谢合作！");
-                                    et_feedBack.setText("");
+                                    if(et_feedBack != null){
+                                        et_feedBack.setText("");
+                                    }
                                     break;
                                 case -5:
                                     EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
@@ -164,6 +166,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .get()
                 .url(ServerInformation.GetFollowingInfo)
+                .addParams("username", User.getInstance().getUsername())
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -178,7 +181,7 @@ public class NetWorkOperator {
                             JSONObject jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
                                 case 0:
-                                    JSONArray jsonArray = jsonObject.getJSONArray("message");
+                                    JSONArray jsonArray = jsonObject.getJSONArray("follows");
                                     final int length = jsonArray.length();
                                     Gson gson = new Gson();
                                     User user = null;
@@ -239,7 +242,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.UnFollowSB)
-                .addParams("myselfName", User.getInstance().getName())
+                .addParams("myselfName", User.getInstance().getUsername())
                 .addParams("otherName", targetName)
                 .build()
                 .execute(new StringCallback() {
@@ -283,7 +286,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .get()
                 .url(ServerInformation.FollowSB)
-                .addParams("myselfName", User.getInstance().getName())
+                .addParams("myselfName", User.getInstance().getUsername())
                 .addParams("otherName", targetName)
                 .build()
                 .execute(new StringCallback() {
@@ -317,9 +320,9 @@ public class NetWorkOperator {
      * 修改用户信息
      *
      * @param context
-     * @param username
+     * @param nickname
      */
-    public static void modifyUserInfo(final Context context, String username) {
+    public static void modifyUserInfo(final Context context, String nickname) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
@@ -328,8 +331,8 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.Modify_User_Info)
-                .addParams("name", user.getName())
-                .addParams("username", username)
+                .addParams("nickname", nickname)
+                .addParams("username", user.getUsername())
                 .addParams("sex", String.valueOf(user.getSex()))
                 .addParams("signature", user.getSignature())
                 .build()
@@ -346,7 +349,7 @@ public class NetWorkOperator {
                             JSONObject jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
                                 case 0:
-                                    getUserInfo(context, User.getInstance().getName(), 3);
+                                    getUserInfo(context, User.getInstance().getUsername(), 3);
                                     break;
                                 case -5:
                                     EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
@@ -386,11 +389,16 @@ public class NetWorkOperator {
                             if (jsonObject.getInt("code") == 0) {
                                 Gson gson = new Gson();
                                 list.clear();
-                                JSONArray jsonArray = jsonObject.getJSONArray("shares");
+                                JSONArray jsonArray = null;
+                                try {
+                                    jsonArray = jsonObject.getJSONArray("shares");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 FileInformation fileInformation = null;
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
-                                    String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
+                                    String type = FileUtils.getMIMEType(new File(fileInformation.getFileName()));
                                     fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
                                     list.add(fileInformation);
                                     Intent intent = new Intent();
@@ -414,24 +422,24 @@ public class NetWorkOperator {
      * 获取其他用户的信息
      *
      * @param context
-     * @param name
+     * @param username
      */
-    public static void getOtherUserInfoByName(final Context context, String name, final boolean isNeedFinish) {
+    public static void getOtherUserInfoByUsername(final Context context, String username, final boolean isNeedFinish) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
         }
         String myName = null;
         if (App.Flag_IsLogin) {
-            myName = User.getInstance().getName();
+            myName = User.getInstance().getNickname();
         } else {
             myName = "NULL";
         }
         OkHttpUtils
                 .get()
                 .url(ServerInformation.GetUserInfo)
-                .addParams("name", myName)
-                .addParams("other", name)
+                .addParams("visitor", User.getInstance().getUsername())
+                .addParams("username", username)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -459,7 +467,7 @@ public class NetWorkOperator {
                                 FileInformation fileInformation = null;
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
-                                    String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
+                                    String type = FileUtils.getMIMEType(new File(fileInformation.getFileName()));
                                     fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
                                     shares.add(fileInformation);
                                 }
@@ -506,8 +514,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .get()
                 .url(ServerInformation.GetUserInfo)
-                .addParams("name", "NULL")
-                .addParams("other", name)
+                .addParams("username", name)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -529,7 +536,7 @@ public class NetWorkOperator {
                                 FileInformation fileInformation = null;
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     fileInformation = gson.fromJson(jsonArray.get(i).toString(), FileInformation.class);
-                                    String type = FileUtils.getMIMEType(new File(fileInformation.getName()));
+                                    String type = FileUtils.getMIMEType(new File(fileInformation.getFileName()));
                                     fileInformation.setBitmap_type(FileUtils.getImgHead_not_down(type));
                                     shares.add(fileInformation);
                                 }
@@ -574,6 +581,8 @@ public class NetWorkOperator {
                                     }
                                 };
                                 AvatarUtils.getBitmapByUrl(User.getInstance().getAvatar(), callBack);
+                            }else{  //用户不存在
+                                EasySweetAlertDialog.ShowTip(context, jsonObject.getString("err"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -591,7 +600,7 @@ public class NetWorkOperator {
      * @param fileInformation
      * @return
      */
-    public static void Down(final Context context, RequestCall call, FileInformation fileInformation) {
+    public static void Down(final Context context, RequestCall call, final FileInformation fileInformation) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
@@ -601,7 +610,7 @@ public class NetWorkOperator {
         }
         final Intent[] intent = {new Intent(), new Intent()};
         final int[] current_progress = {0};
-        call.execute(new FileCallBack(App.currentSavePath, fileInformation.getName()) {
+        call.execute(new FileCallBack(App.currentSavePath, fileInformation.getFileName()) {
             @Override
             public void onError(Call call, Exception e, int id) {
                 System.out.println(e.toString());
@@ -613,7 +622,7 @@ public class NetWorkOperator {
                 System.out.println("response : " + response);
                 System.out.println(response.getAbsolutePath());
                 intent[1].setAction(DownloadUi2.DownloadFilePathAction);
-                intent[1].putExtra(DownloadUi2.DownloadfilePath, response.toString());
+                intent[1].putExtra(DownloadUi2.DownloadFilePath, response.toString());
                 intent[1].putExtra("TYPE", FileUtils.getMIMEType(response));
 
                 String type = FileUtils.getMIMEType(response);
@@ -631,6 +640,9 @@ public class NetWorkOperator {
             @Override
             public void inProgress(float progress, long total, int id) {
                 super.inProgress(progress, total, id);
+                progress = (float) ((-progress / (1024 * 1024)) / fileInformation.getFileSize());
+                System.out.println(progress);
+                System.out.println("id:" + id);
                 if (current_progress[0] != (int) (progress * 100)) {
                     current_progress[0] = (int) (progress * 100);
                     intent[0] = new Intent();
@@ -673,15 +685,24 @@ public class NetWorkOperator {
                         try {
                             JSONObject jo = new JSONObject(response);
                             System.out.println(jo.get("code"));
-                            fileInformation.setName(jo.getString("name"));
-                            fileInformation.setSize((float) jo.getDouble("size"));
-                            if (!jo.getString("uploadUser").equals("nobody")) {
-                                fileInformation.setUpLoadUser(jo.getString("uploadUser"));
-                                fileInformation.setUpLoadUserAvatar(jo.getJSONObject("user").getString("avatar"));
-                                fileInformation.setUpLoadUserName(jo.getJSONObject("user").getString("username"));
-                                fileInformation.setCreatedAt(jo.getLong("time"));
+                            fileInformation.setFileName(jo.getString("fileName"));
+                            fileInformation.setFileSize((float) jo.getDouble("fileSize"));
+                            JSONObject owner = null;
+                            try {
+                                owner = jo.getJSONObject("owner");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            if (owner != null) {
+//                                fileInformation.setUploadUserNickname(owner.getString("nickname"));
+//                                fileInformation.setUploadUserAvatar(owner.getString("avatar"));
+//                                fileInformation.setUploadUsername(owner.getString("username"));
+                                fileInformation.getUploadUser().setNickname(owner.getString("nickname"));
+                                fileInformation.getUploadUser().setAvatar(owner.getString("avatar"));
+                                fileInformation.getUploadUser().setUsername(owner.getString("username"));
+                                fileInformation.setCreateTime(jo.getLong("createTime"));
                             }else{
-                                fileInformation.setUpLoadUser(null);
+                                fileInformation.setUploadUser(null);
                             }
                             callBack.call();
                         } catch (JSONException e) {
@@ -708,6 +729,7 @@ public class NetWorkOperator {
                 .post()
                 .url(ServerInformation.Modify_User_Avatar)
                 .addFile("avatar", file.getName(), file)
+                .addParams("username", User.getInstance().getUsername())
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -717,12 +739,13 @@ public class NetWorkOperator {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        System.out.println(response);
+                        System.out.println("res :" + response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
                                 case 0:
-                                    getUserInfo(context, User.getInstance().getName(), 3);
+                                    System.out.println(User.getInstance().getUsername());
+                                    getUserInfo(context, User.getInstance().getUsername(), 3);
                                     break;
                                 case -5:
                                     EasySweetAlertDialog.ShowTip(context, "Tip", "登录失效，请退出后重新登录");
@@ -754,27 +777,29 @@ public class NetWorkOperator {
      * @param isShare
      * @return
      */
-    public static void UP_FILE(final Context context, final File file, String fileName, boolean isShare) {
+    public static void UP_FILE(final Context context, final File file, final String fileName, final byte isShare) {
         final Intent[] intent = new Intent[1];
         String url = "";
-        String userName;
+        final String userName;
         final int current_progress[] = {0};
         if (App.Flag_IsLogin) {
             url = ServerInformation.UPLoadFile_AfterLogin;
-            userName = User.getInstance().getName();
+            userName = User.getInstance().getUsername();
             System.out.println("UserName :" + userName);
             OkHttpUtils
                     .post()
                     .url(url)
                     .addFile("file", fileName, file)
                     .addParams("share", String.valueOf(isShare))
-                    .addParams("name", userName)
+                    .addParams("username", userName)
                     .build()
                     .execute(new StringCallback() {
                                  @Override
                                  public void onError(Call call, Exception e, int id) {
                                      System.out.println("Error :" + e.toString());
-                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
+                                     FeedBack(context, User.getInstance().getUsername(), fileName + " " + isShare + " "
+                                      + userName + " " + e.toString(), null);
+                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败" + e.toString(), "OK", new MySuccessCalback());
                                  }
 
                                  @Override
@@ -840,7 +865,9 @@ public class NetWorkOperator {
                                  @Override
                                  public void onError(Call call, Exception e, int id) {
                                      System.out.println("Error :" + e.toString());
-                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败", "OK", new MySuccessCalback());
+                                     FeedBack(context, User.getInstance().getUsername(), fileName + " " + isShare + " "
+                                              + " " + e.toString(), null);
+                                     EasySweetAlertDialog.ShowTip(context, "tip", "上传失败" + e.toString(), "OK", new MySuccessCalback());
                                  }
 
                                  @Override
@@ -903,8 +930,8 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.REGISTER)
-                .addParams("name", username)
-                .addParams("pwd", password)
+                .addParams("username", username)
+                .addParams("password", password)
                 .addParams("sex", "1")
                 .build()
                 .execute(new StringCallback() {
@@ -921,8 +948,8 @@ public class NetWorkOperator {
                         try {
                             jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
-                                case 0:
-                                    User.getInstance().setName(username);
+                                case 0:     //注册成功
+                                    User.getInstance().setNickname(username);
                                     User.getInstance().setAvatar(jsonObject.getString("avatar"));
                                     getUserInfo(context, username, 2);
                                     break;
@@ -953,8 +980,8 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.LOGIN)
-                .addParams("name", username)
-                .addParams("pwd", password)
+                .addParams("username", username)
+                .addParams("password", password)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -966,11 +993,11 @@ public class NetWorkOperator {
                     @Override
                     public void onResponse(String response, int id) {
                         JSONObject jsonObject = null;
+                        System.out.println(response);
                         try {
                             jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
                                 case 0:
-                                    MobclickAgent.onProfileSignIn(username);
                                     getUserInfo(context, username, 1);
                                     break;
                                 case -1:

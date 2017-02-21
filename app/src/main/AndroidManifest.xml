@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.qjm3662.cloud_u_pan">
 
-    <uses-sdk android:minSdkVersion="14" />
+    <!--<uses-sdk android:minSdkVersion="15" />-->
 
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -24,12 +24,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <!-- &lt;!&ndash;友盟权限&ndash;&gt; -->
-    <!-- &lt;!&ndash;<uses-sdk android:minSdkVersion="4"></uses-sdk>&ndash;&gt; -->
-    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> -->
-    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
-    <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
-    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"/> -->
     <application
         android:name=".App"
         android:allowBackup="true"

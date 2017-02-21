@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.MatcherUtils;
@@ -16,8 +18,7 @@ import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class Login extends BaseActivity implements View.OnClickListener {
 
-    private ImageView img_back;
-    private TextView tv_bar;
+    private EasyBar easyBar;
     private Button btn_login;
     private TextView tv_forget_password;
     private EditText et_username;
@@ -33,26 +34,20 @@ public class Login extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        img_back = (ImageView) findViewById(R.id.img_back);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "登录", this, 2);
         btn_login = (Button) findViewById(R.id.login_btn);
         tv_forget_password = (TextView) findViewById(R.id.forget_password);
         et_username = (EditText) findViewById(R.id.login_phone);
         et_password = (EditText) findViewById(R.id.login_password);
         context = Login.this;
 
-        img_back.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         tv_forget_password.setOnClickListener(this);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("登陆");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.img_back:
-                finish();
-                break;
             case R.id.login_btn:
                 if(et_username.getText().toString().equals("") || et_password.getText().toString().equals("")){
                     EasySweetAlertDialog.ShowTip(this, "tip", "用户名或密码不能为空");

@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
@@ -45,8 +47,7 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
     private TextView tv_success;
     private TextView tv_code;
     private Handler handler;
-    private ImageView img_back;
-    private TextView tv_bar;
+    private EasyBar easyBar;
     private boolean flag = false;               //标记动画完成，和页面数据填充都完成时显示上传成功页面
 
 
@@ -62,10 +63,11 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
 
     private void uploadOperator() {
         File file = new File(getIntent().getStringExtra(MainActivity.FILE_PATH_TO_BE_UPLOAD));
-        NetWorkOperator.UP_FILE(this, file, file.getName(), true);
+        NetWorkOperator.UP_FILE(this, file, file.getName(), (byte) 1);
     }
 
     private void initView() {
+        EasyBarUtils.justSetTitleAndBack(easyBar, "上传", this, 1);
         btn_share_qq = (EasyButton) findViewById(R.id.btn_share_qq);
         btn_share_copy = (EasyButton) findViewById(R.id.btn_share_copy);
         btn_share_chat = (EasyButton) findViewById(R.id.btn_share_chat);
@@ -76,12 +78,10 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
         tv_success = (TextView) findViewById(R.id.tv_success);
         tv_fileName = (TextView) findViewById(R.id.tv_fileName);
         tv_code = (TextView) findViewById(R.id.tv_code);
-        img_back = (ImageView) findViewById(R.id.img_back);
 
         btn_share_qq.setOnClickListener(this);
         btn_share_copy.setOnClickListener(this);
         btn_share_chat.setOnClickListener(this);
-        img_back.setOnClickListener(this);
 
         btn_share_qq.setVisibility(View.INVISIBLE);
         btn_share_copy.setVisibility(View.INVISIBLE);
@@ -95,8 +95,6 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
         tv_code.setVisibility(View.INVISIBLE);
 
 
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("上传");
 
         animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
         startLoading();
@@ -204,9 +202,6 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
             case R.id.btn_share_copy:
                 TextUtil.copy(fileCode, this);
                 EasySweetAlertDialog.ShowSuccess(this, "已成功复制到剪切板");
-                break;
-            case R.id.img_back:
-                onBackPressed();
                 break;
         }
     }

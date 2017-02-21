@@ -21,9 +21,6 @@ import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
@@ -76,21 +73,19 @@ public class App extends Application{
     public static Bitmap b_ppt_pdf;
     public static Bitmap b_video;
     public static Bitmap b_zip;
-    private PushAgent mPushAgent;
 
     @Override
     public void onCreate() {
         super.onCreate();
         initReceiver();
-        mPushAgent = PushAgent.getInstance(this);
         //数据库相关操作
         new Thread(new Runnable() {
             @Override
             public void run() {
-                initUMeng();
+//                initUMeng();
                 getUserInfo();
                 getSwitchState();
-                final CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+                CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
                 OkHttpClient okHttpClient = new OkHttpClient.Builder()
                         .cookieJar(cookieJar)
                         //其他配置
@@ -106,22 +101,6 @@ public class App extends Application{
         }).start();
     }
 
-    private void initUMeng() {
-        MobclickAgent. startWithConfigure(new MobclickAgent.UMAnalyticsConfig(this, "581aa56ff29d980cdf001822", "Wangdoujia"));
-        //注册推送服务，每次调用register方法都会回调该接口
-        mPushAgent.register(new IUmengRegisterCallback() {
-            @Override
-            public void onSuccess(String deviceToken) {
-                //注册成功会返回device token
-                System.out.println("------------------------/n" + deviceToken + "/n--------------------------");
-            }
-
-            @Override
-            public void onFailure(String s, String s1) {
-
-            }
-        });
-    }
 
     public static void startAnim(Activity activity){
         activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

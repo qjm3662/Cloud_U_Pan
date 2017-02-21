@@ -69,10 +69,10 @@ public class ShareCenterAdapter extends BaseAdapter {
 
         FileInformation fileInformation = list.get(size - 1 - position);
         viewHolder.img_head.setImageBitmap(fileInformation.getBitmap_type());
-        viewHolder.tv_fileName.setText(fileInformation.getName());
+        viewHolder.tv_fileName.setText(fileInformation.getFileName());
         viewHolder.tv_time.setText(fileInformation.getDownTimeString());
         viewHolder.tv_downCount.setText("下载次数：" + fileInformation.getDownloadCount() + "");
-        viewHolder.tv_size.setText("文件大小：" + fileInformation.getSize() + "M");
+        viewHolder.tv_size.setText("文件大小：" + fileInformation.getFileSize() + "M");
         return convertView;
     }
 }

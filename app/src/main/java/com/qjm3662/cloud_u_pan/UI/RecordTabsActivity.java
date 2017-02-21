@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.RecordTabsAdapter;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.Fragment.DownloadFragment;
 import com.qjm3662.cloud_u_pan.Fragment.UploadRecordFragment;
 import com.qjm3662.cloud_u_pan.Fragment.WifiDirectRecordFragment;
@@ -30,8 +32,7 @@ public class RecordTabsActivity extends FragmentActivity {
     private Fragment v_download;
     private Fragment v_wifi_trans;
     private RecordTabsAdapter adapter;
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,15 +55,7 @@ public class RecordTabsActivity extends FragmentActivity {
         pager.setAdapter(adapter);
         pager.setCurrentItem(0);
 
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("传输记录");
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        EasyBarUtils.justSetTitleAndBack(easyBar, "传输记录", this, 2);
 
         pagerSlidingTabStrip.setShouldExpand(true);
         pagerSlidingTabStrip.setTextSize(DensityUtil.dip2px(this, 18));

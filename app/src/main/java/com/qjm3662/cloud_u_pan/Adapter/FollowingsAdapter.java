@@ -63,7 +63,7 @@ public class FollowingsAdapter extends BaseAdapter{
         }
         User user = list.get(list.size() - 1 - position);
         viewHolder.img_avatar.setImageBitmap(user.getBitmap());
-        viewHolder.tv_name.setText(user.getUsername());
+        viewHolder.tv_name.setText(user.getNickname());
         return convertView;
     }
 }

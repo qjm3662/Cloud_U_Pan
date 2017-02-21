@@ -17,11 +17,13 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.RecordAdapter;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.UI.BaseActivity;
@@ -41,8 +43,7 @@ public class Receive_Activity extends BaseActivity {
     private String fileName = "";
     private String path = "";
     private int progress = 0;
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private ListView listView;
     private RecordAdapter adapter;
     private List<LocalFile> list = new ArrayList<LocalFile>();
@@ -138,20 +139,12 @@ public class Receive_Activity extends BaseActivity {
         //收文件的人创建P2p群组
         manager.createGroup();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("接收文件");
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        EasyBarUtils.justSetTitleAndBack(easyBar, "接收文件", this, 2);
         listView = (ListView) findViewById(R.id.list);
         adapter = new RecordAdapter(this, list);
         tv_state = (TextView) findViewById(R.id.tv_state);
         tv_name = (TextView) findViewById(R.id.tv_name);
-        tv_name.setText(User.getInstance().getUsername());
+        tv_name.setText(User.getInstance().getNickname());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -7,14 +7,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class RevisePassword extends BaseActivity {
 
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private EditText et_old_psd;
     private EditText et_new_psd;
     private EditText et_new_psd_confirm;
@@ -28,20 +29,12 @@ public class RevisePassword extends BaseActivity {
     }
 
     private void initView() {
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "修改密码", this, 1);
         et_old_psd = (EditText) findViewById(R.id.et_old_psd);
         et_new_psd = (EditText) findViewById(R.id.et_new_psd);
         et_new_psd_confirm = (EditText) findViewById(R.id.et_new_psd_confirm);
         btn_confirm = (Button) findViewById(R.id.btn_confirm);
 
-        tv_bar.setText("修改密码");
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override

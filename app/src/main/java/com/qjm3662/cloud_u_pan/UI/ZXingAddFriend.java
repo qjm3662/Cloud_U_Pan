@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
@@ -19,11 +21,11 @@ import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.QRCodeUtil;
 import com.qjm3662.cloud_u_pan.Widget.CaptureActivityAnyOrientation;
 
-public class ZXingAddFriend extends BaseActivity implements View.OnClickListener {
+import static com.qjm3662.cloud_u_pan.R.id.img_back;
 
-    private TextView tv_bar;
-    private ImageView img_back;
-    private ImageView img_camera;
+public class ZXingAddFriend extends BaseActivity {
+
+    private EasyBar easyBar;
     private ImageView img_ZXing;
     private TextView tv_name;
     private Bitmap bitmap_icon;
@@ -42,7 +44,7 @@ public class ZXingAddFriend extends BaseActivity implements View.OnClickListener
                 AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
                     @Override
                     public void callback(Bitmap bitmap) {
-                        ShowZXing(User.getInstance().getName(), bitmap);
+                        ShowZXing(User.getInstance().getUsername(), bitmap);
                     }
 
                     @Override
@@ -53,7 +55,7 @@ public class ZXingAddFriend extends BaseActivity implements View.OnClickListener
                 AvatarUtils.getBitmapByUrl(User.getInstance().getAvatar(), callBack);
             }else{
 //                img_ZXing.setImageBitmap(bitmap_icon);
-                ShowZXing(User.getInstance().getName(), bitmap_icon);
+                ShowZXing(User.getInstance().getUsername(), bitmap_icon);
             }
         }
     }
@@ -71,28 +73,24 @@ public class ZXingAddFriend extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_camera = (ImageView) findViewById(R.id.img_camera);
+        easyBar = (EasyBar) findViewById(R.id.easyBar);
+        easyBar.setTitle("扫一扫加关注");
+        easyBar.setRightIcon(BitmapFactory.decodeResource(getResources(), R.drawable.saoyisao));
+        easyBar.setOnEasyBarClickListener(new EasyBar.OnEasyBarClickListener() {
+            @Override
+            public void onLeftIconClick() {
+                finish();
+            }
+
+            @Override
+            public void onRightIconClick() {
+                startCamera();
+            }
+        });
         img_ZXing = (ImageView) findViewById(R.id.img_ZXing);
         tv_name = (TextView) findViewById(R.id.tv_name);
 
-        tv_bar.setText("扫一扫加关注");
         tv_name.setText("我的二维码");
-        img_back.setOnClickListener(this);
-        img_camera.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.img_back:
-                finish();
-                break;
-            case R.id.img_camera:
-                startCamera();
-                break;
-        }
     }
 
     private void startCamera() {
@@ -110,7 +108,7 @@ public class ZXingAddFriend extends BaseActivity implements View.OnClickListener
             if (scanResult != null) {
                 System.out.println("woc, 怎么还有");
                 String result = scanResult.getContents();
-                NetWorkOperator.getOtherUserInfoByName(this, result.trim(), false);
+                NetWorkOperator.getOtherUserInfoByUsername(this, result.trim(), false);
             }else{
                 System.out.println("没有信息");
             }

@@ -74,7 +74,7 @@ public class OthersShareAdapter extends BaseAdapter{
 
             FileInformation fileInformation = list.get(list.size() - 1 - position);
             viewHolder.img_head.setImageBitmap(fileInformation.getBitmap_type());
-            viewHolder.tv_fileName.setText(fileInformation.getName());
+            viewHolder.tv_fileName.setText(fileInformation.getFileName());
             viewHolder.tv_time.setText(fileInformation.getDownTimeString());
             return convertView;
         }else{

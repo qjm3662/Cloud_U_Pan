@@ -12,10 +12,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.Data.UserBase;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
@@ -43,18 +46,15 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
     private TextView tv_code;
     private RoundedImageView img_avatar;
     private TextView tv_uploadInfo;
-    private AVLoadingIndicatorView progress_circlr;
+    private AVLoadingIndicatorView progress_circle;
     private TextView tv_progress;
 
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
 
     private String fileName;
     private String fileCode;
     private String filePath = null;
-    private String uploadUser;
-    private String uploadUserName;
-    private String uploadUserAvatar;
+    private UserBase uploader;
     private String createAt;
     private RequestCall call;
 
@@ -62,7 +62,7 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
     public static final String DownLoadProgressAction = "down load progress action";
     public static final String DownloadProgressing = "progressing";
     public static final String DownloadFilePathAction = "Download filePath action";
-    public static final String DownloadfilePath = "Download filePath";
+    public static final String DownloadFilePath = "Download filePath";
     private BroadcastReceiver receiver;
     private boolean is_upload_after_login = false;
     private int current_progress = 0;
@@ -72,14 +72,12 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_ui2);
-        fileName = App.fileInformation.getName();
+        fileName = App.fileInformation.getFileName();
         Intent intent = getIntent();
         fileCode = intent.getStringExtra("code");
         where = intent.getIntExtra("WHERE", 0);
-        if(App.fileInformation.getUpLoadUser() != null){
-            uploadUser = App.fileInformation.getUpLoadUser();
-            uploadUserAvatar = App.fileInformation.getUpLoadUserAvatar();
-            uploadUserName = App.fileInformation.getUpLoadUserName();
+        if(App.fileInformation.getUploadUser() != null){
+            uploader = App.fileInformation.getUploadUser();
             createAt = App.fileInformation.getDownTimeString();
             is_upload_after_login = true;
         }
@@ -99,12 +97,12 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
                     case DownLoadProgressAction:
                         int progress = intent.getIntExtra(DownloadProgressing, 0);
                         current_progress = progress;
-                        System.out.println(progress);
+//                        System.out.println(progress);
                         tv_progress.setText(progress + "");
                         break;
                     case DownloadFilePathAction:
-                        filePath = intent.getStringExtra(DownloadfilePath);
-                        progress_circlr.hide();
+                        filePath = intent.getStringExtra(DownloadFilePath);
+                        progress_circle.hide();
                         tv_progress.setVisibility(View.INVISIBLE);
                         FileUtils.setImgHead(img_file, intent.getStringExtra("TYPE"), filePath);
                         btn_down.setText(" 打开 ");
@@ -128,14 +126,14 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
         btn_down = (EasyButton) findViewById(R.id.btn_down);
         tv_fileName = (TextView) findViewById(R.id.tv_fileName);
         tv_code = (TextView) findViewById(R.id.tv_code);
-        progress_circlr = (AVLoadingIndicatorView) findViewById(R.id.progress_circle);
+        progress_circle = (AVLoadingIndicatorView) findViewById(R.id.progress_circle);
         tv_progress = (TextView) findViewById(R.id.tv_progress);
         img_avatar = (RoundedImageView) findViewById(R.id.img_avatar);
         tv_uploadInfo = (TextView) findViewById(R.id.tv_uploadInfo);
 
 
         if(is_upload_after_login){
-            tv_uploadInfo.setText(uploadUserName + "上传于" + createAt);
+            tv_uploadInfo.setText(uploader.getNickname() + "上传于" + createAt);
             img_avatar.setOnClickListener(this);
             final Bitmap[] b = {null};
             final Handler handler = new Handler(){
@@ -161,17 +159,14 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
 
                 }
             };
-            AvatarUtils.getBitmapByUrl(App.fileInformation.getUpLoadUserAvatar(), callBack);
+            AvatarUtils.getBitmapByUrl(uploader.getAvatar(), callBack);
         }else{
             img_avatar.setVisibility(View.INVISIBLE);
             tv_uploadInfo.setVisibility(View.INVISIBLE);
         }
-        tv_bar = (TextView) findViewById(R.id.bar);
-        img_back = (ImageView) findViewById(R.id.img_back);
-        tv_bar.setText("下载");
-        img_back.setOnClickListener(this);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "下载", this, 1);
 
-        progress_circlr.hide();
+        progress_circle.hide();
         tv_progress.setText("0");
 
         btn_share_qq.setOnClickListener(this);
@@ -207,7 +202,7 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
                     return;
                 }
                 if(btn_down.getText().toString().trim().equals("下载")){
-                    progress_circlr.show();
+                    progress_circle.show();
                     btn_down.setVisibility(View.INVISIBLE);
                     call = OkHttpUtils
                             .get()
@@ -226,8 +221,7 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.img_avatar:
                 if(where == 0){
-                    NetWorkOperator.getOtherUserInfoByName(this, uploadUser, true);
-                    System.out.println("UploadUser : " + uploadUser);
+                    NetWorkOperator.getOtherUserInfoByUsername(this, uploader.getUsername(), true);
                 }else{
                     EasySweetAlertDialog.ShowNormal(this, "厉害了我滴哥", "退一步海阔天空~");
                 }

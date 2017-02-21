@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.Widget.EasyButton;
@@ -17,8 +19,7 @@ public class TransMain extends BaseActivity implements View.OnClickListener {
 
     private EasyButton btn_send;
     private EasyButton btn_receive;
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private WifiManager wifiManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,7 @@ public class TransMain extends BaseActivity implements View.OnClickListener {
         btn_send.setOnClickListener(this);
         btn_receive.setOnClickListener(this);
 
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("直连快传");
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_back.setOnClickListener(this);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "直连快传", this, 1);
         wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         if(!wifiManager.isWifiEnabled()){
             wifiManager.setWifiEnabled(true);
@@ -54,9 +52,6 @@ public class TransMain extends BaseActivity implements View.OnClickListener {
             case R.id.btn_receive:
                 startActivity(new Intent(this, Receive_Activity.class));
                 App.startAnim(this);
-                break;
-            case R.id.img_back:
-                onBackPressed();
                 break;
         }
     }

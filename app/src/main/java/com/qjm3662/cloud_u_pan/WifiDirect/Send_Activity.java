@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
@@ -20,7 +21,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Data.User;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.UI.BaseActivity;
 import com.qjm3662.cloud_u_pan.UI.MainActivity;
@@ -49,7 +52,7 @@ public class Send_Activity extends BaseActivity implements AdapterView.OnItemCli
     private IntentFilter intentFilter;
     private TextView tv_state;
     private TextView tv_name;
-    private ImageView img_flush;
+    private EasyBar easyBar;
 
     public WifiP2pManager.PeerListListener getPeerListListener() {
         return peerListListener;
@@ -120,11 +123,23 @@ public class Send_Activity extends BaseActivity implements AdapterView.OnItemCli
         list_wifi_group.setAdapter(adapter);
         tv_state = (TextView) findViewById(R.id.tv_state);
         tv_name = (TextView) findViewById(R.id.tv_name);
-        tv_name.setText(User.getInstance().getUsername());
-        img_flush = (ImageView) findViewById(R.id.img_flush);
-        img_flush.setOnClickListener(this);
-        ((TextView)findViewById(R.id.bar)).setText("发送文件");
-        findViewById(R.id.img_back).setOnClickListener(this);
+        tv_name.setText(User.getInstance().getNickname());
+
+        easyBar = (EasyBar) findViewById(R.id.easyBar);
+        easyBar.setRightIcon(BitmapFactory.decodeResource(getResources(), R.drawable.flush));
+        easyBar.setTitle("发送文件");
+        easyBar.setOnEasyBarClickListener(new EasyBar.OnEasyBarClickListener() {
+            @Override
+            public void onLeftIconClick() {
+                onBackPressed();
+            }
+
+            @Override
+            public void onRightIconClick() {
+                discover();
+            }
+        });
+
         discover();
     }
 
@@ -261,12 +276,6 @@ public class Send_Activity extends BaseActivity implements AdapterView.OnItemCli
                 } else {
                     Toast.makeText(this, "请先连接一个群组", Toast.LENGTH_SHORT).show();
                 }
-                break;
-            case R.id.img_back:
-                finish();
-                break;
-            case R.id.img_flush:
-                discover();
                 break;
         }
     }

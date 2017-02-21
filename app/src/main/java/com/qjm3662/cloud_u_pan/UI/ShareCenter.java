@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.ShareCenterAdapter;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.Loading.DanceLoadingRenderer;
 import com.qjm3662.cloud_u_pan.Loading.LoadingView;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
@@ -28,8 +30,7 @@ public class ShareCenter extends BaseActivity implements AdapterView.OnItemClick
     private ListView listView;
     private ShareCenterAdapter adapter;
     private TextView tv_empty_view;
-    private TextView tv_bar;
-    private ImageView img_back;
+    private EasyBar easyBar;
     private IntentFilter intentFilter;
     private LoadingView loadingView;
     public static final String ACTION_SUCCESS = "action_SUCCESS";
@@ -70,21 +71,13 @@ public class ShareCenter extends BaseActivity implements AdapterView.OnItemClick
     }
 
     private void initListView() {
+        EasyBarUtils.justSetTitleAndBack(easyBar, "分享中心", this, 1);
         listView = (ListView) findViewById(R.id.list_localFile);
         adapter = new ShareCenterAdapter(this, list);
         listView.setAdapter(adapter);
         tv_empty_view = (TextView) findViewById(R.id.list_empty_view);
         listView.setEmptyView(tv_empty_view);
         listView.setOnItemClickListener(this);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("分享中心");
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
         tv_empty_view.setVisibility(View.INVISIBLE);
         initLoadingView();
     }

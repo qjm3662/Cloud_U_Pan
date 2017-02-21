@@ -8,7 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
+import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.MatcherUtils;
@@ -21,8 +23,7 @@ public class RegisterUI extends BaseActivity implements View.OnClickListener {
     private Intent intent;
     private EditText et_phone_number;
     private EditText et_password;
-    private ImageView img_back;
-    private TextView tv_bar;
+    private EasyBar easyBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,7 @@ public class RegisterUI extends BaseActivity implements View.OnClickListener {
 
         register_to_login.setOnClickListener(this);
         btn_register.setOnClickListener(this);
-        img_back = (ImageView) findViewById(R.id.img_back);
-        tv_bar = (TextView) findViewById(R.id.bar);
-        tv_bar.setText("注册");
-        img_back.setOnClickListener(this);
+        EasyBarUtils.justSetTitleAndBack(easyBar, "注册", this, 1);
 
     }
 

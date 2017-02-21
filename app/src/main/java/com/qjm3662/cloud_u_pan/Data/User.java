@@ -8,16 +8,12 @@ import java.util.List;
  * Created by tanshunwang on 2016/10/1 0001.
  */
 
-public class User{
-    private String username;    //昵称
-    private String name;        //用户账户
-    private String avatar;      //头像
-    private int sex;            //1->Man
-    private String signature;   //个签
-    private List<FileInformation> shares_list;
+public class User extends UserBase{
     private Bitmap bitmap;
     private String avatarPath;
-    private boolean relative;
+    private boolean relative;           //是否关注
+    private String token;
+    private List<FileInformation> shares_list;
 
     public boolean isRelative() {
         return relative;
@@ -34,8 +30,6 @@ public class User{
     public void setToken(String token) {
         this.token = token;
     }
-
-    private String token;
 
     public String getAvatarPath() {
         return avatarPath;
@@ -55,19 +49,12 @@ public class User{
 
     public User() {
         username = "我是昵称";
-        name = "";
-        avatar = "http://119.29.55.243:3000/avatar.jpg";
+        nickname = "";
+        avatar = ServerInformation.DEFAULT_AVATAR;
         sex = 1;
         bitmap = null;
     }
 
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
-    }
 
     public List<FileInformation> getShares_list() {
         return shares_list;
@@ -77,41 +64,9 @@ public class User{
         this.shares_list = shares_list;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
 
     public void setUser_not_static(User user){
-        this.setName(user.getName());
+        this.setNickname(user.getNickname());
         this.setAvatar(user.getAvatar());
         this.setSex(user.getSex());
         this.setUsername(user.getUsername());
@@ -122,34 +77,37 @@ public class User{
         if(instance == null){
             getInstance();
         }
-        instance.setName(user.getName());
+        instance.setNickname(user.getNickname());
         instance.setAvatar(user.getAvatar());
         instance.setSex(user.getSex());
         instance.setUsername(user.getUsername());
         instance.setSignature(user.getSignature());
     }
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", name='" + name + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", sex=" + sex +
-                ", signature='" + signature + '\'' +
-                ", shares_list=" + shares_list +
-                '}';
-    }
 
+
+    //单例化操作
     private static User instance = null;
+
     public static User getInstance(){
         if(instance == null){
             instance = new User();
         }
         return instance;
     }
-
     public static void deleteUser(){
         instance = null;
         getInstance();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", sex=" + sex +
+                ", signature='" + signature + '\'' +
+                ", shares_list=" + shares_list +
+                '}';
     }
 }

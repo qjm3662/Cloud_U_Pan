@@ -39,6 +39,7 @@
     <ImageView
         android:id="@+id/img_ZXing"
         android:src="@drawable/cloud"
+        android:layout_gravity="center"
         android:scaleType="fitXY"
         android:padding="@dimen/y60"
         android:layout_width="@dimen/x1080"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.easybar.EasyBar;
 import com.kyleduo.switchbutton.SwitchButton;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
@@ -35,9 +37,11 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
     private ViewGroup tv_down_in_wifi;
     private ViewGroup tv_save_path;
     private ViewGroup tv_callback;
-    private TextView tv_bar;
-    private ImageView img_back;
-    private ImageView img_zXing;
+
+//    private TextView tv_bar;
+//    private ImageView img_back;
+//    private ImageView img_zXing;
+    private EasyBar easyBar;
     private TextView tv_exit;
     private TextView tv_current_save_path;
     private ViewGroup tv_version;
@@ -83,12 +87,12 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
                         user = User.getInstance();
                         System.out.println(user.getBitmap());
                         img_head.setImageBitmap(user.getBitmap());
-                        tv_name.setText(user.getUsername());
+                        tv_name.setText(user.getNickname());
                         break;
                     case ACTION_UPDATE_USERINFO:
                         user = User.getInstance();
                         img_head.setImageBitmap(user.getBitmap());
-                        tv_name.setText(user.getUsername());
+                        tv_name.setText(user.getNickname());
                         tv_current_save_path.setText(App.currentSavePath);
                         break;
                     case FINISH_SIGNAL:
@@ -102,6 +106,26 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
+        easyBar = (EasyBar) findViewById(R.id.easyBar);
+        easyBar.setTitle("关于我的");
+        easyBar.setRightIcon(BitmapFactory.decodeResource(getResources(), R.drawable.zxing));
+        easyBar.setOnEasyBarClickListener(new EasyBar.OnEasyBarClickListener() {
+            @Override
+            public void onLeftIconClick() {
+                onBackPressed();
+            }
+            @Override
+            public void onRightIconClick() {
+                System.out.println("click img_zing");
+                if (App.Flag_IsLogin) {
+                    startActivity(new Intent(UserMain.this, ZXingAddFriend.class));
+                    App.startAnim(UserMain.this);
+                } else {
+                    EasySweetAlertDialog.ShowTip(UserMain.this, "Tip", "清先登录");
+                }
+            }
+        });
+
         img_edit_nickname = (ImageView) findViewById(R.id.img_edit_nickname);
         img_head = (RoundedImageView) findViewById(R.id.img_avatar);
         tv_callback = (ViewGroup) findViewById(R.id.tv_callback);
@@ -110,7 +134,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         tv_save_path = (ViewGroup) findViewById(R.id.tv_save_path);
         tv_upload = (ViewGroup) findViewById(R.id.tv_upload);
         tv_name = (TextView) findViewById(R.id.tv_name);
-        tv_bar = (TextView) findViewById(R.id.bar);
         tv_exit = (TextView) findViewById(R.id.tv_exit);
         tv_about_us = (ViewGroup) findViewById(R.id.tv_about_us);
         tv_version = (ViewGroup) findViewById(R.id.tv_version);
@@ -118,9 +141,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         tv_current_save_path = (TextView) findViewById(R.id.tv_current_save_path);
         tv_revisePsd = (ViewGroup) findViewById(R.id.tv_revisePsd);
         tv_current_save_path.setText(App.currentSavePath);
-        tv_bar.setText("关于我的");
-        img_back = (ImageView) findViewById(R.id.img_back);
-        img_zXing = (ImageView) findViewById(R.id.img_zXing);
         ll_header = (ViewGroup) findViewById(R.id.ll_header);
 
         img_edit_nickname.setOnClickListener(this);
@@ -129,7 +149,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         tv_following.setOnClickListener(this);
         tv_save_path.setOnClickListener(this);
         tv_upload.setOnClickListener(this);
-        img_back.setOnClickListener(this);
         tv_exit.setOnClickListener(this);
         btn_switch.setOnClickListener(this);
         tv_version.setOnClickListener(this);
@@ -137,14 +156,13 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         tv_current_save_path.setOnClickListener(this);
         tv_revisePsd.setOnClickListener(this);
         ll_header.setOnClickListener(this);
-        img_zXing.setOnClickListener(this);
 
         img_head.setOnClickListener(this);
         if (App.Flag_IsLogin) {
             user = User.getInstance();
             img_head.setImageBitmap(user.getBitmap());
-            tv_name.setText(user.getUsername());
-            NetWorkOperator.getUserInfo(this, User.getInstance().getName(), 3);
+            tv_name.setText(user.getNickname());
+            NetWorkOperator.getUserInfo(this, User.getInstance().getUsername(), 3);
         } else {
             tv_name.setText("点此登录");
         }
@@ -165,7 +183,7 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.img_edit_nickname:
                 if (App.Flag_IsLogin) {
-                    DialogUtils.ShowDialog(this, user.getUsername());
+                    DialogUtils.ShowDialog(this, user.getNickname());
                 }
                 break;
             case R.id.ll_header:
@@ -220,9 +238,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
                 break;
-            case R.id.img_back:
-                onBackPressed();
-                break;
             case R.id.tv_exit:
                 User.deleteUser();
                 App.Flag_IsLogin = false;
@@ -263,15 +278,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
                     EasySweetAlertDialog.ShowTip(this, "Tip", "请先登录");
                 }
                 break;
-            case R.id.img_zXing:
-                System.out.println("click img_zing");
-                if (App.Flag_IsLogin) {
-                    startActivity(new Intent(this, ZXingAddFriend.class));
-                    App.startAnim(UserMain.this);
-                } else {
-                    EasySweetAlertDialog.ShowTip(this, "Tip", "清先登录");
-                }
-                break;
         }
     }
 
@@ -305,24 +311,5 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
         unregisterReceiver(receiver);
     }
 
-
-//
-//    class mPermissionGrant implements PermissionUtils.PermissionGrant{
-//
-//        @Override
-//        public void onPermissionGranted(int requestCode) {
-//            switch (requestCode){
-//                case PermissionUtils.CODE_CAMERA:
-//                    Toast.makeText(UserMain.this, "PermissionUtils.CODE_CAMERA", Toast.LENGTH_SHORT).show();
-//                    break;
-//
-//            }
-//        }
-//    }
-//
-//    private mPermissionGrant mPermissionGrant = new mPermissionGrant();
-//    public void getPermission() {
-//        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
-//    }
 
 }

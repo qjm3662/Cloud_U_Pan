@@ -21,7 +21,7 @@ public final class LoadingRendererFactory {
     private static final SparseArray<Class<? extends LoadingRenderer>> LOADING_RENDERERS = new SparseArray<>();
 
     static {
-//        //circle rotate
+        //circle rotate
 //        LOADING_RENDERERS.put(0, MaterialLoadingRenderer.class);
 //        LOADING_RENDERERS.put(1, LevelLoadingRenderer.class);
 //        LOADING_RENDERERS.put(2, WhorlLoadingRenderer.class);

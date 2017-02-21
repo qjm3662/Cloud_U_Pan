@@ -10,68 +10,18 @@ import com.qjm3662.cloud_u_pan.Tool.TimeUtils;
 public class FileInformation {
     private int id;
     private String identifyCode;
-    private boolean share;
+    private int isPublic;
     private int downloadCount;
-    private long createdAt;
-    private String name;
-    private double size;
+    private long createTime;
+    private String fileName;
+    private double fileSize;
+    private long updateTime;
+
     private Bitmap bitmap_type;
-
-    private String upLoadUser;
-    private String upLoadUserAvatar;
-    private String upLoadUserName;
-
-    public String getUpLoadUser() {
-        return upLoadUser;
-    }
-
-    public void setUpLoadUser(String upLoadUser) {
-        this.upLoadUser = upLoadUser;
-    }
-
-    public String getUpLoadUserAvatar() {
-        return upLoadUserAvatar;
-    }
-
-    public void setUpLoadUserAvatar(String upLoadUserAvatar) {
-        this.upLoadUserAvatar = upLoadUserAvatar;
-    }
-
-    public String getUpLoadUserName() {
-        return upLoadUserName;
-    }
-
-    public void setUpLoadUserName(String upLoadUserName) {
-        this.upLoadUserName = upLoadUserName;
-    }
+    private UserBase uploadUser;
 
     public FileInformation(){
 
-    }
-    public FileInformation(String name, float size) {
-        this.name = name;
-        this.size = size;
-    }
-    public FileInformation(int id, String identifyCode, boolean share, long createdAt, String name, double size) {
-        this.id = id;
-        this.identifyCode = identifyCode;
-        this.share = share;
-        this.createdAt = createdAt;
-        this.name = name;
-        this.size = size;
-        this.downloadCount = 6;
-    }
-
-    public Bitmap getBitmap_type() {
-        return bitmap_type;
-    }
-
-    public void setBitmap_type(Bitmap bitmap_type) {
-        this.bitmap_type = bitmap_type;
-    }
-
-    public void setSize(double size) {
-        this.size = size;
     }
 
     public int getId() {
@@ -90,12 +40,12 @@ public class FileInformation {
         this.identifyCode = identifyCode;
     }
 
-    public boolean isShare() {
-        return share;
+    public int getIsPublic() {
+        return isPublic;
     }
 
-    public void setShare(boolean share) {
-        this.share = share;
+    public void setIsPublic(int isPublic) {
+        this.isPublic = isPublic;
     }
 
     public int getDownloadCount() {
@@ -106,47 +56,75 @@ public class FileInformation {
         this.downloadCount = downloadCount;
     }
 
-    public long getCreatedAt() {
-        return createdAt;
+    public long getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatedAt(long createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
     }
 
-    public String getName() {
-        return name;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
-    public double getSize() {
-        return size;
+    public double getFileSize() {
+        return fileSize;
     }
 
-    public void setSize(float size) {
-        this.size = size;
+    public void setFileSize(double fileSize) {
+        this.fileSize = fileSize;
     }
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Bitmap getBitmap_type() {
+        return bitmap_type;
+    }
+
+    public void setBitmap_type(Bitmap bitmap_type) {
+        this.bitmap_type = bitmap_type;
+    }
+
+    public UserBase getUploadUser() {
+        return uploadUser;
+    }
+
+    public void setUploadUser(UserBase uploadUser) {
+        this.uploadUser = uploadUser;
+    }
+
+    public String getDownTimeString(){
+        return TimeUtils.returnTime(createTime);
+    }
+
 
     public interface callBack{
         void call();
     }
 
-    public String getDownTimeString(){
-        return TimeUtils.returnTime(createdAt);
-    }
     @Override
     public String toString() {
         return "FileInformation{" +
                 "id=" + id +
                 ", identifyCode='" + identifyCode + '\'' +
-                ", share=" + share +
+                ", isPublic=" + isPublic +
                 ", downloadCount=" + downloadCount +
-                ", createdAt=" + createdAt +
-                ", name='" + name + '\'' +
-                ", size=" + size +
+                ", createTime=" + createTime +
+                ", fileName='" + fileName + '\'' +
+                ", fileSize=" + fileSize +
+                ", updateTime=" + updateTime +
+                ", bitmap_type=" + bitmap_type +
                 '}';
     }
 }
