@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.easybar.EasyBar;
+import com.example.easybar.ImageCircleButton;
+import com.example.easybar.OnImageCircleButtonClickedListener;
+import com.example.easybar.RoundRectButton;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.FileManager.FileManager;
 import com.qjm3662.cloud_u_pan.R;
@@ -16,13 +19,13 @@ import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.WifiDirect.TransMain;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements OnImageCircleButtonClickedListener {
 
-    private EasyButton btn_upload;
-    private EasyButton btn_download;
-    private EasyButton btn_bluetooth;
-    private EasyButton btn_more;
-    private EasyButton btn_my;
+    private RoundRectButton btn_upload;
+    private RoundRectButton btn_download;
+    private ImageCircleButton btn_wifi;
+    private ImageCircleButton btn_more;
+    private ImageCircleButton btn_my;
     public static final int FILE_SELECT_CODE = 1;
     public static final String FILE_SELECT = "file select";
     public static final int requestCode_selectFile = 6;
@@ -44,23 +47,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private void initView() {
-        btn_upload = (EasyButton) findViewById(R.id.btn_upload);
-        btn_download = (EasyButton) findViewById(R.id.btn_download);
-        btn_bluetooth = (EasyButton) findViewById(R.id.btn_bluetooth);
-        btn_more = (EasyButton) findViewById(R.id.btn_more);
-        btn_my = (EasyButton) findViewById(R.id.btn_my);
+        btn_upload = (RoundRectButton) findViewById(R.id.btn_upload);
+        btn_download = (RoundRectButton) findViewById(R.id.btn_download);
+        btn_wifi = (ImageCircleButton) findViewById(R.id.btn_wifi);
+        btn_more = (ImageCircleButton) findViewById(R.id.btn_more);
+        btn_my = (ImageCircleButton) findViewById(R.id.btn_my);
         ((EasyBar)findViewById(R.id.easyBar)).setLeftIconVisibility(false);
 
-        btn_upload.setOnClickListener(this);
-        btn_download.setOnClickListener(this);
-        btn_bluetooth.setOnClickListener(this);
-        btn_more.setOnClickListener(this);
-        btn_my.setOnClickListener(this);
+        btn_upload.setOnImageCircleButtonClickedListener(this);
+        btn_download.setOnImageCircleButtonClickedListener(this);
+        btn_wifi.setOnImageCircleButtonClickedListener(this);
+        btn_more.setOnImageCircleButtonClickedListener(this);
+        btn_my.setOnImageCircleButtonClickedListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
+        System.out.println(v.getId());
         switch (v.getId()) {
             case R.id.btn_upload:
                 NetworkUtils.doAfterJudgeNetworkState(MainActivity.this, new NetworkUtils.NeworkCallBack() {
@@ -77,7 +81,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(this, DownloadUi.class));
                 App.startAnim(MainActivity.this);
                 break;
-            case R.id.btn_bluetooth:
+            case R.id.btn_wifi:
                 startActivity(new Intent(this, TransMain.class));
                 App.startAnim(MainActivity.this);
                 break;
@@ -147,4 +151,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }

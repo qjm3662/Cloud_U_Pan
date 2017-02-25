@@ -11,9 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
@@ -34,7 +32,7 @@ public class BaiduSearchActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "云盘搜索", this, 2);
+        EasyBarUtils.justSetTitleAndBack("云盘搜索", this, 2);
 
 
         progressBar = (ProgressBar) findViewById(R.id.progress);

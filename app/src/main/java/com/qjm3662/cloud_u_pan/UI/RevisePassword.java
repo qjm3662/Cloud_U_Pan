@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.EasyBarUtils;
@@ -29,7 +27,7 @@ public class RevisePassword extends BaseActivity {
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "修改密码", this, 1);
+        EasyBarUtils.justSetTitleAndBack("修改密码", this, 1);
         et_old_psd = (EditText) findViewById(R.id.et_old_psd);
         et_new_psd = (EditText) findViewById(R.id.et_new_psd);
         et_new_psd_confirm = (EditText) findViewById(R.id.et_new_psd_confirm);

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
@@ -40,7 +39,7 @@ public class RegisterUI extends BaseActivity implements View.OnClickListener {
 
         register_to_login.setOnClickListener(this);
         btn_register.setOnClickListener(this);
-        EasyBarUtils.justSetTitleAndBack(easyBar, "注册", this, 1);
+        EasyBarUtils.justSetTitleAndBack("注册", this, 1);
 
     }
 

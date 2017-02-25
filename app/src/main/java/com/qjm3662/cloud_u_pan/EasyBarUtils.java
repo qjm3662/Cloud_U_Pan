@@ -12,26 +12,25 @@ import com.example.easybar.EasyBar;
 public class EasyBarUtils {
     /**
      * 设置EasyBar的标题以及设置返回监听
-     * @param easyBar   用来接收EasyBar的引用对象，不需要实例化
-     * @param title
+     *  @param title
      * @param activity
-     * @param flag  1->back  2->finish
+     * @param flag     1->back  2->finish
      */
-    public static void justSetTitleAndBack(EasyBar easyBar, String title, final Context activity, final int flag){
+    public static EasyBar justSetTitleAndBack(String title, final Context activity, final int flag) {
         final Activity ac;
-        if(activity instanceof Activity){
+        if (activity instanceof Activity) {
             ac = (Activity) activity;
-        }else{
-            return;
+        } else {
+            return null;
         }
-        easyBar = (EasyBar) ac.findViewById(R.id.easyBar);
-        easyBar.setTitle("关注的人");
+        EasyBar easyBar = (EasyBar) ac.findViewById(R.id.easyBar);
+        easyBar.setTitle(title);
         easyBar.setOnEasyBarClickListener(new EasyBar.OnEasyBarClickListener() {
             @Override
             public void onLeftIconClick() {
-                if(flag == 1){
+                if (flag == 1) {
                     ac.onBackPressed();
-                }else{
+                } else {
                     ac.finish();
                 }
             }
@@ -41,6 +40,7 @@ public class EasyBarUtils {
 
             }
         });
+        return easyBar;
     }
 
 }

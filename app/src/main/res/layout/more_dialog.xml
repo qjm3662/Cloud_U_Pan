@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250.3dp">
+    android:layout_height="250.3dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/img_upload_record"
@@ -11,8 +11,8 @@
         android:paddingBottom="@dimen/y60"
         android:paddingLeft="@dimen/x60"
         android:paddingRight="@dimen/x60"
-        android:layout_width="@dimen/y240"
-        android:layout_height="@dimen/y240"
+        android:layout_width="@dimen/y200"
+        android:layout_height="@dimen/y200"
         android:layout_marginRight="@dimen/y90"
         android:background="@drawable/circle_upload"
         android:layout_toLeftOf="@+id/img_download_record"
@@ -41,8 +41,8 @@
         android:paddingBottom="@dimen/y60"
         android:paddingLeft="@dimen/x60"
         android:paddingRight="@dimen/x60"
-        android:layout_width="@dimen/y240"
-        android:layout_height="@dimen/y240"
+        android:layout_width="@dimen/y200"
+        android:layout_height="@dimen/y200"
         android:background="@drawable/circle_download"
         />
     <TextView
@@ -68,8 +68,8 @@
         android:paddingBottom="@dimen/y75"
         android:paddingLeft="@dimen/x75"
         android:paddingRight="@dimen/x75"
-        android:layout_width="@dimen/y240"
-        android:layout_height="@dimen/y240"
+        android:layout_width="@dimen/y200"
+        android:layout_height="@dimen/y200"
         android:layout_marginLeft="@dimen/y90"
         android:background="@drawable/circle_share"
         android:layout_toRightOf="@+id/img_download_record"
@@ -88,13 +88,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+    <com.example.easybar.ImageCircleButton
         android:id="@+id/btn_cancel"
         style="@style/EasyButtonStyle"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        app:btn_radius="@dimen/x100"
+        app:maxRadius="@dimen/x140"
         android:layout_marginBottom="@dimen/y60"
-        />
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:paddingTop="@dimen/y102"

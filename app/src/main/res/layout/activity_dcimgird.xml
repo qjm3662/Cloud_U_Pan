@@ -7,38 +7,39 @@
     android:layout_height="match_parent"
     android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.DCIMGirdActivity">
-    <RelativeLayout
-        android:background="@color/blue"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y138">
+    <!--<RelativeLayout-->
+        <!--android:background="@color/blue"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/y138">-->
 
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/y80"
-            android:layout_height="@dimen/y70"
-            android:layout_marginLeft="@dimen/x40"
-            android:src="@drawable/back" />
-        <TextView
-            android:id="@+id/bar"
-            android:text="优云"
-            android:gravity="center"
-            android:textSize="@dimen/y66"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y138" />
+        <!--<ImageView-->
+            <!--android:id="@+id/img_back"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_width="@dimen/y80"-->
+            <!--android:layout_height="@dimen/y70"-->
+            <!--android:layout_marginLeft="@dimen/x40"-->
+            <!--android:src="@drawable/back" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/bar"-->
+            <!--android:text="优云"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="@dimen/y66"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/y138" />-->
 
-        <ImageView
-            android:id="@+id/img_camera"
-            android:src="@mipmap/ic_gf_camera"
-            android:gravity="center"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/y40"
-            android:layout_width="@dimen/y80"
-            android:layout_height="@dimen/y80" />
-    </RelativeLayout>
+        <!--<ImageView-->
+            <!--android:id="@+id/img_camera"-->
+            <!--android:src="@mipmap/ic_gf_camera"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="@dimen/y40"-->
+            <!--android:layout_width="@dimen/y80"-->
+            <!--android:layout_height="@dimen/y80" />-->
+    <!--</RelativeLayout>-->
+    <include layout="@layout/bar_item"/>
 
     <GridView
         android:id="@+id/my_DCIM_grid"

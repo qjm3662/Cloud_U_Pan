@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
+import com.example.easybar.ImageCircleButton;
+import com.example.easybar.OnImageCircleButtonClickedListener;
 import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
@@ -24,7 +26,7 @@ import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 import java.io.File;
 
-public class UploadUi extends BaseActivity implements View.OnClickListener {
+public class UploadUi extends BaseActivity implements OnImageCircleButtonClickedListener {
 
     public static final String UploadProgressing = "upload_progressing";
     public static final String UploadSuccessWithFileInformation = "upload success with information";
@@ -36,18 +38,14 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
     private String fileName = null;
     private String fileCode = null;
 
-    private EasyButton btn_share_qq;
-    private EasyButton btn_share_chat;
-    private EasyButton btn_share_copy;
-    private ImageView img_share_qq;
-    private ImageView img_share_chat;
-    private ImageView img_share_copy;
+    private ImageCircleButton btn_share_qq;
+    private ImageCircleButton btn_share_chat;
+    private ImageCircleButton btn_share_copy;
     private ImageView img_file;
     private TextView tv_fileName;
     private TextView tv_success;
     private TextView tv_code;
     private Handler handler;
-    private EasyBar easyBar;
     private boolean flag = false;               //标记动画完成，和页面数据填充都完成时显示上传成功页面
 
 
@@ -67,28 +65,22 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "上传", this, 1);
-        btn_share_qq = (EasyButton) findViewById(R.id.btn_share_qq);
-        btn_share_copy = (EasyButton) findViewById(R.id.btn_share_copy);
-        btn_share_chat = (EasyButton) findViewById(R.id.btn_share_chat);
-        img_share_qq = (ImageView) findViewById(R.id.img_share_qq);
-        img_share_chat = (ImageView) findViewById(R.id.img_share_chat);
-        img_share_copy = (ImageView) findViewById(R.id.img_share_copy);
+        EasyBarUtils.justSetTitleAndBack("上传", this, 1);
+        btn_share_qq = (ImageCircleButton) findViewById(R.id.btn_share_qq);
+        btn_share_copy = (ImageCircleButton) findViewById(R.id.btn_share_copy);
+        btn_share_chat = (ImageCircleButton) findViewById(R.id.btn_share_chat);
         img_file = (ImageView) findViewById(R.id.img_file);
         tv_success = (TextView) findViewById(R.id.tv_success);
         tv_fileName = (TextView) findViewById(R.id.tv_fileName);
         tv_code = (TextView) findViewById(R.id.tv_code);
 
-        btn_share_qq.setOnClickListener(this);
-        btn_share_copy.setOnClickListener(this);
-        btn_share_chat.setOnClickListener(this);
+        btn_share_qq.setOnImageCircleButtonClickedListener(this);
+        btn_share_copy.setOnImageCircleButtonClickedListener(this);
+        btn_share_chat.setOnImageCircleButtonClickedListener(this);
 
         btn_share_qq.setVisibility(View.INVISIBLE);
         btn_share_copy.setVisibility(View.INVISIBLE);
         btn_share_chat.setVisibility(View.INVISIBLE);
-        img_share_qq.setVisibility(View.INVISIBLE);
-        img_share_chat.setVisibility(View.INVISIBLE);
-        img_share_copy.setVisibility(View.INVISIBLE);
         img_file.setVisibility(View.INVISIBLE);
         tv_success.setVisibility(View.INVISIBLE);
         tv_fileName.setVisibility(View.INVISIBLE);
@@ -116,9 +108,6 @@ public class UploadUi extends BaseActivity implements View.OnClickListener {
                         btn_share_qq.setVisibility(View.VISIBLE);
                         btn_share_copy.setVisibility(View.VISIBLE);
                         btn_share_chat.setVisibility(View.VISIBLE);
-                        img_share_chat.setVisibility(View.VISIBLE);
-                        img_share_copy.setVisibility(View.VISIBLE);
-                        img_share_qq.setVisibility(View.VISIBLE);
                         img_file.setVisibility(View.VISIBLE);
                         tv_success.setVisibility(View.VISIBLE);
                         tv_fileName.setVisibility(View.VISIBLE);

@@ -13,7 +13,7 @@
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/progress_circle"
-        style="@style/AVLoadingIndicatorView222"
+        style="@style/AVLoadingIndicatorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
@@ -48,14 +48,17 @@
         android:layout_marginTop="@dimen/y330"
         android:src="@drawable/file" />
 
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
+    <com.example.easybar.RoundRectButton
         android:id="@+id/btn_down"
         style="@style/EasyButtonStyle"
         android:layout_below="@+id/tv_fileName"
         android:layout_marginTop="@dimen/y60"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/y30"
-        android:text=" 下载 " />
+        app:btn_radius="@dimen/x100"
+        app:maxRadius="@dimen/x140"
+        android:text=" 下载 "
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -75,78 +78,41 @@
             android:textSize="@dimen/y72" />
 
 
-        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        <com.example.easybar.ImageCircleButton
             android:id="@+id/btn_share_qq"
             style="@style/EasyButtonStyle"
             android:layout_below="@+id/tv_code"
-            android:layout_marginTop="@dimen/y99"
+            app:btn_icon="@drawable/qq"
             android:layout_toLeftOf="@+id/btn_share_chat"
-            android:layout_toStartOf="@+id/btn_share_chat" />
+            android:layout_toStartOf="@+id/btn_share_chat"
+            android:layout_marginTop="@dimen/y99"
+            android:layout_height="wrap_content"
+            app:btn_radius="@dimen/x120"
+            />
 
-        <ImageView
-            android:id="@+id/img_share_qq"
-            android:layout_width="@dimen/x150"
-            android:layout_height="@dimen/y150"
-            android:layout_alignBottom="@+id/btn_share_qq"
-            android:layout_alignEnd="@+id/btn_share_qq"
-            android:layout_alignLeft="@+id/btn_share_qq"
-            android:layout_alignRight="@+id/btn_share_qq"
-            android:layout_alignStart="@+id/btn_share_qq"
-            android:layout_alignTop="@+id/btn_share_qq"
-            android:paddingBottom="@dimen/y102"
-            android:paddingLeft="@dimen/y102"
-            android:paddingRight="@dimen/y102"
-            android:paddingTop="@dimen/y102"
-            android:src="@drawable/qq" />
 
-        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        <com.example.easybar.ImageCircleButton
             android:id="@+id/btn_share_chat"
             style="@style/EasyButtonStyle"
-            android:layout_below="@+id/tv_code"
+            app:btn_icon="@drawable/weixin"
             android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_code"
             android:layout_marginTop="@dimen/y99"
-            android:layout_toLeftOf="@+id/btn_more"
-            android:layout_toStartOf="@+id/btn_more" />
+            android:layout_height="wrap_content"
+            app:btn_radius="@dimen/x120"
+            />
 
-        <ImageView
-            android:id="@+id/img_share_chat"
-            android:layout_width="@dimen/x150"
-            android:layout_height="@dimen/y150"
-            android:layout_alignBottom="@+id/btn_share_chat"
-            android:layout_alignEnd="@+id/btn_share_chat"
-            android:layout_alignLeft="@+id/btn_share_chat"
-            android:layout_alignRight="@+id/btn_share_chat"
-            android:layout_alignStart="@+id/btn_share_chat"
-            android:layout_alignTop="@+id/btn_share_chat"
-            android:paddingBottom="@dimen/y102"
-            android:paddingLeft="@dimen/y102"
-            android:paddingRight="@dimen/y102"
-            android:paddingTop="@dimen/y102"
-            android:src="@drawable/weixin" />
-
-        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        <com.example.easybar.ImageCircleButton
             android:id="@+id/btn_share_copy"
             style="@style/EasyButtonStyle"
+            app:btn_icon="@drawable/copy"
             android:layout_below="@+id/tv_code"
-            android:layout_marginTop="@dimen/y99"
+            android:layout_toRightOf="@+id/btn_share_chat"
             android:layout_toEndOf="@+id/btn_share_chat"
-            android:layout_toRightOf="@+id/btn_share_chat" />
-
-        <ImageView
-            android:id="@+id/img_share_copy"
-            android:layout_width="@dimen/x150"
-            android:layout_height="@dimen/y150"
-            android:layout_alignBottom="@+id/btn_share_copy"
-            android:layout_alignEnd="@+id/btn_share_copy"
-            android:layout_alignLeft="@+id/btn_share_copy"
-            android:layout_alignRight="@+id/btn_share_copy"
-            android:layout_alignStart="@+id/btn_share_copy"
-            android:layout_alignTop="@+id/btn_share_copy"
-            android:paddingBottom="@dimen/y102"
-            android:paddingLeft="@dimen/y102"
-            android:paddingRight="@dimen/y102"
-            android:paddingTop="@dimen/y102"
-            android:src="@drawable/copy" />
+            android:layout_marginTop="@dimen/y99"
+            android:layout_height="wrap_content"
+            app:btn_radius="@dimen/x120"
+            />
     </RelativeLayout>
 
     <TextView

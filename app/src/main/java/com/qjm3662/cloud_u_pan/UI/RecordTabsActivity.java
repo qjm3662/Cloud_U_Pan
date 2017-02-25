@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.easybar.EasyBar;
@@ -55,7 +52,7 @@ public class RecordTabsActivity extends FragmentActivity {
         pager.setAdapter(adapter);
         pager.setCurrentItem(0);
 
-        EasyBarUtils.justSetTitleAndBack(easyBar, "传输记录", this, 2);
+        EasyBarUtils.justSetTitleAndBack("传输记录", this, 2);
 
         pagerSlidingTabStrip.setShouldExpand(true);
         pagerSlidingTabStrip.setTextSize(DensityUtil.dip2px(this, 18));

@@ -1,112 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightblue"
+    android:orientation="vertical"
     tools:context=".UI.MainActivity">
-    <include layout="@layout/bar_item"/>
+
+    <include layout="@layout/bar_item" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
     <ImageView
-        android:layout_width="@dimen/x450"
-        android:layout_height="@dimen/y360"
         android:id="@+id/img_pan"
-        android:src="@drawable/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y309"
-        />
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/y50"
+        android:layout_weight="3.5"
+        android:layout_height="0dp"
+        android:src="@drawable/logo" />
 
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_upload"
-        android:text=" 上传文件 "
-        android:layout_marginTop="@dimen/y30"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/img_pan"
-        style="@style/EasyButtonStyle"
-        />
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_download"
-        android:text=" 下载文件 "
-        style="@style/EasyButtonStyle"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/btn_upload"
-        />
+    <LinearLayout
+        android:layout_weight="6.5"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <com.example.easybar.RoundRectButton
+            android:id="@+id/btn_upload"
+            style="@style/EasyButtonStyle"
+            app:btn_padding="@dimen/x40"
+            android:layout_gravity="center"
+            android:text="@string/upFile"
+            android:layout_height="0dp"
+            app:btn_radius="@dimen/x100" />
 
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_bluetooth"
-        style="@style/EasyButtonStyle"
-        android:layout_toLeftOf="@+id/btn_more"
-        android:layout_toStartOf="@+id/btn_more"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y60"
-        />
+        <com.example.easybar.RoundRectButton
+            android:id="@+id/btn_download"
+            style="@style/EasyButtonStyle"
+            app:btn_padding="@dimen/x40"
+            android:text="@string/downFile"
+            android:layout_height="0dp"
+            app:btn_radius="@dimen/x100"
+            android:layout_marginTop="@dimen/y30"/>
+    </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <ImageView
-        android:paddingTop="@dimen/y102"
-        android:paddingBottom="@dimen/y102"
-        android:paddingLeft="@dimen/x102"
-        android:paddingRight="@dimen/x102"
-        android:src="@drawable/wifi_"
-        android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150"
-        android:layout_alignBottom="@+id/btn_bluetooth"
-        android:layout_alignEnd="@+id/btn_bluetooth"
-        android:layout_alignRight="@+id/btn_bluetooth"
-        android:layout_alignTop="@+id/btn_bluetooth"
-        android:layout_alignLeft="@+id/btn_bluetooth"
-        android:layout_alignStart="@+id/btn_bluetooth" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:orientation="horizontal">
 
+        <com.example.easybar.ImageCircleButton
+            android:id="@+id/btn_wifi"
+            style="@style/ImageCircleButtonStyle"
+            app:btn_icon="@drawable/wifi_"
+            app:btn_radius="@dimen/x100"
+            app:maxRadius="@dimen/x140"
+            />
 
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_my"
-        style="@style/EasyButtonStyle"
-        android:layout_toRightOf="@+id/btn_more"
-        android:layout_toEndOf="@+id/btn_more"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y60"
-        />
+        <com.example.easybar.ImageCircleButton
+            android:id="@+id/btn_more"
+            style="@style/ImageCircleButtonStyle"
+            app:btn_icon="@drawable/jiahao"
+            app:btn_radius="@dimen/x100"
+            app:maxRadius="@dimen/x140"
+            />
 
-    <ImageView
-        android:paddingTop="@dimen/y102"
-        android:paddingBottom="@dimen/y102"
-        android:paddingLeft="@dimen/x102"
-        android:paddingRight="@dimen/x102"
-        android:src="@drawable/my"
-        android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150"
-        android:layout_alignStart="@id/btn_my"
-        android:layout_alignBottom="@+id/btn_my"
-        android:layout_alignTop="@+id/btn_my"
-        android:layout_alignEnd="@+id/btn_my"
-        android:layout_alignRight="@+id/btn_my"
-        android:layout_centerHorizontal="true"
-        android:layout_alignLeft="@id/btn_my" />
-
-
-
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton
-        android:id="@+id/btn_more"
-        style="@style/EasyButtonStyle"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/y60"
-        />
-
-    <ImageView
-        android:paddingTop="@dimen/y102"
-        android:paddingBottom="@dimen/y102"
-        android:paddingLeft="@dimen/x102"
-        android:paddingRight="@dimen/x102"
-        android:src="@drawable/jiahao"
-        android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150"
-        android:layout_alignStart="@id/btn_more"
-        android:layout_alignBottom="@+id/btn_more"
-        android:layout_alignTop="@+id/btn_more"
-        android:layout_alignEnd="@+id/btn_more"
-        android:layout_alignRight="@+id/btn_more"
-        android:layout_centerHorizontal="true"
-        android:layout_alignLeft="@id/btn_more" />
-
-</RelativeLayout>
+        <com.example.easybar.ImageCircleButton
+            android:id="@+id/btn_my"
+            style="@style/ImageCircleButtonStyle"
+            app:btn_icon="@drawable/my"
+            app:btn_radius="@dimen/x100"
+            app:maxRadius="@dimen/x140"
+            />
+    </LinearLayout>
+</LinearLayout>

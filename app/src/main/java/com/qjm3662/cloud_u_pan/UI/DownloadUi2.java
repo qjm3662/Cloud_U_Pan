@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
+import com.example.easybar.ImageCircleButton;
+import com.example.easybar.OnImageCircleButtonClickedListener;
+import com.example.easybar.RoundRectButton;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
@@ -32,17 +35,14 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.request.RequestCall;
 
-public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
+public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClickedListener {
 
-    private EasyButton btn_share_qq;
-    private EasyButton btn_share_chat;
-    private EasyButton btn_share_copy;
-    private ImageView img_share_qq;
-    private ImageView img_share_chat;
-    private ImageView img_share_copy;
+    private ImageCircleButton btn_share_qq;
+    private ImageCircleButton btn_share_chat;
+    private ImageCircleButton btn_share_copy;
     private ImageView img_file;
     private TextView tv_fileName;
-    private EasyButton btn_down;
+    private RoundRectButton btn_down;
     private TextView tv_code;
     private RoundedImageView img_avatar;
     private TextView tv_uploadInfo;
@@ -116,14 +116,13 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        btn_share_qq = (EasyButton) findViewById(R.id.btn_share_qq);
-        btn_share_copy = (EasyButton) findViewById(R.id.btn_share_copy);
-        btn_share_chat = (EasyButton) findViewById(R.id.btn_share_chat);
-        img_share_qq = (ImageView) findViewById(R.id.img_share_qq);
-        img_share_chat = (ImageView) findViewById(R.id.img_share_chat);
-        img_share_copy = (ImageView) findViewById(R.id.img_share_copy);
+        btn_share_qq = (ImageCircleButton) findViewById(R.id.btn_share_qq);
+        btn_share_copy = (ImageCircleButton) findViewById(R.id.btn_share_copy);
+        btn_share_chat = (ImageCircleButton) findViewById(R.id.btn_share_chat);
+
         img_file = (ImageView) findViewById(R.id.img_file);
-        btn_down = (EasyButton) findViewById(R.id.btn_down);
+        btn_down = (RoundRectButton) findViewById(R.id.btn_down);
+
         tv_fileName = (TextView) findViewById(R.id.tv_fileName);
         tv_code = (TextView) findViewById(R.id.tv_code);
         progress_circle = (AVLoadingIndicatorView) findViewById(R.id.progress_circle);
@@ -134,7 +133,16 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
 
         if(is_upload_after_login){
             tv_uploadInfo.setText(uploader.getNickname() + "上传于" + createAt);
-            img_avatar.setOnClickListener(this);
+            img_avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(where == 0){
+                        NetWorkOperator.getOtherUserInfoByUsername(DownloadUi2.this, uploader.getUsername(), true);
+                    }else{
+                        EasySweetAlertDialog.ShowNormal(DownloadUi2.this, "厉害了我滴哥", "退一步海阔天空~");
+                    }
+                }
+            });
             final Bitmap[] b = {null};
             final Handler handler = new Handler(){
                 @Override
@@ -164,16 +172,15 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
             img_avatar.setVisibility(View.INVISIBLE);
             tv_uploadInfo.setVisibility(View.INVISIBLE);
         }
-        EasyBarUtils.justSetTitleAndBack(easyBar, "下载", this, 1);
+        EasyBarUtils.justSetTitleAndBack("下载", this, 1);
 
         progress_circle.hide();
         tv_progress.setText("0");
 
-        btn_share_qq.setOnClickListener(this);
-        btn_share_copy.setOnClickListener(this);
-        btn_share_chat.setOnClickListener(this);
-        btn_down.setOnClickListener(this);
-        img_file.setOnClickListener(this);
+        btn_share_qq.setOnImageCircleButtonClickedListener(this);
+        btn_share_copy.setOnImageCircleButtonClickedListener(this);
+        btn_share_chat.setOnImageCircleButtonClickedListener(this);
+        btn_down.setOnImageCircleButtonClickedListener(this);
 
         tv_fileName.setText(fileName);
         tv_code.setText("提取码：" + fileCode);
@@ -212,18 +219,6 @@ public class DownloadUi2 extends BaseActivity implements View.OnClickListener {
                 }else{
                     System.out.println("filePath : " + filePath);
                     FileUtils.OpenFile(this, filePath, fileName);
-                }
-                break;
-            case R.id.img_file:
-                break;
-            case R.id.img_back:
-                onBackPressed();
-                break;
-            case R.id.img_avatar:
-                if(where == 0){
-                    NetWorkOperator.getOtherUserInfoByUsername(this, uploader.getUsername(), true);
-                }else{
-                    EasySweetAlertDialog.ShowNormal(this, "厉害了我滴哥", "退一步海阔天空~");
                 }
                 break;
         }

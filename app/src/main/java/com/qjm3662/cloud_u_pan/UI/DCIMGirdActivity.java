@@ -1,6 +1,7 @@
 package com.qjm3662.cloud_u_pan.UI;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easybar.EasyBar;
@@ -93,18 +93,24 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "选择一张图片", this, 1);
+        EasyBar easyBar = (EasyBar) findViewById(R.id.easyBar);
+        easyBar.setRightIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_gf_camera));
+        easyBar.setTitle("选择一张图片");
+        easyBar.setOnEasyBarClickListener(new EasyBar.OnEasyBarClickListener() {
+            @Override
+            public void onLeftIconClick() {
+                onBackPressed();
+            }
+
+            @Override
+            public void onRightIconClick() {
+                getCamera();
+            }
+        });
         gridView = (GridView) findViewById(R.id.my_DCIM_grid);
         adapter_directory = new DCIMDirectryAdapter(this, new HashMap<String, List<String>>());
         gridView.setAdapter(adapter_directory);
         gridView.setOnItemClickListener(this);
-        img_camera = (ImageView) findViewById(R.id.img_camera);
-        img_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCamera();
-            }
-        });
     }
 
     private void getCamera() {

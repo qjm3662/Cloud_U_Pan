@@ -15,21 +15,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton_RoundImage
+    <com.example.easybar.RoundRectButton
         android:id="@+id/btn_send"
         style="@style/EasyButtonStyle"
         android:layout_gravity="center_horizontal"
         android:layout_width="100dp"
         android:textSize="25sp"
         android:text="发送"
+        easy:btn_radius="@dimen/x140"
+        easy:maxRadius="@dimen/x180"
         android:layout_height="200dp"
         />
-    <com.qjm3662.cloud_u_pan.Widget.EasyButton_RoundImage
+    <com.example.easybar.RoundRectButton
         android:id="@+id/btn_receive"
         style="@style/EasyButtonStyle"
         android:layout_gravity="center_horizontal"
         android:layout_width="100dp"
         android:textSize="25sp"
+        easy:btn_radius="@dimen/x140"
+        easy:maxRadius="@dimen/x180"
         android:text="接收"
         android:layout_height="200dp"
         />

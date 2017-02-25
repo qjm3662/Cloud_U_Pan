@@ -51,7 +51,7 @@ public class OthersMain extends BaseActivity implements View.OnClickListener, Ad
 
     private void initView() {
         listView = (ListView) findViewById(R.id.list_others_share);
-        EasyBarUtils.justSetTitleAndBack(easyBar, "个人主页", this, 1);
+        EasyBarUtils.justSetTitleAndBack("个人主页", this, 1);
         tv_empty_view = (TextView) findViewById(R.id.list_empty_view);
         tv_empty_view.setVisibility(View.INVISIBLE);
         inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);

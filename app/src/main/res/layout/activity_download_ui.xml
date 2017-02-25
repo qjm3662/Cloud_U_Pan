@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lightblue"
     tools:context="com.qjm3662.cloud_u_pan.UI.DownloadUi">
 
@@ -30,14 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/y180"/>
 
-        <com.qjm3662.cloud_u_pan.Widget.EasyButton
+        <com.example.easybar.RoundRectButton
             android:id="@+id/btn_sure"
             android:text=" 确定 "
+            app:btn_radius="@dimen/x100"
+            app:maxRadius="@dimen/x140"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/et_code"
             android:layout_marginTop="@dimen/y120"
             android:layout_marginBottom="@dimen/y30"
             style="@style/EasyButtonStyle"
+            android:layout_height="wrap_content"
             />
     </RelativeLayout>
 

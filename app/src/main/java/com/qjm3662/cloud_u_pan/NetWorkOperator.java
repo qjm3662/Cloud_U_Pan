@@ -694,6 +694,9 @@ public class NetWorkOperator {
                                 e.printStackTrace();
                             }
                             if (owner != null) {
+                                if(fileInformation.getUploadUser() == null){
+                                    fileInformation.setUploadUser(new User());
+                                }
 //                                fileInformation.setUploadUserNickname(owner.getString("nickname"));
 //                                fileInformation.setUploadUserAvatar(owner.getString("avatar"));
 //                                fileInformation.setUploadUsername(owner.getString("username"));

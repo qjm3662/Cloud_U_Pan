@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.easybar.ImageCircleButton;
 import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
@@ -62,7 +63,7 @@ public class DialogUtils {
         ImageView img_upload_record = (ImageView) view.findViewById(R.id.img_upload_record);
         ImageView img_download_record = (ImageView) view.findViewById(R.id.img_download_record);
         ImageView img_share_center = (ImageView) view.findViewById(R.id.img_share_center);
-        EasyButton btn_cancel = (EasyButton) view.findViewById(R.id.btn_cancel);
+        ImageCircleButton btn_cancel = (ImageCircleButton) view.findViewById(R.id.btn_cancel);
 
         img_download_record.setOnClickListener(listener);
         img_share_center.setOnClickListener(listener);

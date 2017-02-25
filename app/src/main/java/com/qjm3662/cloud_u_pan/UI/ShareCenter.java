@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -71,7 +70,7 @@ public class ShareCenter extends BaseActivity implements AdapterView.OnItemClick
     }
 
     private void initListView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "分享中心", this, 1);
+        EasyBarUtils.justSetTitleAndBack("分享中心", this, 1);
         listView = (ListView) findViewById(R.id.list_localFile);
         adapter = new ShareCenterAdapter(this, list);
         listView.setAdapter(adapter);

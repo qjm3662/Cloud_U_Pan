@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
@@ -34,7 +33,7 @@ public class Login extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "登录", this, 2);
+        EasyBarUtils.justSetTitleAndBack("登录", this, 2);
         btn_login = (Button) findViewById(R.id.login_btn);
         tv_forget_password = (TextView) findViewById(R.id.forget_password);
         et_username = (EditText) findViewById(R.id.login_phone);

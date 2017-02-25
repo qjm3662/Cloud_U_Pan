@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -78,7 +77,7 @@ public class Followings extends BaseActivity implements AdapterView.OnItemClickL
 
     private void initView() {
         listView = (ListView) findViewById(R.id.list_followings);
-        EasyBarUtils.justSetTitleAndBack(easyBar, "关注的人", this, 1);
+        EasyBarUtils.justSetTitleAndBack("关注的人", this, 1);
         tv_emptyView = (TextView) findViewById(R.id.list_empty_view);
         adapter = new FollowingsAdapter(this, list);
         listView.setAdapter(adapter);

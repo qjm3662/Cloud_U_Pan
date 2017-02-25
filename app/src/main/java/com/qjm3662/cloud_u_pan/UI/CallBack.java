@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.App;
@@ -28,7 +26,7 @@ public class CallBack extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "团队信息", this, 2);
+        EasyBarUtils.justSetTitleAndBack("团队信息", this, 2);
         btn_callBack = (Button) findViewById(R.id.btn_callBack);
         et_callBack = (EditText) findViewById(R.id.et_callBack);
         btn_callBack.setOnClickListener(this);

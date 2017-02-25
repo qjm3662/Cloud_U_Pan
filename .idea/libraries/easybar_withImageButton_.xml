@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="easybar_withImageButton-">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/easybar_withImageButton/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/easybar_withImageButton/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

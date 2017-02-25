@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easybar.EasyBar;
@@ -64,7 +62,7 @@ public class FileManager extends BaseActivity implements AdapterView.OnItemLongC
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, " ", this, 2);
+        easyBar = EasyBarUtils.justSetTitleAndBack(" ", this, 2);
         if (where == 0) {
             easyBar.setTitle("选择文件");
         } else if (where == 1) {

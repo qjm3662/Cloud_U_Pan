@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -139,7 +138,7 @@ public class Receive_Activity extends BaseActivity {
         //收文件的人创建P2p群组
         manager.createGroup();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        EasyBarUtils.justSetTitleAndBack(easyBar, "接收文件", this, 2);
+        EasyBarUtils.justSetTitleAndBack("接收文件", this, 2);
         listView = (ListView) findViewById(R.id.list);
         adapter = new RecordAdapter(this, list);
         tv_state = (TextView) findViewById(R.id.tv_state);

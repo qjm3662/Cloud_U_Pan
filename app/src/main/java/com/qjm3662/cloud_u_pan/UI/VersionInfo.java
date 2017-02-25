@@ -3,7 +3,6 @@ package com.qjm3662.cloud_u_pan.UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.easybar.EasyBar;
@@ -25,7 +24,7 @@ public class VersionInfo extends BaseActivity implements View.OnClickListener {
     }
 
     private void initVIew() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "版本信息", this, 1);
+        EasyBarUtils.justSetTitleAndBack("版本信息", this, 1);
         tv_check_for_update = (TextView) findViewById(R.id.tv_check_for_update);
         tv_user_agreement = (TextView) findViewById(R.id.tv_user_agreement);
 

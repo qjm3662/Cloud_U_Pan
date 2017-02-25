@@ -16,6 +16,6 @@ public class AboutUs extends BaseActivity {
     }
 
     private void initView() {
-        EasyBarUtils.justSetTitleAndBack(easyBar, "团队信息", this, 1);
+        EasyBarUtils.justSetTitleAndBack("团队信息", this, 1);
     }
 }
