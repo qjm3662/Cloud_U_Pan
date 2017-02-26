@@ -674,8 +674,6 @@ public class NetWorkOperator {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        System.out.println(e.toString());
-                        System.out.println("id :" + id_);
                         EasySweetAlertDialog.ShowTip(context, "tip", "获取文件信息失败");
                     }
 
@@ -684,31 +682,32 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jo = new JSONObject(response);
-                            System.out.println(jo.get("code"));
-                            fileInformation.setFileName(jo.getString("fileName"));
-                            fileInformation.setFileSize((float) jo.getDouble("fileSize"));
-                            JSONObject owner = null;
-                            try {
-                                owner = jo.getJSONObject("owner");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            if (owner != null) {
-                                if(fileInformation.getUploadUser() == null){
-                                    fileInformation.setUploadUser(new User());
+                            if(jo.getInt("code") == 0){
+                                fileInformation.setFileName(jo.getString("fileName"));
+                                fileInformation.setFileSize((float) jo.getDouble("fileSize"));
+                                JSONObject owner = null;
+                                try {
+                                    owner = jo.getJSONObject("owner");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-//                                fileInformation.setUploadUserNickname(owner.getString("nickname"));
-//                                fileInformation.setUploadUserAvatar(owner.getString("avatar"));
-//                                fileInformation.setUploadUsername(owner.getString("username"));
-                                fileInformation.getUploadUser().setNickname(owner.getString("nickname"));
-                                fileInformation.getUploadUser().setAvatar(owner.getString("avatar"));
-                                fileInformation.getUploadUser().setUsername(owner.getString("username"));
-                                fileInformation.setCreateTime(jo.getLong("createTime"));
+                                if (owner != null) {
+                                    if(fileInformation.getUploadUser() == null){
+                                        fileInformation.setUploadUser(new User());
+                                    }
+                                    fileInformation.getUploadUser().setNickname(owner.getString("nickname"));
+                                    fileInformation.getUploadUser().setAvatar(owner.getString("avatar"));
+                                    fileInformation.getUploadUser().setUsername(owner.getString("username"));
+                                    fileInformation.setCreateTime(jo.getLong("createTime"));
+                                }else{
+                                    fileInformation.setUploadUser(null);
+                                }
+                                callBack.call();
                             }else{
-                                fileInformation.setUploadUser(null);
+                                EasySweetAlertDialog.ShowTip(context, "tip", jo.getString(ServerInformation.ERR_MSG));
                             }
-                            callBack.call();
                         } catch (JSONException e) {
+                            EasySweetAlertDialog.ShowTip(context, "tip", "获取文件信息失败(服务器bug)");
                             e.printStackTrace();
                         }
                     }

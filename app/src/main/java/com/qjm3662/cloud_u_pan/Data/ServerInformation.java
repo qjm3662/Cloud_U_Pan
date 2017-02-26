@@ -5,6 +5,7 @@ package com.qjm3662.cloud_u_pan.Data;
  */
 public class ServerInformation {
 
+    public static final String ERR_MSG = "errMSG";
         public static final String IP = "http://123.207.96.66";
 //    public static final String IP = "http://172.6.2.8";
 //    public static final String IP = "http://192.168.1.4";
@@ -107,4 +108,6 @@ public class ServerInformation {
 
     //百度云盘资源搜索
     public static final String BAIDU_SEARCH = IP + ":8096/yunPan/index";
+
+
 }

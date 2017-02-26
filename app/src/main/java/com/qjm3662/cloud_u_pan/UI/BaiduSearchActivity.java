@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
@@ -18,7 +17,7 @@ import com.qjm3662.cloud_u_pan.Data.ServerInformation;
 import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 
-public class BaiduSearchActivity extends AppCompatActivity {
+public class BaiduSearchActivity extends BaseActivity {
 
     private ProgressBar progressBar;
     private WebView webView;
@@ -33,7 +32,6 @@ public class BaiduSearchActivity extends AppCompatActivity {
 
     private void initView() {
         EasyBarUtils.justSetTitleAndBack("云盘搜索", this, 2);
-
 
         progressBar = (ProgressBar) findViewById(R.id.progress);
         progressBar.setVisibility(View.INVISIBLE);

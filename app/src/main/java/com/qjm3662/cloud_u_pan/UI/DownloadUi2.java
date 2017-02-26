@@ -6,30 +6,26 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.easybar.EasyBar;
 import com.example.easybar.ImageCircleButton;
 import com.example.easybar.OnImageCircleButtonClickedListener;
 import com.example.easybar.RoundRectButton;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.qjm3662.cloud_u_pan.App;
 import com.qjm3662.cloud_u_pan.Data.ServerInformation;
-import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Data.UserBase;
 import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.NetWorkOperator;
 import com.qjm3662.cloud_u_pan.R;
-import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
 import com.qjm3662.cloud_u_pan.Tool.ShareOperator;
 import com.qjm3662.cloud_u_pan.Tool.TextUtil;
-import com.qjm3662.cloud_u_pan.Widget.EasyButton;
 import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -49,8 +45,6 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
     private AVLoadingIndicatorView progress_circle;
     private TextView tv_progress;
 
-    private EasyBar easyBar;
-
     private String fileName;
     private String fileCode;
     private String filePath = null;
@@ -65,13 +59,21 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
     public static final String DownloadFilePath = "Download filePath";
     private BroadcastReceiver receiver;
     private boolean is_upload_after_login = false;
-    private int current_progress = 0;
     private int where = 0;  // 0->app主页获取下载信息   1->用户个人主页访问，不可再重复访问
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download_ui2);
+        //获取文件的信息
+        initFileInfo();
+        //初始化视图
+        initView();
+        //注册下载进度回调服务
+        initReceiver();
+    }
+
+    private void initFileInfo() {
         fileName = App.fileInformation.getFileName();
         Intent intent = getIntent();
         fileCode = intent.getStringExtra("code");
@@ -81,8 +83,6 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
             createAt = App.fileInformation.getDownTimeString();
             is_upload_after_login = true;
         }
-        initView();
-        initReceiver();
     }
 
     private void initReceiver() {
@@ -92,12 +92,9 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                System.out.println("receive");
                 switch (intent.getAction()){
                     case DownLoadProgressAction:
                         int progress = intent.getIntExtra(DownloadProgressing, 0);
-                        current_progress = progress;
-//                        System.out.println(progress);
                         tv_progress.setText(progress + "");
                         break;
                     case DownloadFilePathAction:
@@ -112,6 +109,7 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
             }
         };
 
+        //注册接收器
         registerReceiver(receiver, intentFilter);
     }
 
@@ -130,9 +128,15 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
         img_avatar = (RoundedImageView) findViewById(R.id.img_avatar);
         tv_uploadInfo = (TextView) findViewById(R.id.tv_uploadInfo);
 
-
         if(is_upload_after_login){
             tv_uploadInfo.setText(uploader.getNickname() + "上传于" + createAt);
+            ImageLoader.getInstance().loadImage(uploader.getAvatar(), new SimpleImageLoadingListener(){
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    super.onLoadingComplete(imageUri, view, loadedImage);
+                    img_avatar.setImageBitmap(loadedImage);
+                }
+            });
             img_avatar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -143,31 +147,6 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
                     }
                 }
             });
-            final Bitmap[] b = {null};
-            final Handler handler = new Handler(){
-                @Override
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    switch (msg.what){
-                        case 0:
-                            img_avatar.setImageBitmap(b[0]);
-                            break;
-                    }
-                }
-            };
-            AvatarUtils.AvatarCallBack callBack = new AvatarUtils.AvatarCallBack() {
-                @Override
-                public void callback(Bitmap bitmap) {
-                    b[0] = bitmap;
-                    handler.sendEmptyMessage(0);
-                }
-
-                @Override
-                public void callBack_2(User u, Bitmap bitmap, int position) {
-
-                }
-            };
-            AvatarUtils.getBitmapByUrl(uploader.getAvatar(), callBack);
         }else{
             img_avatar.setVisibility(View.INVISIBLE);
             tv_uploadInfo.setVisibility(View.INVISIBLE);
@@ -223,10 +202,6 @@ public class DownloadUi2 extends BaseActivity implements OnImageCircleButtonClic
                 break;
         }
     }
-
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

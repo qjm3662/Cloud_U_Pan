@@ -38,9 +38,6 @@ public class UserMain extends BaseActivity implements View.OnClickListener {
     private ViewGroup tv_save_path;
     private ViewGroup tv_callback;
 
-//    private TextView tv_bar;
-//    private ImageView img_back;
-//    private ImageView img_zXing;
     private EasyBar easyBar;
     private TextView tv_exit;
     private TextView tv_current_save_path;

@@ -18,7 +18,6 @@ import com.example.easybar.EasyBar;
 import com.qjm3662.cloud_u_pan.Adapter.DCIMDirectryAdapter;
 import com.qjm3662.cloud_u_pan.Adapter.DCIMGridViewAdapter;
 import com.qjm3662.cloud_u_pan.App;
-import com.qjm3662.cloud_u_pan.EasyBarUtils;
 import com.qjm3662.cloud_u_pan.R;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.LocalDCIMUtils;
@@ -34,14 +33,13 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
     private GridView gridView;
     private BaseAdapter adapter_directory;
     private final HashMap<String, List<String>> mGroupMap = new HashMap<String, List<String>>();
-    private String[] DCIMset = null;
+    private String[] DCIM_set = null;
     private boolean isDirect = true;
     private BaseAdapter adapter_photo;
     private List<String> currentPaths = null;
     private EasyBar easyBar;
-    private static final int PHOTO_REQUEST_TAKEPHOTO = 5;
+    private static final int PHOTO_REQUEST_TAKE_PHOTO = 5;
     private File tempFile = new File(FileUtils.getPath(), "aa_temp.jpg");
-    private ImageView img_camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +51,8 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        System.out.println("item click");
         if(isDirect){
-            currentPaths = mGroupMap.get(DCIMset[position]);
+            currentPaths = mGroupMap.get(DCIM_set[position]);
             adapter_photo = new DCIMGridViewAdapter(this, currentPaths);
             gridView.setAdapter(adapter_photo);
             isDirect = false;
@@ -78,7 +75,7 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
             super.handleMessage(msg);
             switch (msg.what) {
                 case LocalDCIMUtils.SCAN_OK:
-                    DCIMset = mGroupMap.keySet().toArray(new String[]{});
+                    DCIM_set = mGroupMap.keySet().toArray(new String[]{});
                     System.out.println(Arrays.toString(mGroupMap.keySet().toArray()));
                     System.out.println(mGroupMap.toString());
                     ((DCIMDirectryAdapter)adapter_directory).setmDCIM(mGroupMap);
@@ -114,13 +111,13 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
     }
 
     private void getCamera() {
-        Intent cameraintent = new Intent(
+        Intent cameraIntent = new Intent(
                 MediaStore.ACTION_IMAGE_CAPTURE);
         // 指定调用相机拍照后照片的储存路径
-        cameraintent.putExtra(MediaStore.EXTRA_OUTPUT,
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                 Uri.fromFile(tempFile));
-        startActivityForResult(cameraintent,
-                PHOTO_REQUEST_TAKEPHOTO);
+        startActivityForResult(cameraIntent,
+                PHOTO_REQUEST_TAKE_PHOTO);
     }
 
 
@@ -138,7 +135,7 @@ public class DCIMGirdActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PHOTO_REQUEST_TAKEPHOTO){
+        if(requestCode == PHOTO_REQUEST_TAKE_PHOTO){
             if(data != null){
                 System.out.println("dd*****");
                 return;

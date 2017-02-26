@@ -87,7 +87,8 @@
             android:layout_toStartOf="@+id/btn_share_chat"
             android:layout_marginTop="@dimen/y99"
             android:layout_height="wrap_content"
-            app:btn_radius="@dimen/x120"
+            app:btn_radius="@dimen/x110"
+            app:maxRadius="@dimen/x140"
             />
 
 
@@ -99,7 +100,8 @@
             android:layout_below="@+id/tv_code"
             android:layout_marginTop="@dimen/y99"
             android:layout_height="wrap_content"
-            app:btn_radius="@dimen/x120"
+            app:btn_radius="@dimen/x110"
+            app:maxRadius="@dimen/x140"
             />
 
         <com.example.easybar.ImageCircleButton
@@ -111,7 +113,8 @@
             android:layout_toEndOf="@+id/btn_share_chat"
             android:layout_marginTop="@dimen/y99"
             android:layout_height="wrap_content"
-            app:btn_radius="@dimen/x120"
+            app:btn_radius="@dimen/x110"
+            app:maxRadius="@dimen/x140"
             />
     </RelativeLayout>
 

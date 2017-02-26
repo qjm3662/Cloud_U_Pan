@@ -15,7 +15,6 @@ import com.qjm3662.cloud_u_pan.Widget.EasySweetAlertDialog;
 
 public class CallBack extends BaseActivity implements View.OnClickListener {
 
-    private EasyBar easyBar;
     private EditText et_callBack;
     private Button btn_callBack;
     @Override
