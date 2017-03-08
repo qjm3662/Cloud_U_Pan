@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="library-1.4.4">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kyleduo.switchbutton/library/1.4.4/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kyleduo.switchbutton/library/1.4.4/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/ea053486efc8114456b83160dff0c8f0a38b42a3/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/ea053486efc8114456b83160dff0c8f0a38b42a3/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

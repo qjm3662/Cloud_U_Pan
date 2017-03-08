@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="whorlviewlibrary-1.0.3">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.tt/whorlviewlibrary/1.0.3/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.tt/whorlviewlibrary/1.0.3/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/fcd18e77e7649a883c083a2987cff17bb474faaa/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/fcd18e77e7649a883c083a2987cff17bb474faaa/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
