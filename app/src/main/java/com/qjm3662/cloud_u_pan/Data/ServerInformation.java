@@ -6,14 +6,14 @@ package com.qjm3662.cloud_u_pan.Data;
 public class ServerInformation {
 
     public static final String ERR_MSG = "errMSG";
-        public static final String IP = "http://123.207.96.66";
-//    public static final String IP = "http://172.6.2.8";
+//        public static final String IP = "http://123.207.96.66";
+    public static final String IP = "http://172.6.2.243";
 //    public static final String IP = "http://192.168.1.4";
 
     public static final String PORT = "8080";
 
-        public static final String url = IP + ":" + PORT + "/MyUpan_war";
-//    public static final String url = IP + ":" + PORT;
+//        public static final String url = IP + ":" + PORT + "/MyUpan_war";
+    public static final String url = IP + ":" + PORT;
 
     //默认头像
     public static final String DEFAULT_AVATAR = url + "/download?fileName=default_avatar.jpg";
@@ -41,7 +41,7 @@ public class ServerInformation {
     public static final String Modify_User_Avatar = url + "/user/modifyAvatar";
 
     //注册
-    public static final String REGISTER = url + "/user/RegisterAction";
+    public static final String REGISTER = url + "/user/register";
     /**
      * url: 119.29.55.243:3000/user-register post方法
      * 传参数name,pwd
@@ -59,7 +59,7 @@ public class ServerInformation {
      * }
      */
     //登陆
-    public static final String LOGIN = url + "/user/LoginAction";
+    public static final String LOGIN = url + "/user/login";
     /**
      * url: 119.29.55.243:3000/user-login post方法
      * 传参数 name,pwd

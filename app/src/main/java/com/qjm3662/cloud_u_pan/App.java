@@ -14,6 +14,8 @@ import android.net.ConnectivityManager;
 
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.qjm3662.cloud_u_pan.Cookie.CookieJarImpl;
+import com.qjm3662.cloud_u_pan.Cookie.PersistentCookieStore;
 import com.qjm3662.cloud_u_pan.Data.FileInformation;
 import com.qjm3662.cloud_u_pan.Data.LocalFile;
 import com.qjm3662.cloud_u_pan.Data.LocalFileDB;
@@ -22,8 +24,6 @@ import com.qjm3662.cloud_u_pan.Receiver.NetworkReceiver;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.UI.UserMain;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.cookie.CookieJarImpl;
-import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -114,36 +114,6 @@ public class App extends Application{
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration
                 .createDefault(this);
         com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(configuration);
-//
-//
-//        //设置主题
-//        //ThemeConfig.CYAN
-//        ThemeConfig theme = new ThemeConfig.Builder()
-//                .setTitleBarBgColor(getResources().getColor(R.color.blue))
-//                .setTitleBarTextColor(Color.WHITE)
-//                .setEditPhotoBgTexture(getResources().getDrawable(R.color.black))
-//                .setPreviewBg(getResources().getDrawable(R.color.img_share))
-//                .build();
-//
-//        //配置功能
-//        FunctionConfig functionConfig = new FunctionConfig.Builder()
-//                .setEnableCamera(true)
-//                .setEnableEdit(true)
-//                .setEnableCrop(true)
-//                .setEnableRotate(true)
-//                .setCropSquare(true)
-//                .setCropHeight(500)
-//                .setCropWidth(500)
-//                .setForceCrop(true)
-//                .setEnablePreview(true)
-//                .build();
-//
-//        //配置 imageloader
-//        ImageLoader imageloader = new UILImageLoader();
-//        CoreConfig coreConfig = new CoreConfig.Builder(this, imageloader, theme)
-//                .setFunctionConfig(functionConfig)
-//                .build();
-//        GalleryFinal.init(coreConfig);
     }
 
     private void initReceiver() {

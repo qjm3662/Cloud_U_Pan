@@ -17,6 +17,7 @@ import com.qjm3662.cloud_u_pan.Data.User;
 import com.qjm3662.cloud_u_pan.Tool.AvatarUtils;
 import com.qjm3662.cloud_u_pan.Tool.FileUtils;
 import com.qjm3662.cloud_u_pan.Tool.NetworkUtils;
+import com.qjm3662.cloud_u_pan.UI.CallBack;
 import com.qjm3662.cloud_u_pan.UI.DownloadUi2;
 import com.qjm3662.cloud_u_pan.UI.Followings;
 import com.qjm3662.cloud_u_pan.UI.Login;
@@ -64,8 +65,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.RevisePsd)
-                .addParams("username", User.getInstance().getUsername())
-                .addParams("password", oldPsd)
+                .addParams("oldPassword", oldPsd)
                 .addParams("newPassword", newPsd)
                 .build()
                 .execute(new StringCallback() {
@@ -79,20 +79,20 @@ public class NetWorkOperator {
                         System.out.println(response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            if(jsonObject.getInt("code") == 0){
+                            if(jsonObject.getInt("code") == 0){     //修改密码成功
                                 EasySweetAlertDialog.ShowSuccess(context, "修改成功，请重新登陆", new EasySweetAlertDialog.SuccessCallBack() {
                                     @Override
                                     public void Success(Context c) {
                                         c.startActivity(new Intent(c, Login.class));
                                         ((Activity)c).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                                         Intent intent = new Intent();
-                                        intent.setAction(UserMain.FINISH_SIGNAL);
+                                        intent.setAction(UserMain.FINISH_SIGNAL);       //发出一个信号关闭主界面
                                         c.sendBroadcast(intent);
                                         User.deleteUser();
                                         App.Flag_IsLogin = false;
                                         //删除SharedPreferences的记录
                                         App.deleteUserInfo(c);
-                                        ((Activity)c).finish();
+                                        ((Activity)c).finish();         //关闭原先打开的界面
                                     }
                                 });
                             }else{
@@ -121,7 +121,7 @@ public class NetWorkOperator {
         OkHttpUtils
                 .post()
                 .url(ServerInformation.CallBackInfo)
-                .addParams("username", name)
+                .addParams("phoneNumber", "15880677610")
                 .addParams("text", text)
                 .build()
                 .execute(new StringCallback() {
@@ -243,7 +243,7 @@ public class NetWorkOperator {
                 .post()
                 .url(ServerInformation.UnFollowSB)
                 .addParams("myselfName", User.getInstance().getUsername())
-                .addParams("otherName", targetName)
+                .addParams("targetUsername", targetName)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -287,7 +287,7 @@ public class NetWorkOperator {
                 .get()
                 .url(ServerInformation.FollowSB)
                 .addParams("myselfName", User.getInstance().getUsername())
-                .addParams("otherName", targetName)
+                .addParams("targetUsername", targetName)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -506,7 +506,7 @@ public class NetWorkOperator {
      * @param name
      * @param where   1-登录   2-注册   3-非第一次
      */
-    public static void getUserInfo(final Context context, String name, final int where) {
+    public static void getUserInfo(final Context context, final String name, final int where) {
         if (App.NeworkFlag == NetworkUtils.NETWORK_FLAG_NOT_CONNECT) {
             EasySweetAlertDialog.ShowTip(context, "tip", "请检查您的网络连接");
             return;
@@ -524,14 +524,15 @@ public class NetWorkOperator {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        System.out.println("username : " + name);
                         System.out.println("获取用户信息1 ：" + response);
                         try {
                             final JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("code") == 0) {
                                 App.Flag_IsLogin = true;
                                 Gson gson = new Gson();
-                                User.setUser(gson.fromJson(jsonObject.toString(), User.class));
-                                JSONArray jsonArray = jsonObject.getJSONArray("shares");
+                                User.setUser(gson.fromJson(jsonObject.getJSONObject("user").toString(), User.class));
+                                JSONArray jsonArray = jsonObject.getJSONObject("user").getJSONArray("shares");
                                 final List<FileInformation> shares = new ArrayList<FileInformation>();
                                 FileInformation fileInformation = null;
                                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -792,7 +793,7 @@ public class NetWorkOperator {
                     .post()
                     .url(url)
                     .addFile("file", fileName, file)
-                    .addParams("share", String.valueOf(isShare))
+                    .addParams("isPublic", String.valueOf(isShare))
                     .addParams("username", userName)
                     .build()
                     .execute(new StringCallback() {
@@ -939,7 +940,7 @@ public class NetWorkOperator {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        System.out.println(e.toString());
+                        System.out.println(e.toString() + " " + ServerInformation.REGISTER);
                         EasySweetAlertDialog.ShowTip(context, "Tip", "注册失败，请检查您的网络设置");
                     }
 
@@ -951,7 +952,7 @@ public class NetWorkOperator {
                             jsonObject = new JSONObject(response);
                             switch (jsonObject.getInt("code")) {
                                 case 0:     //注册成功
-                                    User.getInstance().setNickname(username);
+                                    User.getInstance().setUsername(username);
                                     User.getInstance().setAvatar(jsonObject.getString("avatar"));
                                     getUserInfo(context, username, 2);
                                     break;

@@ -5,8 +5,8 @@ package com.qjm3662.cloud_u_pan.Data;
  */
 
 public class UserBase {
-    protected String username;    //昵称
-    protected String nickname;        //用户账户
+    protected String username;    //用户名
+    protected String nickname;        //昵称
     protected String avatar;      //头像
     protected int sex;            //1->Man
     protected String signature;   //个签
